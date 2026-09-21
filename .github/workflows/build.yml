@@ -1,0 +1,418 @@
+# apk-builder fallback workflow — version: 27
+# Auto-generated. Edit buildFallbackWorkflowYaml() in server.js, not this
+# file directly — direct edits get overwritten the next time the version
+# above is bumped and this gets re-synced to the base branch.
+name: Build APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Flutter apps ship an android/ subfolder with its own settings.gradle.kts,
+      # which "Locate Android project" below happily finds and treats like any
+      # other Gradle project -- but that settings.gradle.kts hardcodes a read of
+      # flutter.sdk from local.properties, so without an actual Flutter SDK on
+      # this runner the build never even gets past Gradle's settings evaluation.
+      # Gated on hashFiles so plain Android/Java/Kotlin uploads (the common
+      # case) never pay for this step.
+      - name: Set up Flutter
+        if: hashFiles('**/pubspec.yaml') != ''
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: flutter pub get
+        if: hashFiles('**/pubspec.yaml') != ''
+        run: |
+          PUBSPEC_DIR=$(dirname "$(find "$GITHUB_WORKSPACE" -maxdepth 4 -name pubspec.yaml -not -path '*/.git/*' | head -n1)")
+          echo "Running flutter pub get in $PUBSPEC_DIR"
+          (cd "$PUBSPEC_DIR" && flutter pub get)
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          # Without this, the action's own default package list includes
+          # "tools" -- the old standalone Android SDK Tools package, which
+          # Google removed from the SDK repository years ago in favor of
+          # cmdline-tools. That default has been stale for a long time, so
+          # every build fails at this step with "Failed to find package
+          # 'tools'" before it even reaches the project. platform-tools is
+          # the one piece actually needed here; the Android Gradle Plugin
+          # pulls whatever specific platforms/build-tools versions the
+          # project itself requires on its own during the Gradle build.
+          packages: "platform-tools"
+
+      # android-actions/setup-android@v3 is supposed to auto-accept SDK
+      # licenses itself, but in practice it can still land on an interactive
+      # "Review licenses that have not been accepted (y/N)?" prompt that
+      # nothing answers -- e.g. after it installs/updates a cmdline-tools
+      # version whose license set doesn't match what the action pre-baked
+      # answers for. Piping 'yes' at sdkmanager directly answers every
+      # prompt with 'y' regardless of how many there are or which specific
+      # packages/versions ask for one, so this isn't tied to any particular
+      # SDK version and stays correct as Android SDK components change over
+      # time. Harmless (and a no-op) on setups where the action already
+      # handled everything itself.
+      - name: Accept all Android SDK licenses
+        run: yes | sdkmanager --licenses > /dev/null || true
+
+      # Self-updating apps (installing a new build over the one already
+      # running) require every build to be signed with the SAME
+      # certificate. Without this, each build runs on a brand-new GitHub
+      # Actions VM with no ~/.android/debug.keystore, so the Android Gradle
+      # Plugin silently generates a fresh random one every time -- a
+      # different signature on every build -- and Android refuses to
+      # install the "update" (which can surface as a crash/freeze right as
+      # the install finishes instead of a clear error). Caching the
+      # keystore by a fixed key means the first build generates it and
+      # every build after restores that same file, so the signature stays
+      # identical run to run.
+      - name: Persist debug keystore across builds
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/debug.keystore
+          key: debug-keystore-v1
+
+      - name: Locate Android project
+        id: locate
+        run: |
+          MATCH=$(find "$GITHUB_WORKSPACE" \
+            -path '*/.git' -prune -o \
+            -path '*/__MACOSX' -prune -o \
+            -path '*/node_modules' -prune -o \
+            \( -name settings.gradle -o -name settings.gradle.kts \) -print | head -n 1)
+          if [ -z "$MATCH" ]; then
+            echo "::error::No settings.gradle or settings.gradle.kts found anywhere in the uploaded project."
+            echo "---- Workspace contents (for debugging) ----"
+            find "$GITHUB_WORKSPACE" -maxdepth 4 -not -path '*/.git*' | sort
+            echo "---------------------------------------------"
+            exit 1
+          fi
+          PROJECT_DIR=$(dirname "$MATCH")
+          echo "Using Gradle project at: $PROJECT_DIR"
+          echo "dir=$PROJECT_DIR" >> "$GITHUB_OUTPUT"
+
+      # subosito/flutter-action exports FLUTTER_ROOT for later steps, but the
+      # Flutter Gradle plugin loader (in the located project's
+      # settings.gradle.kts) only ever reads flutter.sdk out of
+      # local.properties -- it doesn't fall back to the env var. So even with
+      # Flutter installed, the build still fails with "flutter.sdk not set in
+      # local.properties" unless something writes that line in. This does.
+      - name: Point Flutter Gradle plugin at the Flutter SDK
+        if: hashFiles('**/pubspec.yaml') != ''
+        working-directory: ${{ steps.locate.outputs.dir }}
+        run: |
+          echo "flutter.sdk=$FLUTTER_ROOT" >> local.properties
+
+      # Runs before "Set up Gradle" (and reads the project rather than using
+      # one hardcoded version) so this works across whatever AGP/Gradle
+      # combination each uploaded project actually needs, instead of only
+      # the one version we happened to pin last. A committed
+      # gradle-wrapper.properties already records the exact Gradle version
+      # its author built against -- that's the version whose
+      # com.android.internal.version-check will actually be satisfied, so
+      # prefer it over any single hardcoded number.
+      - name: Detect required Gradle version
+        id: gradle-detect
+        working-directory: ${{ steps.locate.outputs.dir }}
+        run: |
+          # Only reached for projects with no wrapper properties of their own
+          # -- currently just this tool's own AGP 8.4.0 WebView-wrapper
+          # fallback template (see generateWebViewWrapperProject in
+          # server.js), which ships no gradlew/wrapper at all. Bump this if
+          # that template's pinned AGP version ever changes.
+          DEFAULT_GRADLE_VERSION="8.9"
+          DETECTED=""
+          if [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
+            DETECTED=$(grep -oP 'gradle-\K[0-9.]+(?=-(all|bin)\.zip)' ./gradle/wrapper/gradle-wrapper.properties | head -n1)
+          fi
+          if [ -z "$DETECTED" ]; then
+            echo "No usable gradle-wrapper.properties found — defaulting to Gradle $DEFAULT_GRADLE_VERSION"
+            DETECTED="$DEFAULT_GRADLE_VERSION"
+
+            # No wrapper to read, so ask the project's own Android Gradle
+            # Plugin version what it needs. AGP refuses to load on a Gradle
+            # older than its minimum ("Minimum supported Gradle version is
+            # 8.13. Current version is 8.9."), so never go below that.
+            AGP_VER=""
+            for PAT in \
+              'com\.android\.tools\.build:gradle:\K[0-9]+\.[0-9]+(\.[0-9]+)?' \
+              'com\.android\.(application|library)[^0-9]{1,6}version[^0-9]{1,6}\K[0-9]+\.[0-9]+(\.[0-9]+)?' \
+              '^\s*(agp|androidGradlePlugin|android-gradle-plugin)\s*=\s*.\K[0-9]+\.[0-9]+(\.[0-9]+)?'; do
+              if [ -z "$AGP_VER" ]; then
+                AGP_VER=$(grep -rhoP --include='*.gradle' --include='*.kts' --include='*.toml' "$PAT" . 2>/dev/null | head -n1 || true)
+              fi
+            done
+            if [ -n "$AGP_VER" ]; then
+              case "$AGP_VER" in
+                9.*) AGP_MIN="9.1.0" ;;
+                8.13*|8.12*|8.11*) AGP_MIN="8.13" ;;
+                8.10*|8.9*) AGP_MIN="8.11.1" ;;
+                8.8*) AGP_MIN="8.10.2" ;;
+                8.7*) AGP_MIN="8.9" ;;
+                8.6*|8.5*) AGP_MIN="8.7" ;;
+                8.4*) AGP_MIN="8.6" ;;
+                8.3*) AGP_MIN="8.4" ;;
+                8.2*) AGP_MIN="8.2" ;;
+                8.1*|8.0*) AGP_MIN="8.0" ;;
+                7.4*) AGP_MIN="7.5" ;;
+                *) AGP_MIN="" ;;
+              esac
+              if [ -n "$AGP_MIN" ]; then
+                HIGHER=$( { echo "$DETECTED"; echo "$AGP_MIN"; } | sort -V | tail -n1 )
+                echo "Project uses Android Gradle Plugin $AGP_VER, which needs Gradle $AGP_MIN or newer — using Gradle $HIGHER"
+                DETECTED="$HIGHER"
+              fi
+            fi
+          else
+            echo "Project's own wrapper declares Gradle $DETECTED — using that"
+          fi
+          echo "version=$DETECTED" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          # Whatever the previous step detected for THIS project, rather
+          # than a single hardcoded version pinned for every build.
+          gradle-version: ${{ steps.gradle-detect.outputs.version }}
+          # This pipeline sometimes has to regenerate a missing
+          # gradle-wrapper.jar itself (see "Normalize the project for CI"
+          # below) -- a freshly-generated jar will never match this action's
+          # known-good checksum allowlist, so wrapper validation (meant to
+          # catch a malicious jar swapped into someone else's public repo)
+          # produces a false positive against our own legitimate rebuild and
+          # fails the job with "At least one Gradle Wrapper Jar failed
+          # validation!". Disabled since every jar this workflow runs
+          # against is either the project's own upload or one this same
+          # pipeline just generated from the official Gradle distribution.
+          validate-wrappers: false
+
+      - name: Normalize the project for CI
+        working-directory: ${{ steps.locate.outputs.dir }}
+        run: |
+          # A committed local.properties almost always points at a developer's
+          # own machine (sdk.dir=/Users/xxx/Library/Android/sdk) and will make
+          # the build fail to find the SDK on the runner even though the
+          # project itself is fine. Drop it and write a fresh one instead of
+          # just deleting it: some projects' settings.gradle.kts unconditionally
+          # reads local.properties (not just the Flutter plugin loader), so for
+          # a non-Flutter upload -- where the earlier Flutter-only step never
+          # ran and never created the file -- leaving it missing entirely
+          # fails the build with "local.properties (No such file or directory)"
+          # even though nothing else is wrong. Always leaving a real file
+          # behind, with sdk.dir pointing at the SDK setup-android already
+          # exported via ANDROID_HOME, covers both project shapes.
+          rm -f local.properties
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          if [ -n "$FLUTTER_ROOT" ]; then
+            echo "flutter.sdk=$FLUTTER_ROOT" >> local.properties
+          fi
+
+          # If a wrapper script exists, make sure it will actually run:
+          # strip Windows CRLF line endings (breaks the '#!/usr/bin/env sh'
+          # shebang on Linux) and set the executable bit, which zip uploads
+          # frequently lose.
+          if [ -f "./gradlew" ]; then
+            sed -i 's/\r$//' ./gradlew
+            chmod +x ./gradlew
+          fi
+
+          # gradlew and gradle-wrapper.properties can exist while the actual
+          # gradle-wrapper.jar (a binary file, easy to lose in a zip or via
+          # .gitignore) is missing. That's the "Could not find or load main
+          # class org.gradle.wrapper.GradleWrapperMain" failure -- gradlew has
+          # nothing to run. Regenerate the missing jar using the exact same
+          # version detected (and installed) above, so the project's own
+          # wrapper comes back matching what its properties file already
+          # declared, instead of being pinned to a different version.
+          if [ -f "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ] && [ ! -f "./gradle/wrapper/gradle-wrapper.jar" ]; then
+            echo "gradle-wrapper.jar is missing — regenerating it"
+            gradle wrapper --gradle-version ${{ steps.gradle-detect.outputs.version }} --no-daemon
+            chmod +x ./gradlew
+          fi
+
+          # XML comments containing "--" anywhere inside them (e.g. a comment
+          # like "<!-- fix -- update later -->") are invalid XML and make the
+          # resource merger fail with "The string '--' is not permitted
+          # within comments." Rather than trying to detect/repair just the
+          # bad ones, strip ALL comments from res/*.xml files -- comments
+          # have no effect on the build, so this is always safe and removes
+          # the whole class of failure. AndroidManifest.xml is stripped
+          # too (same rule, same failure mode -- ManifestMerger2 chokes on
+          # it the same way resource merging does) since it lives outside
+          # any res/ directory and would otherwise be missed here.
+          find . \( -path '*/res/*' -o -name 'AndroidManifest.xml' \) -name '*.xml' -print0 \
+            | xargs -0 -r perl -0777 -pi -e 's/<!--.*?-->//gs'
+
+          # Keep Java and Kotlin compiler targets on the same JVM level.
+          # The builder runs JDK 17, so normalize Gradle build files to 17.
+          # This fixes the common 1.8-vs-17 mismatch at :app:compileReleaseKotlin.
+          find . \
+            \( -name 'build.gradle' -o -name 'build.gradle.kts' \) \
+            -type f -print0 \
+            | xargs -0 -r perl -pi -e 's/JavaVersion\.VERSION_1_8/JavaVersion.VERSION_17/g'
+
+          # Even with the replacement above, a project can still end up with Java and
+          # Kotlin on different JVM targets: the Android Gradle Plugin defaults Java
+          # to 1.8 when compileOptions is not declared, while Kotlin follows the
+          # JDK running Gradle (17). Nothing in the build files says 1.8, so no text
+          # replacement can find it. This Gradle init script (picked up from
+          # init.d by every Gradle run, wrapper or not) aligns Kotlin to the Java
+          # target of the same variant instead, which works for any project.
+          GRADLE_HOME_DIR="$HOME/.gradle"
+          if [ -n "$GRADLE_USER_HOME" ]; then GRADLE_HOME_DIR="$GRADLE_USER_HOME"; fi
+          mkdir -p "$GRADLE_HOME_DIR/init.d"
+          cat > "$GRADLE_HOME_DIR/init.d/align-jvm-target.gradle" <<'GRADLE_INIT_EOF'
+          // Injected by the CI builder. Makes Kotlin's jvmTarget match the Java compile
+          // target of the same variant, for every module, whatever the project does or
+          // does not declare. Fixes "Inconsistent JVM-target compatibility detected for
+          // tasks compileReleaseJavaWithJavac (1.8) and compileReleaseKotlin (17)".
+          // Works with any AGP and Kotlin plugin version and never fails the build.
+          gradle.projectsEvaluated {
+              gradle.allprojects { p ->
+                  try {
+                      p.tasks.matching { t ->
+                          t.class.name.startsWith('org.jetbrains.kotlin.gradle.tasks.KotlinCompile') && t.name.endsWith('Kotlin')
+                      }.all { kt ->
+                          try {
+                              def base = kt.name.substring(0, kt.name.length() - 6)
+                              def jt = p.tasks.findByName(base + 'JavaWithJavac')
+                              if (jt == null) { jt = p.tasks.findByName(base + 'Java') }
+                              if (jt == null || !(jt instanceof org.gradle.api.tasks.compile.JavaCompile)) { return }
+                              def tgt = jt.targetCompatibility
+                              if (tgt == null) { return }
+                              tgt = tgt.toString()
+                              if (tgt.isEmpty()) { return }
+                              try {
+                                  // Kotlin Gradle plugin up to 2.1
+                                  if (kt.kotlinOptions.jvmTarget != tgt) { kt.kotlinOptions.jvmTarget = tgt }
+                              } catch (Throwable oldApi) {
+                                  // Kotlin Gradle plugin 1.8+ compilerOptions API
+                                  def prop = kt.compilerOptions.jvmTarget
+                                  def cur = prop.getOrNull()
+                                  if (cur != null) {
+                                      def match = cur.getDeclaringClass().getEnumConstants().find { e -> e.getTarget() == tgt }
+                                      if (match != null) { prop.set(match) }
+                                  }
+                              }
+                          } catch (Throwable e) {
+                              println 'jvm-target-align: skipped ' + kt.name + ' (' + e.getMessage() + ')'
+                          }
+                      }
+                  } catch (Throwable e) {
+                      println 'jvm-target-align: skipped project ' + p.name + ' (' + e.getMessage() + ')'
+                  }
+              }
+          }
+          GRADLE_INIT_EOF
+
+      - name: Build debug APK
+        working-directory: ${{ steps.locate.outputs.dir }}
+        run: |
+          set -o pipefail
+          run_build() {
+            if [ -x "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
+              ./gradlew assembleDebug --no-daemon
+            else
+              gradle assembleDebug --no-daemon
+            fi
+          }
+
+          if [ -x "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
+            echo "Building with the project's own Gradle wrapper"
+          else
+            echo "No usable Gradle wrapper found — building with the runner's Gradle instead"
+          fi
+
+          if run_build 2>&1 | tee build.log; then
+            exit 0
+          fi
+
+          # The "Detect required Gradle version" step (further up) trusts
+          # whatever version the project's own committed
+          # gradle-wrapper.properties declares -- but that file can simply
+          # be stale for the AGP version actually in use, which is exactly
+          # what just happened here. Gradle's own failure message already
+          # states the real minimum ("Minimum supported Gradle version is
+          # X. Current version is Y."), so pull X straight out of the log
+          # and retry once with the wrapper regenerated at that version,
+          # instead of surfacing a failure the log itself already answers.
+          REQUIRED=$(grep -oP 'Minimum supported Gradle version is \K[0-9]+(?:\.[0-9]+)*' build.log | head -n1 || true)
+          if [ -n "$REQUIRED" ]; then
+            echo "This project's Android Gradle Plugin needs Gradle $REQUIRED (the build above used an older one). Installing a wrapper at that version and retrying once."
+            # Generate the wrapper from an EMPTY directory: running
+            # `gradle wrapper` inside the project would configure it first,
+            # and configuring it is exactly what fails on the too-old Gradle.
+            WRAP_TMP=$(mktemp -d)
+            (cd "$WRAP_TMP" && gradle wrapper --gradle-version "$REQUIRED" --no-daemon)
+            mkdir -p ./gradle/wrapper
+            cp "$WRAP_TMP/gradlew" ./gradlew
+            cp "$WRAP_TMP/gradlew.bat" ./gradlew.bat 2>/dev/null || true
+            cp "$WRAP_TMP"/gradle/wrapper/* ./gradle/wrapper/
+            chmod +x ./gradlew
+            run_build 2>&1 | tee -a build.log
+          else
+            exit 1
+          fi
+
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk-${{ github.run_id }}
+          path: ${{ steps.locate.outputs.dir }}/**/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+
+      - name: Publish outputs directly to release (skips proxying bytes through the build server)
+        env:
+          GH_TOKEN: ${{ secrets.ASSETS_REPO_TOKEN }}
+        run: |
+          set -eo pipefail
+          # secrets can't be referenced in an "if:" condition (GitHub Actions
+          # rejects that as "Unrecognized named-value: 'secrets'"), so the
+          # opt-out lives here instead: if the secret was never added to this
+          # repo, GH_TOKEN is just empty and we skip quietly -- the server's
+          # own download+reupload fallback (publishJobAssetsToRelease) takes
+          # over exactly as it did before this feature existed.
+          if [ -z "$GH_TOKEN" ]; then
+            echo "ASSETS_REPO_TOKEN secret not set -- skipping direct publish (server will fall back to its own download+reupload path)."
+            exit 0
+          fi
+          ASSETS_REPO="tycProjects/dl-wzh"
+          TAG="builds"
+          RUN_PREFIX="${{ github.run_id }}"
+          STAGE=$(mktemp -d)
+
+          gh release view "$TAG" --repo "$ASSETS_REPO" >/dev/null 2>&1 || \
+            gh release create "$TAG" --repo "$ASSETS_REPO" \
+              --title "Build downloads" \
+              --notes "Auto-managed release used to host finished build downloads."
+
+          FOUND=0
+          while IFS= read -r -d '' f; do
+            cp "$f" "$STAGE/${RUN_PREFIX}-$(basename "$f")"
+            FOUND=1
+          done < <(find "${{ steps.locate.outputs.dir }}" -path '*/build/outputs/apk/debug/*' -name '*.apk' -print0)
+
+          if [ "$FOUND" = "1" ]; then
+            gh release upload "$TAG" "$STAGE"/*.apk --repo "$ASSETS_REPO" --clobber
+            echo "Published build output(s) directly to $ASSETS_REPO (release: $TAG)."
+          else
+            echo "::warning::No .apk found under ${{ steps.locate.outputs.dir }} to publish directly -- server will fall back to its own download+reupload path."
+          fi
+
+
