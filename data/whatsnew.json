@@ -1,0 +1,12 @@
+{
+  "version": "6.3.6",
+  "title": "What's new",
+  "notes": [
+    "added preview button",
+    "added build limit"
+  ],
+  "alwaysShow": false,
+  "updateUrl": "https://t.me/tycept",
+  "updateButtonText": "Update now",
+  "laterButtonText": "Later"
+}
