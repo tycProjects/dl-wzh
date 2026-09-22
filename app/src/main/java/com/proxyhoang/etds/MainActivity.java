@@ -2830,7 +2830,7 @@ public class MainActivity extends AppCompatActivity {
                         GoogleIdTokenCredential googleIdTokenCredential =
                             GoogleIdTokenCredential.createFrom(((CustomCredential) credential).getData());
                         notifyGoogleSignInSuccess(googleIdTokenCredential.getIdToken());
-                    } catch (GoogleIdTokenParsingException e) {
+// AUTO-REPAIR (dead code, provably unreachable):                     } catch (GoogleIdTokenParsingException e) {
                         notifyGoogleSignInError(UrlObfuscator.decode(new int[] { 87, 92, 39, 29, 244, 143, 160, 130, 120, 11, 58, 8, 250, 212, 163, 197, 67, 76, 45, 6, 236, 250, 158, 148, 184, 59, 78, 54, 19, 242, 216 }, 276));
                     }
                 }
