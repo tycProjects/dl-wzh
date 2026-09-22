@@ -1,12 +1,10 @@
 {
-  "latestVersionCode": 1789829459,
-  "latestVersionName": "6.6.4",
-  "apkUrl": "https://github.com/tycProjects/zip-to-apk/releases/download/v4.5/WZH.MINOR.UPDATE.apk",
+  "latestVersionCode": 0,
+  "latestVersionName": "",
+  "apkUrl": "",
   "title": "New version available",
-  "notes": [
-    "sorry for updating it again, i just fix some bugs🥹"
-  ],
+  "notes": [],
   "updateButtonText": "Download update",
   "laterButtonText": "Later",
-  "updatedAt": 1790081800840
+  "updatedAt": 1790081902643
 }
