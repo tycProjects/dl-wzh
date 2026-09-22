@@ -1,10 +1,15 @@
 {
-  "latestVersionCode": 0,
-  "latestVersionName": "",
-  "apkUrl": "",
+  "latestVersionCode": 1789829459,
+  "latestVersionName": "6.5.5",
+  "apkUrl": "https://www.mediafire.com/file/30yz5ou7l1ql227/WZH+MINOR+UPDATE.apk/file",
   "title": "New version available",
-  "notes": [],
+  "notes": [
+    "sorry for updating it again",
+    "fix bugs",
+    "accurate download loading progress",
+    "improve responsiveness"
+  ],
   "updateButtonText": "Download update",
   "laterButtonText": "Later",
-  "updatedAt": 1790081902643
+  "updatedAt": 1790082133210
 }
