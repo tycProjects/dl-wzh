@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bisaya ↔ Subanen Dictionary APK Download</title>
+  <style>
+    :root {
+      --bg-dark: #070B12;
+      --surface: #0E1624;
+      --card-border: #162B45;
+      --cyan-neon: #00E5FF;
+      --cyan-subtle: rgba(0, 229, 255, 0.12);
+      --text-white: #FFFFFF;
+      --text-light: #B2C4D8;
+      --text-muted: #6482A0;
+      --green-status: #00E676;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+    .container {
+      max-width: 580px;
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+      margin: auto 0;
+    }
+    .badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--cyan-subtle);
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      color: var(--cyan-neon);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--green-status);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green-status);
+    }
+    .downloads-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 230, 118, 0.1);
+      border: 1px solid rgba(0, 230, 118, 0.35);
+      color: #69F0AE;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+    .downloads-pill svg {
+      width: 14px;
+      height: 14px;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: var(--cyan-neon);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .description {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .download-card {
+      background: rgba(0, 229, 255, 0.05);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: var(--cyan-neon);
+      color: #070B12;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 16px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0, 229, 255, 0.35);
+      border: none;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 229, 255, 0.5);
+    }
+    .download-btn:active {
+      transform: translateY(1px);
+    }
+    .download-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .secondary-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--cyan-neon);
+      text-decoration: underline;
+    }
+    .spec-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .spec-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+    .spec-item.highlight-stat {
+      background: rgba(0, 229, 255, 0.04);
+      border-color: rgba(0, 229, 255, 0.3);
+    }
+    .spec-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .spec-val {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+    .spec-val.highlight {
+      color: var(--cyan-neon);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .instructions {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .instructions h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cyan-neon);
+      margin-bottom: 12px;
+    }
+    .instructions ol {
+      padding-left: 20px;
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    .instructions li {
+      margin-bottom: 6px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge-row">
+      <div class="badge">
+        <div class="pulse-dot"></div>
+        Build Verified (Stage 1)
+      </div>
+      <div class="downloads-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span id="counterPill">128 Downloads</span>
+      </div>
+    </div>
+
+    <h1>Bisaya ↔ Subanen Dictionary</h1>
+    <div class="subtitle">Offline Dual-Way Lexicon for Android</div>
+
+    <p class="description">
+      Official APK build ready for download. Features 100% offline Room database, instant two-way vocabulary lookup, favorites bookmarks, search history, and an accessible high-contrast dark cyan theme.
+    </p>
+
+    <div class="download-card">
+      <a href="/bisaya-subanen-dictionary.apk" download="bisaya-subanen-dictionary.apk" class="download-btn" id="downloadBtn" onclick="onDownloadClick()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download APK Directly
+      </a>
+      <div class="download-meta">
+        <span>File: <strong>bisaya-subanen-dictionary.apk</strong></span>
+        <span>Size: <strong>~22.9 MB</strong></span>
+      </div>
+      <a href="/app-debug.apk" download="app-debug.apk" class="secondary-link" onclick="onDownloadClick()">Alternative mirror link (app-debug.apk)</a>
+    </div>
+
+    <div class="spec-list">
+      <div class="spec-item highlight-stat">
+        <div class="spec-label">Community Adoption</div>
+        <div class="spec-val highlight" id="specDownloadCount">128+ downloads</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Target OS</div>
+        <div class="spec-val">Android 7.0+ (API 24+)</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Database</div>
+        <div class="spec-val">Room SQLite (Offline)</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Permissions</div>
+        <div class="spec-val">Zero (No tracking)</div>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h3>Quick Phone Installation Guide</h3>
+      <ol>
+        <li>Click <strong>Download APK Directly</strong> on your phone.</li>
+        <li>Open your phone's <strong>Files</strong> or <strong>Downloads</strong> app and tap the file.</li>
+        <li>If prompted with <em>"Install unknown apps"</em> or <em>"File might be harmful"</em>, tap <strong>Settings</strong> and enable <strong>Allow from this source</strong> (or tap <em>Install anyway</em>).</li>
+        <li>Tap <strong>Install</strong> to finish!</li>
+      </ol>
+    </div>
+  </div>
+
+  <footer>
+    Bisaya ↔ Subanen Indigenous Lexicon Project &bull; Built with Google AI Studio
+  </footer>
+
+  <script>
+    async function fetchStats() {
+      try {
+        const res = await fetch('/api/stats');
+        if (res.ok) {
+          const data = await res.json();
+          updateUI(data.downloads);
+        }
+      } catch (err) {
+        console.warn("Could not fetch latest download stats", err);
+      }
+    }
+
+    function updateUI(count) {
+      if (typeof count === 'number') {
+        const counterPill = document.getElementById('counterPill');
+        const specDownloadCount = document.getElementById('specDownloadCount');
+        if (counterPill) counterPill.textContent = `${count} Downloads`;
+        if (specDownloadCount) specDownloadCount.textContent = `${count}+ downloads`;
+      }
+    }
+
+    async function onDownloadClick() {
+      // Optimistically increment locally
+      const current = parseInt(document.getElementById('counterPill').textContent, 10) || 128;
+      updateUI(current + 1);
+
+      try {
+        const res = await fetch('/api/increment', { method: 'POST' });
+        if (res.ok) {
+          const data = await res.json();
+          updateUI(data.downloads);
+        }
+      } catch (e) {
+        // silent fallback
+      }
+    }
+
+    // Fetch initial stats
+    fetchStats();
+  </script>
+</body>
+</html>

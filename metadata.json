@@ -1,0 +1,6 @@
+{
+  "name": "Bisaya Subanen Dictionary",
+  "description": "Offline two-way dictionary between Bisaya (Cebuano) and Subanen.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Bisaya Subanen</string>
+    <string name="app_full_title">Bisaya ↔ Subanen Dictionary</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_history">History</string>
+    <string name="nav_settings">Settings</string>
+    <string name="direction_bisaya_to_subanen">Bisaya → Subanen</string>
+    <string name="direction_subanen_to_bisaya">Subanen → Bisaya</string>
+    <string name="swap_direction">Swap Language</string>
+    <string name="search_hint_bisaya">Search Bisaya word…</string>
+    <string name="search_hint_subanen">Search Subanen word…</string>
+    <string name="clear_search">Clear search</string>
+    <string name="recent_searches">Recent Searches</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="history_title">Search History</string>
+    <string name="clear_history">Clear History</string>
+    <string name="no_favorites_yet">No favorite words saved yet</string>
+    <string name="no_history_yet">No search history yet</string>
+    <string name="no_results_found">No matching entries found</string>
+    <string name="settings_title">Settings</string>
+    <string name="theme_mode">Theme</string>
+    <string name="dark_mode">Dark Mode (Futuristic Cyan)</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="dictionary_info">Dictionary Info</string>
+    <string name="about_app">About This Dictionary</string>
+    <string name="verified_status">Verified</string>
+    <string name="needs_verification_status">Needs verification</string>
+</resources>
