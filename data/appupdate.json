@@ -1,10 +1,12 @@
 {
-  "latestVersionCode": 1790031992,
-  "latestVersionName": "6.6.1",
-  "apkUrl": "https://www.mediafire.com/file/hisy07n22cvcu89/WZH+TO+APK+clean+update.apk/file",
+  "latestVersionCode": 1789829459,
+  "latestVersionName": "6.6.4",
+  "apkUrl": "https://github.com/tycProjects/zip-to-apk/releases/download/v4.5/WZH.MINOR.UPDATE.apk",
   "title": "New version available",
-  "notes": [],
+  "notes": [
+    "sorry for updating it again, i just fix some bugs🥹"
+  ],
   "updateButtonText": "Download update",
   "laterButtonText": "Later",
-  "updatedAt": 1790081370527
+  "updatedAt": 1790081800840
 }
