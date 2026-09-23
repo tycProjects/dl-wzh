@@ -1,0 +1,8 @@
+<resources>
+    <color name="bg">#050914</color>
+    <color name="panel">#08111F</color>
+    <color name="cyan">#21E6D0</color>
+    <color name="blue">#1677FF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="muted">#8793A6</color>
+</resources>
