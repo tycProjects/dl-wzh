@@ -1,0 +1,22 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace "com.wisal.wisal"
+    compileSdk flutter.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.wisal.wisal"
+        minSdk 23
+        targetSdk flutter.targetSdkVersion
+        versionCode 2
+        versionName "2.0.0"
+    }
+}
+
+flutter {
+    source "../.."
+}
