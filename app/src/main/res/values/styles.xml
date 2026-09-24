@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.HoangMod" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#CD7F32</item>
+        <item name="colorPrimary">#CD7F32</item>
+        <item name="colorSecondary">#B87333</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#120C07</item>
+        <item name="android:navigationBarColor">#120C07</item>
+    </style>
+</resources>

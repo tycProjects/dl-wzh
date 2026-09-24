@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#0E0905">
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="18dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="HOÀNG MOD" android:textColor="#CD7F32"
+                    android:textSize="30sp" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="ĐĂNG NHẬP HỆ THỐNG • KEY 24H"
+                    android:textColor="#C9B8A5" android:textSize="12sp"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="LIVE" android:textColor="#D7A15E" android:textStyle="bold"
+                android:padding="12dp"/>
+        </LinearLayout>
+
+        <TextView android:id="@+id/status" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="14dp" android:text="SHIZUKU • KIỂM TRA..."
+            android:textColor="#E7D8C8" android:background="#21150D" android:padding="16dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="14dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="SECURITY\nAES" android:textColor="#D58A3A" android:background="#2A1A0F"
+                android:padding="16dp"/>
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:layout_marginStart="8dp" android:text="AUTH\nLIVE" android:textColor="#D7A15E"
+                android:background="#2A1A0F" android:padding="16dp"/>
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:layout_marginStart="8dp" android:text="STATUS\nKEY" android:textColor="#B87333"
+                android:background="#2A1A0F" android:padding="16dp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:orientation="vertical"
+            android:background="#1C110A" android:padding="18dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="ĐĂNG NHẬP LICENSE" android:textColor="#FFF4E8"
+                android:textSize="20sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:text="Nhập key để xác minh, sau đó hệ thống mới cho phép truy cập."
+                android:textColor="#C9B8A5"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" android:text="LICENSE KEY"
+                android:textColor="#D58A3A" android:textStyle="bold"/>
+            <EditText android:id="@+id/keyInput" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="6dp" android:hint="Nhập key 24h"
+                android:textColor="#FFF4E8" android:hintTextColor="#8F7762"
+                android:singleLine="true" android:inputType="text"/>
+            <TextView android:id="@+id/timer" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" android:gravity="center"
+                android:text="KEY HẾT HẠN SAU  24:00:00" android:textColor="#D89A52"
+                android:textSize="16sp" android:textStyle="bold"/>
+            <TextView android:id="@+id/keyStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:gravity="center"
+                android:text="✓ KEY MIỄN PHÍ • ĐANG HOẠT ĐỘNG" android:textColor="#D7A15E"/>
+            <Button android:id="@+id/keyButton" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="12dp" android:text="XÁC MINH KEY"/>
+            <Button android:id="@+id/start" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:text="START"/>
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:text="TRUY CẬP\n• Shizuku cần được kết nối\n• START sẽ chép 2 file vào thư mục files của Free Fire"
+            android:textColor="#D4C1AE" android:background="#1C110A" android:padding="18dp"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="18dp" android:gravity="center"
+            android:text="NHÀ PHÁT TRIỂN: HOANG MOD MẠNH NHẤT LỊCH SỬ"
+            android:textColor="#D58A3A" android:textSize="13sp" android:textStyle="bold"/>
+    </LinearLayout>
+</ScrollView>
