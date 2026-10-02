@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/bg_app">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical" android:paddingHorizontal="14dp">
+        <ImageView android:layout_width="34dp" android:layout_height="34dp" android:padding="7dp"
+            android:background="@drawable/bg_logo" android:src="@drawable/ic_logo"/>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="10dp" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MAP PHÍM"
+                android:textColor="@color/text" android:textSize="17sp" android:textStyle="bold|italic"
+                android:letterSpacing="0.04"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="KEY MAPPER"
+                android:textColor="@color/cyan" android:textSize="9sp" android:letterSpacing="0.3"/>
+        </LinearLayout>
+        <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+        <TextView android:id="@+id/tvLic" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:background="@drawable/bg_chip" android:paddingHorizontal="12dp" android:paddingVertical="6dp"
+            android:textColor="@color/warn" android:textSize="12sp" android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+        android:orientation="horizontal" android:padding="10dp">
+
+        <LinearLayout android:layout_width="160dp" android:layout_height="match_parent" android:orientation="vertical">
+            <TextView android:id="@+id/nav0" style="@style/Nav" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginBottom="6dp" android:text="⌨  Bàn phím"/>
+            <TextView android:id="@+id/nav1" style="@style/Nav" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginBottom="6dp" android:text="★  Giấy phép"/>
+            <TextView android:id="@+id/nav2" style="@style/Nav" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="ⓘ  Thông tin"/>
+        </LinearLayout>
+
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+            android:layout_marginHorizontal="10dp">
+
+            <ScrollView android:id="@+id/page0" android:layout_width="match_parent" android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal">
+                    <Button android:id="@+id/btnGame" style="@style/BtnSecondary" android:layout_width="0dp"
+                        android:layout_height="match_parent" android:layout_weight="1"/>
+                    <Button android:id="@+id/btnProfile" style="@style/BtnSecondary" android:layout_width="0dp"
+                        android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="8dp"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="40dp"
+                    android:layout_marginTop="8dp" android:orientation="horizontal">
+                    <Button android:id="@+id/btnSave" style="@style/BtnSecondary" android:layout_width="0dp"
+                        android:layout_height="match_parent" android:layout_weight="1" android:text="Lưu"/>
+                    <Button android:id="@+id/btnReset" style="@style/BtnSecondary" android:layout_width="0dp"
+                        android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="8dp"
+                        android:text="Đặt lại"/>
+                    <Button android:id="@+id/btnStart" style="@style/BtnPrimary" android:layout_width="0dp"
+                        android:layout_height="match_parent" android:layout_weight="1.3" android:layout_marginStart="8dp"
+                        android:text="▶  Bắt đầu"/>
+                </LinearLayout>
+
+                <LinearLayout style="@style/Panel" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical">
+                        <TextView style="@style/Title" android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Sơ đồ phím"/>
+                        <Button android:id="@+id/btnBg" style="@style/BtnSecondary" android:layout_width="wrap_content"
+                            android:layout_height="32dp" android:paddingHorizontal="12dp" android:text="Ảnh nền"/>
+                    </LinearLayout>
+                    <com.example.mapphim.MapCanvas android:id="@+id/canvas" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_marginTop="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout style="@style/Panel" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical">
+                        <TextView style="@style/Title" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Danh sách phím"/>
+                        <TextView android:id="@+id/tvCount" style="@style/Sub" android:layout_width="0dp"
+                            android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp"/>
+                        <Button android:id="@+id/btnAdd" style="@style/BtnPrimary" android:layout_width="wrap_content"
+                            android:layout_height="32dp" android:paddingHorizontal="14dp" android:text="＋ Thêm"/>
+                    </LinearLayout>
+                    <LinearLayout android:id="@+id/listBox" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="vertical"/>
+                </LinearLayout>
+
+                <LinearLayout style="@style/Panel" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView style="@style/Title" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Tùy chỉnh phím"/>
+                    <TextView android:id="@+id/tvEmpty" style="@style/Sub" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_marginTop="6dp"
+                        android:text="Chọn một phím trên sơ đồ hoặc trong danh sách."/>
+                    <LinearLayout android:id="@+id/editBox" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                        <TextView android:id="@+id/tvSelTitle" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:layout_marginTop="6dp"
+                            android:textColor="@color/cyan" android:textSize="13sp" android:textStyle="bold"/>
+                        <EditText android:id="@+id/etLabel" style="@style/Field" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="Tên hiển thị"
+                            android:textSize="14sp"/>
+                        <LinearLayout android:id="@+id/keysBox" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal"/>
+                        <TextView android:id="@+id/tvKeyHint" style="@style/Sub" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:layout_marginTop="4dp" android:textSize="11sp"/>
+                        <TextView android:id="@+id/tvPos" style="@style/Sub" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:layout_marginTop="10dp"/>
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical">
+                            <TextView style="@style/Sub" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Kích thước"/>
+                            <SeekBar android:id="@+id/seekSize" android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+                            <TextView android:id="@+id/tvSize" style="@style/Sub" android:layout_width="40dp"
+                                android:layout_height="wrap_content" android:gravity="end" android:textColor="@color/text"/>
+                        </LinearLayout>
+                        <LinearLayout android:id="@+id/rowLook" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <TextView style="@style/Sub" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Độ nhạy vùng"/>
+                            <SeekBar android:id="@+id/seekLook" android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+                            <TextView android:id="@+id/tvLook" style="@style/Sub" android:layout_width="40dp"
+                                android:layout_height="wrap_content" android:gravity="end" android:textColor="@color/text"/>
+                        </LinearLayout>
+                        <Button android:id="@+id/btnDel" style="@style/BtnSecondary" android:layout_width="match_parent"
+                            android:layout_height="40dp" android:layout_marginTop="10dp" android:text="Xóa phím"
+                            android:textColor="@color/danger"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            </ScrollView>
+
+            <ScrollView android:id="@+id/page1" android:layout_width="match_parent" android:layout_height="match_parent"
+                android:visibility="gone">
+                <LinearLayout style="@style/Panel" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView style="@style/Title" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Giấy phép"/>
+                    <TextView android:id="@+id/tvLicDetail" style="@style/Sub" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_marginTop="8dp" android:lineSpacingExtra="4dp"
+                        android:textSize="14sp"/>
+                    <Button android:id="@+id/btnLicNew" style="@style/BtnPrimary" android:layout_width="match_parent"
+                        android:layout_height="44dp" android:layout_marginTop="14dp" android:text="Nhập key khác"/>
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView android:id="@+id/page2" android:layout_width="match_parent" android:layout_height="match_parent"
+                android:visibility="gone">
+                <LinearLayout style="@style/Panel" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView style="@style/Title" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Thông tin"/>
+                    <TextView android:id="@+id/tvAbout" style="@style/Sub" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_marginTop="8dp" android:lineSpacingExtra="4dp"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+
+        <ScrollView android:layout_width="220dp" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <LinearLayout style="@style/Panel" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView style="@style/Title" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="⚡  Cài đặt nhanh"/>
+                <TextView style="@style/Sub" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" android:text="Độ nhạy tổng"/>
+                <TextView android:id="@+id/tvSens" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/cyan" android:textSize="22sp" android:textStyle="bold"/>
+                <SeekBar android:id="@+id/seekSens" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout style="@style/Panel" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <View android:id="@+id/dot" android:layout_width="10dp" android:layout_height="10dp"
+                        android:background="@drawable/bg_dot"/>
+                    <TextView android:id="@+id/tvStatus" style="@style/Title" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:layout_marginStart="8dp"/>
+                </LinearLayout>
+                <TextView android:id="@+id/tvHint" style="@style/Sub" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginTop="4dp"/>
+                <Button android:id="@+id/btnAcc" style="@style/BtnSecondary" android:layout_width="match_parent"
+                    android:layout_height="38dp" android:layout_marginTop="10dp" android:text="Mở Trợ năng"/>
+            </LinearLayout>
+            <LinearLayout style="@style/Panel" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <TextView style="@style/Sub" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Giấy phép"/>
+                <TextView android:id="@+id/tvLicInfo" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/text" android:textSize="15sp" android:textStyle="bold"/>
+            </LinearLayout>
+            <LinearLayout style="@style/Panel" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <TextView style="@style/Sub" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="F1: tạm dừng hoặc tiếp tục map phím trong game."/>
+            </LinearLayout>
+        </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

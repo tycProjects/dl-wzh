@@ -1,0 +1,9 @@
+<resources>
+    <color name="bg0">#050B1A</color>
+    <color name="text">#E6F1FF</color>
+    <color name="muted">#8CA3C2</color>
+    <color name="cyan">#17C3EA</color>
+    <color name="ok">#2FD0A4</color>
+    <color name="warn">#FFB547</color>
+    <color name="danger">#FF6B6B</color>
+</resources>

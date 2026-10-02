@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+<com.example.mapphim.CornerFrame android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@drawable/bg_panel_glow" android:padding="26dp">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:gravity="center_horizontal">
+    <ImageView android:layout_width="62dp" android:layout_height="62dp" android:padding="15dp"
+        android:background="@drawable/bg_logo" android:src="@drawable/ic_logo"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp"
+        android:text="MAP PHÍM · LICENSE" android:textColor="@color/cyan" android:textSize="11sp"
+        android:textStyle="bold" android:letterSpacing="0.25"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="KÍCH HOẠT" android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"
+        android:letterSpacing="0.1"/>
+    <TextView style="@style/Sub" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Nhập key để mở khóa ứng dụng" android:textSize="13sp"/>
+    <EditText android:id="@+id/etKey" style="@style/Field" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="16dp" android:gravity="center"
+        android:hint="MP-XXXX-XXXX-XXXX" android:fontFamily="monospace" android:textSize="17sp"
+        android:letterSpacing="0.1" android:maxLength="17"
+        android:inputType="textCapCharacters|textNoSuggestions"/>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
+        <View android:id="@+id/stDot" android:layout_width="10dp" android:layout_height="10dp"
+            android:background="@drawable/bg_dot"/>
+        <TextView android:id="@+id/stText" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" android:textColor="@color/text" android:textSize="14sp"/>
+    </LinearLayout>
+    <Button android:id="@+id/btnActivate" style="@style/BtnPrimary" android:layout_width="match_parent"
+        android:layout_height="50dp" android:layout_marginTop="12dp" android:text="KÍCH HOẠT"
+        android:letterSpacing="0.1"/>
+    <Button android:id="@+id/btnExit" style="@style/BtnSecondary" android:layout_width="match_parent"
+        android:layout_height="44dp" android:layout_marginTop="8dp" android:text="THOÁT"
+        android:textStyle="bold" android:letterSpacing="0.1"/>
+    <TextView style="@style/Sub" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" android:text="1 key = 1 lần kích hoạt · hạn dùng theo từng loại key"
+        android:textSize="11sp"/>
+</LinearLayout>
+</com.example.mapphim.CornerFrame>
+</ScrollView>
