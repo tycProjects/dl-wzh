@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    
+    <string name="app_short_name">MJLauncher</string>
+    
+    
+    
+    
+    
+    
+    <string name="alerttitle_installmod">Vælg et mod-installationsprogram</string>
+    
+    
+    
+    
+    
+    
+    <string name="mcl_launch_downloading_progress">"Henter %1$s (%2$.2f MB / %3$.2f MB)"</string>
+    <string name="mcl_setting_title_use_surface_view">Brug alternativ overflade rendering</string>
+    <string name="mcl_setting_title_ignore_notch">Ignorer kamerahak</string>
+    
+    
+    
+    
+    
+    <string name="import_control_invalid_file">Filen er ugyldig eller beskadiget</string>
+    
+    <string name="customctrl_size">Størrelse</string>
+    <string name="customctrl_orientation">Orientering</string>
+    <string name="customctrl_background_color">Baggrundsfarve</string>
+</resources>

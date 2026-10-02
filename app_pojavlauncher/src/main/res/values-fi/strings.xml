@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    
+    <string name="app_short_name">MJLauncher</string>
+    
+    
+    
+    <string name="login_online_login_label">Kirjaudu sisään</string>
+    
+    
+    
+    
+    <string name="error_show_more">Näytä lisää</string>
+    <string name="error_show_less">Näytä vähemmän</string>
+    
+    
+    
+    
+    
+    <string name="mcl_options">Asetukset</string>
+    
+    <string name="global_save">Tallenna</string>
+    
+    
+    <string name="control_mouse">Hiiri</string>
+    
+    <string name="control_viewout">tallenna tulos</string>
+    
+    
+    <string name="unnamed">Nimetön</string>
+    <string name="profiles_latest_snapshot">VIimeisin snapshot</string>
+    <string name="profiles_latest_release">Viimeisin julkaisu</string>
+    <string name="profiles_profile_version">Versio</string>
+    <string name="global_delete">Poista</string>
+</resources>
