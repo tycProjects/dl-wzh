@@ -60,7 +60,7 @@ public class ModpackInstaller {
         String versionUrl = modDetail.versionUrls[selectedVersion];
         String versionHash = modDetail.versionHashes[selectedVersion];
         String modpackName = (modDetail.title.toLowerCase(Locale.ROOT) + " " + modDetail.versionNames[selectedVersion])
-                .trim().replaceAll("[\\\/:*?\"<>| \\t\\n]", "_" );
+                .trim().replaceAll("[\\/:*?\"<>| \\t\\n]", "_" );
         String name = modDetail.title;
         String icon = modDetail.getIconCacheTag();
 
