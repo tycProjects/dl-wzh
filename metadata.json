@@ -1,0 +1,7 @@
+{
+  "name": "JNMF",
+  "description": "Specialized Indo Remix cyber music player with BPM beat detection, advanced audio DSP, safe library management, kicked songs, and duplicate detection.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
