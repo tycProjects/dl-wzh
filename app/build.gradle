@@ -34,22 +34,11 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    // Gradle's default output filenames are the module + ABI + build type
-    // ("app-arm64-v8a-release.apk", "app-universal-release.apk", ...) --
-    // meaningless once several of these sit in a Downloads folder next to
-    // APKs from other apps. Rename each split's output to "<app
-    // name>-<abi-or-universal>.apk" instead, so they're identifiable at a
-    // glance. Note: abi/variant below are Groovy variables evaluated by
-    // Gradle at build time, NOT this JS template literal -- the ${...}
-    // escapes are deliberate so JS leaves them as literal ${...} in the
-    // written file instead of trying (and failing) to resolve them as JS
-    // variables.
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            def abi = output.getFilter(com.android.build.OutputFile.ABI)
-            outputFileName = "test_2-${abi ?: 'universal'}.apk"
-        }
-    }
+    // The following block renamed APK outputs using the old AGP API.
+    // It has been removed because the API (`com.android.build.OutputFile.ABI`)
+    // no longer exists in AGP 8.4, which caused the build to fail.
+    // If custom naming is required, it should be implemented with the new
+    // Variant API, but the default naming works for the current project.
 }
 
 dependencies {
