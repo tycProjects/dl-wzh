@@ -9,7 +9,7 @@ android {
     namespace = "com.nullx.cyber"
     // Updated to a valid SDK version available in the Android SDK manager.
     compileSdk = 34
-    ndkVersion = "27.0.12077973"
+    // ndkVersion removed to avoid requiring a non‑installed NDK version.
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
