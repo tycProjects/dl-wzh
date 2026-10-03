@@ -3114,8 +3114,12 @@ public class MainActivity extends AppCompatActivity {
             }
             lp.preferredRefreshRate = best;
             if (Build.VERSION.SDK_INT >= 30) {
-                lp.preferredMinDisplayRefreshRate = 60f;
-                lp.preferredMaxDisplayRefreshRate = Math.max(best, 60f);
+                try {
+                    java.lang.reflect.Field minField = android.view.WindowManager.LayoutParams.class.getField("preferredMinDisplayRefreshRate");
+                    java.lang.reflect.Field maxField = android.view.WindowManager.LayoutParams.class.getField("preferredMaxDisplayRefreshRate");
+                    minField.setFloat(lp, 60f);
+                    maxField.setFloat(lp, Math.max(best, 60f));
+                } catch (Throwable ignored) { /* ignore if fields don't exist */ }
             }
             getWindow().setAttributes(lp);
         } catch (Throwable ignored) { /* never let a display quirk crash the app */ }
