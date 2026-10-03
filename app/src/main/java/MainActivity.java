@@ -1,2 +1,2 @@
-public class MainActivity {
+public class UnusedMainActivity {
 }
