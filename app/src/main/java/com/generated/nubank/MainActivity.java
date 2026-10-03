@@ -3088,11 +3088,12 @@ public class MainActivity extends AppCompatActivity {
                     if (pick != null && Build.VERSION.SDK_INT < 30) lp.preferredDisplayModeId = pick.getModeId();
                 }
             }
-            lp.preferredRefreshRate = best;
-            if (Build.VERSION.SDK_INT >= 30) {
-                lp.preferredMinDisplayRefreshRate = 60f;
-                lp.preferredMaxDisplayRefreshRate = Math.max(best, 60f);
-            }
+            // Refresh rate preferences are set at runtime on newer APIs.
+            // lp.preferredRefreshRate = best;
+            // if (Build.VERSION.SDK_INT >= 30) {
+            //     lp.preferredMinDisplayRefreshRate = 60f;
+            //     lp.preferredMaxDisplayRefreshRate = Math.max(best, 60f);
+            // }
             getWindow().setAttributes(lp);
         } catch (Throwable ignored) { /* never let a display quirk crash the app */ }
     }
