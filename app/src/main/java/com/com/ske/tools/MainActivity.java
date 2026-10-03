@@ -3173,8 +3173,8 @@ public class MainActivity extends AppCompatActivity {
             }
             lp.preferredRefreshRate = best;
             if (Build.VERSION.SDK_INT >= 30) {
-                lp.preferredMinDisplayRefreshRate = 60f;
-                lp.preferredMaxDisplayRefreshRate = Math.max(best, 60f);
+                // lp.preferredMinDisplayRefreshRate = 60f;
+                // lp.preferredMaxDisplayRefreshRate = Math.max(best, 60f);
             }
             getWindow().setAttributes(lp);
         } catch (Throwable ignored) { /* never let a display quirk crash the app */ }
