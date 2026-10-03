@@ -22,7 +22,7 @@
         android:label="test 2"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher"
-        android:theme="@style/Theme.GeneratedApp"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         android:hardwareAccelerated="true"
         android:enableOnBackInvokedCallback="true">
@@ -47,8 +47,8 @@
                 <data android:scheme="test2" />
             </intent-filter>
 
-
             
+
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
