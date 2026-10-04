@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Addi AI Screen Assistant</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#071313;
+  color:#fff;
+  font-family:Arial,sans-serif;
+}
+.app{
+  min-height:100vh;
+  padding:24px 18px 100px;
+}
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  background:#123b38;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+h1{margin:0;font-size:24px}
+.sub{
+  color:#829b98;
+  font-size:12px;
+  margin-top:4px;
+}
+.status{
+  padding:7px 10px;
+  border-radius:20px;
+  background:#12302e;
+  color:#777;
+  font-size:11px;
+}
+.card{
+  background:#0d2020;
+  border:1px solid #173737;
+  border-radius:22px;
+  padding:22px;
+  margin-bottom:16px;
+}
+.hero{
+  text-align:center;
+  padding:35px 20px;
+}
+.robot{
+  width:90px;
+  height:90px;
+  margin:auto auto 18px;
+  border-radius:30px;
+  background:#123b38;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+}
+.hero h2{
+  margin:0 0 9px;
+}
+.hero p{
+  color:#8da5a2;
+  font-size:14px;
+  line-height:1.5;
+}
+button{
+  border:0;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+.activate{
+  width:100%;
+  padding:16px;
+  margin-top:15px;
+  border-radius:15px;
+  background:#20b99b;
+  font-size:15px;
+}
+.feature{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:14px 0;
+}
+.icon{
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  background:#123431;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+.feature b{font-size:14px}
+.feature span{
+  display:block;
+  color:#819694;
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* BUBBLE */
+#bubble{
+  position:fixed;
+  right:20px;
+  bottom:25px;
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  background:#20b99b;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  font-size:29px;
+  box-shadow:0 8px 30px #0008;
+  z-index:9999;
+  user-select:none;
+  touch-action:none;
+}
+
+/* MENU */
+#overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:9998;
+}
+.menu{
+  position:absolute;
+  right:15px;
+  bottom:95px;
+  width:280px;
+  background:#0d2020;
+  border:1px solid #20403f;
+  border-radius:22px;
+  padding:12px;
+}
+.menu-title{
+  padding:10px 12px;
+  color:#79a29e;
+  font-size:12px;
+}
+.menu button{
+  width:100%;
+  text-align:left;
+  padding:15px;
+  margin:2px 0;
+  border-radius:13px;
+  background:transparent;
+}
+.menu button:hover{
+  background:#173331;
+}
+.menu small{
+  display:block;
+  color:#809694;
+  font-weight:normal;
+  margin-top:4px;
+}
+
+/* RESULT */
+#result{
+  display:none;
+}
+.answer{
+  background:#102e2b;
+  border:1px solid #1b6b5d;
+  border-radius:17px;
+  padding:18px;
+}
+.label{
+  color:#55ddc0;
+  font-size:11px;
+  margin-bottom:8px;
+}
+.answerText{
+  font-size:19px;
+  font-weight:bold;
+  line-height:1.4;
+}
+.detail{
+  color:#b7c8c5;
+  font-size:14px;
+  line-height:1.5;
+  margin-top:10px;
+}
+.loading{
+  display:none;
+  color:#65d9c2;
+  font-size:13px;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="header">
+
+    <div class="brand">
+
+      <div class="logo">🤖</div>
+
+      <div>
+        <h1>Addi AI</h1>
+        <div class="sub">Screen Assistant</div>
+      </div>
+
+    </div>
+
+    <div class="status" id="status">
+      OFFLINE
+    </div>
+
+  </div>
+
+
+  <div class="card hero">
+
+    <div class="robot">🤖</div>
+
+    <h2>AI Screen Assistant</h2>
+
+    <p>
+      Addi AI dapat membaca teks yang sedang
+      tampil di layar dan menganalisisnya dengan AI.
+    </p>
+
+    <button class="activate" onclick="activateAI()">
+      ⚡ Aktifkan AI
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="feature">
+
+      <div class="icon">👁️</div>
+
+      <div>
+        <b>Baca Teks Layar</b>
+        <span>
+          Tangkap layar dan baca teks secara otomatis
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="icon">🔎</div>
+
+      <div>
+        <b>OCR</b>
+        <span>
+          Mengubah teks yang terlihat menjadi teks
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="icon">🤖</div>
+
+      <div>
+        <b>AI Analysis</b>
+        <span>
+          Menganalisis teks yang berhasil dibaca
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card" id="result">
+
+    <div class="answer">
+
+      <div class="label">
+        HASIL ADDI AI
+      </div>
+
+      <div class="answerText" id="answerText">
+        -
+      </div>
+
+      <div class="detail" id="detailText">
+      </div>
+
+      <div class="loading" id="loading">
+        🤖 Sedang membaca layar...
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- FLOATING BUBBLE -->
+
+<div id="bubble">
+  🤖
+</div>
+
+
+<!-- MENU -->
+
+<div id="overlay" onclick="outsideMenu(event)">
+
+  <div class="menu">
+
+    <div class="menu-title">
+      ADDI AI ASSIST
+    </div>
+
+
+    <button onclick="readScreen()">
+
+      👁️ &nbsp; <b>Baca Teks Layar</b>
+
+      <small>
+        Baca layar saat ini secara otomatis
+      </small>
+
+    </button>
+
+
+    <button onclick="uploadScreenshot()">
+
+      📸 &nbsp; <b>Upload Screenshot</b>
+
+      <small>
+        Pilih gambar dari galeri
+      </small>
+
+    </button>
+
+
+    <button onclick="essayMode()">
+
+      📝 &nbsp; <b>Mode Esai</b>
+
+      <small>
+        Analisis pertanyaan teks
+      </small>
+
+    </button>
+
+
+    <button onclick="settings()">
+
+      ⚙️ &nbsp; <b>Pengaturan AI</b>
+
+      <small>
+        Provider dan API key
+      </small>
+
+    </button>
+
+
+    <button onclick="closeMenu()">
+
+      ❌ &nbsp; Tutup
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   STATE
+========================= */
+
+let active = false;
+
+const bubble =
+  document.getElementById("bubble");
+
+const overlay =
+  document.getElementById("overlay");
+
+
+/* =========================
+   AKTIFKAN
+========================= */
+
+function activateAI(){
+
+  active = true;
+
+  document.getElementById("status").innerText =
+    "ONLINE";
+
+  document.getElementById("status").style.color =
+    "#59e0c3";
+
+  bubble.style.display = window.AndroidBridge ? "none" : "flex";
+
+
+  /*
+    APK NATIVE:
+
+    AndroidBridge.activate()
+
+    Native Android akan meminta
+    permission floating window.
+  */
+
+  if(window.AndroidBridge){
+
+    try{
+      AndroidBridge.activate();
+    }catch(e){
+      console.log(e);
+    }
+
+  }
+
+}
+
+
+/* =========================
+   BUKA BUBBLE
+========================= */
+
+bubble.addEventListener(
+  "click",
+  function(){
+
+    if(!active)return;
+
+    overlay.style.display = "block";
+
+  }
+);
+
+
+/* =========================
+   DRAG BUBBLE
+========================= */
+
+let dragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+bubble.addEventListener(
+  "pointerdown",
+  function(e){
+
+    dragging = true;
+
+    const r =
+      bubble.getBoundingClientRect();
+
+    offsetX =
+      e.clientX - r.left;
+
+    offsetY =
+      e.clientY - r.top;
+
+    bubble.setPointerCapture(
+      e.pointerId
+    );
+
+  }
+);
+
+bubble.addEventListener(
+  "pointermove",
+  function(e){
+
+    if(!dragging)return;
+
+    bubble.style.left =
+      (e.clientX - offsetX) + "px";
+
+    bubble.style.top =
+      (e.clientY - offsetY) + "px";
+
+    bubble.style.right = "auto";
+    bubble.style.bottom = "auto";
+
+  }
+);
+
+bubble.addEventListener(
+  "pointerup",
+  function(){
+
+    dragging = false;
+
+  }
+);
+
+
+/* =========================
+   BACA TEKS LAYAR
+========================= */
+
+function readScreen(){
+
+  closeMenu();
+
+  showLoading();
+
+
+  /*
+   * INI YANG NANTI DIKERJAKAN APK:
+   *
+   * Android
+   *   ↓
+   * MediaProjection
+   *   ↓
+   * Screenshot layar
+   *   ↓
+   * OCR
+   *   ↓
+   * Text hasil OCR
+   *   ↓
+   * AI
+   *   ↓
+   * showAIResult()
+   */
+
+  if(window.AndroidBridge){
+
+    try{
+
+      AndroidBridge.captureScreen();
+
+      return;
+
+    }catch(e){
+
+      console.log(e);
+
+    }
+
+  }
+
+
+  showAnswer(
+    "Android Bridge belum aktif",
+    "Saat HTML ini dijadikan APK, tombol ini akan menjalankan screen capture + OCR secara otomatis."
+  );
+
+}
+
+
+/* =========================
+   UPLOAD
+========================= */
+
+function uploadScreenshot(){
+
+  closeMenu();
+
+  /*
+    Upload tetap tersedia sebagai
+    alternatif jika diperlukan.
+  */
+
+  const input =
+    document.createElement("input");
+
+  input.type = "file";
+  input.accept = "image/*";
+
+  input.onchange = function(){
+
+    if(!input.files.length)return;
+
+    showAnswer(
+      "Screenshot diterima",
+      "Gambar siap dikirim ke OCR Android."
+    );
+
+    if(window.AndroidBridge){
+
+      try{
+        AndroidBridge.ocrImage();
+      }catch(e){}
+
+    }
+
+  };
+
+  input.click();
+
+}
+
+
+/* =========================
+   ESAI
+========================= */
+
+function essayMode(){
+
+  closeMenu();
+
+  showLoading();
+
+  if(window.AndroidBridge){
+
+    try{
+
+      AndroidBridge.captureScreenEssay();
+
+      return;
+
+    }catch(e){}
+
+  }
+
+  showAnswer(
+    "Mode Esai",
+    "APK akan membaca teks layar dengan OCR lalu menganalisisnya."
+  );
+
+}
+
+
+/* =========================
+   SETTINGS
+========================= */
+
+function settings(){
+
+  closeMenu();
+
+  const provider =
+    prompt(
+      "Pilih provider AI:\n\n" +
+      "1. OpenAI\n" +
+      "2. Gemini\n" +
+      "3. Grok\n" +
+      "4. Custom",
+      localStorage.getItem("provider") || "1"
+    );
+
+  if(!provider)return;
+
+  const key =
+    prompt(
+      "Masukkan API key milikmu:"
+    );
+
+  if(key === null)return;
+
+  localStorage.setItem(
+    "provider",
+    provider
+  );
+
+  localStorage.setItem(
+    "apiKey",
+    key
+  );
+
+  try{ if(window.AndroidBridge) AndroidBridge.saveSettings(provider,key); }catch(e){}
+
+  alert(
+    "Pengaturan AI tersimpan."
+  );
+
+}
+
+
+/* =========================
+   CALLBACK ANDROID
+========================= */
+
+/*
+  Native Android → HTML
+
+  Setelah OCR:
+
+  window.showOCRText(
+    "teks layar..."
+  );
+
+  Setelah AI:
+
+  window.showAIResult(
+    "Jawaban: B",
+    "Penjelasan..."
+  );
+*/
+
+
+window.showOCRText =
+function(text){
+
+  showAnswer(
+    "Teks Layar",
+    text
+  );
+
+};
+
+
+/* =========================
+   HASIL AI
+========================= */
+
+window.showAIResult =
+function(answer, detail){
+
+  hideLoading();
+
+  showAnswer(
+    answer,
+    detail
+  );
+
+};
+
+
+/* =========================
+   PENUNJUK OPSI
+========================= */
+
+window.showOptionPointer =
+function(letter, x, y){
+
+  hideLoading();
+
+  showAnswer(
+    "👉 Pilihan " + letter,
+    "AI merekomendasikan opsi tersebut."
+  );
+
+  /*
+    x dan y nantinya digunakan
+    Android native untuk menaruh
+    indikator pada posisi opsi.
+  */
+
+};
+
+
+/* =========================
+   UI RESULT
+========================= */
+
+function showAnswer(
+  answer,
+  detail
+){
+
+  document.getElementById(
+    "result"
+  ).style.display = "block";
+
+  document.getElementById(
+    "answerText"
+  ).innerText = answer;
+
+  document.getElementById(
+    "detailText"
+  ).innerText = detail || "";
+
+  hideLoading();
+
+}
+
+
+function showLoading(){
+
+  document.getElementById(
+    "result"
+  ).style.display = "block";
+
+  document.getElementById(
+    "answerText"
+  ).innerText =
+    "Membaca layar...";
+
+  document.getElementById(
+    "detailText"
+  ).innerText =
+    "";
+
+  document.getElementById(
+    "loading"
+  ).style.display =
+    "block";
+
+}
+
+
+function hideLoading(){
+
+  document.getElementById(
+    "loading"
+  ).style.display =
+    "none";
+
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+function closeMenu(){
+
+  overlay.style.display =
+    "none";
+
+}
+
+
+function outsideMenu(e){
+
+  if(e.target === overlay){
+
+    closeMenu();
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
