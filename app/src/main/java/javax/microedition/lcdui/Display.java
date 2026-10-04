@@ -1,0 +1,7 @@
+package javax.microedition.lcdui;
+import android.app.Activity; import android.app.AlertDialog; import android.view.View; import android.widget.EditText; import android.widget.LinearLayout; import android.widget.Button; import androidport.AndroidBridge;
+public class Display {
+ private final Activity a; private Display(Activity a){this.a=a;} private static Display instance; public static Display getDisplay(javax.microedition.midlet.MIDlet m){return instance;}
+ public static void init(Activity a){instance=new Display(a);}
+ public void setCurrent(final Displayable d){a.runOnUiThread(new Runnable(){public void run(){ if(d instanceof View){a.setContentView((View)d); ((View)d).requestFocus();} else if(d instanceof TextBox){final TextBox b=(TextBox)d; final EditText e=new EditText(a);e.setSingleLine(true);e.setText(b.getString());e.setSelectAllOnFocus(false); LinearLayout box=new LinearLayout(a);box.setOrientation(LinearLayout.VERTICAL);box.addView(e,new LinearLayout.LayoutParams(-1,-2)); AlertDialog dlg=new AlertDialog.Builder(a).setTitle(b.title).setView(box).setPositiveButton("OK",(di,w)->{b.setString(e.getText().toString()); if(b.getCommandListener()!=null)b.getCommandListener().commandAction(b.getCommands().isEmpty()?new Command("OK",Command.OK,1):b.getCommands().get(0),b);}).setNegativeButton("Huy",(di,w)->{if(b.getCommandListener()!=null)b.getCommandListener().commandAction(b.getCommands().size()>1?b.getCommands().get(1):new Command("Huy",Command.CANCEL,2),b);}).create();dlg.show();}}});}
+}

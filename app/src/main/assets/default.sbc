@@ -1,0 +1,193 @@
+# Msv mai co dac xe - goi add-on goc (nam trong JAR, luon bat)
+[addon]
+name=Msv Goc
+version=1
+author=MSV
+type=core
+
+[map]
+name=Baseplate
+size=1000,240
+spawn=60,190
+sky=9ED8FF
+# rect=x,y,rong,cao,mau
+rect=0,208,1000,32,5BA34A
+# bac thang
+rect=330,188,30,20,8A8A8A
+rect=362,168,30,40,8A8A8A
+# ngoi nha (cua o ben phai, cao 48)
+rect=410,148,8,60,A0522D
+rect=512,148,8,12,A0522D
+rect=404,140,124,8,8B3A3A
+# bac nhay
+rect=600,156,60,8,8A8A8A
+rect=700,140,60,8,8A8A8A
+rect=800,156,60,8,8A8A8A
+rect=760,188,20,20,A0522D
+# flag=x,y (moc luu)
+flag=100,208
+flag=560,208
+flag=940,208
+tree=250,208
+tree=300,208
+tree=470,208
+tree=700,208
+tree=900,208
+npc=Linh,640,207
+npc=Xa thu,860,207
+npc=Chien binh,930,207
+item=Tao,200,202
+item=Banh mi,480,202
+item=Nuoc ep,780,202
+
+[character]
+name=Mac dinh
+color=202020
+head=5
+
+[tool]
+name=Sung
+behavior=projectile
+damage=8
+cooldown=7
+speed=12
+life=50
+gravity=0
+color=303030
+length=9
+knock=2
+
+[tool]
+name=Dao
+behavior=melee
+damage=12
+cooldown=12
+range=24
+color=C0C0C0
+length=10
+knock=4
+
+[tool]
+name=Katana
+behavior=melee
+damage=22
+cooldown=24
+range=34
+color=9090FF
+length=16
+knock=6
+
+[tool]
+name=Bom
+behavior=explosive
+damage=40
+cooldown=40
+speed=7
+gravity=45
+fuse=40
+radius=45
+color=202020
+knock=9
+
+[tool]
+name=Ban tia
+behavior=projectile
+damage=35
+cooldown=40
+speed=20
+life=40
+color=FFB000
+length=14
+knock=7
+
+[tool]
+name=Moc
+behavior=hook
+speed=14
+range=140
+pull=5
+cooldown=6
+color=8A8A8A
+
+[tool]
+name=Dep
+behavior=kick
+damage=14
+cooldown=24
+speed=10
+gravity=30
+knock=7
+speedbonus=35
+jumpbonus=18
+color=FF70A0
+
+[tool]
+name=AK47
+behavior=projectile
+damage=5
+cooldown=3
+speed=15
+life=45
+color=605030
+length=14
+knock=1
+auto=1
+
+[tool]
+name=Tay khong
+behavior=melee
+damage=4
+cooldown=10
+range=16
+length=0
+knock=2
+
+[tool]
+name=Tao
+behavior=food
+heal=15
+color=E03030
+stock=3
+
+[tool]
+name=Banh mi
+behavior=food
+heal=30
+color=D0A060
+stock=2
+
+[tool]
+name=Nuoc ep
+behavior=food
+heal=20
+color=FF9020
+stock=2
+
+[tool]
+name=Non
+behavior=hat
+color=C03030
+
+[npc]
+name=Linh
+hp=60
+color=7A2020
+tool=Dao
+speed=90
+brain=1
+
+[npc]
+name=Xa thu
+hp=50
+color=205080
+tool=Sung
+speed=85
+brain=2
+
+[npc]
+name=Chien binh
+hp=110
+color=603080
+tool=Katana
+speed=105
+brain=3

@@ -1,0 +1,23 @@
+[addon]
+name=Ban do Troi
+version=1
+author=MSV
+type=map
+
+[map]
+name=Sky
+size=1400,240
+spawn=40,150
+sky=7FB8FF
+rect=0,180,120,12,E8E8E8
+rect=170,160,70,8,E8E8E8
+rect=290,140,70,8,E8E8E8
+rect=410,120,70,8,E8E8E8
+rect=540,150,100,8,E8E8E8
+rect=700,130,60,8,E8E8E8
+rect=820,110,60,8,E8E8E8
+rect=940,140,100,8,E8E8E8
+rect=1100,160,80,8,E8E8E8
+rect=1240,180,150,12,E8E8E8
+flag=60,180
+flag=1320,180

@@ -1,0 +1,22 @@
+# Mod Kamehameha - tia nang luong to, xuyen qua nhieu muc tieu, no manh
+[addon]
+name=Kamehameha
+version=1
+author=MSV
+desc=Tia Kamehameha xuyen nguoi
+type=weapon
+
+[tool]
+name=Kamehameha
+behavior=projectile
+category=weapon
+damage=45
+cooldown=70
+speed=17
+life=48
+width=14
+pierce=1
+knock=12
+color=40C8FF
+length=0
+stock=1

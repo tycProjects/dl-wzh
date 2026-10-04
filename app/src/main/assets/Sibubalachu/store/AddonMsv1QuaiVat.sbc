@@ -1,0 +1,32 @@
+[addon]
+name=Quai vat
+version=1
+author=MSV
+type=npc
+
+[npc]
+name=Quai nho
+hp=40
+color=20A060
+tool=Dao
+speed=120
+brain=1
+head=4
+
+[npc]
+name=Sat thu
+hp=90
+color=101030
+tool=AK47
+speed=95
+brain=3
+
+[tool]
+name=Sung nuoc
+behavior=projectile
+damage=7
+cooldown=9
+speed=11
+life=40
+color=3090FF
+length=10

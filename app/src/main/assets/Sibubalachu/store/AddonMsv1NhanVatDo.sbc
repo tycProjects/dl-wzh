@@ -1,0 +1,10 @@
+[addon]
+name=Nhan vat Do
+version=1
+author=MSV
+type=character
+
+[character]
+name=Do
+color=D02020
+head=6
