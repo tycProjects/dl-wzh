@@ -1,0 +1,27 @@
+CARA JADIIN APK (tanpa Android Studio)
+
+1. Buat akun di github.com (gratis), lalu buat repository baru (New repository).
+2. Upload SEMUA isi folder project ini ke repository itu
+   (Add file > Upload files). Pastikan folder ".github" ikut terupload.
+   Kalau folder ".github" tidak ikut (karena tersembunyi):
+   Add file > Create new file, ketik nama:  .github/workflows/build.yml
+   lalu isi dengan isi file build.yml dari folder ini, klik Commit.
+3. Buka tab "Actions". Tunggu build selesai (centang hijau, sekitar 3-6 menit).
+4. Klik build terakhir > bagian "Artifacts" > unduh "AddiAI-apk" (zip),
+   ekstrak, di dalamnya ada app-debug.apk. Pasang di HP.
+   Kalau gagal terpasang, hapus dulu app AI ADDI yang lama.
+
+CARA PAKAI
+1. Buka Addi AI > Pengaturan AI : pilih provider (1 OpenAI, 2 Gemini, 3 Grok)
+   dan isi API key milikmu sendiri.
+2. Tekan "Aktifkan AI" > izinkan "Tampilkan di atas aplikasi lain"
+   > nyalakan "Addi AI" di layar Aksesibilitas.
+   PENTING (Android 13+): kalau tombol Aksesibilitas abu-abu / "Pengaturan dibatasi":
+   Pengaturan > Aplikasi > Addi AI > titik tiga kanan atas > "Izinkan pengaturan terbatas",
+   lalu ulangi langkah ini.
+3. Tekan Home. Tombol robot melayang muncul di atas app lain.
+4. Ketuk tombol robot = langsung baca teks layar + jawab. Tekan lama = menu (Mode Esai dll).
+   Geser = pindahkan tombol.
+
+Kalau muncul error "model not found", ganti nama model di
+app/src/main/java/com/generated/aiaddi/AiClient.kt (3 baris paling atas).
