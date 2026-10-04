@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Country Detector</title>
+<style>
+:root{
+  --bg:#08080f;--s1:#0f0f1a;--s2:#161625;--s3:#1e1e30;
+  --ac:#7c6af7;--ac2:#a78bfa;--acg:rgba(124,106,247,0.15);
+  --tx:#eeeeff;--tx2:#8888aa;--tx3:#444460;
+  --ok:#34d399;--okb:rgba(52,211,153,0.1);
+  --warn:#fbbf24;--r:16px;--rs:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:var(--bg);color:var(--tx);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  display:flex;flex-direction:column;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 0%,rgba(124,106,247,0.18) 0%,transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 90%,rgba(167,139,250,0.09) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+/* SPLASH */
+#splash{
+  position:fixed;inset:0;z-index:100;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+}
+.splash-ring{
+  width:90px;height:90px;border-radius:26px;
+  background:linear-gradient(135deg,#7c6af7,#a855f7);
+  display:flex;align-items:center;justify-content:center;
+  font-size:42px;margin-bottom:24px;
+  animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes popIn{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+.splash-name{font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:6px;}
+.splash-sub{font-size:13px;color:var(--tx2);}
+.splash-bar{width:60px;height:3px;background:var(--s2);border-radius:99px;margin-top:32px;overflow:hidden;}
+.splash-fill{height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:99px;animation:load 1.4s ease forwards;}
+@keyframes load{from{width:0}to{width:100%}}
+
+/* MAIN SCROLL */
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;z-index:1;padding:0 0 40px;}
+.scroll::-webkit-scrollbar{display:none;}
+
+/* TOP */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:56px 20px 16px;
+}
+.app-brand{display:flex;align-items:center;gap:10px;}
+.brand-ico{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--ac),#a855f7);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.brand-name{font-size:16px;font-weight:700;}
+.status-chip{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:99px;
+  background:var(--s2);border:1px solid rgba(255,255,255,.07);
+  font-size:11px;font-weight:600;color:var(--tx2);
+  transition:all .3s;
+}
+.status-chip.active{background:var(--okb);border-color:rgba(52,211,153,.3);color:var(--ok);}
+.sdot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+.sdot.pulse{animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* HERO */
+.hero{padding:8px 20px 24px;}
+.hero-label{font-size:12px;color:var(--tx2);font-weight:500;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;}
+.hero-title{font-size:28px;font-weight:800;line-height:1.2;letter-spacing:-.5px;margin-bottom:6px;}
+.hero-title span{background:linear-gradient(135deg,var(--ac),var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:14px;color:var(--tx2);line-height:1.6;}
+
+/* CARDS */
+.section{padding:0 20px;margin-bottom:16px;}
+.card{
+  background:var(--s1);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--r);overflow:hidden;
+}
+.card-head{
+  padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.card-title{font-size:13px;font-weight:700;}
+.chip{
+  font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;
+  background:var(--s3);border:1px solid rgba(255,255,255,.08);color:var(--tx2);
+}
+.chip.ok{background:var(--okb);border-color:rgba(52,211,153,.3);color:var(--ok);}
+.chip.warn{background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.3);color:var(--warn);}
+.chip.purple{background:rgba(124,106,247,.15);border-color:rgba(124,106,247,.3);color:var(--ac2);}
+
+/* PERM ROWS */
+.perm-row{
+  padding:14px 16px;display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.perm-row:last-child{border-bottom:none;}
+.perm-icon-wrap{
+  width:42px;height:42px;border-radius:12px;flex-shrink:0;
+  background:var(--s2);display:flex;align-items:center;justify-content:center;
+  font-size:20px;transition:all .3s;
+}
+.perm-icon-wrap.ok{background:var(--okb);}
+.perm-text{flex:1;min-width:0;}
+.perm-text .name{font-size:13px;font-weight:600;margin-bottom:3px;}
+.perm-text .desc{font-size:11px;color:var(--tx2);line-height:1.4;}
+.grant-btn{
+  padding:8px 14px;border-radius:var(--rs);border:none;
+  background:var(--ac);color:#fff;font-size:12px;font-weight:700;
+  cursor:pointer;flex-shrink:0;transition:all .2s;
+}
+.grant-btn:active{transform:scale(.95);}
+.grant-btn.done{background:var(--okb);color:var(--ok);border:1px solid rgba(52,211,153,.3);}
+
+/* BIG LAUNCH BTN */
+.launch-wrap{padding:0 20px;margin-bottom:16px;}
+.launch-btn{
+  width:100%;padding:17px;border:none;border-radius:var(--r);
+  background:linear-gradient(135deg,var(--ac) 0%,#a855f7 100%);
+  color:#fff;font-size:16px;font-weight:800;cursor:pointer;
+  letter-spacing:.2px;position:relative;overflow:hidden;
+  transition:transform .15s,opacity .15s;
+}
+.launch-btn::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% -30%,rgba(255,255,255,.25),transparent 60%);
+}
+.launch-btn:active{transform:scale(.97);}
+.launch-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.launch-sub{text-align:center;font-size:11px;color:var(--tx3);margin-top:8px;}
+
+/* HOW IT WORKS */
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{padding:13px 16px;display:flex;gap:12px;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,.05);}
+.step:last-child{border-bottom:none;}
+.step-n{
+  width:24px;height:24px;border-radius:50%;flex-shrink:0;
+  background:var(--acg);color:var(--ac2);
+  font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;
+  margin-top:1px;
+}
+.step-body .title{font-size:13px;font-weight:600;margin-bottom:3px;}
+.step-body .sub{font-size:12px;color:var(--tx2);line-height:1.5;}
+
+/* FEATURES GRID */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px;}
+.feat-card{
+  background:var(--s2);border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:14px 12px;
+}
+.feat-ico{font-size:22px;margin-bottom:8px;}
+.feat-name{font-size:12px;font-weight:700;margin-bottom:3px;}
+.feat-desc{font-size:11px;color:var(--tx2);line-height:1.4;}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:sticky;bottom:0;z-index:10;
+  background:var(--bg);border-top:1px solid rgba(255,255,255,.07);
+  padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));
+  display:flex;gap:8px;
+}
+.nav-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:8px 4px;border-radius:var(--rs);cursor:pointer;transition:background .2s;
+  background:none;border:none;color:var(--tx3);
+}
+.nav-item.active{color:var(--ac2);background:rgba(124,106,247,.1);}
+.nav-ico{font-size:20px;}
+.nav-lbl{font-size:10px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-ring">🌍</div>
+  <div class="splash-name">Country Detector</div>
+  <div class="splash-sub">Live screen overlay · Instant detection</div>
+  <div class="splash-bar"><div class="splash-fill"></div></div>
+</div>
+
+<div class="scroll" id="main-scroll">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="app-brand">
+      <div class="brand-ico">🌍</div>
+      <div class="brand-name">Country Detector</div>
+    </div>
+    <div class="status-chip" id="status-chip">
+      <div class="sdot"></div>
+      <span id="status-txt">Idle</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Overlay Tool</div>
+    <div class="hero-title">Detect any<br><span>country</span> live</div>
+    <div class="hero-sub">Floating bubble stays on top of every app — tap it anytime to detect.</div>
+  </div>
+
+  <!-- PERMISSIONS -->
+  <div class="section">
+    <div class="card" id="perm-card">
+      <div class="card-head">
+        <div class="card-title">Permissions</div>
+        <div class="chip warn" id="perm-chip">Setup needed</div>
+      </div>
+      <div class="perm-row">
+        <div class="perm-icon-wrap" id="ico-overlay">📺</div>
+        <div class="perm-text">
+          <div class="name">Display over other apps</div>
+          <div class="desc">Allows the floating bubble to appear on top of any app</div>
+        </div>
+        <button class="grant-btn" id="btn-overlay" onclick="Android.requestOverlayPermission()">Grant</button>
+      </div>
+      <div class="perm-row">
+        <div class="perm-icon-wrap" id="ico-screen">📸</div>
+        <div class="perm-text">
+          <div class="name">Screen capture</div>
+          <div class="desc">Reads screen content to identify country names and flags</div>
+        </div>
+        <button class="grant-btn" id="btn-screen" onclick="Android.requestScreenCapture()">Grant</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAUNCH BUTTON -->
+  <div class="launch-wrap">
+    <button class="launch-btn" id="launch-btn" disabled onclick="Android.launchFloatingBubble()">
+      🫧 Launch Floating Bubble
+    </button>
+    <div class="launch-sub" id="launch-sub">Grant both permissions to enable</div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">How it works</div>
+        <div class="chip purple">4 steps</div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div class="step-body">
+            <div class="title">Grant permissions</div>
+            <div class="sub">Allow display-over-apps and screen capture above</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div class="step-body">
+            <div class="title">Launch floating bubble</div>
+            <div class="sub">A small bubble appears — drag it anywhere on screen</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div class="step-body">
+            <div class="title">Tap bubble to open tool</div>
+            <div class="sub">Menu expands with Detect, Copy, History options</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div class="step-body">
+            <div class="title">Works in any app</div>
+            <div class="sub">Open YouTube, Maps, WhatsApp — bubble stays on top</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <div class="card">
+      <div class="card-head"><div class="card-title">Features</div></div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-ico">🌐</div>
+          <div class="feat-name">45+ countries</div>
+          <div class="feat-desc">Detects flags, names, currency codes</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">📋</div>
+          <div class="feat-name">One-tap copy</div>
+          <div class="feat-desc">Copy name, code, or flag emoji instantly</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🎯</div>
+          <div class="feat-name">Crop region</div>
+          <div class="feat-desc">Select which part of screen to scan</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ico">🕐</div>
+          <div class="feat-name">History</div>
+          <div class="feat-desc">Last 10 detected countries saved</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end scroll -->
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="nav-item active" onclick="goHome()">
+    <div class="nav-ico">🏠</div>
+    <div class="nav-lbl">Home</div>
+  </button>
+  <button class="nav-item" onclick="showHistory()">
+    <div class="nav-ico">📜</div>
+    <div class="nav-lbl">History</div>
+  </button>
+  <button class="nav-item" onclick="showSettings()">
+    <div class="nav-ico">⚙️</div>
+    <div class="nav-lbl">Settings</div>
+  </button>
+</div>
+
+<div id="app-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:99;padding:22px;box-sizing:border-box;overflow:auto">
+  <div class="card" style="margin-top:50px;max-width:520px;margin-left:auto;margin-right:auto">
+    <div class="card-head"><div class="card-title" id="modal-title">History</div><button class="grant-btn" onclick="closeModal()">Close</button></div>
+    <div id="modal-body" style="padding:10px 0;color:#ddd"></div>
+  </div>
+</div>
+<script>
+function closeModal(){document.getElementById('app-modal').style.display='none'}
+function showHistory(){
+  document.getElementById('modal-title').textContent='History';
+  document.getElementById('modal-body').innerHTML='<div style="padding:18px 0">No detections saved yet.</div>';
+  document.getElementById('app-modal').style.display='block';
+}
+function showSettings(){
+  document.getElementById('modal-title').textContent='Settings';
+  document.getElementById('modal-body').innerHTML='<div style="padding:10px 0">Open the Android settings used by this app.</div><button class="grant-btn" onclick="Android.requestOverlayPermission()">Display over other apps</button><div style="height:10px"></div><button class="grant-btn" onclick="Android.openAppSettings()">Android app settings</button>';
+  document.getElementById('app-modal').style.display='block';
+}
+function goHome(){closeModal();document.querySelector('.scroll').scrollTop=0}
+setTimeout(()=>{
+  const s=document.getElementById('splash');
+  s.style.transition='opacity .4s';s.style.opacity='0';
+  setTimeout(()=>s.style.display='none',400);
+},1600);
+
+let overlayOk=false,screenOk=false;
+
+function setOverlayGranted(){
+  overlayOk=true;
+  document.getElementById('ico-overlay').textContent='✅';
+  document.getElementById('ico-overlay').classList.add('ok');
+  document.getElementById('btn-overlay').textContent='Granted';
+  document.getElementById('btn-overlay').classList.add('done');
+  document.getElementById('btn-overlay').onclick=null;
+  checkAll();
+}
+function setScreenGranted(){
+  screenOk=true;
+  document.getElementById('ico-screen').textContent='✅';
+  document.getElementById('ico-screen').classList.add('ok');
+  document.getElementById('btn-screen').textContent='Granted';
+  document.getElementById('btn-screen').classList.add('done');
+  document.getElementById('btn-screen').onclick=null;
+  checkAll();
+}
+function checkAll(){
+  const chip=document.getElementById('perm-chip');
+  const btn=document.getElementById('launch-btn');
+  const sub=document.getElementById('launch-sub');
+  const sc=document.getElementById('status-chip');
+  const st=document.getElementById('status-txt');
+  if(overlayOk&&screenOk){
+    chip.textContent='All granted';chip.className='chip ok';
+    btn.disabled=false;
+    sub.textContent='Tap to show floating bubble on top of all apps';
+    sc.className='status-chip active';
+    st.textContent='Ready';
+    document.querySelector('.sdot').classList.add('pulse');
+  } else if(overlayOk||screenOk){
+    chip.textContent='1 pending';chip.className='chip warn';
+  }
+}
+function setBubbleActive(){
+  const sc=document.getElementById('status-chip');
+  const st=document.getElementById('status-txt');
+  sc.className='status-chip active';st.textContent='Bubble live';
+}
+</script>
+</body>
+</html>

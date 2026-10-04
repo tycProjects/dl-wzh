@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace         'com.countrydetector'
+    compileSdk        34
+
+    defaultConfig {
+        applicationId   "com.countrydetector"
+        minSdk          24          // Android 7 — covers 97%+ of active devices
+        targetSdk       34
+        versionCode     1
+        versionName     "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled   false
+            shrinkResources false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    // Assets folder for our HTML UI
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets', '../../assets']
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
+
+    // Optional: uncomment to add real OCR (ML Kit Text Recognition)
+    // implementation 'com.google.mlkit:text-recognition:16.0.0'
+}

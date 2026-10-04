@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    
+    
+
+    
+    <color name="bubble_start">#7C6AF7</color>
+    <color name="bubble_end">#A855F7</color>
+    <color name="menu_bg">#0F0F1A</color>
+    <color name="menu_header">#161625</color>
+    <color name="btn_primary">#7C6AF7</color>
+    <color name="btn_secondary">#1E1E30</color>
+    <color name="border_color">#1AFFFFFF</color>
+
+</resources>
