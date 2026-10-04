@@ -82,7 +82,7 @@
         android:paddingEnd="10dp"
         android:paddingBottom="12dp"
         android:gravity="center"
-        android:gap="8dp">
+>
 
         
         <TextView
