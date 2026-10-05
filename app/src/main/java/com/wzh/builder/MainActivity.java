@@ -3910,7 +3910,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String cleanDownloadName(String raw, String mime) {
-        String name = raw == null ? "" : raw.replaceAll("[\\\/:*?\"<>|]", "_").trim();
+        String name = raw == null ? "" : raw.replaceAll("[\\/:*?\"<>|]", "_").trim();
         if (name.length() > 120) name = name.substring(name.length() - 120);
         if (name.isEmpty() || name.equals(".") || name.equals("..")) name = UrlObfuscator.decode(new int[] { 167, 141, 118, 78, 83, 49, 28, 248 }, 195);
         if (name.lastIndexOf('.') <= 0 && mime != null && !mime.isEmpty()) {
