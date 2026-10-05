@@ -3666,7 +3666,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String cleanDownloadName(String raw, String mime) {
-        String name = raw == null ? "" : raw.replaceAll("[\\\/:*?\"<>|]", "_").trim();
+        String name = raw == null ? "" : raw.replaceAll("[\\/:*?\"<>|]", "_").trim();
         if (name.length() > 120) name = name.substring(name.length() - 120);
         if (name.isEmpty() || name.equals(".") || name.equals("..")) name = UrlObfuscator.decode(new int[] { 22, 254, 199, 161, 130, 98, 77, 47 }, 114);
         if (name.lastIndexOf('.') <= 0 && mime != null && !mime.isEmpty()) {
