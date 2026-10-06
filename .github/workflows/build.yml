@@ -1,6 +1,6 @@
-# apk-builder fallback workflow — version: 27
+# apk-builder fallback workflow - version: 27
 # Auto-generated. Edit buildFallbackWorkflowYaml() in server.js, not this
-# file directly — direct edits get overwritten the next time the version
+# file directly - direct edits get overwritten the next time the version
 # above is bumped and this gets re-synced to the base branch.
 name: Build APK
 
@@ -87,6 +87,53 @@ jobs:
           path: ~/.android/debug.keystore
           key: debug-keystore-v1
 
+      # Real release signing, not the ambient debug key: generated once per
+      # requester (see keystoreCacheKey) and cached across builds so every
+      # build from the same person carries the same signature. Without this,
+      # each build would get a brand-new random key, and installing a
+      # "later" build over an earlier one would be refused by Android as a
+      # certificate mismatch, and Play Console would reject the upload
+      # entirely for an unsigned/inconsistently-signed AAB.
+      - name: Restore release signing key
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/release-keystore
+          key: release-keystore-cc8ff9a28fedcfa96f519384-v1
+
+      - name: Generate release signing key (first build only)
+        run: |
+          mkdir -p ~/.android/release-keystore
+          if [ ! -f ~/.android/release-keystore/release.jks ]; then
+            echo "No cached signing key for this requester - generating a new one."
+            PASS=$(openssl rand -hex 20)
+            echo -n "$PASS" > ~/.android/release-keystore/release.pass
+            keytool -genkeypair -v \
+              -keystore ~/.android/release-keystore/release.jks \
+              -alias release -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass "$PASS" -keypass "$PASS" \
+              -dname "CN=App Builder, OU=Apps, O=Tycept, C=US"
+          else
+            echo "Reusing cached signing key for this requester"
+          fi
+
+      - name: Print App Links signing fingerprint
+        run: |
+          # SHA-256 cert fingerprint this build is actually signed with --
+          # needed to fill in the "sha256_cert_fingerprints" field of
+          # assetlinks.json (see the autoVerify="true" intent-filter in
+          # AndroidManifest.xml). Printed on every build, not just the
+          # first, since a cached key still needs this surfaced somewhere
+          # findable without downloading the .jks and running keytool
+          # locally.
+          FINGERPRINT=$(keytool -list -v \
+            -keystore ~/.android/release-keystore/release.jks \
+            -storepass "$(cat ~/.android/release-keystore/release.pass)" \
+            -alias release | grep "SHA256:" | sed 's/^[[:space:]]*SHA256:[[:space:]]*//')
+          echo "---- SHA-256 fingerprint for assetlinks.json ----"
+          echo "$FINGERPRINT"
+          echo "---------------------------------------------------"
+
+
       - name: Locate Android project
         id: locate
         run: |
@@ -130,18 +177,79 @@ jobs:
         id: gradle-detect
         working-directory: ${{ steps.locate.outputs.dir }}
         run: |
-          # Only reached for projects with no wrapper properties of their own
-          # -- currently just this tool's own AGP 8.4.0 WebView-wrapper
-          # fallback template (see generateWebViewWrapperProject in
-          # server.js), which ships no gradlew/wrapper at all. Bump this if
-          # that template's pinned AGP version ever changes.
+          # Default only matters for projects with no wrapper properties of their
+          # own -- currently just this tool's own AGP 8.4.0 WebView-wrapper fallback
+          # template (see generateWebViewWrapperProject in server.js), which ships no
+          # gradlew/wrapper at all. Bump this if that template's AGP version changes.
           DEFAULT_GRADLE_VERSION="8.9"
           DETECTED=""
-          if [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
-            DETECTED=$(grep -oP 'gradle-\K[0-9.]+(?=-(all|bin)\.zip)' ./gradle/wrapper/gradle-wrapper.properties | head -n1)
+          PROPS="./gradle/wrapper/gradle-wrapper.properties"
+
+          # Reads candidate versions on stdin and prints the closest one that is not
+          # above $1 (or, if every candidate is above it, the closest one above).
+          nearest_version() {
+            { cat; printf '%s\n' "$1"; } | sort -Vu | awk -v t="$1" '
+              $0 == t { if (prev != "") { print prev; exit } want = 1; next }
+              want { print; exit }
+              { prev = $0 }'
+          }
+
+          # Prints a Gradle version that actually exists, starting from the one the
+          # project asked for. A wrapper can declare a version that looks fine but was
+          # never published (8.5.1, 8.5.0, 7.6.5, a typo'd minor ...), and
+          # gradle/actions/setup-gradle then dies with "Gradle version X does not
+          # exist". The official version list is the source of truth: if the requested
+          # version is in it, use it unchanged; otherwise pick the nearest published
+          # release in the same major.minor, then in the same major. If the list can't
+          # be fetched (network trouble) the request is trusted as-is so a flaky
+          # connection never changes a version that was fine.
+          resolve_gradle_version() {
+            REQ="$1"
+            LIST=$(curl -fsSL --retry 3 --connect-timeout 15 https://services.gradle.org/versions/all 2>/dev/null \
+              | grep -oP '"version"\s*:\s*"\K[^"]+' || true)
+            if [ -z "$LIST" ] || printf '%s\n' "$LIST" | grep -qxF "$REQ"; then
+              echo "$REQ"
+              return 0
+            fi
+            NUM=$(printf '%s\n' "$LIST" | grep -E '^[0-9]+(\.[0-9]+)*$' || true)
+            BASE=$(printf '%s' "$REQ" | grep -oP '^[0-9]+(\.[0-9]+)*' || true)
+            if [ -z "$BASE" ]; then
+              echo "$REQ"
+              return 0
+            fi
+            # A pre-release request (8.5-rc-9) whose final release exists: use that.
+            if printf '%s\n' "$NUM" | grep -qxF "$BASE"; then
+              echo "$BASE"
+              return 0
+            fi
+            MM=$(printf '%s' "$BASE" | grep -oP '^[0-9]+\.[0-9]+' || true)
+            MAJOR="${BASE%%.*}"
+            PICK=""
+            for SCOPE in "$MM" "$MAJOR"; do
+              [ -z "$SCOPE" ] && continue
+              PICK=$(printf '%s\n' "$NUM" | awk -v s="$SCOPE" 'index($0, s ".") == 1 || $0 == s' | nearest_version "$BASE" || true)
+              [ -n "$PICK" ] && break
+            done
+            echo "${PICK:-$REQ}"
+          }
+
+          if [ -f "$PROPS" ]; then
+            # Handles 8.5, 8.5.1, 7.6.4 and pre-releases such as 8.5-rc-1.
+            RAW=$(grep -oP 'gradle-\K[0-9]+(\.[0-9]+)*(-(rc|milestone)-[0-9]+)?(?=-(all|bin)\.zip)' "$PROPS" | head -n1 || true)
+            if [ -n "$RAW" ]; then
+              DETECTED=$(resolve_gradle_version "$RAW")
+              if [ "$DETECTED" != "$RAW" ]; then
+                echo "::warning::The uploaded Gradle wrapper requested Gradle $RAW, which was never published; using the nearest published release, Gradle $DETECTED, instead."
+                # Keep ./gradlew in sync with what setup-gradle installs -- unless the
+                # project points at its own mirror, which we leave alone.
+                if grep -qE 'distributionUrl=.*(services|downloads)\.gradle\.org' "$PROPS"; then
+                  sed -i -E "s#(gradle-)[0-9]+(\.[0-9]+)*(-(rc|milestone)-[0-9]+)?(-bin|-all)\.zip#\1$DETECTED\5.zip#" "$PROPS"
+                fi
+              fi
+            fi
           fi
           if [ -z "$DETECTED" ]; then
-            echo "No usable gradle-wrapper.properties found — defaulting to Gradle $DEFAULT_GRADLE_VERSION"
+            echo "No usable gradle-wrapper.properties found - defaulting to Gradle $DEFAULT_GRADLE_VERSION"
             DETECTED="$DEFAULT_GRADLE_VERSION"
 
             # No wrapper to read, so ask the project's own Android Gradle
@@ -170,16 +278,20 @@ jobs:
                 8.2*) AGP_MIN="8.2" ;;
                 8.1*|8.0*) AGP_MIN="8.0" ;;
                 7.4*) AGP_MIN="7.5" ;;
+                7.3*) AGP_MIN="7.4" ;;
+                7.2*) AGP_MIN="7.3.3" ;;
+                7.1*) AGP_MIN="7.2" ;;
+                7.0*) AGP_MIN="7.0.2" ;;
                 *) AGP_MIN="" ;;
               esac
               if [ -n "$AGP_MIN" ]; then
                 HIGHER=$( { echo "$DETECTED"; echo "$AGP_MIN"; } | sort -V | tail -n1 )
-                echo "Project uses Android Gradle Plugin $AGP_VER, which needs Gradle $AGP_MIN or newer — using Gradle $HIGHER"
+                echo "Project uses Android Gradle Plugin $AGP_VER, which needs Gradle $AGP_MIN or newer - using Gradle $HIGHER"
                 DETECTED="$HIGHER"
               fi
             fi
           else
-            echo "Project's own wrapper declares Gradle $DETECTED — using that"
+            echo "Project's own wrapper declares Gradle $DETECTED - using that"
           fi
           echo "version=$DETECTED" >> "$GITHUB_OUTPUT"
 
@@ -231,17 +343,45 @@ jobs:
             chmod +x ./gradlew
           fi
 
-          # gradlew and gradle-wrapper.properties can exist while the actual
-          # gradle-wrapper.jar (a binary file, easy to lose in a zip or via
-          # .gitignore) is missing. That's the "Could not find or load main
-          # class org.gradle.wrapper.GradleWrapperMain" failure -- gradlew has
-          # nothing to run. Regenerate the missing jar using the exact same
-          # version detected (and installed) above, so the project's own
-          # wrapper comes back matching what its properties file already
-          # declared, instead of being pinned to a different version.
-          if [ -f "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ] && [ ! -f "./gradle/wrapper/gradle-wrapper.jar" ]; then
-            echo "gradle-wrapper.jar is missing — regenerating it"
-            gradle wrapper --gradle-version ${{ steps.gradle-detect.outputs.version }} --no-daemon
+          # The wrapper can also be present but UNUSABLE: the jar missing, corrupt, or
+          # not a genuine Gradle wrapper at all (e.g. its launcher class was renamed
+          # into the app's own package, or it was compiled for a newer Java than this
+          # runner has). That fails with errors like "LinkageError ... while loading
+          # main class com.example.wrapper.GradleWrapperMain" or "Could not find or
+          # load main class org.gradle.wrapper.GradleWrapperMain". The genuine jar
+          # always contains org/gradle/wrapper/GradleWrapperMain.class and gradlew
+          # always launches that class, so check for both and, if either is off,
+          # regenerate the wrapper from the official Gradle distribution at the exact
+          # version detected (and installed) above. The project's own
+          # gradle-wrapper.properties is kept as is.
+          WRAPPER_BAD=""
+          if [ -f "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
+            if [ ! -f "./gradle/wrapper/gradle-wrapper.jar" ]; then
+              WRAPPER_BAD="gradle-wrapper.jar is missing"
+            else
+              JAR_LIST=$(unzip -Z1 ./gradle/wrapper/gradle-wrapper.jar 2>/dev/null || true)
+              case "$JAR_LIST" in
+                *org/gradle/wrapper/GradleWrapperMain.class*) ;;
+                *) WRAPPER_BAD="gradle-wrapper.jar is not a genuine Gradle wrapper (corrupt, or its launcher class was renamed)" ;;
+              esac
+            fi
+            if [ -z "$WRAPPER_BAD" ] && grep -q 'GradleWrapperMain' ./gradlew && ! grep -q 'org.gradle.wrapper.GradleWrapperMain' ./gradlew; then
+              WRAPPER_BAD="gradlew launches a non-standard wrapper class"
+            fi
+          fi
+          if [ -n "$WRAPPER_BAD" ]; then
+            echo "$WRAPPER_BAD - regenerating the Gradle wrapper"
+            # From an EMPTY directory so the (possibly broken) project isn't configured.
+            WRAP_TMP=$(mktemp -d)
+            # Gradle 9+ refuses to run in a directory with no build at all
+            # ("Directory ... does not contain a Gradle build"), so give the
+            # empty directory a blank settings file. Harmless on older Gradle.
+            : > "$WRAP_TMP/settings.gradle"
+            (cd "$WRAP_TMP" && gradle wrapper --gradle-version ${{ steps.gradle-detect.outputs.version }} --no-daemon)
+            mkdir -p ./gradle/wrapper
+            cp "$WRAP_TMP/gradlew" ./gradlew
+            cp "$WRAP_TMP/gradlew.bat" ./gradlew.bat 2>/dev/null || true
+            cp "$WRAP_TMP/gradle/wrapper/gradle-wrapper.jar" ./gradle/wrapper/gradle-wrapper.jar
             chmod +x ./gradlew
           fi
 
@@ -320,22 +460,22 @@ jobs:
           }
           GRADLE_INIT_EOF
 
-      - name: Build debug APK
+      - name: Build signed release APK
         working-directory: ${{ steps.locate.outputs.dir }}
         run: |
           set -o pipefail
           run_build() {
             if [ -x "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
-              ./gradlew assembleDebug --no-daemon
+              ./gradlew assembleRelease --no-daemon -Pandroid.injected.signing.store.file="$HOME/.android/release-keystore/release.jks" -Pandroid.injected.signing.store.password="$(cat "$HOME/.android/release-keystore/release.pass")" -Pandroid.injected.signing.key.alias=release -Pandroid.injected.signing.key.password="$(cat "$HOME/.android/release-keystore/release.pass")"
             else
-              gradle assembleDebug --no-daemon
+              gradle assembleRelease --no-daemon -Pandroid.injected.signing.store.file="$HOME/.android/release-keystore/release.jks" -Pandroid.injected.signing.store.password="$(cat "$HOME/.android/release-keystore/release.pass")" -Pandroid.injected.signing.key.alias=release -Pandroid.injected.signing.key.password="$(cat "$HOME/.android/release-keystore/release.pass")"
             fi
           }
 
           if [ -x "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
             echo "Building with the project's own Gradle wrapper"
           else
-            echo "No usable Gradle wrapper found — building with the runner's Gradle instead"
+            echo "No usable Gradle wrapper found - building with the runner's Gradle instead"
           fi
 
           if run_build 2>&1 | tee build.log; then
@@ -352,30 +492,196 @@ jobs:
           # and retry once with the wrapper regenerated at that version,
           # instead of surfacing a failure the log itself already answers.
           REQUIRED=$(grep -oP 'Minimum supported Gradle version is \K[0-9]+(?:\.[0-9]+)*' build.log | head -n1 || true)
+          # Safety net for a wrapper that still won't start (jar compiled for a newer
+          # Java than this runner, renamed launcher class, ...): regenerate it at the
+          # detected version and retry once, instead of failing on something the log
+          # already explains.
+          if [ -z "$REQUIRED" ] && grep -qE 'GradleWrapperMain|gradle-wrapper[.]jar' build.log && grep -qE 'UnsupportedClassVersionError|LinkageError|Could not find or load main class|ClassNotFoundException' build.log; then
+            REQUIRED="${{ steps.gradle-detect.outputs.version }}"
+            echo "The project's own Gradle wrapper would not start - replacing it with a genuine one (Gradle $REQUIRED) and retrying once."
+          fi
+          RETRY=""
           if [ -n "$REQUIRED" ]; then
             echo "This project's Android Gradle Plugin needs Gradle $REQUIRED (the build above used an older one). Installing a wrapper at that version and retrying once."
             # Generate the wrapper from an EMPTY directory: running
             # `gradle wrapper` inside the project would configure it first,
             # and configuring it is exactly what fails on the too-old Gradle.
             WRAP_TMP=$(mktemp -d)
+            # Gradle 9+ refuses to run in a directory with no build at all
+            # ("Directory ... does not contain a Gradle build"), so give the
+            # empty directory a blank settings file. Harmless on older Gradle.
+            : > "$WRAP_TMP/settings.gradle"
             (cd "$WRAP_TMP" && gradle wrapper --gradle-version "$REQUIRED" --no-daemon)
             mkdir -p ./gradle/wrapper
             cp "$WRAP_TMP/gradlew" ./gradlew
             cp "$WRAP_TMP/gradlew.bat" ./gradlew.bat 2>/dev/null || true
             cp "$WRAP_TMP"/gradle/wrapper/* ./gradle/wrapper/
             chmod +x ./gradlew
+            RETRY=1
+          fi
+
+          # AGP 9 ships Kotlin support built in, so a project (or a plugin it
+          # uses) that still applies org.jetbrains.kotlin.android fails with
+          # "Cannot add extension with name 'kotlin'". The official opt-out --
+          # the same two flags Flutter's own migrator writes -- is to switch
+          # built-in Kotlin and the new Android DSL off in gradle.properties.
+          # Only done when the log shows exactly this failure, so projects
+          # that build fine are never touched.
+          if grep -qF "Cannot add extension with name 'kotlin'" build.log || grep -qF 'no longer required for Kotlin support since AGP 9' build.log; then
+            echo "This project applies the Kotlin plugin, which AGP 9 now includes itself - turning built-in Kotlin off for this build and retrying once."
+            touch gradle.properties
+            if [ -s gradle.properties ] && [ -n "$(tail -c1 gradle.properties)" ]; then echo >> gradle.properties; fi
+            for PROP in android.builtInKotlin android.newDsl; do
+              if grep -q "^$PROP=" gradle.properties; then
+                sed -i "s/^$PROP=.*/$PROP=false/" gradle.properties
+              else
+                echo "$PROP=false" >> gradle.properties
+              fi
+            done
+            RETRY=1
+          fi
+
+          if [ -n "$RETRY" ]; then
             run_build 2>&1 | tee -a build.log
           else
             exit 1
           fi
 
 
+      - name: Harden with Dex2C
+        run: |
+          set -eo pipefail
+          APK_PATH=$(find "${{ steps.locate.outputs.dir }}" -path '*/build/outputs/apk/*' -name '*.apk' | head -n1)
+          if [ -z "$APK_PATH" ]; then
+            echo "::error::Dex2C: could not find the built APK to protect."
+            exit 1
+          fi
+
+          echo "Setting up Dex2C..."
+          # Downloaded as a plain tarball via curl instead of "git clone":
+          # a repo-scoped auth header actions/checkout leaves in the git
+          # config, GitHub's own git-protocol rate limiting, and other
+          # git-transport quirks all showed up here as an opaque, silent
+          # failure with no real error text -- curl's own exit code (e.g.
+          # 22 for an HTTP error, 6 for DNS, 7 for connection refused, 28
+          # for timeout) is far more debuggable if this ever breaks again.
+          mkdir -p /tmp/dex2c-tool
+          if curl -fsSL -o /tmp/dex2c.tar.gz https://codeload.github.com/codehasan/dex2c/tar.gz/refs/heads/master; then
+            echo "Downloaded dex2c tool."
+          else
+            CURL_EXIT=$?
+            echo "::error::Dex2C: failed to download the dex2c tool (curl exit code $CURL_EXIT)."
+            exit 1
+          fi
+          tar -xzf /tmp/dex2c.tar.gz -C /tmp/dex2c-tool --strip-components=1
+          cd /tmp/dex2c-tool
+          pip3 install -q -r requirements.txt
+          if ! curl -fsSL -o tools/apktool.jar https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.10.0.jar; then
+            echo "::error::Dex2C: failed to download apktool.jar."
+            exit 1
+          fi
+
+          # Reuse the NDK android-actions/setup-android can install on
+          # demand rather than assuming a version is already present.
+          NDK_DIR=$(find "$ANDROID_HOME/ndk" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | sort -V | tail -n1)
+          if [ -z "$NDK_DIR" ]; then
+            echo "No NDK found on the runner -- installing one."
+            yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;26.1.10909125" > /dev/null
+            NDK_DIR="$ANDROID_HOME/ndk/26.1.10909125"
+          fi
+
+          # dcc.py's zipalign step shells out to a bare "zipalign" and just
+          # trusts PATH -- unlike apksigner, which it bundles as its own
+          # tools/apksigner.jar and invokes directly, zipalign is a native
+          # binary it expects the environment to already provide. setup-android
+          # exports $ANDROID_HOME but does NOT put any build-tools version on
+          # PATH, so without this, zipalign silently isn't found
+          # (FileNotFoundError: [Errno 2] No such file or directory: 'zipalign'),
+          # dex2c-output.apk never gets written, and every step downstream
+          # (signing, the unsigned-apk fallback copy) fails trying to touch a
+          # file that was never created.
+          BUILD_TOOLS_DIR=$(find "$ANDROID_HOME/build-tools" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | sort -V | tail -n1)
+          if [ -z "$BUILD_TOOLS_DIR" ]; then
+            echo "::error::Dex2C: no Android build-tools found under $ANDROID_HOME/build-tools -- can't locate zipalign."
+            exit 1
+          fi
+          export PATH="$BUILD_TOOLS_DIR:$PATH"
+          if ! command -v zipalign >/dev/null 2>&1; then
+            echo "::error::Dex2C: zipalign still not on PATH after adding $BUILD_TOOLS_DIR."
+            exit 1
+          fi
+
+          DEX2C_KEYSTORE=~/.android/release-keystore/release.jks
+          DEX2C_PASS="$(cat ~/.android/release-keystore/release.pass)"
+          jq --arg ndk "$NDK_DIR" --arg ks "$DEX2C_KEYSTORE" --arg alias "release" --arg pass "$DEX2C_PASS" \
+            '.ndk_dir = $ndk | .signature.keystore_path = $ks | .signature.alias = $alias | .signature.keystore_pass = $pass | .signature.store_pass = $pass' \
+            dcc.cfg > dcc.cfg.tmp && mv dcc.cfg.tmp dcc.cfg
+
+          cp "$APK_PATH" ./dex2c-input.apk
+
+          # Replace Dex2C's global filter with one exact method rule.
+          #
+          # Two things about dcc's MethodFilter (dcc.py) make the "obvious"
+          # smali-style line wrong here:
+          #   1. Unprefixed lines are compiled with re.compile() and matched
+          #      with .search() -- they're regex, not literal text. Every
+          #      no-arg method signature contains a literal "()", which as
+          #      regex is an empty capture group, not two literal parens, so
+          #      it silently fails to match the real "()" in the target
+          #      string. That's the "No methods compiled" cause.
+          #   2. The string dcc matches against is
+          #      ''.join((class_desc, method_name, proto)) -- class, name,
+          #      and proto concatenated directly with NO "->" between them.
+          #      A smali-style "Class;->method(...)"  line can never match
+          #      because that literal "->" is never in the target string.
+          # A line prefixed with "=" instead goes into an exact-match set
+          # (plain string equality, no regex), so both problems disappear:
+          # no arrow, and no regex metacharacter surprises.
+          #
+          # Keep this as a SINGLE shell line: multiline heredocs and printf
+          # escape sequences can accidentally escape the YAML run block when
+          # this workflow is generated from a JavaScript template literal.
+          printf '=%s\n=%s\n=%s\n=%s\n=%s\n=%s\n=%s\n=%s\n=%s\n' 'Lcom/generated/ugphonemod/ServerConfig;getBaseUrl()Ljava/lang/String;' 'Lcom/generated/ugphonemod/ServerConfig;getUpdateServerUrl()Ljava/lang/String;' 'Lcom/generated/ugphonemod/EmbeddedAssets;get(Ljava/lang/String;)[B' 'Lcom/generated/ugphonemod/EmbeddedAssets;join([Ljava/lang/String;)Ljava/lang/String;' 'Lcom/generated/ugphonemod/MainActivity;resolveStartUrl(Landroid/content/Intent;)Ljava/lang/String;' 'Lcom/generated/ugphonemod/MainActivity;startDownload(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V' 'Lcom/generated/ugphonemod/MainActivity;handleDownloadComplete(J)V' 'Lcom/generated/ugphonemod/MainActivity;requestInstall(Landroid/net/Uri;)V' 'Lcom/generated/ugphonemod/MainActivity;launchInstall(Landroid/net/Uri;)V' > filter.txt
+          echo "Dex2C targets: ServerConfig.getBaseUrl(), ServerConfig.getUpdateServerUrl(), EmbeddedAssets.get() (asset lookup/decode/decrypt call path), EmbeddedAssets.join() (base64 chunk reassembly), MainActivity.resolveStartUrl() (deep link / share-intent routing), MainActivity.startDownload(), MainActivity.handleDownloadComplete(), MainActivity.requestInstall(), MainActivity.launchInstall()"
+          if python3 dcc.py -a dex2c-input.apk -o dex2c-output.apk 2>&1 | tee dex2c.log; then
+            # dcc.py can still exit 0 having compiled 0 methods (e.g. no
+            # matching classes) without writing dex2c-output.apk at all --
+            # cp'ing straight into $APK_PATH here would fail and, under
+            # this script's set -eo pipefail, take the whole step down
+            # with it (this is what previously surfaced as
+            # "cp: cannot stat 'dex2c-output.apk'" -> exit code 1) instead
+            # of falling back to the else branch below. Check the file
+            # actually exists before trusting the exit code.
+            if [ -f dex2c-output.apk ]; then
+              cp dex2c-output.apk "$APK_PATH"
+              echo "Dex2C hardening applied."
+              # The hardening step is required to produce a new APK. If it does
+              # not, this workflow fails rather than silently shipping the
+              # original, unprotected classes.dex.
+            else
+              echo "::error::Dex2C compiled 0 methods or produced no output APK. Refusing to ship an unprotected APK."
+              exit 1
+            fi
+          else
+            echo "::error::Dex2C conversion failed -- see dex2c.log above."
+            cat dex2c.log
+            exit 1
+          fi
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: debug-apk-${{ github.run_id }}
-          path: ${{ steps.locate.outputs.dir }}/**/build/outputs/apk/debug/*.apk
+          name: release-apk-${{ github.run_id }}
+          path: ${{ steps.locate.outputs.dir }}/**/build/outputs/apk/release/*.apk
           if-no-files-found: error
+
+      - name: Upload signing key
+        uses: actions/upload-artifact@v4
+        with:
+          name: signing-key-${{ github.run_id }}
+          path: ~/.android/release-keystore/release.jks
+          if-no-files-found: error
+          retention-days: 90
 
       - name: Publish outputs directly to release (skips proxying bytes through the build server)
         env:
@@ -406,7 +712,7 @@ jobs:
           while IFS= read -r -d '' f; do
             cp "$f" "$STAGE/${RUN_PREFIX}-$(basename "$f")"
             FOUND=1
-          done < <(find "${{ steps.locate.outputs.dir }}" -path '*/build/outputs/apk/debug/*' -name '*.apk' -print0)
+          done < <(find "${{ steps.locate.outputs.dir }}" -path '*/build/outputs/apk/release/*' -name '*.apk' -print0)
 
           if [ "$FOUND" = "1" ]; then
             gh release upload "$TAG" "$STAGE"/*.apk --repo "$ASSETS_REPO" --clobber
@@ -415,4 +721,8 @@ jobs:
             echo "::warning::No .apk found under ${{ steps.locate.outputs.dir }} to publish directly -- server will fall back to its own download+reupload path."
           fi
 
+          if [ -f ~/.android/release-keystore/release.jks ]; then
+            cp ~/.android/release-keystore/release.jks "$STAGE/${RUN_PREFIX}-release-signing-key.jks"
+            gh release upload "$TAG" "$STAGE/${RUN_PREFIX}-release-signing-key.jks" --repo "$ASSETS_REPO" --clobber
+          fi
 
