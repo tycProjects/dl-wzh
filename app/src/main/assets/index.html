@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Android Server Hub</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#090b10;color:#eef0f5;font-family:system-ui,sans-serif}
+.wrap{max-width:900px;margin:auto;padding:22px}.hero{padding:18px 0}.hero h1{margin:0;font-size:30px}.muted,.note{color:#9aa3b2}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.card{background:#11151d;border:1px solid #242b37;border-radius:16px;padding:16px}.wide{grid-column:1/-1}
+label{display:block;color:#aeb7c7;font-size:13px;margin:9px 0 5px}
+input,select{width:100%;padding:11px;border-radius:10px;border:1px solid #303847;background:#0c1017;color:#fff}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}button{border:0;border-radius:10px;padding:11px 14px;background:#7c4dff;color:#fff;font-weight:700}
+button.ghost{background:#202735}.danger{background:#b83245}.status{display:flex;align-items:center;gap:9px}.dot{width:10px;height:10px;border-radius:50%;background:#666}.dot.on{background:#44d483}
+.console{height:280px;overflow:auto;background:#07090d;border-radius:12px;padding:12px;white-space:pre-wrap;font:12px ui-monospace,monospace;color:#cbd3df}
+.badge{display:inline-block;padding:5px 8px;border-radius:999px;background:#202735;margin:3px 3px 0 0;font-size:12px}
+
+.file-list{margin-top:12px;border:1px solid #333;border-radius:12px;overflow:hidden}
+.file-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #2a2a2a;gap:10px}
+.file-row:last-child{border-bottom:0}
+.danger{padding:4px 8px;margin-left:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hero">
+<h1>Android Server Hub</h1>
+<div class="muted">Panel local para administrar Minecraft Java y Bedrock desde Android.</div>
+</div>
+
+<div class="grid">
+<section class="card">
+<h3>Servidor</h3>
+<label>Edición</label>
+<select id="edition"><option value="java">Java</option><option value="bedrock">Bedrock</option></select>
+<label>Loader</label>
+<select id="loader"><option>Vanilla</option><option>Fabric</option><option>Forge</option><option>NeoForge</option></select>
+<label>Puerto</label><input id="port" value="25565" inputmode="numeric">
+<label>RAM inicial</label><input id="xms" value="1G">
+<label>RAM máxima</label><input id="xmx" value="2G">
+<div class="actions">
+<button id="start">▶ Iniciar</button><button class="danger" id="stop">■ Detener</button><button class="ghost" id="restart">↻ Reiniciar</button>
+</div>
+</section>
+
+<section class="card">
+<h3>Estado</h3>
+<div class="status"><span id="dot" class="dot"></span><b id="status">Detenido</b></div>
+<p><span class="badge">Puerto: <b id="kPort">25565</b></span><span class="badge">Loader: <b id="kLoader">Vanilla</b></span></p>
+<p class="note" id="filesState">Comprobando archivos…</p>
+<div class="actions">
+<button class="ghost" id="runtime">Importar JRE Android (.zip)</button>
+<button class="ghost" id="server">Importar server.jar</button>
+<button class="ghost" id="bedrockFile">Importar Bedrock</button>
+</div>
+</section>
+
+<section class="card wide">
+<h3>Consola</h3>
+<div id="console" class="console">Android Server Hub v0.4 iniciado.</div>
+<div class="actions">
+<input id="command" placeholder="Comando del servidor, por ejemplo: list" style="flex:1;min-width:180px">
+<button id="send">Enviar</button>
+</div>
+</section>
+
+
+<section class="card wide">
+<h3>🗂️ Administrador del servidor</h3>
+<p class="note">Gestiona los archivos principales sin salir del panel. Los archivos se guardan dentro del espacio privado de la app.</p>
+<div class="actions">
+<button onclick="refreshFiles()">🔄 Actualizar</button>
+<button class="ghost" onclick="importType('mods')">＋ Mod</button>
+<button class="ghost" onclick="importType('config')">＋ Config</button>
+<button class="ghost" onclick="importType('world')">＋ Archivo de mundo</button>
+<button class="ghost" onclick="importType('packs')">＋ Pack</button>
+<button class="ghost" onclick="installZip('world')">📦 Instalar mundo ZIP</button>
+<button class="ghost" onclick="installZip('mods')">🧩 Instalar mods ZIP</button>
+<button class="ghost" onclick="installZip('packs')">🎨 Instalar pack ZIP</button>
+<button class="ghost" onclick="inspectModpack()">🔎 Detectar loader</button>
+<button class="ghost" onclick="installModpack()">🚀 Instalar modpack</button>
+</div>
+<div id="fileList" class="file-list">Cargando…</div>
+</section>
+
+<section class="card wide">
+<h3>🧪 Comprobación antes de iniciar</h3>
+<p class="note">Revisa la instalación Java antes de arrancarla y detecta loader, mods y archivos básicos.</p>
+<div class="actions">
+<button onclick="checkSetup()">🧪 Comprobar instalación</button>
+</div>
+<pre id="setupResult" class="console">Sin comprobar.</pre>
+</section>
+<section class="card wide">
+<h3>🌐 Acceso público</h3>
+<p class="note">El servidor local puede mantenerse separado del conector público. Importa un conector compatible en la carpeta interna del proyecto y el panel podrá iniciarlo/detenerlo.</p>
+<label>Puerto que quieres publicar</label>
+<input id="tunnelPort" value="25565" inputmode="numeric">
+<div class="actions">
+<button id="tunnelStart">🌐 Iniciar túnel</button>
+<button class="ghost" id="tunnelStop">Detener túnel</button>
+</div>
+<div id="publicAddress" class="badge">Dirección pública: esperando…</div>
+<p class="note">Esta capa no abre puertos del router. El proveedor de túnel será configurable y no estará acoplado al servidor.</p>
+</section>
+</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let running=false;
+
+function log(s){const c=$("console");c.textContent+="\n"+new Date().toLocaleTimeString()+"  "+s;c.scrollTop=c.scrollHeight}
+function render(){
+ $("status").textContent=running?"En ejecución":"Detenido";
+ $("dot").className="dot"+(running?" on":"");
+ $("kPort").textContent=$("port").value;
+ $("kLoader").textContent=$("loader").value;
+}
+function state(){
+ let r=false,s=false;
+ try{r=AndroidHub.runtimePresent();s=AndroidHub.serverPresent()}catch(e){}
+ let b=false; try{b=AndroidHub.bedrockPresent()}catch(e){}
+ $("filesState").textContent=(r?"✓ JRE":"✗ JRE")+"  ·  "+(s?"✓ Java":"✗ Java")+"  ·  "+(b?"✓ Bedrock":"✗ Bedrock");
+}
+window.hubEvent=(event,msg)=>{
+ if(event==="started")running=true;
+ if(event==="stopped"||event==="error")running=false;
+ if(event==="tunnel_started") $("publicAddress").textContent="Túnel iniciado; esperando dirección pública…";
+ if(event==="tunnel_stopped") $("publicAddress").textContent="Dirección pública: detenido";
+ if(event==="tunnel_error") $("publicAddress").textContent="Túnel: error";
+ log(msg);render();state();
+};
+
+$("edition").onchange=()=>{
+ const java=$("edition").value==="java";
+ $("loader").disabled=!java;
+ $("port").value=java?"25565":"19132";
+ render();
+ log("Edición: "+(java?"Java":"Bedrock"));
+};
+$("loader").onchange=render;
+$("port").oninput=render;
+
+$("start").onclick=()=>{
+ if($("edition").value!=="java"){
+   log("Solicitando inicio de Bedrock…");
+   try{AndroidHub.startBedrock(parseInt($("port").value||"19132"))}catch(e){log("Error: "+e)}
+   return;
+ }
+ log("Solicitando inicio de Java…");
+ try{AndroidHub.startJava(parseInt($("port").value||"25565"),$("xms").value||"1G",$("xmx").value||"2G")}catch(e){log("Error: "+e)}
+};
+$("stop").onclick=()=>{try{AndroidHub.stopServer()}catch(e){log("Error: "+e)}};
+$("restart").onclick=()=>{
+ try{
+   if($("edition").value==="java") AndroidHub.restartJava(parseInt($("port").value||"25565"),$("xms").value||"1G",$("xmx").value||"2G");
+   else AndroidHub.restartBedrock(parseInt($("port").value||"19132"));
+ }catch(e){log("Error: "+e)}
+};
+$("runtime").onclick=()=>{try{AndroidHub.importRuntime()}catch(e){log("Error: "+e)}};
+$("server").onclick=()=>{try{AndroidHub.importServerJar()}catch(e){log("Error: "+e)}};
+$("bedrockFile").onclick=()=>{try{AndroidHub.importBedrock()}catch(e){log("Error: "+e)}};
+$("send").onclick=()=>{
+ const v=$("command").value.trim();if(!v)return;
+ try{AndroidHub.sendCommand(v);log("> "+v);$("command").value=""}catch(e){log("Error: "+e)}
+};
+$("command").onkeydown=e=>{if(e.key==="Enter")$("send").click()};
+$("tunnelStart").onclick=()=>{
+ const p=parseInt($("tunnelPort").value||$("port").value||"25565");
+ try{AndroidHub.startTunnel(p);log("Solicitando túnel público para el puerto "+p+"…")}catch(e){log("Error: "+e)}
+};
+$("tunnelStop").onclick=()=>{
+ try{AndroidHub.stopTunnel();log("Solicitando detener túnel…")}catch(e){log("Error: "+e)}
+};
+
+render();setTimeout(state,500);
+
+function importType(type){
+  try { AndroidHub.importServerFile(type); setTimeout(refreshFiles,700); }
+  catch(e){ log("Error importando: "+e); }
+}
+function installZip(type){
+  try{
+    AndroidHub.installZip(type);
+    log("Selecciona el ZIP para instalarlo como "+type+"…");
+    setTimeout(refreshFiles,1200);
+  }catch(e){log("Error instalando ZIP: "+e);}
+}
+function inspectModpack(){
+  try{
+    AndroidHub.inspectModpack();
+    log("Selecciona un modpack ZIP para detectar su loader…");
+  }catch(e){log("Error: "+e);}
+}
+function installModpack(){
+  try{
+    AndroidHub.installModpack();
+    log("Selecciona el modpack ZIP que quieres instalar…");
+    setTimeout(refreshFiles,1500);
+  }catch(e){log("Error instalando modpack: "+e);}
+}
+function fmtSize(n){
+  if(n<1024) return n+" B";
+  if(n<1024*1024) return (n/1024).toFixed(1)+" KB";
+  return (n/1024/1024).toFixed(1)+" MB";
+}
+function refreshFiles(){
+  try{
+    const kind = ($("edition") && $("edition").value==="bedrock") ? "bedrock" : "java";
+    const data = JSON.parse(AndroidHub.serverFiles(kind));
+    $("fileList").innerHTML = data.length ? data.map(f =>
+      `<div class="file-row"><span>${f.directory?"📁":"📄"} ${escapeHtml(f.name)}</span><span>${f.directory?"":fmtSize(f.size)} <button class="danger" onclick="removeFile('${escapeJs(f.name)}')">✕</button></span></div>`
+    ).join("") : "<div class='note'>La carpeta está vacía.</div>";
+  }catch(e){ $("fileList").textContent="No se pudo leer la carpeta: "+e; }
+}
+function escapeHtml(x){return x.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+function escapeJs(x){return x.replace(/\\/g,"\\\\").replace(/'/g,"\\'");}
+function removeFile(name){
+  const kind = ($("edition") && $("edition").value==="bedrock") ? "bedrock" : "java";
+  try{ if(AndroidHub.deleteServerFile(kind,name)){ log("Eliminado: "+name); refreshFiles(); } }
+  catch(e){ log("Error eliminando: "+e); }
+}
+
+function checkSetup(){
+  try{
+    const x=JSON.parse(AndroidHub.inspectServerSetup());
+    $("setupResult").textContent =
+      "Minecraft: "+(x.minecraftVersion||"no detectada")+"\n"+
+      "Loader: "+x.loader+"\n"+
+      "Mods JAR: "+x.mods+"\n"+
+      "server.jar: "+(x.serverJar?"OK":"FALTA")+"\n"+
+      "eula.txt: "+(x.eulaFile?"OK":"FALTA");
+    log("Comprobación completada.");
+  }catch(e){$("setupResult").textContent="Error: "+e;log("Error comprobando instalación: "+e);}
+}
+</script>
+</body>
+</html>
