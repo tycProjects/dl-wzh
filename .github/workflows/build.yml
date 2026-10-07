@@ -428,7 +428,20 @@ jobs:
             echo "No native/screennative.c in this project -- nothing to compile."
             exit 0
           fi
-          APP_DIR=$(dirname "$(dirname "$SRC")")
+          # NOT dirname(dirname($SRC)): screennative.c lives at
+          # <project-root>/native/screennative.c, a SIBLING of app/, so that
+          # math lands back on the project root itself, not the app module
+          # -- Gradle only packages jniLibs/ from inside the actual module
+          # directory, so .so files written to the wrong spot silently never
+          # reach the APK at all (the build still succeeds; the app just
+          # crashes with UnsatisfiedLinkError the instant MainActivity's
+          # static initializer calls System.loadLibrary). Find the real app
+          # module directory (the one with its own build.gradle) instead.
+          APP_DIR=$(dirname "$(find . -maxdepth 3 -name build.gradle -o -name build.gradle.kts | grep -v "^\./build.gradle" | head -n1)")
+          if [ -z "$APP_DIR" ] || [ "$APP_DIR" = "." ]; then
+            echo "::error::Found native/screennative.c but couldn't locate the app module's build.gradle to know where its jniLibs/ belongs."
+            exit 1
+          fi
           echo "Found $SRC -- compiling into $APP_DIR/src/main/jniLibs/"
 
           NDK_DIR=$(find "$ANDROID_HOME/ndk" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | sort -V | tail -n1)
