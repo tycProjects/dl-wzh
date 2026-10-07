@@ -1,0 +1,3 @@
+package com.shengxia.iconpack;
+import android.app.Activity; import android.os.Bundle; import android.widget.*; import android.graphics.Color;
+public class MainActivity extends Activity { public void onCreate(Bundle b){super.onCreate(b); LinearLayout l=new LinearLayout(this); l.setOrientation(LinearLayout.VERTICAL); l.setPadding(40,40,40,40); TextView t=new TextView(this); t.setText("盛夏黑卷 Icon Pack\n\nIcon pack đã được cài.\nNếu launcher hỗ trợ icon pack, mở phần Icon Pack/Theme của launcher để chọn.\n\nNếu Moto Launcher không hiện gói, hãy dùng launcher hỗ trợ icon pack như Lawnchair hoặc Nova Launcher."); t.setTextSize(18); l.addView(t); setContentView(l); }}
