@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent" android:layout_height="match_parent"
+ android:background="#101114" android:fillViewport="true">
+ <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+  android:orientation="vertical" android:padding="18dp">
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+   android:text="HTML Web Host" android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
+  <TextView android:id="@+id/userText" android:layout_width="match_parent" android:layout_height="wrap_content"
+   android:text="Chưa đăng nhập" android:textColor="#A8ABB3" android:layout_marginTop="4dp"/>
+  <EditText android:id="@+id/username" android:layout_width="match_parent" android:layout_height="52dp"
+   android:hint="Tên tài khoản" android:textColor="#FFFFFF" android:textColorHint="#777B84"
+   android:singleLine="true" android:layout_marginTop="14dp"/>
+  <EditText android:id="@+id/password" android:layout_width="match_parent" android:layout_height="52dp"
+   android:hint="Mật khẩu" android:inputType="textPassword" android:textColor="#FFFFFF"
+   android:textColorHint="#777B84" android:singleLine="true"/>
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+   <Button android:id="@+id/register" android:layout_width="0dp" android:layout_height="50dp"
+    android:layout_weight="1" android:text="Đăng ký" android:textAllCaps="false"/>
+   <Button android:id="@+id/login" android:layout_width="0dp" android:layout_height="50dp"
+    android:layout_weight="1" android:text="Đăng nhập" android:textAllCaps="false"/>
+  </LinearLayout>
+  <EditText android:id="@+id/api" android:layout_width="match_parent" android:layout_height="52dp"
+   android:hint="API server, ví dụ https://domain.com" android:textColor="#FFFFFF"
+   android:textColorHint="#777B84" android:singleLine="true" android:inputType="textUri"
+   android:layout_marginTop="8dp"/>
+  <Button android:id="@+id/select" android:layout_width="match_parent" android:layout_height="52dp"
+   android:text="Chọn file HTML" android:textAllCaps="false" android:layout_marginTop="8dp"/>
+  <EditText android:id="@+id/title" android:layout_width="match_parent" android:layout_height="52dp"
+   android:hint="Tên website (không bắt buộc)" android:textColor="#FFFFFF"
+   android:textColorHint="#777B84" android:singleLine="true"/>
+  <Button android:id="@+id/upload" android:layout_width="match_parent" android:layout_height="52dp"
+   android:text="Đăng website → tạo link public" android:textAllCaps="false"/>
+  <Button android:id="@+id/list" android:layout_width="match_parent" android:layout_height="52dp"
+   android:text="Tải danh sách website của tôi" android:textAllCaps="false"/>
+  <TextView android:id="@+id/result" android:layout_width="match_parent" android:layout_height="wrap_content"
+   android:textColor="#FF8A65" android:textSize="14sp" android:paddingTop="12dp"/>
+ </LinearLayout>
+</ScrollView>
