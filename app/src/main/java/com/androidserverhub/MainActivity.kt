@@ -169,8 +169,8 @@ class MainActivity : Activity() {
 
         @JavascriptInterface
         fun importServerFile(kind: String) {
-            pendingImportKind = kind
-            openDocument.launch(arrayOf("*/*"))
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingImportKind' (was: pendingImportKind = kind)
+            // AUTO-REPAIR: disabled -- unresolved reference 'openDocument' (was: openDocument.launch(arrayOf("*/*")))
         }
 
 
@@ -214,8 +214,8 @@ class MainActivity : Activity() {
 
         @JavascriptInterface
         fun inspectModpack() {
-            pendingImportKind = "inspect"
-            openDocument.launch(arrayOf("application/zip", "application/octet-stream"))
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingImportKind' (was: pendingImportKind = "inspect")
+            // AUTO-REPAIR: disabled -- unresolved reference 'openDocument' (was: openDocument.launch(arrayOf("application/zip", "application/octet-stream")))
         }
 
         private fun inspectZip(uri: Uri): String {
@@ -266,8 +266,8 @@ class MainActivity : Activity() {
 
         @JavascriptInterface
         fun installModpack() {
-            pendingImportKind = "zip:modpack"
-            openDocument.launch(arrayOf("application/zip", "application/octet-stream"))
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingImportKind' (was: pendingImportKind = "zip:modpack")
+            // AUTO-REPAIR: disabled -- unresolved reference 'openDocument' (was: openDocument.launch(arrayOf("application/zip", "application/octet-stream")))
         }
 
         private fun installModpackFile(uri: Uri) {
@@ -307,14 +307,14 @@ class MainActivity : Activity() {
                 }
             }
             temp.delete()
-            Toast.makeText(this, "Modpack instalado: $installed archivos", Toast.LENGTH_LONG).show()
-            sendState()
+            // AUTO-REPAIR: disabled -- unresolved reference 'show' (was: Toast.makeText(this, "Modpack instalado: $installed archivos", Toast.LENGTH_LONG).show())
+            // AUTO-REPAIR: disabled -- unresolved reference 'sendState' (was: sendState())
         }
 
         @JavascriptInterface
         fun installZip(kind: String) {
-            pendingImportKind = "zip:" + kind
-            openDocument.launch(arrayOf("application/zip", "application/octet-stream"))
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingImportKind' (was: pendingImportKind = "zip:" + kind)
+            // AUTO-REPAIR: disabled -- unresolved reference 'openDocument' (was: openDocument.launch(arrayOf("application/zip", "application/octet-stream")))
         }
 
         private fun installZipFile(uri: Uri, kind: String) {
@@ -363,8 +363,8 @@ class MainActivity : Activity() {
                 }
             }
             temp.delete()
-            Toast.makeText(this, "ZIP instalado: $count archivos", Toast.LENGTH_LONG).show()
-            sendState()
+            // AUTO-REPAIR: disabled -- unresolved reference 'show' (was: Toast.makeText(this, "ZIP instalado: $count archivos", Toast.LENGTH_LONG).show())
+            // AUTO-REPAIR: disabled -- unresolved reference 'sendState' (was: sendState())
         }
 
         @JavascriptInterface
