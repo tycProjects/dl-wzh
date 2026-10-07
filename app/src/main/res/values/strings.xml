@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Bubble AI</string>
+    <string name="a11y_description">Dipakai hanya untuk menampilkan bubble Bubble AI di atas aplikasi lain. Layanan ini tidak membaca isi layar dan tidak memantau aktivitasmu.</string>
+</resources>

@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        
+        <ScrollView
+            android:id="@+id/pageHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvGreeting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Halo, Pengguna"
+                            android:textColor="@color/text_light"
+                            android:textSize="24sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            style="@style/TxtMuted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:text="Dashboard Bubble AI"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvAvatarHome"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@drawable/bg_avatar"
+                        android:gravity="center"
+                        android:text="P"
+                        android:textColor="@color/bg_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <View
+                            android:id="@+id/dotStatus"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/dot_off"
+                            android:layout_marginEnd="10dp"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/TxtTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Floating Bubble"/>
+
+                            <TextView
+                                android:id="@+id/tvBubbleStatus"
+                                style="@style/TxtMuted"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mati"/>
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchBubble"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvA11yHint"
+                        style="@style/TxtMuted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="2dp"
+                        android:text="Bubble memakai layanan Aksesibilitas supaya selalu muncul di atas aplikasi lain. Aktifkan &quot;Bubble AI&quot; di daftar layanan terunduh.\n\nJika opsinya abu-abu (Android 13+): buka Info Aplikasi → menu ⋮ → &quot;Izinkan setelan terbatas&quot;, lalu coba lagi."/>
+
+                    <Button
+                        android:id="@+id/btnEnableA11y"
+                        style="@style/BtnPrimary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Buka Pengaturan Aksesibilitas"/>
+
+                    <Button
+                        android:id="@+id/btnAppInfo"
+                        style="@style/BtnSecondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Buka Info Aplikasi"/>
+                </LinearLayout>
+
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/bg_card"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="14dp"
+                        android:layout_marginEnd="6dp">
+                        <TextView
+                            android:id="@+id/tvStatSent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/accent"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            style="@style/TxtMuted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dikirim"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/bg_card"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="14dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp">
+                        <TextView
+                            android:id="@+id/tvStatRecv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/accent"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            style="@style/TxtMuted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Balasan"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/bg_card"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="14dp"
+                        android:layout_marginStart="6dp">
+                        <TextView
+                            android:id="@+id/tvStatErr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/danger"
+                            android:textSize="22sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            style="@style/TxtMuted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Error"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        style="@style/TxtTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aksi Cepat"
+                        android:layout_marginBottom="12dp"/>
+
+                    <Button
+                        android:id="@+id/btnTest"
+                        style="@style/BtnPrimary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tes Koneksi API"/>
+
+                    <TextView
+                        android:id="@+id/tvTestResult"
+                        style="@style/TxtMuted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textSize="13sp"
+                        android:visibility="gone"/>
+
+                    <Button
+                        android:id="@+id/btnClearHistory"
+                        style="@style/BtnSecondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Hapus Riwayat Chat"/>
+                </LinearLayout>
+
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
+                    android:padding="16dp">
+
+                    <TextView
+                        style="@style/TxtTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Percakapan Terakhir"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:id="@+id/tvLastChat"
+                        style="@style/TxtMuted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="2dp"
+                        android:text="Belum ada percakapan."/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        
+        <ScrollView
+            android:id="@+id/pageAccount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Akun"
+                    android:textColor="@color/text_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_card"
+                    android:padding="20dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/tvAvatarBig"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:background="@drawable/bg_avatar"
+                        android:gravity="center"
+                        android:text="P"
+                        android:textColor="@color/bg_dark"
+                        android:textSize="30sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvAccName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Pengguna"
+                        android:textColor="@color/text_light"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/etName"
+                        style="@style/Field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Nama kamu"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="24"
+                        android:singleLine="true"/>
+
+                    <Button
+                        android:id="@+id/btnSaveName"
+                        style="@style/BtnPrimary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Simpan Nama"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        style="@style/TxtTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Koneksi AI"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView style="@style/TxtMuted" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Provider"/>
+                    <TextView
+                        android:id="@+id/tvAccProvider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_light"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <TextView style="@style/TxtMuted" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Model"/>
+                    <TextView
+                        android:id="@+id/tvAccModel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_light"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <TextView style="@style/TxtMuted" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="API Key"/>
+                    <TextView
+                        android:id="@+id/tvAccKey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_light"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnRemoveKey"
+                    style="@style/BtnDanger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hapus API Key dari Perangkat"/>
+            </LinearLayout>
+        </ScrollView>
+
+        
+        <ScrollView
+            android:id="@+id/pageSettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pengaturan"
+                    android:textColor="@color/text_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20dp"/>
+
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        style="@style/TxtTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="API Key"/>
+                    <TextView
+                        android:id="@+id/tvToggleKey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
+                        android:text="Tampilkan"
+                        android:textColor="@color/accent"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/etApiKey"
+                    style="@style/Field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="16dp"
+                    android:hint="sk-ant-... atau sk-..."
+                    android:inputType="textPassword"
+                    android:singleLine="true"/>
+
+                
+                <TextView
+                    style="@style/TxtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="API Endpoint"/>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:scrollbars="none">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/chipAnthropic"
+                            style="@style/Chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="Anthropic"/>
+                        <TextView
+                            android:id="@+id/chipResponses"
+                            style="@style/Chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="OpenAI Responses"/>
+                        <TextView
+                            android:id="@+id/chipChat"
+                            style="@style/Chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OpenAI Chat"/>
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <EditText
+                    android:id="@+id/etApiUrl"
+                    style="@style/Field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:hint="https://api.anthropic.com/v1/messages"
+                    android:inputType="textUri"
+                    android:singleLine="true"/>
+
+                
+                <TextView
+                    style="@style/TxtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Model"/>
+
+                <EditText
+                    android:id="@+id/etModel"
+                    style="@style/Field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="16dp"
+                    android:hint="claude-sonnet-4-6"
+                    android:inputType="text"
+                    android:singleLine="true"/>
+
+                
+                <TextView
+                    style="@style/TxtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instruksi AI (opsional)"/>
+                <TextView
+                    style="@style/TxtMuted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mis. &quot;Jawab singkat dalam bahasa Indonesia&quot;"/>
+
+                <EditText
+                    android:id="@+id/etSystem"
+                    style="@style/Field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="top"
+                    android:minLines="3"
+                    android:inputType="textMultiLine|textCapSentences"/>
+
+                
+                <TextView
+                    style="@style/TxtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Posisi Bubble"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp">
+                    <TextView
+                        android:id="@+id/sideLeft"
+                        style="@style/Chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Kiri"/>
+                    <TextView
+                        android:id="@+id/sideRight"
+                        style="@style/Chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kanan"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnSave"
+                    style="@style/BtnPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Simpan Pengaturan"/>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_nav">
+
+        <TextView
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="⌂\nBeranda"
+            android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/navAccount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="☺\nAkun"
+            android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/navSettings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="⚙\nPengaturan"
+            android:textSize="12sp"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <color name="bg_dark">#121212</color>
+    <color name="accent">#4ADE94</color>
+    <color name="accent_soft">#1E3A2D</color>
+    <color name="card_dark">#1E1E1E</color>
+    <color name="card_stroke">#2A2A2A</color>
+    <color name="text_light">#FFFFFF</color>
+    <color name="text_muted">#9E9E9E</color>
+    <color name="bubble_user">#2A6B4F</color>
+    <color name="bubble_ai">#2A2A2A</color>
+    <color name="danger">#F87171</color>
+    <color name="warning">#FBBF24</color>
+</resources>

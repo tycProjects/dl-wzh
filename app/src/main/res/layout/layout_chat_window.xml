@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bubbleai.app.ChatRootLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_chat_window">
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="6dp"
+        android:background="@drawable/bg_chat_header">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bubble AI"
+                android:textColor="@color/text_light"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/tvChatModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_muted"
+                android:textSize="11sp"
+                android:singleLine="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnClearChat"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="Bersihkan"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/btnCloseChat"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="@color/text_light"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Tanya apa saja…"
+            android:textColor="@color/text_muted"
+            android:textSize="14sp"/>
+
+        <ScrollView
+            android:id="@+id/scrollMessages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+            <LinearLayout
+                android:id="@+id/messagesContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </ScrollView>
+    </FrameLayout>
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="@drawable/bg_chat_footer"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Tulis pesan…"
+            android:textColorHint="@color/text_muted"
+            android:textColor="@color/text_light"
+            android:textSize="14sp"
+            android:textCursorDrawable="@drawable/cursor"
+            android:background="@drawable/bg_input"
+            android:padding="10dp"
+            android:minHeight="44dp"
+            android:maxLines="3"
+            android:inputType="textCapSentences|textMultiLine"
+            android:imeOptions="flagNoExtractUi"/>
+
+        <TextView
+            android:id="@+id/btnSend"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="6dp"
+            android:gravity="center"
+            android:text="➤"
+            android:textColor="@color/bg_dark"
+            android:background="@drawable/bg_bubble"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</com.bubbleai.app.ChatRootLayout>
