@@ -1,0 +1,2219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="Benimaru Tool"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:letterSpacing="-0.01"
+        app:layout_constraintEnd_toStartOf="@+id/btnThemeToggle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnThemeToggle"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?android:attr/textColorPrimary" />
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="Performance tweaks powered by Shizuku, no root needed"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <HorizontalScrollView
+        android:id="@+id/chipScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="20dp"
+                app:chipStrokeWidth="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:checked="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPerformance"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="20dp"
+                app:chipStrokeWidth="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Performance" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDisplay"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="20dp"
+                app:chipStrokeWidth="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Display" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNetwork"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="20dp"
+                app:chipStrokeWidth="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Network" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipGaming"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="20dp"
+                app:chipStrokeWidth="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gaming" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:fadingEdgeLength="32dp"
+        android:requiresFadingEdge="vertical"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipScrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="104dp"
+            android:animateLayoutChanges="true">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDeviceInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_device_card"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvDeviceModel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="DEVICE INFO"
+                                android:textColor="#FFFFFF"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvAndroidVersion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Android Version: Checking..."
+                                android:textColor="#BBDEFB"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardShizukuStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="#26000000"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#40FFFFFF"
+                            app:strokeWidth="1dp">
+
+                            <TextView
+                                android:id="@+id/tvShizukuStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawablePadding="6dp"
+                                android:gravity="center_vertical"
+                                android:maxLines="1"
+                                android:paddingStart="10dp"
+                                android:paddingTop="4dp"
+                                android:paddingEnd="10dp"
+                                android:paddingBottom="4dp"
+                                android:text="Shizuku"
+                                android:textColor="#FFFFFF"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            app:cardBackgroundColor="#20FFFFFF"
+                            app:cardCornerRadius="12dp"
+                            app:strokeWidth="0dp"
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp">
+                                <TextView
+                                    android:id="@+id/tvLabelRam"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="RAM"
+                                    android:textColor="#B3FFFFFF"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvRamUsage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:maxLines="1"
+                                    app:autoSizeTextType="uniform"
+                                    android:text="-- GB"
+                                    android:textColor="#FFFFFF"
+                                    android:textStyle="bold" />
+                                <com.google.android.material.progressindicator.LinearProgressIndicator
+                                    android:id="@+id/pbRam"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:max="100"
+                                    app:indicatorColor="#FFFFFF"
+                                    app:trackColor="#33FFFFFF"
+                                    app:trackCornerRadius="3dp"
+                                    app:trackThickness="5dp" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginEnd="3dp"
+                            app:cardBackgroundColor="#20FFFFFF"
+                            app:cardCornerRadius="12dp"
+                            app:strokeWidth="0dp"
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp">
+                                <TextView
+                                    android:id="@+id/tvLabelStorage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="STORAGE"
+                                    android:textColor="#B3FFFFFF"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvStorageUsage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:maxLines="1"
+                                    app:autoSizeTextType="uniform"
+                                    android:text="-- GB"
+                                    android:textColor="#FFFFFF"
+                                    android:textStyle="bold" />
+                                <com.google.android.material.progressindicator.LinearProgressIndicator
+                                    android:id="@+id/pbStorage"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:max="100"
+                                    app:indicatorColor="#FFFFFF"
+                                    app:trackColor="#33FFFFFF"
+                                    app:trackCornerRadius="3dp"
+                                    app:trackThickness="5dp" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            app:cardBackgroundColor="#20FFFFFF"
+                            app:cardCornerRadius="12dp"
+                            app:strokeWidth="0dp"
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp">
+                                <TextView
+                                    android:id="@+id/tvLabelBattery"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="BATTERY"
+                                    android:textColor="#B3FFFFFF"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvBattery"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:maxLines="1"
+                                    app:autoSizeTextType="uniform"
+                                    android:text="-- %"
+                                    android:textColor="#FFFFFF"
+                                    android:textStyle="bold" />
+                                <com.google.android.material.progressindicator.LinearProgressIndicator
+                                    android:id="@+id/pbBattery"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:max="100"
+                                    app:indicatorColor="#FFFFFF"
+                                    app:trackColor="#33FFFFFF"
+                                    app:trackCornerRadius="3dp"
+                                    app:trackThickness="5dp" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            app:cardBackgroundColor="#20FFFFFF"
+                            app:cardCornerRadius="12dp"
+                            app:strokeWidth="0dp"
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp">
+                                <TextView
+                                    android:id="@+id/tvLabelApi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="SDK LEVEL"
+                                    android:textColor="#B3FFFFFF"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvApiLevel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:maxLines="1"
+                                    app:autoSizeTextType="uniform"
+                                    android:text="API --"
+                                    android:textColor="#FFFFFF"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginEnd="3dp"
+                            app:cardBackgroundColor="#20FFFFFF"
+                            app:cardCornerRadius="12dp"
+                            app:strokeWidth="0dp"
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp">
+                                <TextView
+                                    android:id="@+id/tvLabelResolution"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="DISPLAY"
+                                    android:textColor="#B3FFFFFF"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvResolutionDisplay"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:maxLines="1"
+                                    app:autoSizeTextType="uniform"
+                                    android:text="----x----"
+                                    android:textColor="#FFFFFF"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            app:cardBackgroundColor="#20FFFFFF"
+                            app:cardCornerRadius="12dp"
+                            app:strokeWidth="0dp"
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="12dp">
+                                <TextView
+                                    android:id="@+id/tvLabelFreeStorage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:text="FREE SPACE"
+                                    android:textColor="#B3FFFFFF"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvFreeStorageDisplay"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:maxLines="1"
+                                    app:autoSizeTextType="uniform"
+                                    android:text="-- GB"
+                                    android:textColor="#FFFFFF"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:id="@+id/summaryStrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvSectionTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tweaks"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvActiveSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_summary_pill"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="5dp"
+                    android:text="0 active"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardFixedPerformance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_free"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="FREE"
+                        android:textColor="#2E7D32"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Enabled Fixed Performance"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lock device performance to a fixed state to maintain consistent frame rates."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusFixedPerf"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Unknown"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetFixedPerf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardOptimizeSystem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_free"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="FREE"
+                        android:textColor="#2E7D32"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Optimize System Performance"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clear background processes and allocate resources to active applications."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusOptimize"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Ready"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetOptimize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardAdjustRefreshRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_free"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="FREE"
+                        android:textColor="#2E7D32"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adjust Refresh Rate"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Modify the screen refresh rate to balance smooth visuals and battery life."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusRefresh"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Checking..."
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetRefresh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardImproveNetwork"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_free"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="FREE"
+                        android:textColor="#2E7D32"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Improve Network Performance"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prioritize network traffic and reduce ping for a lag-free experience."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusNetwork"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Checking..."
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetNetwork"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardImproveTouch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_free"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="FREE"
+                        android:textColor="#2E7D32"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Improve Touch Latency and Response"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Increase touch sampling rate for faster and more precise screen interactions."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusTouch"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Checking..."
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetTouch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardFastAnimations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_free"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="FREE"
+                        android:textColor="#2E7D32"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Speed Up UI Animations"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reduces system animation scales to 0.5x, making app launches and navigation feel twice as fast."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusAnimations"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Checking..."
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetAnimations"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDisableBlurs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_free"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="FREE"
+                        android:textColor="#2E7D32"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Disable Window Blurs"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Disables real-time background blurring behind notifications and dialogs to reduce GPU load."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusBlurs"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Checking..."
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetBlurs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardGamingDnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_free"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="FREE"
+                        android:textColor="#2E7D32"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gaming Focus Mode"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Blocks heads-up notification banners from dropping down over the screen while playing."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusDnd"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Checking..."
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetDnd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDisableDevOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_free"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="FREE"
+                        android:textColor="#2E7D32"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hide Developer Options"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Instantly turns off Developer Options to allow banking apps and anti-cheat games to run properly."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusDevOptions"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Checking..."
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetDevOptions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardChangeResolution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Change Screen Resolution"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adjust the display resolution to improve gaming performance and battery life."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusResolution"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Checking..."
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetResolution"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardCustomDns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Custom DNS"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Set a private DNS provider for reliable ad blocking, tracker protection, and lower latency."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusDns"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Checking..."
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetDns"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardCrosshair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Enable Crosshair Overlay"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Displays a customizable crosshair in the center of the screen for FPS games."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusCrosshair"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Disabled"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetCrosshair"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardRealtimeMonitor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Real-time Hardware Monitor"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Displays a floating, draggable overlay with live RAM, CPU freq, and Battery stats like MSI Afterburner."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusMonitor"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Disabled"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetMonitor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardGameMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Native Game Mode API"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="For Android 12+. Drops system limits and heavily prioritizes CPU/GPU for the selected game."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusGameMode"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Default"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetGameMode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardThermalThrottling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Disable Thermal Throttling"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tricks the device into thinking it is cool to prevent performance drops. WARNING: Device will get hot."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusThermal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Default"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetThermal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardFstrim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Storage Optimizer (Fstrim)"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Forces the storage controller to wipe deleted data blocks, instantly restoring read/write speeds."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusFstrim"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Ready"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetFstrim"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardRamBooster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RAM Booster"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="See which apps are using the most memory right now and stop the heavy ones in one tap."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusRamBooster"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Ready"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetRamBooster"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardClearCache"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clear App Caches"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Removes temporary cache files from every app to free up storage. Your accounts and saved data stay safe."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusCache"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Ready"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetCache"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESET"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardFreezeApps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#26808080"
+                app:strokeWidth="1dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_premium"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:text="★ PREMIUM"
+                        android:textColor="#8A6D00"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.08"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Freeze Bloatware"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#20808080" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Freeze apps you don't use so they stop using RAM and background CPU. Fully reversible with one tap."
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView
+                            android:id="@+id/tvStatusFreeze"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Status: Ready"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/btnResetFreeze"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESTORE"
+                            android:textColor="@color/statusText"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:background="@drawable/bg_reset_pill"
+                            android:clickable="true"
+                            android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/floatingBottomBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        app:cardBackgroundColor="?attr/colorSurface"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="12dp"
+        app:strokeColor="#33808080"
+        app:strokeWidth="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLaunchGame"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1.35"
+                android:backgroundTint="#2E9E5B"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:maxLines="1"
+                android:text="Launch Game"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="22dp"
+                app:icon="@drawable/ic_play"
+                app:iconGravity="textStart"
+                app:iconPadding="6dp"
+                app:iconTint="#FFFFFF" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRemoveAds"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="#26FFC107"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:maxLines="1"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="Remove Ads"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:cornerRadius="22dp"
+                app:icon="@drawable/ic_crown"
+                app:iconGravity="textStart"
+                app:iconPadding="4dp"
+                app:iconSize="18dp"
+                app:iconTint="#E0A800" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnResetAll"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="6dp"
+                android:backgroundTint="#26E53935"
+                android:contentDescription="Reset all functions"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                app:cornerRadius="22dp"
+                app:icon="@drawable/ic_reset"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="24dp"
+                app:iconTint="#E53935" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
