@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    
+    <style name="Base.Theme.Benimaru" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+        <item name="android:fontFamily">@font/app_font</item>
+    </style>
+</resources>
