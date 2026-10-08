@@ -1,8 +1,8 @@
 {
-  "version": "7.6",
+  "version": "7.6.1",
   "title": "What's new",
   "notes": [
-    "check out the new menu🤓☝🏿"
+    "change build progress"
   ],
   "alwaysShow": false,
   "updateUrl": "https://t.me/tycept",
