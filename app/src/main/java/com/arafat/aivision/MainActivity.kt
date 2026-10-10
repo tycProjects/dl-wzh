@@ -108,7 +108,7 @@ class MainActivity : Activity(), TextToSpeech.OnInitListener {
         input = EditText(this).apply {
             hint = "বাংলা বা English লিখুন..."
             setHintTextColor(0xFF6D858D.toInt()); setTextColor(-1)
-            textSize = 15f; singleLine = false; maxLines = 3
+            textSize = 15f; isSingleLine = false; maxLines = 3
             setPadding(dp(12), dp(10), dp(12), dp(10))
             background = rounded(panel, green, 1)
         }
