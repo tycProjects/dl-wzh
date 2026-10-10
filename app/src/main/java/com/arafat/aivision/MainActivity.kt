@@ -271,7 +271,10 @@ private suspend fun localCommand(context: Context, raw: String): String {
         }
         "open youtube" in q || "ইউটিউব" in raw -> openPackageOrWeb(context, "com.google.android.youtube", "https://www.youtube.com")
         "open chrome" in q || "ক্রোম" in raw -> openPackageOrWeb(context, "com.android.chrome", "https://www.google.com/chrome/")
-        "open google" in q || "গুগল" in raw -> openUrl(context, "https://www.google.com")
+        "open google" in q || "গুগল" in raw -> {
+            openUrl(context, "https://www.google.com")
+            "Opening Google."
+        }
         "search" in q || "সার্চ" in raw -> {
             val term = raw.replace(Regex("(?i)google|search|সার্চ|করো|কর"), "").trim()
             openUrl(context, "https://www.google.com/search?q=" + Uri.encode(term.ifBlank { raw }))
