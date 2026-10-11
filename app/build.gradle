@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.application'
+}
+android {
+    namespace 'com.leonteam.sourceweb'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.leonteam.sourceweb'
+        minSdk 24
+        targetSdk 35
+        versionCode 4
+        versionName '3.0.0'
+    }
+    buildFeatures {
+        buildConfig false
+        resValues false
+        shaders false
+        aidl false
+        renderScript false
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+    // Lint is the slowest step of a release build; run it manually with ./gradlew lint
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        encoding 'UTF-8'
+    }
+    packaging {
+        resources.excludes += ['META-INF/**', 'kotlin/**', 'DebugProbesKt.bin']
+    }
+}
+// No dependencies: nothing to download or resolve, so builds are quick and the APK stays tiny.
