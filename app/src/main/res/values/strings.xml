@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JARVIS</string>
+
+    
+    <string name="action_back">Back</string>
+    <string name="action_save">Save</string>
+    <string name="open_link_failed">No app or browser available to open this link.</string>
+
+    
+    <string name="home_greeting_morning">Good morning, %1$s</string>
+    <string name="home_greeting_afternoon">Good afternoon, %1$s</string>
+    <string name="home_greeting_evening">Good evening, %1$s</string>
+    <string name="home_greeting_morning_anon">Good morning</string>
+    <string name="home_greeting_afternoon_anon">Good afternoon</string>
+    <string name="home_greeting_evening_anon">Good evening</string>
+    <string name="home_open_chat">Open chat</string>
+    <string name="home_open_settings">Open settings</string>
+    <string name="status_online">Online</string>
+    <string name="status_offline">Offline</string>
+    <string name="card_ai_provider">AI provider</string>
+    <string name="card_ai_provider_none">Not configured</string>
+    <string name="card_voice">Voice input</string>
+    <string name="card_voice_available">Available</string>
+    <string name="card_voice_unavailable">Unavailable</string>
+    <string name="card_network">Network</string>
+    <string name="card_language">Device language</string>
+
+    
+    <string name="orb_desc_idle">JARVIS orb, idle. Drag to rotate.</string>
+    <string name="orb_desc_listening">JARVIS orb, listening.</string>
+    <string name="orb_desc_processing">JARVIS orb, processing a request.</string>
+    <string name="orb_desc_speaking">JARVIS orb, speaking.</string>
+    <string name="orb_desc_error">JARVIS orb, last request failed.</string>
+    <string name="orb_desc_offline">JARVIS orb, offline.</string>
+
+    
+    <string name="chat_title">Chat</string>
+    <string name="not_built_title">Not built yet</string>
+    <string name="not_built_body">Chat arrives in a later build stage. Nothing here is simulated.</string>
+
+    
+    <string name="settings_title">Settings</string>
+    <string name="settings_profile">Profile</string>
+    <string name="settings_display_name">Display name</string>
+    <string name="settings_display_name_hint">Shown in your Home greeting</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_theme">Theme</string>
+    <string name="theme_dark">Dark holographic</string>
+    <string name="theme_light">Light holographic</string>
+    <string name="settings_reduced_motion">Reduce motion</string>
+    <string name="settings_reduced_motion_desc">Stops orb animation and screen transitions</string>
+    <string name="settings_animation_intensity">Animation intensity</string>
+    <string name="settings_about">About JARVIS</string>
+
+    
+    <string name="about_title">About</string>
+    <string name="about_created_by">Created by Tajim Uddin</string>
+    <string name="about_credit">Credit: Tajim Sir</string>
+    <string name="about_version">Version %1$s (build %2$d)</string>
+    <string name="about_links">Follow</string>
+    <string name="link_youtube">YouTube</string>
+    <string name="link_tiktok">TikTok</string>
+    <string name="link_whatsapp">WhatsApp</string>
+
+    
+    <string name="nav_home">Home</string>
+    <string name="nav_chat">Chat</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_updates">Updates</string>
+    <string name="nav_voice_start">Start listening</string>
+    <string name="nav_voice_stop">Stop listening</string>
+    <string name="menu_open">Open menu</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_dismiss">Dismiss</string>
+
+    
+    <string name="ws_3d_studio">3D Studio</string>
+    <string name="ws_3d_studio_sub">Create • Sculpt • Model</string>
+    <string name="ws_text_lab">Text Lab</string>
+    <string name="ws_text_lab_sub">Type • Edit • Generate</string>
+    <string name="ws_draw_lab">Draw Lab</string>
+    <string name="ws_draw_lab_sub">Sketch • Paint • Create</string>
+    <string name="ws_web_lab">Web Lab</string>
+    <string name="ws_web_lab_sub">Browse the web</string>
+    <string name="ws_ai_lab">AI Lab</string>
+    <string name="ws_ai_lab_sub">AI tools and models</string>
+    <string name="ws_code_lab">Code Lab</string>
+    <string name="ws_code_lab_sub">Write and review code</string>
+    <string name="ws_tools">Tools</string>
+    <string name="ws_tools_sub">Android shortcuts</string>
+    <string name="ws_file_lab">File Lab</string>
+    <string name="ws_file_lab_sub">Open and share files</string>
+    <string name="ws_media_lab">Media Lab</string>
+    <string name="ws_media_lab_sub">Photos, audio, video</string>
+    <string name="ws_system">System</string>
+    <string name="ws_system_sub">Device status</string>
+    <string name="ws_more">More</string>
+    <string name="ws_more_sub">More modules</string>
+    <string name="workspace_close">Close workspace</string>
+    <string name="workspace_open">Open %1$s</string>
+    <string name="workspace_not_built_title">%1$s is not built yet</string>
+    <string name="workspace_not_built_body">This is its dedicated full-screen workspace. The tools arrive in a later build stage. Nothing here is simulated.</string>
+
+    
+    <string name="orb_tap_hint">Tap the orb to talk</string>
+    <string name="voice_listening">Listening…</string>
+    <string name="voice_recognizing">Recognizing…</string>
+    <string name="voice_you_said">You said</string>
+    <string name="voice_no_ai">No AI provider is configured, so JARVIS cannot reply yet.</string>
+    <string name="voice_err_permission">Microphone permission is needed to listen. Allow it in app settings.</string>
+    <string name="voice_err_unavailable">Speech recognition is not available on this device.</string>
+    <string name="voice_err_no_speech">Did not catch that. Tap the orb and speak again.</string>
+    <string name="voice_err_network">Speech recognition needs an internet connection.</string>
+    <string name="voice_err_busy">The speech service is busy. Try again in a moment.</string>
+    <string name="voice_err_audio">Could not use the microphone.</string>
+    <string name="voice_err_language">That language is not available for speech recognition. Change it in Settings or install its language pack.</string>
+    <string name="voice_err_generic">Speech recognition failed. Try again.</string>
+    <string name="open_app_settings">Open app settings</string>
+
+    
+    <string name="updates_title">Updates</string>
+    <string name="updates_none">No update service is connected, so JARVIS does not check for updates yet.</string>
+    <string name="updates_current_version">Installed version %1$s</string>
+
+    
+    <string name="settings_voice">Voice</string>
+    <string name="settings_voice_language">Speech recognition language</string>
+    <string name="voice_lang_device">Device default</string>
+    <string name="voice_lang_en">English</string>
+    <string name="voice_lang_bn">Bengali</string>
+    <string name="settings_permissions">Permissions</string>
+    <string name="perm_mic">Microphone</string>
+    <string name="perm_granted">Allowed</string>
+    <string name="perm_denied">Not allowed</string>
+    <string name="perm_allow">Allow</string>
+
+    
+    <string name="tl_words">Words</string>
+    <string name="tl_chars">Characters</string>
+    <string name="tl_lines">Lines</string>
+    <string name="tl_hint">Start writing. Your text is saved automatically.</string>
+    <string name="tl_lock">Lock</string>
+    <string name="tl_unlock">Unlock</string>
+    <string name="tl_locked">Locked: editing is off</string>
+    <string name="tl_copy">Copy</string>
+    <string name="tl_copied">Copied</string>
+    <string name="tl_clear">Clear</string>
+    <string name="tl_clear_title">Clear document?</string>
+    <string name="tl_clear_body">This removes all text. It cannot be undone.</string>
+
+    <string name="a11y_description">Lets JARVIS press buttons, scroll, go Home or Back, lock the screen and type for you when you ask by voice. It does not record your screen and sends nothing anywhere by itself. Switch it off here at any time.</string>
+</resources>
