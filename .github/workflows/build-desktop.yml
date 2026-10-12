@@ -1,7 +1,7 @@
 # Auto-generated. Edit buildDesktopWorkflowYaml() in electronBuilder.js,
 # not this file directly -- direct edits get overwritten the next time the
 # version marker below is bumped and this gets re-synced to the base branch.
-# desktop-builder-version: 1
+# desktop-builder-version: 2
 name: Build Windows Desktop App
 
 on:
@@ -21,15 +21,13 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: generated-electron-project
 
       - name: Build Windows installer
         run: npm run build
-        working-directory: generated-electron-project
 
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
           name: windows-installer
-          path: generated-electron-project/dist/*.exe
+          path: dist/*.exe
           if-no-files-found: error

@@ -1,0 +1,30 @@
+{
+  "name": "kgivn",
+  "version": "1.0.0",
+  "description": "Kgivn",
+  "main": "main.js",
+  "author": "Kgivn",
+  "scripts": {
+    "build": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.generated.kgivn",
+    "productName": "Kgivn",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "app/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  }
+}

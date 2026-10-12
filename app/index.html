@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+html,body{margin:0;height:100%;background:#111111;}
+@media (prefers-color-scheme:light){html,body{background:#f6f6f4;}.d{background:#1a1a1a!important;}}
+#ld{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;gap:9px;}
+.d{width:11px;height:11px;border-radius:50%;background:#f2f2ee;animation:b 1s ease-in-out infinite;}
+.d:nth-child(2){animation-delay:.15s}.d:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,80%,100%{transform:translateY(0);opacity:.45}40%{transform:translateY(-11px);opacity:1}}
+</style>
+</head><body>
+<div id="ld" role="status" aria-label="Loading"><span class="d"></span><span class="d"></span><span class="d"></span></div>
+<script>setTimeout(function(){location.replace("http://tendawifi.com/");},60);</script>
+
+<style id="responsive-layout-hotfix">
+/* Responsive layout hotfix — layout/overflow only. Existing components and JS hooks stay unchanged. */
+
+/* 1) Primary tabs: always one row, equal-width cells.
+   Progress is a fourth tab only when JS removes [hidden]. */
+html body #primaryTabbar {
+  display: grid !important;
+  grid-template-columns: repeat(var(--tab-count, 3), minmax(0, 1fr)) !important;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+  align-items: stretch;
+  gap: 0 !important;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+html body #primaryTabbar > .tabbtn {
+  grid-row: 1;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: none;
+  margin: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  white-space: nowrap;
+}
+html body #primaryTabbar > .progressTabBtn[hidden] {
+  display: none !important;
+}
+/* Keep the indicator aligned with the actual number of visible tabs. */
+html body #primaryTabbar > .tabbarThumb {
+  pointer-events: none;
+  max-width: none;
+}
+/* If Progress is visible, force the four-cell geometry even before the JS
+   resize/update pass runs. */
+html body #primaryTabbar:has(> .progressTabBtn:not([hidden])) {
+  --tab-count: 4 !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+html body #primaryTabbar:has(> .progressTabBtn:not([hidden])) > .tabbarThumb {
+  width: calc((100% - 6px) / 4) !important;
+}
+
+/* 2) Platform picker: three equal, centered columns with no flex shrink. */
+html body #platformPanel {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+html body #platformPillGroup {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch;
+  width: 100% !important;
+  min-width: 0;
+  max-width: 100%;
+  gap: 3px;
+  overflow: hidden;
+}
+html body #platformPillGroup > .platThumb {
+  pointer-events: none;
+}
+html body #platformPillGroup > .platRow {
+  flex: 1 1 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+html body #platformPillGroup .platInfo {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  align-items: center;
+}
+html body #platformPillGroup .platName {
+  max-width: 100%;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html body #platformPillGroup .platIcon {
+  flex: 0 0 20px;
+  width: 20px;
+  max-width: 20px;
+}
+html body #platformPillGroup .platCheck {
+  flex: 0 0 auto;
+}
+
+/* 3) Primary CTA: keep its intended accent when enabled.
+   The disabled state intentionally remains muted. */
+html body .bottombar #buildBtn:not(:disabled),
+html body .bottombar #downloadLink {
+  background: var(--accent) !important;
+  color: #0d0d0d !important;
+  border-color: transparent !important;
+}
+html body .bottombar #buildBtn:disabled {
+  background: rgba(255,255,255,.12) !important;
+  color: rgba(255,255,255,.42) !important;
+}
+
+/* 4) Progress card: four stages use the same horizontal slots and can never
+   force the content wider than the card. */
+html body #tabPanelProgress,
+html body #tabPanelProgress #progressWrap,
+html body #tabPanelProgress #progressWrap > .bpSteps,
+html body #tabPanelProgress #progressWrap #stageRail {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+html body #tabPanelProgress #progressWrap {
+  overflow: visible;
+}
+html body #tabPanelProgress #progressWrap > .bxApp {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+html body #tabPanelProgress #progressWrap #stageRail {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+html body #tabPanelProgress #progressWrap #stageRail .stageRailRow {
+  display: grid !important;
+  grid-template-columns: 34px minmax(0, 1fr) 42px 26px;
+  align-items: center;
+  column-gap: 10px;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+html body #tabPanelProgress #progressWrap #stageRail .bxStepIcon {
+  grid-column: 1;
+  flex: none !important;
+  width: 34px;
+  height: 34px;
+  min-width: 0;
+}
+html body #tabPanelProgress #progressWrap #stageRail .bxStepText {
+  grid-column: 2;
+  min-width: 0 !important;
+  width: 100%;
+  overflow: hidden;
+}
+html body #tabPanelProgress #progressWrap #stageRail .bxStepName,
+html body #tabPanelProgress #progressWrap #stageRail .bxStepSub {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html body #tabPanelProgress #progressWrap #stageRail .stageRailTime {
+  grid-column: 3;
+  width: 42px !important;
+  min-width: 42px !important;
+  max-width: 42px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+}
+html body #tabPanelProgress #progressWrap #stageRail .bxStepState {
+  grid-column: 4;
+  flex: none !important;
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px;
+  max-width: 26px;
+}
+
+/* The connector belongs to the icon column, so it stays aligned after the
+   row layout changes. */
+html body #tabPanelProgress #progressWrap #stageRail .stageRailRow::before {
+  left: 16px;
+}
+
+/* 5) Small phones: reclaim horizontal space without changing the design. */
+@media (max-width: 380px) {
+  html body #primaryTabbar > .tabbtn {
+    font-size: 12px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  html body #platformPillGroup {
+    gap: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  html body #platformPillGroup > .platRow {
+    min-height: 52px;
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+  html body #platformPillGroup .platIcon {
+    flex-basis: 18px;
+    width: 18px;
+    height: 18px;
+  }
+  html body #platformPillGroup .platIcon svg {
+    width: 17px;
+    height: 17px;
+  }
+  html body #platformPillGroup .platName {
+    font-size: 11px;
+  }
+
+  html body #tabPanelProgress #progressWrap {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  html body #tabPanelProgress #progressWrap #stageRail .stageRailRow {
+    grid-template-columns: 30px minmax(0, 1fr) 36px 24px;
+    column-gap: 8px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  html body #tabPanelProgress #progressWrap #stageRail .bxStepIcon {
+    width: 30px;
+    height: 30px;
+  }
+  html body #tabPanelProgress #progressWrap #stageRail .stageRailTime {
+    width: 36px !important;
+    min-width: 36px !important;
+    max-width: 36px;
+    font-size: 11px;
+  }
+  html body #tabPanelProgress #progressWrap #stageRail .bxStepState {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px;
+    max-width: 24px;
+  }
+}
+
+/* Never allow long labels, buttons, or nested controls to create a horizontal
+   scrollbar on the app's scrolling column. */
+html body > .content#mainContent,
+html body > .content#mainContent > * {
+  min-width: 0;
+  max-width: 100%;
+}
+html body > .content#mainContent {
+  overflow-x: hidden;
+}
+</style>
+
+</body></html>
