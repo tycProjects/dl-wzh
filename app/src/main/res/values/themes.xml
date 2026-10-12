@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.Musify" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/musify_bg</item>
+        <item name="android:statusBarColor">@color/musify_bg</item>
+        <item name="android:navigationBarColor">@color/musify_bg</item>
+    </style>
+</resources>
