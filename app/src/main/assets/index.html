@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#111326">
+<title>AnimeX</title>
+<style>
+:root{--bg:#101120;--panel:#1a1b30;--purple:#8b5cf6;--text:#f7f7ff;--muted:#b9bad0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,Arial,sans-serif}
+header{padding:18px 16px;background:linear-gradient(120deg,#24164a,#111326);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:2}
+.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,#a78bfa,#6d28d9);display:grid;place-items:center;font-size:25px;font-weight:900}
+h1{font-size:23px;margin:0}header small{color:#c4b5fd;letter-spacing:1.5px}
+main{padding:15px;max-width:800px;margin:auto}.hero{padding:18px;border-radius:20px;background:linear-gradient(135deg,#30205a,#1b1c34);margin-bottom:15px}
+.hero h2{margin:0 0 7px;font-size:23px}.muted{color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:8px;overflow:auto;margin:14px 0}.tab,button{border:0;border-radius:12px;padding:11px 13px;background:#292a43;color:white;font-weight:650;cursor:pointer}.tab.active,button.primary{background:var(--purple)}
+.panel{background:var(--panel);border:1px solid #30314b;border-radius:17px;padding:14px;margin:12px 0}
+label{display:block;margin:8px 0 6px;color:#ddd;font-size:13px}input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #454663;background:#111326;color:white}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.actions button{flex:1;min-width:120px}
+video{width:100%;max-height:360px;background:#08080d;border-radius:14px;margin-top:8px}
+.item{padding:12px;background:#22233a;border-radius:12px;margin:8px 0;display:flex;align-items:center;gap:8px}.item span{flex:1;overflow-wrap:anywhere}
+.badge{font-size:11px;background:#42316b;padding:4px 7px;border-radius:99px}
+footer{text-align:center;color:#8586a3;font-size:12px;padding:20px}
+.hidden{display:none}.notice{font-size:12px;color:#c4b5fd;line-height:1.5}
+</style></head>
+<body>
+<header><div class="logo">A</div><div><h1>AnimeX</h1><small>WATCH • EDIT • OFFLINE</small></div></header>
+<main>
+<section class="hero"><h2>Temukan video favoritmu 🔥</h2><div class="muted">Anime • Gaming • Trending • Editor</div><div class="actions"><button class="primary" onclick="showTab('watch')">▶ Tonton</button><button onclick="showTab('editor')">✂ Editor</button></div></section>
+<div class="tabs"><button class="tab active" id="t-watch" onclick="showTab('watch')">Trending</button><button class="tab" id="t-editor" onclick="showTab('editor')">Editor</button><button class="tab" id="t-offline" onclick="showTab('offline')">❤️ Offline</button><button class="tab" id="t-premium" onclick="showTab('premium')">👑 Premium</button></div>
+<section id="watch">
+<div class="panel"><b>▶ Putar video dari perangkat</b><label>Pilih video dari galeri/file HP</label><input id="localVideo" type="file" accept="video/*"><video id="player" controls playsinline></video>
+<div class="actions"><button class="primary" onclick="likeCurrent()">❤️ Like & simpan offline</button><button onclick="downloadCurrent()">⬇ Download</button></div>
+<p class="notice">Demo: video yang dipilih bisa diputar. Penyimpanan offline di dalam demo memakai penyimpanan browser bila didukung; untuk penyimpanan permanen ke galeri dibutuhkan integrasi Android.</p></div>
+<div class="panel"><b>⬇ Unduh lewat URL (Premium)</b><label>URL file video langsung yang mengizinkan unduhan</label><input id="videoUrl" type="url" placeholder="https://contoh.com/video.mp4"><div class="actions"><button class="primary" onclick="downloadUrl()">Download URL</button></div><p class="notice">Tautan harus menuju file video langsung dan servernya mengizinkan akses. Tautan halaman streaming biasa mungkin tidak bisa diunduh.</p></div>
+</section>
+<section id="editor" class="hidden"><div class="panel"><b>✂ Editor sederhana</b><label>Pilih foto atau video</label><input type="file" id="mediaFile" accept="image/*,video/*"><div id="preview"></div><label>Teks overlay (demo)</label><input id="overlayText" placeholder="Tulis teks editan..."><div class="actions"><button class="primary" onclick="applyText()">Tampilkan teks</button><button onclick="downloadCurrent()">Simpan video sumber</button></div><p class="notice">Ini prototipe awal, belum memiliki timeline, pemotongan video, atau ekspor efek seperti editor profesional.</p></div></section>
+<section id="offline" class="hidden"><div class="panel"><b>❤️ Koleksi offline</b><p class="muted">Video yang kamu tandai akan tercantum di sini pada demo ini.</p><div id="offlineList">Belum ada video favorit.</div></div></section>
+<section id="premium" class="hidden"><div class="panel"><b>👑 AnimeX Premium — Rp5.000</b><p>Rencana fitur Premium:</p><ul><li>Nonton video yang tersimpan tanpa internet.</li><li>Like lalu tambahkan video yang memenuhi syarat ke koleksi offline.</li><li>Unduh melalui URL langsung yang mengizinkan pengunduhan.</li><li>Pilihan penyimpanan ke galeri atau folder unduhan saat dibangun menjadi APK.</li></ul><p class="notice">Status Premium pada prototipe ini hanya informasi, belum memproses pembayaran. Pembayaran asli perlu verifikasi transaksi yang aman sebelum akses dibuka.</p></div></section>
+<footer>AnimeX • Prototipe awal • Gunakan video yang kamu miliki atau boleh diunduh.</footer>
+</main>
+<script>
+let currentFile=null,currentUrl=null,offline=[];
+const player=document.getElementById('player');
+function showTab(name){['watch','editor','offline','premium'].forEach(x=>{document.getElementById(x).classList.toggle('hidden',x!==name);let b=document.getElementById('t-'+x);if(b)b.classList.toggle('active',x===name)});}
+document.getElementById('localVideo').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;currentFile=f;currentUrl=URL.createObjectURL(f);player.src=currentUrl;player.load();});
+document.getElementById('mediaFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;currentFile=f;currentUrl=URL.createObjectURL(f);const p=document.getElementById('preview');p.innerHTML='';if(f.type.startsWith('video/')){let v=document.createElement('video');v.controls=true;v.src=currentUrl;p.appendChild(v)}else{let im=document.createElement('img');im.src=currentUrl;im.style.width='100%';im.style.borderRadius='12px';p.appendChild(im)}});
+function downloadCurrent(){if(!currentFile){alert('Pilih video dari perangkat dahulu.');return}let a=document.createElement('a');a.href=currentUrl;a.download=currentFile.name||'animex-video';a.click();}
+function likeCurrent(){if(!currentFile){alert('Pilih video dahulu.');return}offline.push({name:currentFile.name,url:currentUrl,file:currentFile});renderOffline();showTab('offline');}
+function renderOffline(){let box=document.getElementById('offlineList');box.innerHTML='';if(!offline.length){box.textContent='Belum ada video favorit.';return}offline.forEach((v,i)=>{let d=document.createElement('div');d.className='item';let s=document.createElement('span');s.textContent='❤️ '+v.name;let b=document.createElement('button');b.textContent='Putar';b.onclick=()=>{player.src=v.url;showTab('watch');player.play().catch(()=>{})};let rm=document.createElement('button');rm.textContent='Hapus';rm.onclick=()=>{offline.splice(i,1);renderOffline()};d.append(s,b,rm);box.appendChild(d)})}
+function downloadUrl(){let u=document.getElementById('videoUrl').value.trim();if(!u){alert('Masukkan URL video langsung.');return}try{let url=new URL(u);if(url.protocol!=='https:'&&url.protocol!=='http:')throw 0;let a=document.createElement('a');a.href=url.href;a.download='animex-video';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();alert('Permintaan unduhan dikirim. Jika tidak mulai, sumber mungkin tidak mengizinkan unduhan langsung.')}catch(e){alert('URL tidak valid.')} }
+function applyText(){let t=document.getElementById('overlayText').value;alert(t?'Teks demo: '+t+'\nEkspor video dengan teks memerlukan mesin editing video pada versi berikutnya.':'Masukkan teks terlebih dahulu.')}
+</script></body></html>
