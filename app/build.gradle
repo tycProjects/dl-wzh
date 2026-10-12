@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.new.html'
+    namespace 'com.newhtml'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.new.html"
+        applicationId "com.newhtml"
         minSdk 21
         targetSdk 34
         versionCode 1791800255
