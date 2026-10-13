@@ -69,6 +69,7 @@ import android.nfc.tech.NfcA
 import android.nfc.tech.NfcB
 import android.nfc.tech.NfcF
 import android.nfc.tech.NfcV
+import android.app.PendingIntent
 
 /**
  * Menampilkan tampilan Flipper (assets/index.html) di dalam WebView.
