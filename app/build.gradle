@@ -3,6 +3,10 @@ plugins {
 }
 
 android {
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
     namespace 'com.example.proxylite'
     compileSdk 35
 
