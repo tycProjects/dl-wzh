@@ -1,0 +1,112 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.flipper.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.flipper.app'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+        ndk {
+            // arm64-v8a: hampir semua HP modern. armeabi-v7a: jaga-jaga HP lama.
+            abiFilters 'arm64-v8a', 'armeabi-v7a'
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+            }
+        }
+    }
+
+    // mem_engine dikompile sebagai program C biasa (bukan library .so),
+    // lalu disalin ke assets/ oleh task copyMemEngine di bawah supaya
+    // bisa dieksekusi langsung lewat "su -c <path>" saat runtime.
+    externalNativeBuild {
+        cmake {
+            path 'src/main/cpp/CMakeLists.txt'
+            version '3.22.1'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+
+    // Jalur TANPA ROOT (lewat VirtualXposed) -- compileOnly karena implementasi
+    // sesungguhnya disediakan oleh VirtualXposed/Xposed saat aplikasi jalan,
+    // bukan dibundel ke dalam APK ini.
+    compileOnly 'de.robv.android.xposed:api:82'
+}
+
+// ---------------------------------------------------------------------------
+// Modul 1: mesin akses memori (mem_engine).
+//
+// CMake di atas mengompile app/src/main/cpp/mem_engine.c jadi satu file
+// executable ARM bernama "memengine". File itu TIDAK otomatis ikut masuk ke
+// APK seperti library .so biasa, jadi task ini mencarinya di folder build
+// CMake (dicari by nama file, bukan path pasti, supaya tidak rapuh kalau
+// versi Android Studio/NDK berbeda) lalu menyalinnya ke
+// app/src/main/assets/memengine/<abi>/memengine sebelum assets dikemas ke APK.
+// Di sisi Kotlin (MemEngine.kt), file itu disalin lagi ke folder privat
+// aplikasi saat runtime, diberi izin eksekusi, lalu dijalankan lewat "su".
+tasks.register('copyMemEngine') {
+    doLast {
+        def abis = ['arm64-v8a', 'armeabi-v7a']
+        def anyFound = false
+        abis.each { abi ->
+            def matches = fileTree(buildDir) {
+                include "**/${abi}/memengine", "**/${abi}/**/memengine"
+            }.files
+            if (matches.isEmpty()) {
+                matches = fileTree(projectDir) {
+                    include ".cxx/**/${abi}/memengine", ".cxx/**/${abi}/**/memengine"
+                }.files
+            }
+            if (!matches.isEmpty()) {
+                def src = matches.first()
+                def destDir = file("src/main/assets/memengine/${abi}")
+                destDir.mkdirs()
+                def dest = new File(destDir, 'memengine')
+                dest.bytes = src.bytes
+                anyFound = true
+                println "copyMemEngine: ${abi} -> ${dest}"
+            } else {
+                println "copyMemEngine: binary untuk ${abi} belum ketemu (build CMake untuk ABI itu belum jalan, aman diabaikan kalau HP kamu bukan ${abi})"
+            }
+        }
+        if (!anyFound) {
+            println "copyMemEngine: PERINGATAN - tidak ada binary memengine ditemukan sama sekali. Modul akses memori tidak akan berfungsi sampai build CMake berhasil."
+        }
+    }
+}
+
+afterEvaluate {
+    tasks.matching { it.name.startsWith('externalNativeBuild') }.configureEach { t ->
+        t.finalizedBy('copyMemEngine')
+    }
+    tasks.matching { it.name.startsWith('merge') && it.name.endsWith('Assets') }.configureEach { t ->
+        t.dependsOn('copyMemEngine')
+    }
+}
