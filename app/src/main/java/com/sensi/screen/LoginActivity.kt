@@ -83,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun field(hintText: String, secret: Boolean): EditText = EditText(this).apply {
-        hint = hintText; textSize = 15f; singleLine = true
+        hint = hintText; textSize = 15f; setSingleLine(true)
         setPadding(dp(12), dp(8), dp(12), dp(8))
         if (secret) inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
         else if (hintText == "Tên tài khoản") inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
