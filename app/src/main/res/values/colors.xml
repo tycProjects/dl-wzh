@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="page_bg">#F3F6FA</color>
+    <color name="panel_bg">#FFFFFF</color>
+    <color name="panel_border">#E5EAF0</color>
+    <color name="text_primary">#17212F</color>
+    <color name="text_secondary">#697586</color>
+    <color name="teal">#0F9688</color>
+    <color name="teal_dark">#087F74</color>
+    <color name="teal_light">#9DD9D2</color>
+    <color name="reset_button">#DCE5ED</color>
+    <color name="white">#FFFFFF</color>
+</resources>
