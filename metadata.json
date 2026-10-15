@@ -1,0 +1,6 @@
+{
+  "name": "منصة حمو التعليمية",
+  "description": "منصة حمو التعليمية المتكاملة - إعداد حمادة ابن ضيف. شروحات فيديو، امتحانات إلكترونية تفاعلية، ملازم ومذكرات، ودعم فني مباشر.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
