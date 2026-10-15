@@ -1,3 +1,11 @@
+def localProperties = new File(rootDir, "local.properties")
+if (!localProperties.exists()) {
+    def sdkDir = System.getenv("ANDROID_SDK_ROOT")
+    if (sdkDir) {
+        localProperties.write("sdk.dir=$sdkDir")
+    }
+}
+
 pluginManagement {
     repositories {
         google()
