@@ -1,0 +1,13 @@
+{
+  "testCodePatch": true,
+  "resetGuest": true,
+  "antiDetect": true,
+  "hideModule": true,
+  "safeMode": true,
+  "antiBan": true,
+  "antiCheat": true,
+  "hideMemory": true,
+  "spoofSignature": true,
+  "hideOverlay": true,
+  "secureMode": true
+}
