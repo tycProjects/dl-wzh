@@ -988,7 +988,7 @@ class MainActivity : Activity() {
         if (!b) updateUrlUi()
     }
 
-    private fun setProgress(p: Int) {
+    override fun setProgress(p: Int) {
         progress.animate().cancel()
         if (p in 1..99) {
             progress.alpha = 1f
@@ -2638,7 +2638,7 @@ class MainActivity : Activity() {
         if (name == null) {
             name = URLUtil.guessFileName(url, if (cd.isEmpty()) null else cd, if (mime.isEmpty()) null else mime)
         }
-        var n = cleanName(name)
+        var n = cleanName(name!!)
         val ext = n.substringAfterLast('.', "").lowercase()
         val known = ext.isNotEmpty() && mimeForName(n).isNotEmpty()
         if (!known || ext == "bin") {
