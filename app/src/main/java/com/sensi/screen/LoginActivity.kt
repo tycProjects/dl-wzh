@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
         val label = TextView(this).apply { text = "KEY ĐĂNG NHẬP"; textSize = 12f; typeface = Typeface.DEFAULT_BOLD; setTextColor(darkBlue) }
         card.addView(label, lpWrap())
         val keyInput = EditText(this).apply {
-            hint = "Nhập key của bạn"; singleLine = true; textSize = 16f
+            hint = "Nhập key của bạn"; isSingleLine = true; textSize = 16f
             setTextColor(ink); setHintTextColor(muted); setPadding(dp(14), 0, dp(14), 0)
             background = rounded(paleBlue, 14)
         }
