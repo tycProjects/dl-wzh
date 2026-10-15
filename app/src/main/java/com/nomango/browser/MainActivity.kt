@@ -988,7 +988,7 @@ class MainActivity : Activity() {
         if (!b) updateUrlUi()
     }
 
-    override fun setProgress(p: Int) {
+    fun setProgress(p: Int) {
         progress.animate().cancel()
         if (p in 1..99) {
             progress.alpha = 1f
