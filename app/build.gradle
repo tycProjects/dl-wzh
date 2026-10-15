@@ -47,7 +47,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
             def abi = output.getFilter(com.android.build.OutputFile.ABI)
-            outputFileName = "حاسب-${abi ?: 'universal'}.apk"
+            outputFileName = "app-${abi ?: 'universal'}.apk"
         }
     }
 }
