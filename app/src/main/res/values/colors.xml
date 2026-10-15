@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="page_bg">#F4F7FB</color>
+    <color name="panel_bg">#FFFFFF</color>
+    <color name="panel_border">#E4EAF2</color>
+    <color name="text_primary">#152238</color>
+    <color name="text_secondary">#68778D</color>
+    <color name="teal">#0B9B8E</color>
+    <color name="teal_dark">#08766D</color>
+    <color name="teal_light">#B9E9E2</color>
+    <color name="reset_button">#E7EDF5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="hero_start">#08766D</color>
+    <color name="hero_end">#12B8A6</color>
+</resources>

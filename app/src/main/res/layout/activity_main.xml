@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/page_bg"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    android:paddingBottom="18dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="22dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_hero"
+            android:padding="22dp"
+            android:elevation="3dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SENSI  ·  SCREEN"
+                android:textColor="#D5FFFA"
+                android:textSize="11sp"
+                android:letterSpacing="0.12"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="Làm chủ
+màn hình của bạn"
+                android:textColor="#FFFFFF"
+                android:textSize="27sp"
+                android:lineSpacingExtra="1dp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tùy chỉnh độ phân giải · Tự động theo ứng dụng"
+                android:textColor="#E2FFFB"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Trung tâm điều khiển"
+            android:textColor="@color/text_primary"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:text="Thiết lập nhanh, an toàn và linh hoạt"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_panel"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TRẠNG THÁI HỆ THỐNG"
+                android:textColor="@color/teal_dark"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="5dp"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_panel"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="01  ·  QUYỀN CHẠY LỆNH"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <RadioGroup
+                android:id="@+id/rgMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+                <RadioButton android:id="@+id/rbAuto" android:layout_width="wrap_content" android:layout_height="wrap_content" android:buttonTint="@color/teal" android:text="Tự động" android:textColor="@color/text_primary" />
+                <RadioButton android:id="@+id/rbShizuku" android:layout_width="wrap_content" android:layout_height="wrap_content" android:buttonTint="@color/teal" android:text="Shizuku" android:textColor="@color/text_primary" />
+                <RadioButton android:id="@+id/rbRoot" android:layout_width="wrap_content" android:layout_height="wrap_content" android:buttonTint="@color/teal" android:text="Root" android:textColor="@color/text_primary" />
+            </RadioGroup>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <Button android:id="@+id/btnShizuku" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:layout_marginEnd="5dp" android:text="Cấp quyền Shizuku" android:textSize="12sp" />
+                <Button android:id="@+id/btnRoot" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:layout_marginStart="5dp" android:text="Kiểm tra Root" android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_panel"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="02  ·  KÍCH THƯỚC MÀN HÌNH" android:textColor="@color/text_primary" android:textSize="15sp" android:textStyle="bold" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="Độ phân giải mặc định (px)" android:textColor="@color/text_secondary" android:textSize="13sp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+                <EditText android:id="@+id/etW" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:backgroundTint="@color/teal" android:hint="Rộng" android:inputType="number" android:paddingStart="8dp" android:textColor="@color/text_primary" android:textSize="18sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="12dp" android:text="×" android:textColor="@color/text_secondary" android:textSize="20sp" />
+                <EditText android:id="@+id/etH" android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1" android:backgroundTint="@color/teal" android:hint="Cao" android:inputType="number" android:paddingStart="8dp" android:textColor="@color/text_primary" android:textSize="18sp" />
+            </LinearLayout>
+            <EditText android:id="@+id/etD" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="6dp" android:backgroundTint="@color/teal" android:hint="Density (để trống = giữ nguyên)" android:inputType="number" android:textColor="@color/text_primary" android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_panel"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="03  ·  TỰ ĐỘNG HÓA" android:textColor="@color/text_primary" android:textSize="15sp" android:textStyle="bold" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swEnable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:buttonTint="@color/teal"
+                android:text="Tự động áp dụng theo ứng dụng đã chọn"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:thumbTint="@color/teal"
+                android:trackTint="@color/teal_light" />
+            <Button android:id="@+id/btnApps" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="8dp" android:text="Chọn ứng dụng" />
+            <Button android:id="@+id/btnA11y" android:layout_width="match_parent" android:layout_height="50dp" android:text="Bật dịch vụ trợ năng" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <Button android:id="@+id/btnTest" android:layout_width="0dp" android:layout_height="50dp" android:layout_weight="1" android:layout_marginEnd="5dp" android:backgroundTint="@color/teal" android:text="Thử ngay" />
+                <Button android:id="@+id/btnReset" android:layout_width="0dp" android:layout_height="50dp" android:layout_weight="1" android:layout_marginStart="5dp" android:backgroundTint="@color/reset_button" android:text="Khôi phục" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="MẸO  ·  Nếu màn hình bị sai kích thước, chọn Khôi phục. Bạn cũng có thể chạy wm size reset và wm density reset trong Brevent/ADB."
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:lineSpacingExtra="3dp" />
+    </LinearLayout>
+</ScrollView>

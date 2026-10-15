@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#08766D</item>
+        <item name="colorPrimaryDark">#065B55</item>
+        <item name="colorAccent">#0B9B8E</item>
+        <item name="android:statusBarColor">#065B55</item>
+        <item name="android:navigationBarColor">#F4F7FB</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowBackground">#F4F7FB</item>
+        <item name="buttonStyle">@style/SensiButton</item>
+        <item name="android:fontFamily">sans</item>
+    </style>
+    <style name="SensiButton" parent="Widget.AppCompat.Button">
+        <item name="android:backgroundTint">#E4F3F1</item>
+        <item name="android:textColor">#08766D</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+</resources>
