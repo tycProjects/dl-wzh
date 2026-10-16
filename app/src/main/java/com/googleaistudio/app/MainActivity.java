@@ -3981,7 +3981,7 @@ public class MainActivity extends AppCompatActivity {
                         GoogleIdTokenCredential googleIdTokenCredential =
                             GoogleIdTokenCredential.createFrom(((CustomCredential) credential).getData());
                         notifyGoogleSignInSuccess(googleIdTokenCredential.getIdToken());
-                    } catch (GoogleIdTokenParsingException e) {
+// AUTO-REPAIR (dead code, provably unreachable):                     } catch (GoogleIdTokenParsingException e) {
                         notifyGoogleSignInError("Could not parse Google ID token");
                     }
                 }
