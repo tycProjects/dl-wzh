@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8"><script>
+window.solvePow = async function(configJson, wasmBase64) {
+  try {
+    const cfg = JSON.parse(configJson);
+    const binary = Uint8Array.from(atob(wasmBase64), c => c.charCodeAt(0));
+    const instance = (await WebAssembly.instantiate(binary.buffer, {})).instance;
+    const e = instance.exports;
+    const write = (value) => {
+      const data = new TextEncoder().encode(value);
+      const ptr = e.__wbindgen_export_0(data.length, 1);
+      new Uint8Array(e.memory.buffer, ptr, data.length).set(data);
+      return [ptr, data.length];
+    };
+    const retptr = e.__wbindgen_add_to_stack_pointer(-16);
+    try {
+      const challenge = write(cfg.challenge);
+      const prefix = write(String(cfg.salt) + '_' + String(cfg.expire_at) + '_');
+      e.wasm_solve(retptr, challenge[0], challenge[1], prefix[0], prefix[1], Number(cfg.difficulty));
+      const view = new DataView(e.memory.buffer);
+      if (view.getInt32(retptr, true) === 0) return JSON.stringify({ok:false,error:'WASM returned no solution'});
+      return JSON.stringify({ok:true,answer:view.getFloat64(retptr + 8, true)});
+    } finally { e.__wbindgen_add_to_stack_pointer(16); }
+  } catch (err) { return JSON.stringify({ok:false,error:String(err)}); }
+};
+</script>
