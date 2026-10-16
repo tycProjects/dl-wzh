@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="#111111">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FF LAG SHIZUKU"
+        android:textColor="#00FF00"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/btn_enable"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="BẬT LAG + OVERLAY"
+        android:textColor="#000000"
+        android:backgroundTint="#00FF00"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/btn_nhe_tam"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="CÀI NHẸ TÂM"
+        android:textColor="#000000"
+        android:backgroundTint="#2196F3"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/btn_aim_dau"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="CÀI AIM ĐẦU + ESP"
+        android:textColor="#000000"
+        android:backgroundTint="#E91E63"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/btn_menu_an"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="CÀI MENU ẨN"
+        android:textColor="#000000"
+        android:backgroundTint="#FF9800"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#AAAAAA"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:text="Chọn chức năng" />
+</LinearLayout>
