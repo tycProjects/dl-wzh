@@ -1,3 +1,15 @@
+// Ensure local.properties exists for the Android Gradle plugin
+def localProps = file("local.properties")
+if (!localProps.exists()) {
+    def sdkDir = System.env.ANDROID_HOME
+    if (sdkDir) {
+        localProps.write("sdk.dir=$sdkDir\n")
+    } else {
+        // Fallback to a common location
+        localProps.write("sdk.dir=/opt/android-sdk\n")
+    }
+}
+
 buildscript {
     repositories {
         google()
