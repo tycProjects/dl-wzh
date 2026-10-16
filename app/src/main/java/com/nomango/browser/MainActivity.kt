@@ -986,7 +986,7 @@ class MainActivity : Activity() {
         if (!b) updateUrlUi()
     }
 
-    private fun setProgress(p: Int) {
+    override fun setProgress(p: Int) {
         progress.update(p, d(1L) > 0L)
     }
 
