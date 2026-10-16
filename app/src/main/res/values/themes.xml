@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.NovaCosmic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/cyan_neon</item>
+        <item name="colorPrimaryVariant">@color/blue_neon</item>
+        <item name="colorOnPrimary">@color/cosmic_dark_1</item>
+        <item name="android:statusBarColor">@color/cosmic_dark_1</item>
+        <item name="android:windowBackground">@color/cosmic_dark_1</item>
+    </style>
+</resources>

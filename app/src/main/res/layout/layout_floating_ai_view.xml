@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_ai_view_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_floating_ai_window"
+    android:elevation="24dp"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    
+    <RelativeLayout
+        android:id="@+id/header_ai_window"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="#161B33"
+        android:paddingHorizontal="12dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_circle_neon_cyan"
+                android:gravity="center"
+                android:text="✨"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_ai_window_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:letterSpacing="0.04"
+                android:text="Google AI Mode"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_ai_status_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_badge_neon"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:text="In-App Overlay"
+                android:textColor="#00E5FF"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        
+        <TextView
+            android:id="@+id/btn_close_ai_view"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="#FF5252"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    
+    <LinearLayout
+        android:id="@+id/layout_query_strip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0F1426"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teks Area: "
+            android:textColor="#00E5FF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_active_query_preview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Memuat analisis materi..."
+            android:textColor="#CBD5E1"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    
+    <ProgressBar
+        android:id="@+id/progress_ai_loading"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:indeterminate="true"
+        android:indeterminateTint="#00E5FF"
+        android:visibility="gone" />
+
+    
+    <WebView
+        android:id="@+id/webview_ai_viewer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#0B0C1A" />
+
+</LinearLayout>

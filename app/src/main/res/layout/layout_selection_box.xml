@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_crop_container"
+    android:layout_width="280dp"
+    android:layout_height="170dp"
+    android:background="@drawable/bg_selection_box"
+    android:padding="4dp">
+
+    
+    <LinearLayout
+        android:id="@+id/header_crop_drag"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:background="#800B0C1A"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⠿"
+            android:textColor="#00E5FF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="AREA SELEKSI"
+            android:textColor="#00E5FF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        
+        <TextView
+            android:id="@+id/tv_box_dimensions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_neon"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="1dp"
+            android:text="280x170"
+            android:textColor="#BAE6FD"
+            android:textSize="9sp" />
+
+        
+        <TextView
+            android:id="@+id/btn_shrink_box"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="#00E5FF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        
+        <TextView
+            android:id="@+id/btn_expand_box"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="2dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="#00E5FF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        
+        <TextView
+            android:id="@+id/btn_preset_box"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="2dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="⤢"
+            android:textColor="#BAE6FD"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    
+    <View
+        android:id="@+id/view_selection_transparent_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_crop_controls"
+        android:layout_below="@id/header_crop_drag"
+        android:background="#0500E5FF" />
+
+    
+    <ImageView
+        android:id="@+id/iv_resize_handle"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/bg_circle_neon_cyan"
+        android:contentDescription="Tarik untuk memperbesar atau memperkecil ukuran kotak seleksi secara bebas"
+        android:padding="6dp"
+        android:src="@android:drawable/ic_menu_crop"
+        android:tint="#00E5FF" />
+
+    
+    <LinearLayout
+        android:id="@+id/bottom_crop_controls"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        android:background="#990B0C1A"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp">
+
+        
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_confirm_crop"
+            android:layout_width="40dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_btn_confirm_green"
+            android:elevation="4dp"
+            android:text="✔"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cancel_crop"
+            android:layout_width="40dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="14dp"
+            android:background="@drawable/bg_btn_cancel_red"
+            android:elevation="4dp"
+            android:text="✕"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

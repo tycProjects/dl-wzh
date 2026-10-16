@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cyan_neon">#00E5FF</color>
+    <color name="purple_neon">#8A2BE2</color>
+    <color name="blue_neon">#0077FE</color>
+    <color name="cosmic_dark_1">#0B0C1A</color>
+    <color name="cosmic_dark_2">#161B33</color>
+    <color name="capsule_bg">#1F2438</color>
+    <color name="confirm_green">#10B981</color>
+    <color name="cancel_red">#EF4444</color>
+    <color name="red_alert">#FF5252</color>
+    <color name="white">#FFFFFF</color>
+    <color name="slate_text">#94A3B8</color>
+</resources>

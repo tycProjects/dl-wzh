@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NovaFloating Area Reader</string>
+    <string name="accessibility_service_desc">Layanan untuk mengekstrak elemen teks di dalam batas kotak seleksi melayang (Crop Selection Box) menggunakan AccessibilityNodeInfo bounds traversal dan menampilkan jawaban langsung di Floating AI Viewer.</string>
+</resources>
