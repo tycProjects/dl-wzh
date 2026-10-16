@@ -1,0 +1,17 @@
+plugins {
+    id 'com.android.application'
+}
+android {
+    namespace 'com.sscp.app'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.sscp.app'
+        minSdk 26
+        targetSdk 35
+        versionCode 3
+        versionName '1.3.0'
+    }
+}
+dependencies {
+    implementation 'androidx.core:core:1.15.0'
+}
