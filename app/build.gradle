@@ -47,7 +47,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
             def abi = output.getFilter(com.android.build.OutputFile.ABI)
-            outputFileName = "prototype~2-${abi ?: 'universal'}.apk"
+            outputFileName = "prototype-2-${abi ?: 'universal'}.apk"
         }
     }
 }
