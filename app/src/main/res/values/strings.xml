@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NovaFloating Assistive Reader</string>
+    <string name="accessibility_service_desc">Layanan untuk mengekstrak teks pada jendela aktif menggunakan AccessibilityNodeInfo traversal dan meneruskan frasa teks ke pencarian informasi.</string>
+</resources>

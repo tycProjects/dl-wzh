@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_floating_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_bar_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="18dp"
+        app:cardBackgroundColor="#1F2438"
+        app:cardCornerRadius="28dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:strokeColor="#00E5FF"
+        app:strokeWidth="1.5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="12dp">
+
+            
+            <TextView
+                android:id="@+id/tv_drag_handle"
+                android:layout_width="34dp"
+                android:layout_height="38dp"
+                android:gravity="center"
+                android:text="⠿"
+                android:textColor="#00E5FF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_scan_and_solve"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/bg_btn_scan_neon"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="6dp"
+                android:drawableTint="#0B0C1A"
+                android:paddingHorizontal="14dp"
+                android:text="⚡ SCAN &amp; BACA LAYAR"
+                android:textColor="#0B0C1A"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            
+            <TextView
+                android:id="@+id/btn_close_floating"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="✕"
+                android:textColor="#FF5252"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
