@@ -44,12 +44,7 @@ android {
     // escapes are deliberate so JS leaves them as literal ${...} in the
     // written file instead of trying (and failing) to resolve them as JS
     // variables.
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            def abi = output.getFilter(com.android.build.OutputFile.ABI)
-            outputFileName = "Quota_Manager-${abi ?: 'universal'}.apk"
-        }
-    }
+    // Output renaming disabled
 }
 
 dependencies {
