@@ -1,0 +1,25 @@
+name: wzh_apk
+description: WZH 2 APK - native Flutter copy of the builder UI
+publish_to: 'none'
+version: 1.0.0+4
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  http: ^1.2.2
+  shared_preferences: '>=2.2.3 <2.4.0'
+  path_provider: ^2.1.4
+  file_selector: ^1.0.3
+  archive: ^3.6.1
+
+dependency_overrides:
+  # 2.4+ of the Android implementation uses a Kotlin-coroutine API that crashes at
+  # startup (NoSuchMethodError SharedPreferencesApiRegistrar.getAll) in some builds.
+  shared_preferences_android: '>=2.3.0 <2.4.0'
+
+flutter:
+  uses-material-design: true
