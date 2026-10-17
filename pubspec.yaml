@@ -1,0 +1,20 @@
+name: wzh_apk
+description: WZH 2 APK - native Flutter copy of the builder UI
+publish_to: 'none'
+version: 1.0.0+4
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  http: ^1.2.2
+  shared_preferences: ^2.2.3
+  path_provider: ^2.1.4
+  file_selector: ^1.0.3
+  archive: ^3.6.1
+
+flutter:
+  uses-material-design: true

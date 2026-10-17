@@ -27,6 +27,42 @@ jobs:
           channel: stable
           cache: true
 
+      # Auto-generated release keystore: created once per requester
+      # (scoped by keystoreCacheKey, derived from clientId in server.js) and
+      # cached across builds so every APK from the same person carries the
+      # same signature — required for Android to accept update installs.
+      - name: Restore release signing key
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/release-keystore
+          key: release-keystore-cc785349bc19e98fcaa3a72c-v1
+
+      - name: Generate release signing key (first build only)
+        run: |
+          mkdir -p ~/.android/release-keystore
+          if [ ! -f ~/.android/release-keystore/release.jks ]; then
+            echo "No cached signing key for this requester — generating a new one."
+            PASS=$(openssl rand -hex 20)
+            echo -n "$PASS" > ~/.android/release-keystore/release.pass
+            keytool -genkeypair -v \
+              -keystore ~/.android/release-keystore/release.jks \
+              -alias release -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass "$PASS" -keypass "$PASS" \
+              -dname "CN=App Builder, OU=Apps, O=Tycept, C=US"
+          else
+            echo "Reusing cached signing key for this requester."
+          fi
+
+      - name: Print release signing fingerprint
+        run: |
+          FINGERPRINT=$(keytool -list -v \
+            -keystore ~/.android/release-keystore/release.jks \
+            -storepass "$(cat ~/.android/release-keystore/release.pass)" \
+            -alias release 2>/dev/null | grep "SHA256:" | sed 's/^[[:space:]]*SHA256:[[:space:]]*//')
+          echo "---- SHA-256 fingerprint (for assetlinks.json if needed) ----"
+          echo "${FINGERPRINT:-<not found — check keytool output above>}"
+          echo "--------------------------------------------------------------"
+
       - name: Locate Flutter project and install dependencies
         run: |
           # Find the pubspec.yaml nearest the repo root — this is the project
@@ -57,6 +93,16 @@ jobs:
           fi
           flutter pub get
 
+      - name: Write android/key.properties for Flutter Gradle signing
+        working-directory: ${{ env.FLUTTER_PROJECT }}
+        run: |
+          mkdir -p android
+          KS="$HOME/.android/release-keystore/release.jks"
+          PASS="$(cat $HOME/.android/release-keystore/release.pass)"
+          printf 'storeFile=%s\nstorePassword=%s\nkeyAlias=release\nkeyPassword=%s\n' \
+            "$KS" "$PASS" "$PASS" > android/key.properties
+          echo "Written android/key.properties (storeFile=$KS)"
+
       # flutter-action exports FLUTTER_ROOT but the Flutter Gradle plugin reads
       # flutter.sdk from local.properties instead — without this the Gradle
       # settings evaluation fails with "flutter.sdk not set in local.properties"
@@ -86,12 +132,12 @@ jobs:
 
       - name: Build Flutter APK
         working-directory: ${{ env.FLUTTER_PROJECT }}
-        run: flutter build apk --debug
+        run: flutter build apk --release
 
       - name: Verify APK exists
         working-directory: ${{ env.FLUTTER_PROJECT }}
         run: |
-          APK="build/app/outputs/flutter-apk/app-debug.apk"
+          APK="build/app/outputs/flutter-apk/app-release.apk"
           if [ ! -f "$APK" ]; then
             echo "::error::Expected APK not found at $APK — check the flutter build output above."
             # Also search broadly for any .apk in case the output path changed.
@@ -103,7 +149,15 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: debug-apk
-          path: ${{ env.FLUTTER_PROJECT }}/build/app/outputs/flutter-apk/app-debug.apk
+          name: release-apk
+          path: ${{ env.FLUTTER_PROJECT }}/build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           retention-days: 1
+
+      - name: Upload signing key (save this — future updates must use it)
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-signing-key-${{ github.run_id }}
+          path: ~/.android/release-keystore/release.jks
+          if-no-files-found: warn
+          retention-days: 90
