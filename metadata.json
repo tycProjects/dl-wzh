@@ -1,0 +1,6 @@
+{
+  "name": "Liquid Glass",
+  "description": "Interactive liquid glass interface with fluid animations, dynamic glassmorphism, and bioscience cellular lab simulations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
