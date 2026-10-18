@@ -51,9 +51,34 @@ jobs:
           # touch or overwrite an existing lib/, pubspec.yaml, or an
           # already-present android/ folder, so this is a safe no-op on a
           # complete upload and a real fix on an incomplete one.
+          GENERATED_ANDROID=0
           if [ ! -d "android" ]; then
             echo "No android/ folder in the upload -- generating the missing Flutter platform scaffolding."
             flutter create --platforms=android --org com.tycept.generated .
+            GENERATED_ANDROID=1
+          fi
+          # Set the real package name (applicationId) instead of com.tycept.generated.<name>.
+          # An uploaded project's own android/ keeps its id unless a package suffix was typed.
+          if [ "$GENERATED_ANDROID" = "1" ] || [ "1" = "1" ]; then
+            for G in android/app/build.gradle android/app/build.gradle.kts; do
+              if [ -f "$G" ]; then
+                sed -i -E 's/applicationId[[:space:]]*=?[[:space:]]*"[^"]*"/applicationId = "com.wzh.builder.app"/' "$G"
+                echo "Package name set to com.wzh.builder.app in $G"
+              fi
+            done
+          fi
+          # flutter create only declares INTERNET in the debug/profile manifests, so a
+          # release APK has no network access at all (every request fails with
+          # "Failed host lookup"). Add it to the main manifest when it is missing.
+          MANIFEST=android/app/src/main/AndroidManifest.xml
+          if [ -f "$MANIFEST" ] && ! grep -q "android.permission.INTERNET" "$MANIFEST"; then
+            sed -i 's|<application|<uses-permission android:name="android.permission.INTERNET"/>\n    <application|' "$MANIFEST"
+            echo "Added INTERNET permission to $MANIFEST"
+          fi
+          # The in-app gallery picker (photo_manager) needs the photo permission in the manifest.
+          if [ -f "$MANIFEST" ] && grep -q "photo_manager" pubspec.yaml && ! grep -q "READ_MEDIA_IMAGES" "$MANIFEST"; then
+            sed -i 's|<application|<uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>\n    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>\n    <application|' "$MANIFEST"
+            echo "Added photo permissions to $MANIFEST"
           fi
           flutter pub get
 
