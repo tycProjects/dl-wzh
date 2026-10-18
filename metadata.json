@@ -1,0 +1,6 @@
+{
+  "name": "ZMAPS",
+  "description": "High-contrast cyberpunk navigation app featuring Google Maps, location tracking, destination search, and route preview by JUSSAR GOLDEN.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
