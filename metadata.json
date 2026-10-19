@@ -1,0 +1,6 @@
+{
+  "name": "OmniStudio AI",
+  "description": "منصة ذكاء اصطناعي شاملة لإنشاء التطبيقات، الألعاب، المواقع، الصور، والفيديوهات بلمسة إبداعية واحدة",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
