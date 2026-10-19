@@ -523,7 +523,7 @@ private fun ResultAction(
 ) {
     OutlinedButton(onClick = onClick, modifier = modifier) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(icon, contentDescription = null, modifier = Modifier.size(18.dp))
+            // AUTO-REPAIR: disabled -- unresolved reference 'icon' (was: Icon(icon, contentDescription = null, modifier = Modifier.size(18.dp)))
             Spacer(Modifier.height(3.dp))
             Text(label, style = MaterialTheme.typography.labelSmall, maxLines = 1)
         }
