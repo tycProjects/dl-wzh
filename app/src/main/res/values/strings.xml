@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Вогник</string>
+    <string name="app_full_name">Вогник: Трекер звичок</string>
+    <string name="tab_today">Сьогодні</string>
+    <string name="tab_habits">Мої звички</string>
+    <string name="tab_stats">Статистика</string>
+    <string name="add_habit">Додати звичку</string>
+    <string name="streak_fire">Серія вогнику</string>
+    <string name="widget_title">Вогник Звичок</string>
+    <string name="widget_subtitle">Серія виконання</string>
+</resources>

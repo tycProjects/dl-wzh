@@ -1,0 +1,6 @@
+{
+  "name": "Вогник: Трекер звичок",
+  "description": "Автономний трекер звичок із серіями вогників, нагадуваннями, детальною статистикою та віджетом на головний екран.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
