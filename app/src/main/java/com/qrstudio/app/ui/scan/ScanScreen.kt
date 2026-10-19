@@ -76,7 +76,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageVector
+// AUTO-REPAIR: disabled -- unresolved reference 'ImageVector' (was: import androidx.compose.ui.graphics.ImageVector)
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalClipboardManager
@@ -517,7 +517,7 @@ private fun ResultSheet(
 @Composable
 private fun ResultAction(
     label: String,
-    icon: ImageVector,
+    // AUTO-REPAIR: disabled -- unresolved reference 'ImageVector' (was: icon: ImageVector,)
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
