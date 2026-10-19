@@ -1,14 +1,13 @@
 {
-  "latestVersionCode": 1792447880,
-  "latestVersionName": "8.0",
-  "apkUrl": "https://www.mediafire.com/file/smjmkrpx4brv13x/WZH+2+APK+notif+update.apk/file",
+  "latestVersionCode": 1792447879,
+  "latestVersionName": "9.0",
+  "apkUrl": "https://www.mediafire.com/file/zxwtsk66ho9td41/WZH+2+APK+(beta).apk/file",
   "title": "New version available",
   "notes": [
-    "added notification",
-    "smoothness added",
-    "glitches fixed"
+    "OFFLINE BUILD ADDED🙂‍↕️",
+    "smoothness++"
   ],
   "updateButtonText": "Download update",
   "laterButtonText": "Later",
-  "updatedAt": 1792449187096
+  "updatedAt": 1792449879271
 }
