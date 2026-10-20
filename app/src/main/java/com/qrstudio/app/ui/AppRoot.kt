@@ -91,7 +91,7 @@ fun AppRoot() {
         Scaffold(
             containerColor = Bg,
             snackbarHost = { SnackbarHost(snackbarHostState) },
-            contentWindowInsets = androidx.compose.foundation.layout.WindowInsets.safeDrawing,
+            // AUTO-REPAIR: disabled -- unresolved reference 'safeDrawing' (was: contentWindowInsets = androidx.compose.foundation.layout.WindowInsets.safeDrawing,)
         ) { padding ->
             Column(Modifier.padding(padding).fillMaxSize()) {
                 AppHeader(

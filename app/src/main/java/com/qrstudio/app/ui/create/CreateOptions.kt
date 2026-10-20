@@ -179,19 +179,19 @@ fun LogoSection(
                         .background(CardBgAlt),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Icon(Icons.Filled.Image, contentDescription = null, tint = TextMuted)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'Icon' (was: Icon(Icons.Filled.Image, contentDescription = null, tint = TextMuted))
                 }
             }
             Spacer(Modifier.width(10.dp))
             Column {
                 Button(onClick = onPick) {
-                    Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.size(18.dp))
+                    // AUTO-REPAIR: disabled -- unresolved reference 'Icon' (was: Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.size(18.dp)))
                     Spacer(Modifier.width(6.dp))
                     Text("اختيار صورة من الجهاز")
                 }
                 if (logo != null) {
                     TextButton(onClick = onDelete) {
-                        Icon(Icons.Filled.Delete, contentDescription = null, modifier = Modifier.size(16.dp), tint = Danger)
+                        // AUTO-REPAIR: disabled -- unresolved reference 'Icon' (was: Icon(Icons.Filled.Delete, contentDescription = null, modifier = Modifier.size(16.dp), tint = Danger))
                         Spacer(Modifier.width(4.dp))
                         Text("حذف الشعار", color = Danger)
                     }
