@@ -45,9 +45,6 @@ object ContentForms {
             FieldSpec("encryption", "نوع التشفير", options = wifiEncryptions, defaultValue = "WPA"),
         )
         // AUTO-REPAIR: disabled -- unresolved reference 'WHATSAPP' (was: ContentType.WHATSAPP -> listOf()
-            FieldSpec("number", "الرقم الدولي", "9665xxxxxxxx", KeyboardType.Phone),
-            FieldSpec("message", "رسالة مبدئية", singleLine = false),
-        )
         ContentType.CONTACT -> listOf(
             FieldSpec("name", "الاسم", "اسم جهة الاتصال"),
             FieldSpec("phone", "رقم الهاتف", "+9665xxxxxxxx", KeyboardType.Phone),
