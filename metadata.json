@@ -1,0 +1,6 @@
+{
+  "name": "JNMF Music Player",
+  "description": "Native Android Music Player for Indo Remix, Fullbeat, and local audio with hardware equalizer, background playback, and persistent playlists.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
