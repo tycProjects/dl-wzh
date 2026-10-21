@@ -589,6 +589,25 @@ jobs:
               --title "Build downloads" \
               --notes "Auto-managed release used to host finished build downloads."
 
+          # GitHub hard-caps a release at 1000 assets (HTTP 422 "file_count limited
+          # to 1000 assets per release"). Old builds' files pile up in this one
+          # long-lived release, so before uploading, drop the oldest assets once
+          # it nears the cap. Best effort: never fails the build by itself.
+          MAX_ASSETS=900
+          RID=$(gh api "repos/$ASSETS_REPO/releases/tags/$TAG" --jq .id 2>/dev/null || true)
+          if [ -n "$RID" ]; then
+            LISTING=$(gh api --paginate "repos/$ASSETS_REPO/releases/$RID/assets?per_page=100" --jq '.[] | "\(.created_at) \(.id)"' 2>/dev/null || true)
+            COUNT=$(printf '%s\n' "$LISTING" | grep -c . || true)
+            if [ "$COUNT" -ge "$MAX_ASSETS" ]; then
+              EXCESS=$((COUNT - MAX_ASSETS + 25))
+              echo "Release has $COUNT assets (GitHub limit 1000); removing the $EXCESS oldest to make room."
+              OLDEST=$(printf '%s\n' "$LISTING" | sort | head -n "$EXCESS" | awk '{print $2}' || true)
+              for AID in $OLDEST; do
+                gh api -X DELETE "repos/$ASSETS_REPO/releases/assets/$AID" >/dev/null 2>&1 || true
+              done
+            fi
+          fi
+
           FOUND=0
           while IFS= read -r -d '' f; do
             cp "$f" "$STAGE/${RUN_PREFIX}-$(basename "$f")"
