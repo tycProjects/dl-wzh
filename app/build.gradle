@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 android {
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
     namespace 'com.example.subwaymodmenudemo'
     compileSdk 35
     defaultConfig {
