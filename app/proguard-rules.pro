@@ -1,0 +1,3 @@
+-keep class com.johan.jugb185.core.VendorStub { *; }
+-keep class com.oplus.screenmode.** { *; }
+-keep class android.os.ServiceManager { *; }

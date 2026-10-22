@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="jugb_cyan">#00E5FF</color>
+    <color name="jugb_cyan_dark">#00B8D4</color>
+    <color name="jugb_orange">#FF6D00</color>
+    <color name="jugb_orange_dark">#E65100</color>
+    <color name="jugb_carbon">#0A0E14</color>
+    <color name="jugb_carbon_light">#131A26</color>
+    <color name="jugb_surface">#1C2533</color>
+    <color name="jugb_success">#00E676</color>
+    <color name="jugb_warning">#FFAB00</color>
+</resources>

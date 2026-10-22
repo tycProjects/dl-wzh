@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JUGB 185</string>
+    <string name="app_full_name">JUGB 185 — Johan Ultimate Gaming Booster</string>
+    <string name="app_tagline">ONEPLUS &amp; OPPO EXCLUSIVE • 185Hz UNLEASHED</string>
+    <string name="rate_60">60 Hz — Battery Saver</string>
+    <string name="rate_90">90 Hz — Balanced</string>
+    <string name="rate_120">120 Hz — Smooth</string>
+    <string name="rate_144">144 Hz — Ultra</string>
+    <string name="rate_165">165 Hz — Extreme</string>
+    <string name="rate_185">185 Hz — GOD MODE (OP16)</string>
+    <string name="arm_all">ARM ALL • 185Hz</string>
+    <string name="disarm_all">DISARM ALL</string>
+    <string name="armed">ARMED</string>
+    <string name="disarmed">READY</string>
+    <string name="filter_all">All Apps</string>
+    <string name="filter_armed">Armed ⚡</string>
+    <string name="filter_games">Games 🎮</string>
+    <string name="filter_user">User</string>
+    <string name="filter_system">System</string>
+    <string name="search_hint">Search 300+ apps…</string>
+    <string name="watchdog_running">JUGB TURBO ACTIVE • 2.5s watchdog</string>
+    <string name="unsupported_title">Unsupported Device</string>
+    <string name="unsupported_msg">JUGB 185 is exclusive to OnePlus &amp; OPPO devices with oplusscreenmode service. Your device (%s) is not supported. This protects performance and battery optimization for our elite hardware.</string>
+    <string name="settings_title">JUGB Command Center</string>
+    <string name="live_log">Live Engine Log</string>
+    <string name="battery_saver">Smart Battery Saver</string>
+    <string name="thermal_guard">Thermal Guard</string>
+    <string name="backup">Backup &amp; Restore</string>
+    <string name="device_info">Device Intelligence</string>
+</resources>
