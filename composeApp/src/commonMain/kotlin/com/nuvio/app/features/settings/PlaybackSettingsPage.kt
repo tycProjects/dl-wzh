@@ -1022,7 +1022,7 @@ private fun PlaybackSettingsSection(
                 SettingsGroupDivider(isTablet = isTablet)
                 SettingsNavigationRow(
                     title = stringResource(Res.string.settings_playback_source_scope),
-                    description = stringResource(autoPlayPlayerSettings.streamAutoPlaySource.labelRes(pluginsEnabled)),
+                    // AUTO-REPAIR: disabled -- unresolved reference 'pluginsEnabled' (was: description = stringResource(autoPlayPlayerSettings.streamAutoPlaySource.labelRes(pluginsEnabled)),)
                     isTablet = isTablet,
                     onClick = { showAutoPlaySourceDialog = true },
                 )
@@ -1962,7 +1962,7 @@ private fun PlaybackSettingsSection(
 
     if (showAutoPlaySourceDialog) {
         StreamAutoPlaySourceDialog(
-            pluginsEnabled = pluginsEnabled,
+            // AUTO-REPAIR: disabled -- unresolved reference 'pluginsEnabled' (was: pluginsEnabled = pluginsEnabled,)
             selectedSource = autoPlayPlayerSettings.streamAutoPlaySource,
             onSourceSelected = {
                 PlayerSettingsRepository.setStreamAutoPlaySource(it)

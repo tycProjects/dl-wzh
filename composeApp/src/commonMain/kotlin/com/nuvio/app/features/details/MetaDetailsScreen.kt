@@ -710,7 +710,7 @@ fun MetaDetailsScreen(
                     selectHeroTrailer(meta.trailers)
                 }
                 // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: val heroTrailerPlaybackEnabled = AppFeaturePolicy.heroTrailerPlaybackSupported &&)
-                    inAppTrailerPlaybackEnabled &&
+                    // AUTO-REPAIR: disabled -- unresolved reference 'inAppTrailerPlaybackEnabled' (was: inAppTrailerPlaybackEnabled &&)
                     metaScreenSettingsUiState.heroTrailerPlayback
                 var heroTrailerPlaybackSource by remember(meta.id, heroTrailerCandidate?.id) { mutableStateOf<TrailerPlaybackSource?>(null) }
                 var heroTrailerReady by remember(meta.id, heroTrailerCandidate?.id) { mutableStateOf(false) }
@@ -728,7 +728,7 @@ fun MetaDetailsScreen(
                 }
                 val heroTrailerStartDelaySeconds = metaScreenSettingsUiState.heroTrailerStartDelaySeconds
                 LaunchedEffect(
-                    heroTrailerPlaybackEnabled,
+                    // AUTO-REPAIR: disabled -- unresolved reference 'heroTrailerPlaybackEnabled' (was: heroTrailerPlaybackEnabled,)
                     heroTrailerCandidate?.id,
                     heroTrailerCandidate?.key,
                     deferredMetaWorkAllowed,

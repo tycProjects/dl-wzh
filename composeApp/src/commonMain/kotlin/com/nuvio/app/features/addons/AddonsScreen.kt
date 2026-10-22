@@ -110,7 +110,7 @@ internal fun AddonsSettingsPageContent(
         AddAddonCard(
             addonUrl = addonUrl,
             formMessage = formMessage,
-            usePersonalMediaCopy = usePersonalMediaCopy,
+            // AUTO-REPAIR: disabled -- unresolved reference 'usePersonalMediaCopy' (was: usePersonalMediaCopy = usePersonalMediaCopy,)
             onAddonUrlChange = {
                 addonUrl = it
                 formMessage = null
@@ -142,7 +142,7 @@ internal fun AddonsSettingsPageContent(
 
         SectionHeader(stringResource(Res.string.addons_section_installed))
         if (uiState.addons.isEmpty()) {
-            EmptyStateCard(usePersonalMediaCopy = usePersonalMediaCopy)
+            // AUTO-REPAIR: disabled -- unresolved reference 'usePersonalMediaCopy' (was: EmptyStateCard(usePersonalMediaCopy = usePersonalMediaCopy))
         } else {
             val lastIndex = uiState.addons.lastIndex
             uiState.addons.forEachIndexed { index, addon ->

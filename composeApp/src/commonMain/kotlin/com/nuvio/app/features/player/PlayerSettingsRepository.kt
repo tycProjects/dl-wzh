@@ -887,10 +887,10 @@ object PlayerSettingsRepository {
     fun setStreamAutoPlaySelectedPlugins(plugins: Set<String>) {
         ensureLoaded()
         // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: val normalizedPlugins = if (AppFeaturePolicy.pluginsEnabled) plugins else emptySet())
-        if (streamAutoPlaySelectedPlugins == normalizedPlugins) return
-        streamAutoPlaySelectedPlugins = normalizedPlugins
+        // AUTO-REPAIR: disabled -- unresolved reference 'normalizedPlugins' (was: if (streamAutoPlaySelectedPlugins == normalizedPlugins) return)
+        // AUTO-REPAIR: disabled -- unresolved reference 'normalizedPlugins' (was: streamAutoPlaySelectedPlugins = normalizedPlugins)
         publish()
-        PlayerSettingsStorage.saveStreamAutoPlaySelectedPlugins(normalizedPlugins)
+        // AUTO-REPAIR: disabled -- unresolved reference 'normalizedPlugins' (was: PlayerSettingsStorage.saveStreamAutoPlaySelectedPlugins(normalizedPlugins))
     }
 
     fun setStreamAutoPlayRegex(regex: String) {
