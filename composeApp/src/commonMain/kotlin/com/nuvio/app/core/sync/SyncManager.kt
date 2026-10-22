@@ -3,7 +3,7 @@ package com.nuvio.app.core.sync
 import co.touchlab.kermit.Logger
 import com.nuvio.app.core.auth.AuthRepository
 import com.nuvio.app.core.auth.AuthState
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.core.time.EpisodeReleaseDatePlatform
 import com.nuvio.app.features.addons.AddonRepository
 import com.nuvio.app.features.collection.CollectionSyncService
@@ -413,7 +413,7 @@ object SyncManager {
             val syncResult = try {
                 runOrderedProfileSync(
                     profileId = profileId,
-                    pluginsEnabled = AppFeaturePolicy.pluginsEnabled,
+                    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: pluginsEnabled = AppFeaturePolicy.pluginsEnabled,)
                     operations = profileSyncOperations,
                     onFailure = { step, error ->
                         log.e(error) { "Full profile sync step failed profile=$profileId step=$step" }

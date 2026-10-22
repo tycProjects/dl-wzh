@@ -1,7 +1,7 @@
 package com.nuvio.app.features.streams
 
-import com.nuvio.app.core.build.AppFeaturePolicy
-import com.nuvio.app.core.build.TrailerPlaybackMode
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
+// AUTO-REPAIR: disabled -- unresolved reference 'TrailerPlaybackMode' (was: import com.nuvio.app.core.build.TrailerPlaybackMode)
 import com.nuvio.app.features.trailer.TrailerPlaybackResolver
 
 /**
@@ -30,7 +30,7 @@ class YouTubeStreamResolver(
     companion object {
         val Default: YouTubeStreamResolver by lazy {
             YouTubeStreamResolver(
-                inAppPlaybackEnabled = AppFeaturePolicy.trailerPlaybackMode == TrailerPlaybackMode.IN_APP,
+                // AUTO-REPAIR: disabled -- unresolved reference 'TrailerPlaybackMode' (was: inAppPlaybackEnabled = AppFeaturePolicy.trailerPlaybackMode == TrailerPlaybackMode.IN_APP,)
                 extractSingleUrl = { url -> TrailerPlaybackResolver.resolveSingleUrlFromYouTubeUrl(url) },
             )
         }

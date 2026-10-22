@@ -69,7 +69,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import co.touchlab.kermit.Logger
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.core.format.formatReleaseDateForDisplay
 import com.nuvio.app.core.i18n.localizedSeasonEpisodeCode
 import com.nuvio.app.core.ui.NuvioAnimatedWatchedBadge

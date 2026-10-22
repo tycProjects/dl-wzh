@@ -1,6 +1,6 @@
 package com.nuvio.app.features.settings
 
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -372,7 +372,7 @@ private fun PlaybackSettingsSection(
     var showP2pCacheSizeDialog by remember { mutableStateOf(false) }
     var p2pCacheClearResult by remember { mutableStateOf<P2pCacheClearResult?>(null) }
     var p2pCacheClearFailed by remember { mutableStateOf(false) }
-    val pluginsEnabled = AppFeaturePolicy.pluginsEnabled
+    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: val pluginsEnabled = AppFeaturePolicy.pluginsEnabled)
     val autoPlayPlayerSettings by PlayerSettingsRepository.uiState.collectAsStateWithLifecycle()
     val p2pSettings by remember {
         P2pSettingsRepository.ensureLoaded()

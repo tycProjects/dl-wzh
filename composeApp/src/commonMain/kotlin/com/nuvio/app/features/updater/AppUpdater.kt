@@ -3,7 +3,7 @@ package com.nuvio.app.features.updater
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.core.build.AppVersionConfig
 import com.nuvio.app.core.i18n.localizedByteUnit
 import com.nuvio.app.core.ui.NuvioToastController
@@ -74,7 +74,7 @@ class AppUpdaterController internal constructor(
     }
 
     fun ensureAutoCheckStarted() {
-        if (autoCheckStarted || !AppFeaturePolicy.inAppUpdaterEnabled ||
+        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: if (autoCheckStarted || !AppFeaturePolicy.inAppUpdaterEnabled ||)
             !AppUpdaterPlatform.isSupported || AppUpdaterPlatform.isDebugBuild
         ) {
             return

@@ -36,8 +36,8 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.nuvio.app.core.build.AppFeaturePolicy
-import com.nuvio.app.core.build.TrailerPlaybackMode
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
+// AUTO-REPAIR: disabled -- unresolved reference 'TrailerPlaybackMode' (was: import com.nuvio.app.core.build.TrailerPlaybackMode)
 import com.nuvio.app.core.ui.NuvioActionLabel
 import com.nuvio.app.core.ui.NuvioLoadingIndicator
 import com.nuvio.app.core.ui.NuvioToastController
@@ -105,8 +105,8 @@ internal fun LazyListScope.homescreenSettingsContent(
 ) {
     val selectedHeroSourceCount = items.count { it.heroSourceEnabled }
     val enabledCatalogCount = items.count { it.enabled }
-    val showHeroTrailerPlaybackSetting = AppFeaturePolicy.heroTrailerPlaybackSupported &&
-        AppFeaturePolicy.trailerPlaybackMode == TrailerPlaybackMode.IN_APP
+    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: val showHeroTrailerPlaybackSetting = AppFeaturePolicy.heroTrailerPlaybackSupported &&)
+        // AUTO-REPAIR: disabled -- unresolved reference 'TrailerPlaybackMode' (was: AppFeaturePolicy.trailerPlaybackMode == TrailerPlaybackMode.IN_APP)
     item {
         HomescreenSummaryCard(
             isTablet = isTablet,

@@ -72,8 +72,8 @@ import coil3.SingletonImageLoader
 import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
-import com.nuvio.app.core.build.AppFeaturePolicy
-import com.nuvio.app.core.build.TrailerPlaybackMode
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
+// AUTO-REPAIR: disabled -- unresolved reference 'TrailerPlaybackMode' (was: import com.nuvio.app.core.build.TrailerPlaybackMode)
 import com.nuvio.app.core.format.formatReleaseDateForDisplay
 import com.nuvio.app.core.ui.LocalDynamicArtworkBackgroundColor
 import com.nuvio.app.core.ui.rememberDynamicArtworkBackgroundEnabled
@@ -219,8 +219,8 @@ internal fun HomeHeroSection(
     val coroutineScope = rememberCoroutineScope()
     val autoScrollPage = pagerState.settledPage
     val effectiveTrailerPlaybackEnabled = trailerPlaybackEnabled &&
-        AppFeaturePolicy.heroTrailerPlaybackSupported &&
-        AppFeaturePolicy.trailerPlaybackMode == TrailerPlaybackMode.IN_APP &&
+        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: AppFeaturePolicy.heroTrailerPlaybackSupported &&)
+        // AUTO-REPAIR: disabled -- unresolved reference 'TrailerPlaybackMode' (was: AppFeaturePolicy.trailerPlaybackMode == TrailerPlaybackMode.IN_APP &&)
         !MiniPlayerController.isActive
 
     LaunchedEffect(pagerState) {

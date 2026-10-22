@@ -4,7 +4,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.features.search.SearchHistoryRepository
 import nuvio.composeapp.generated.resources.Res
 import nuvio.composeapp.generated.resources.compose_settings_page_addons

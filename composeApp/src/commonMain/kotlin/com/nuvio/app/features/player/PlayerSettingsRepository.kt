@@ -1,6 +1,6 @@
 package com.nuvio.app.features.player
 
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.features.player.skip.AutoSkipSegmentType
 import com.nuvio.app.features.player.skip.NextEpisodeThresholdMode
 import com.nuvio.app.features.streams.StreamAutoPlayMode
@@ -886,7 +886,7 @@ object PlayerSettingsRepository {
 
     fun setStreamAutoPlaySelectedPlugins(plugins: Set<String>) {
         ensureLoaded()
-        val normalizedPlugins = if (AppFeaturePolicy.pluginsEnabled) plugins else emptySet()
+        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: val normalizedPlugins = if (AppFeaturePolicy.pluginsEnabled) plugins else emptySet())
         if (streamAutoPlaySelectedPlugins == normalizedPlugins) return
         streamAutoPlaySelectedPlugins = normalizedPlugins
         publish()

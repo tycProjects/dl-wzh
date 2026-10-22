@@ -63,7 +63,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.core.ui.NuvioBackButton
 import com.nuvio.app.core.ui.nuvio
 import com.nuvio.app.core.ui.NuvioInputField
@@ -984,7 +984,7 @@ private fun LazyListScope.streamSection(
             val isSelectable = stream.isSelectableForPlayback(debridEnabled)
             val isUnsupportedTorrentStream =
                 stream.needsLocalDebridResolve &&
-                    !AppFeaturePolicy.p2pEnabled &&
+                    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: !AppFeaturePolicy.p2pEnabled &&)
                     !(debridEnabled && stream.isAddonDebridCandidate)
             StreamCard(
                 stream = stream,

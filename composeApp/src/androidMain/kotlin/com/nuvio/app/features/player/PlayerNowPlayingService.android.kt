@@ -9,7 +9,7 @@ import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.content.IntentCompat
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.core.concurrent.ConflatedTaskDispatcher
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
@@ -69,12 +69,12 @@ class PlayerNowPlayingService : Service() {
 
     companion object {
         internal fun publish(context: Context, notification: Notification) {
-            if (!AppFeaturePolicy.mediaPlaybackForegroundServiceEnabled) return
+            // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: if (!AppFeaturePolicy.mediaPlaybackForegroundServiceEnabled) return)
             PlayerNowPlayingServiceController.publish(context.applicationContext, notification)
         }
 
         internal fun hide(context: Context) {
-            if (!AppFeaturePolicy.mediaPlaybackForegroundServiceEnabled) return
+            // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: if (!AppFeaturePolicy.mediaPlaybackForegroundServiceEnabled) return)
             PlayerNowPlayingServiceController.hide(context.applicationContext)
         }
     }

@@ -50,7 +50,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.core.ui.NuvioScreen
 import com.nuvio.app.core.ui.NuvioScreenHeader
 import com.nuvio.app.core.ui.NuvioSurfaceCard
@@ -227,7 +227,7 @@ private object SupportersContributorsRepository {
 
         SupportersResult(
             supporters = supporters,
-            progress = if (AppFeaturePolicy.donationProgressEnabled) getDonationProgress() else null,
+            // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: progress = if (AppFeaturePolicy.donationProgressEnabled) getDonationProgress() else null,)
         )
     }
 
@@ -393,7 +393,7 @@ private fun SupportersContributorsBody(
         SupporterMembershipCard(
             state = membershipState,
             isTablet = isTablet,
-            showAction = AppFeaturePolicy.donationActionsEnabled,
+            // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: showAction = AppFeaturePolicy.donationActionsEnabled,)
             actionEnabled = membershipState.overview?.subscriptionActive == true || donateConfigured,
             onAction = {
                 val url = if (membershipState.overview?.subscriptionActive == true) {

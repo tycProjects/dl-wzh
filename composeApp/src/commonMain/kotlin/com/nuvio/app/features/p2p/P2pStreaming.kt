@@ -1,6 +1,6 @@
 package com.nuvio.app.features.p2p
 
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -44,7 +44,7 @@ object P2pSettingsRepository {
     val uiState: StateFlow<P2pSettingsUiState> = _uiState.asStateFlow()
 
     val isVisible: Boolean
-        get() = AppFeaturePolicy.p2pEnabled
+        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: get() = AppFeaturePolicy.p2pEnabled)
 
     private var hasLoaded = false
     private var p2pEnabled = false

@@ -44,7 +44,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import coil3.compose.AsyncImage
 import com.nuvio.app.core.ui.NuvioIconActionButton
 import com.nuvio.app.core.ui.NuvioInfoBadge
@@ -95,7 +95,7 @@ internal fun AddonsSettingsPageContent(
     var installModalState by remember { mutableStateOf<AddonInstallModalState?>(null) }
     var addonPendingDeletionUrl by rememberSaveable { mutableStateOf<String?>(null) }
     val enterAddonUrlMessage = stringResource(Res.string.addons_error_enter_url)
-    val usePersonalMediaCopy = AppFeaturePolicy.personalMediaAddonCopyEnabled
+    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: val usePersonalMediaCopy = AppFeaturePolicy.personalMediaAddonCopyEnabled)
 
     val overview = remember(uiState.addons) { uiState.addons.toOverview() }
 

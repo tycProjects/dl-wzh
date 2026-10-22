@@ -54,7 +54,7 @@ import com.nuvio.app.navigation.posterNavigationEntry
 import com.nuvio.app.core.auth.AuthRepository
 import com.nuvio.app.core.auth.AuthState
 import com.nuvio.app.core.auth.DeviceSessionRegistration
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.core.deeplink.AppDeepLink
 import com.nuvio.app.core.deeplink.AppDeepLinkRepository
 import com.nuvio.app.core.logging.InAppLogger
@@ -1725,7 +1725,7 @@ internal fun MainAppContent(
                                     null
                                 },
                                 onTestUpdateBannerClick = if (
-                                    AppFeaturePolicy.inAppUpdaterEnabled && AppUpdaterPlatform.isDebugBuild
+                                    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: AppFeaturePolicy.inAppUpdaterEnabled && AppUpdaterPlatform.isDebugBuild)
                                 ) {
                                     appUpdaterController::showDebugTestUpdate
                                 } else {
@@ -1875,7 +1875,7 @@ internal fun MainAppContent(
                             { appUpdaterController.checkForUpdates(force = true, showNoUpdateFeedback = true) }
                         } else null,
                         onTestUpdateBanner = if (
-                            AppFeaturePolicy.inAppUpdaterEnabled && AppUpdaterPlatform.isDebugBuild
+                            // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: AppFeaturePolicy.inAppUpdaterEnabled && AppUpdaterPlatform.isDebugBuild)
                         ) appUpdaterController::showDebugTestUpdate else null,
                         onSwitchProfile = onSwitchProfile,
                         onEditProfile = pushEditProfile,

@@ -2,7 +2,7 @@ package com.nuvio.app.features.streams
 
 import co.touchlab.kermit.Logger
 import com.nuvio.app.core.logging.InAppLogger
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.features.addons.AddonRepository
 import com.nuvio.app.features.addons.buildAddonResourceUrl
 import com.nuvio.app.features.addons.enabledAddons

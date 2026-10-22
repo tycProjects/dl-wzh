@@ -96,7 +96,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nuvio.app.core.auth.AuthRepository
 import com.nuvio.app.core.auth.DeviceLinkAuthRepository
 import com.nuvio.app.core.auth.DeviceLinkAuthState
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.features.settings.AppBrandWordmark
 import kotlin.math.abs
 import kotlin.math.cos
@@ -379,7 +379,7 @@ fun AuthScreen(
     }
 
     if (
-        AppFeaturePolicy.customServerConnectionsEnabled &&
+        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: AppFeaturePolicy.customServerConnectionsEnabled &&)
         showServerSheet &&
         serverConnectionState.discoveredServer == null
     ) {

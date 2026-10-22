@@ -83,8 +83,8 @@ import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import co.touchlab.kermit.Logger
 import coil3.compose.AsyncImage
-import com.nuvio.app.core.build.AppFeaturePolicy
-import com.nuvio.app.core.build.TrailerPlaybackMode
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
+// AUTO-REPAIR: disabled -- unresolved reference 'TrailerPlaybackMode' (was: import com.nuvio.app.core.build.TrailerPlaybackMode)
 import com.nuvio.app.core.network.NetworkCondition
 import com.nuvio.app.core.network.NetworkStatusRepository
 import com.nuvio.app.core.i18n.localizedSeasonEpisodeCode
@@ -698,7 +698,7 @@ fun MetaDetailsScreen(
                     meta.trailers.isNotEmpty()
                 }
                 val uriHandler = LocalUriHandler.current
-                val inAppTrailerPlaybackEnabled = AppFeaturePolicy.trailerPlaybackMode == TrailerPlaybackMode.IN_APP
+                // AUTO-REPAIR: disabled -- unresolved reference 'TrailerPlaybackMode' (was: val inAppTrailerPlaybackEnabled = AppFeaturePolicy.trailerPlaybackMode == TrailerPlaybackMode.IN_APP)
                 val trailerScope = rememberCoroutineScope()
                 var selectedTrailer by remember(meta.id) { mutableStateOf<MetaTrailer?>(null) }
                 var trailerPlaybackSource by remember(meta.id) { mutableStateOf<TrailerPlaybackSource?>(null) }
@@ -709,7 +709,7 @@ fun MetaDetailsScreen(
                 val heroTrailerCandidate = remember(meta.trailers) {
                     selectHeroTrailer(meta.trailers)
                 }
-                val heroTrailerPlaybackEnabled = AppFeaturePolicy.heroTrailerPlaybackSupported &&
+                // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: val heroTrailerPlaybackEnabled = AppFeaturePolicy.heroTrailerPlaybackSupported &&)
                     inAppTrailerPlaybackEnabled &&
                     metaScreenSettingsUiState.heroTrailerPlayback
                 var heroTrailerPlaybackSource by remember(meta.id, heroTrailerCandidate?.id) { mutableStateOf<TrailerPlaybackSource?>(null) }

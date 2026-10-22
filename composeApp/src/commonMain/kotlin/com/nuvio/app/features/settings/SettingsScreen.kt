@@ -2,7 +2,7 @@ package com.nuvio.app.features.settings
 
 import com.nuvio.app.features.whatsnew.WhatsNewSettingsScreen
 import com.nuvio.app.navigation.LocalUseNativeNavigation
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -117,7 +117,7 @@ private fun watchPartyRow(onClick: () -> Unit): (() -> Unit)? {
 
 private fun SettingsPage.isEnabledByPolicy(): Boolean =
     when (this) {
-        SettingsPage.SupportersContributors -> AppFeaturePolicy.supportersContributorsPageEnabled
+        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: SettingsPage.SupportersContributors -> AppFeaturePolicy.supportersContributorsPageEnabled)
         else -> true
     }
 
@@ -764,10 +764,10 @@ private fun MobileSettingsScreen(
                         entries = {
                             settingsSearchEntries(
                                 isTablet = false,
-                                pluginsEnabled = AppFeaturePolicy.pluginsEnabled,
-                                supportersContributorsPageEnabled = AppFeaturePolicy.supportersContributorsPageEnabled,
-                                accountDeletionEnabled = AppFeaturePolicy.accountDeletionEnabled,
-                                personalMediaAddonCopyEnabled = AppFeaturePolicy.personalMediaAddonCopyEnabled,
+                                // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: pluginsEnabled = AppFeaturePolicy.pluginsEnabled,)
+                                // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: supportersContributorsPageEnabled = AppFeaturePolicy.supportersContributorsPageEnabled,)
+                                // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: accountDeletionEnabled = AppFeaturePolicy.accountDeletionEnabled,)
+                                // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: personalMediaAddonCopyEnabled = AppFeaturePolicy.personalMediaAddonCopyEnabled,)
                                 liquidGlassNativeTabBarSupported = liquidGlassNativeTabBarSupported,
                                 switchProfileAvailable = onSwitchProfile != null,
                                 checkForUpdatesAvailable = onCheckForUpdatesClick != null,
@@ -801,7 +801,7 @@ private fun MobileSettingsScreen(
                                 null
                             },
                             onWatchPartyClick = watchPartyRowClick,
-                            showSupportersContributorsPage = AppFeaturePolicy.supportersContributorsPageEnabled,
+                            // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: showSupportersContributorsPage = AppFeaturePolicy.supportersContributorsPageEnabled,)
                         )
                     }
                 }
@@ -908,7 +908,7 @@ private fun MobileSettingsScreen(
                 )
                 SettingsPage.ContentDiscovery -> contentDiscoveryContent(
                     isTablet = false,
-                    showPluginsEntry = AppFeaturePolicy.pluginsEnabled,
+                    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: showPluginsEntry = AppFeaturePolicy.pluginsEnabled,)
                     onAddonsClick = onAddonsClick,
                     onPluginsClick = onPluginsClick,
                     onMediaServersClick = { onPageChange(SettingsPage.MediaServers) },
@@ -922,7 +922,7 @@ private fun MobileSettingsScreen(
                     isTablet = false,
                     onBack = onNavigateBack,
                 )
-                SettingsPage.Plugins -> if (AppFeaturePolicy.pluginsEnabled) pluginsSettingsContent() else addonsSettingsContent()
+                // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: SettingsPage.Plugins -> if (AppFeaturePolicy.pluginsEnabled) pluginsSettingsContent() else addonsSettingsContent())
                 SettingsPage.Homescreen -> homescreenSettingsContent(
                     isTablet = false,
                     heroEnabled = homescreenHeroEnabled,
@@ -1258,10 +1258,10 @@ private fun TabletSettingsScreen(
                             entries = {
                                 settingsSearchEntries(
                                     isTablet = true,
-                                    pluginsEnabled = AppFeaturePolicy.pluginsEnabled,
-                                    supportersContributorsPageEnabled = AppFeaturePolicy.supportersContributorsPageEnabled,
-                                    accountDeletionEnabled = AppFeaturePolicy.accountDeletionEnabled,
-                                    personalMediaAddonCopyEnabled = AppFeaturePolicy.personalMediaAddonCopyEnabled,
+                                    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: pluginsEnabled = AppFeaturePolicy.pluginsEnabled,)
+                                    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: supportersContributorsPageEnabled = AppFeaturePolicy.supportersContributorsPageEnabled,)
+                                    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: accountDeletionEnabled = AppFeaturePolicy.accountDeletionEnabled,)
+                                    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: personalMediaAddonCopyEnabled = AppFeaturePolicy.personalMediaAddonCopyEnabled,)
                                     liquidGlassNativeTabBarSupported = liquidGlassNativeTabBarSupported,
                                     switchProfileAvailable = onSwitchProfile != null,
                                     checkForUpdatesAvailable = onCheckForUpdatesClick != null,
@@ -1299,7 +1299,7 @@ private fun TabletSettingsScreen(
                                 showGeneralSection = activeCategory == SettingsCategory.General,
                                 showAboutSection = activeCategory == SettingsCategory.About,
                                 showAdvancedSection = activeCategory == SettingsCategory.Advanced,
-                                showSupportersContributorsPage = AppFeaturePolicy.supportersContributorsPageEnabled,
+                                // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: showSupportersContributorsPage = AppFeaturePolicy.supportersContributorsPageEnabled,)
                             )
                         }
                     }
@@ -1405,7 +1405,7 @@ private fun TabletSettingsScreen(
                     )
                     SettingsPage.ContentDiscovery -> contentDiscoveryContent(
                         isTablet = true,
-                        showPluginsEntry = AppFeaturePolicy.pluginsEnabled,
+                        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: showPluginsEntry = AppFeaturePolicy.pluginsEnabled,)
                         onAddonsClick = { openInlinePage(SettingsPage.Addons) },
                         onPluginsClick = { openInlinePage(SettingsPage.Plugins) },
                         onMediaServersClick = { openInlinePage(SettingsPage.MediaServers) },
@@ -1419,7 +1419,7 @@ private fun TabletSettingsScreen(
                         isTablet = true,
                         onBack = onNavigateBack,
                     )
-                    SettingsPage.Plugins -> if (AppFeaturePolicy.pluginsEnabled) pluginsSettingsContent() else addonsSettingsContent()
+                    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: SettingsPage.Plugins -> if (AppFeaturePolicy.pluginsEnabled) pluginsSettingsContent() else addonsSettingsContent())
                     SettingsPage.Homescreen -> homescreenSettingsContent(
                         isTablet = true,
                         heroEnabled = homescreenHeroEnabled,

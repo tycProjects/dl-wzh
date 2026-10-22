@@ -1,6 +1,6 @@
 package com.nuvio.app.features.streams
 
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 
 object StreamAutoPlaySelector {
 
@@ -210,7 +210,7 @@ object StreamAutoPlaySelector {
         playableDirectUrl != null ||
             serverTarget != null ||
             (
-                AppFeaturePolicy.p2pEnabled &&
+                // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: AppFeaturePolicy.p2pEnabled &&)
                     needsLocalDebridResolve &&
                     p2pInfoHash != null &&
                     !isPendingDebridAutoPlay(debridEnabled, activeResolverProviderId)

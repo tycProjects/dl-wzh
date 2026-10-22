@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nuvio.app.core.auth.AuthRepository
 import com.nuvio.app.core.auth.AuthState
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import com.nuvio.app.core.ui.NuvioPrimaryButton
 import com.nuvio.app.core.ui.NuvioStatusModal
 import com.nuvio.app.core.ui.NuvioSurfaceCard
@@ -74,7 +74,7 @@ private fun AccountSettingsBody(
     var isDeletingAccount by remember { mutableStateOf(false) }
     var deleteErrorMessage by remember { mutableStateOf<String?>(null) }
     val deleteAccountFallbackMessage = stringResource(Res.string.auth_account_deletion_failed)
-    val canDeleteAccount = AppFeaturePolicy.accountDeletionEnabled && authState is AuthState.Authenticated
+    // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: val canDeleteAccount = AppFeaturePolicy.accountDeletionEnabled && authState is AuthState.Authenticated)
     val isAnonymousGuest = (authState as? AuthState.Authenticated)?.isAnonymous == true
 
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {

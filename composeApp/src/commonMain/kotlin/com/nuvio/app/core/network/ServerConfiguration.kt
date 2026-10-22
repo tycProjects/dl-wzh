@@ -1,6 +1,6 @@
 package com.nuvio.app.core.network
 
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +31,7 @@ object ServerConfigurationRepository {
     val active: StateFlow<ServerConfiguration> = _active.asStateFlow()
 
     fun saveCustom(configuration: ServerConfiguration): Boolean {
-        if (!AppFeaturePolicy.customServerConnectionsEnabled) return false
+        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: if (!AppFeaturePolicy.customServerConnectionsEnabled) return false)
         if (!ServerConfigurationStorage.saveCustom(configuration)) return false
         _active.value = configuration
         return true
@@ -44,7 +44,7 @@ object ServerConfigurationRepository {
     }
 
     private fun loadActiveConfiguration(): ServerConfiguration {
-        if (!AppFeaturePolicy.customServerConnectionsEnabled) return officialConfiguration()
+        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: if (!AppFeaturePolicy.customServerConnectionsEnabled) return officialConfiguration())
         return ServerConfigurationStorage.loadCustom() ?: officialConfiguration()
     }
 }

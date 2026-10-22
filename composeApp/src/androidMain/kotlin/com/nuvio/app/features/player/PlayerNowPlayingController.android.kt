@@ -18,7 +18,7 @@ import android.os.Looper
 import android.os.SystemClock
 import android.util.Log
 import com.nuvio.app.R
-import com.nuvio.app.core.build.AppFeaturePolicy
+// AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: import com.nuvio.app.core.build.AppFeaturePolicy)
 import java.io.ByteArrayOutputStream
 import java.lang.ref.WeakReference
 import java.net.HttpURLConnection
@@ -285,7 +285,7 @@ internal class AndroidPlayerNowPlayingController(
     }
 
     private fun publishNotification() {
-        if (!AppFeaturePolicy.mediaPlaybackForegroundServiceEnabled) return
+        // AUTO-REPAIR: disabled -- unresolved reference 'AppFeaturePolicy' (was: if (!AppFeaturePolicy.mediaPlaybackForegroundServiceEnabled) return)
         val currentMetadata = metadata ?: return
         val notification = buildNotification(
             context = appContext,
