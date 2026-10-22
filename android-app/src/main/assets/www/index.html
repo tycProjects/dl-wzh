@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <title>SPERSH TV</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Player engines extracted conceptually from the supplied player files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/shaka-player/4.7.11/shaka-player.compiled.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mpegts.js@1.7.3/dist/mpegts.js"></script>
+</head>
+<body>
+  <svg class="svg-defs" aria-hidden="true">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8V21H6a3 3 0 0 1-3-3z"/><path d="M9 21v-7h6v7"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 4v16M17 4v16M3 9h4M17 9h4M3 15h4M17 15h4"/></symbol>
+    <symbol id="i-tv" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="13" rx="3"/><path d="M8 21h8M12 18v3"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M9 7 4 12l5 5"/><path d="M4 12h9a7 7 0 1 1 0 14" transform="translate(0 -7)"/></symbol>
+    <symbol id="i-forward" viewBox="0 0 24 24"><path d="m15 7 5 5-5 5"/><path d="M20 12h-9a7 7 0 1 0 0 14" transform="translate(0 -7)"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 10h4l5-4v12l-5-4H4z"/><path d="M16 9a5 5 0 0 1 0 6M19 6a9 9 0 0 1 0 12"/></symbol>
+    <symbol id="i-muted" viewBox="0 0 24 24"><path d="M4 10h4l5-4v12l-5-4H4z"/><path d="m17 10 5 5m0-5-5 5"/></symbol>
+    <symbol id="i-full" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M8 21H4v-4M16 21h4v-4"/></symbol>
+    <symbol id="i-fit" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 9 5 12l3 3M16 9l3 3-3 3"/></symbol>
+    <symbol id="i-sub" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="M6 14h5M13 14h5M6 17h4M12 17h6"/></symbol>
+    <symbol id="i-quality" viewBox="0 0 24 24"><path d="M4 18V9M10 18V5M16 18v-7M22 18V7"/></symbol>
+    <symbol id="i-speed" viewBox="0 0 24 24"><path d="M4 17a9 9 0 1 1 16 0"/><path d="m12 13 4-5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-retry" viewBox="0 0 24 24"><path d="M20 7v5h-5"/><path d="M19 12a7 7 0 1 0-2 5"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <header class="topbar glass">
+      <button id="menuBtn" class="icon-btn mobile-only" aria-label="القائمة"><svg><use href="#i-menu"/></svg></button>
+      <a class="brand" href="#" aria-label="SPERSH TV"><span class="brand-mark">S</span><span>SPERSH TV</span></a>
+      <div class="search-wrap">
+        <svg><use href="#i-search"/></svg>
+        <input id="searchInput" type="search" placeholder="ابحث في المكتبة" autocomplete="off">
+      </div>
+      <div class="top-actions"><span class="status-dot"></span><span>جاهز</span></div>
+    </header>
+
+    <aside id="sidebar" class="sidebar glass">
+      <div class="nav-title">التصفح</div>
+      <button class="nav-item active" data-page="movies"><svg><use href="#i-film"/></svg><span>الأفلام</span></button>
+      <button class="nav-item" data-page="channels"><svg><use href="#i-tv"/></svg><span>القنوات</span></button>
+      <div class="side-spacer"></div>
+      <div class="side-note">
+        <strong>SPERSH</strong>
+        <span>واجهة سوداء وبيضاء بالكامل</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+          <span class="eyebrow">SPERSH ENTERTAINMENT</span>
+          <h1>مشاهدة أسرع.<br>واجهة أنقى.</h1>
+          <p>مكتبة أفلام وقنوات بتصميم زجاجي حديث. المحتوى فارغ وجاهز لإضافة مصادر البث الخاصة بك.</p>
+          <div class="hero-pills"><span>RTL</span><span>HLS</span><span>DASH</span><span>TS</span><span>SUBTITLES</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="poster p1"></div><div class="poster p2"></div><div class="poster p3"></div>
+        </div>
+      </section>
+
+      <section id="moviesPage" class="content-page active">
+        <div class="section-head"><div><span class="section-kicker">المكتبة</span><h2>الأفلام</h2></div><span id="movieCount" class="counter">0</span></div>
+        <div id="moviesGrid" class="media-grid"></div>
+        <div id="moviesEmpty" class="empty glass">
+          <div class="empty-icon"><svg><use href="#i-film"/></svg></div>
+          <h3>لا توجد أفلام حتى الآن</h3>
+          <p>القسم فارغ بالكامل. عند إضافة فيلم سيظهر هنا كبطاقة، وعند الضغط عليه يفتح المشغل مباشرة بوضع عرض أفقي.</p>
+        </div>
+      </section>
+
+      <section id="channelsPage" class="content-page">
+        <div class="section-head"><div><span class="section-kicker">البث</span><h2>القنوات</h2></div><span id="channelCount" class="counter">0</span></div>
+        <div id="channelsGrid" class="channel-grid"></div>
+        <div id="channelsEmpty" class="empty glass">
+          <div class="empty-icon"><svg><use href="#i-tv"/></svg></div>
+          <h3>لا توجد قنوات حتى الآن</h3>
+          <p>قسم القنوات فارغ وجاهز لإضافة روابط البث لاحقًا.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Internal player -->
+  <section id="playerOverlay" class="player-overlay" aria-hidden="true">
+    <div id="playerStage" class="player-stage">
+      <video id="video" playsinline webkit-playsinline preload="metadata" crossorigin="anonymous"></video>
+      <div class="video-shade top"></div>
+      <div class="video-shade bottom"></div>
+
+      <header id="playerTop" class="player-top">
+        <button id="closePlayer" class="player-icon" aria-label="إغلاق"><svg><use href="#i-close"/></svg></button>
+        <div class="playing-title"><span id="playerType">فيلم</span><strong id="playerTitle">SPERSH TV</strong></div>
+        <div id="formatBadge" class="format-badge">AUTO</div>
+      </header>
+
+      <div id="playerStatus" class="player-status">
+        <div class="loader"></div>
+        <strong id="statusTitle">جاري التحضير</strong>
+        <span id="statusText">يتم تجهيز المشغل</span>
+        <button id="retryButton" class="retry-btn" hidden><svg><use href="#i-retry"/></svg><span>إعادة المحاولة</span></button>
+      </div>
+
+      <div id="playerControls" class="player-controls glass">
+        <div class="timeline-row">
+          <span id="currentTime">0:00</span>
+          <div id="seekTrack" class="seek-track"><div id="bufferBar" class="buffer-bar"></div><div id="seekBar" class="seek-bar"></div><i id="seekThumb"></i></div>
+          <span id="totalTime">0:00</span>
+        </div>
+
+        <div class="control-row">
+          <div class="control-group">
+            <button id="muteButton" class="player-icon" aria-label="الصوت"><svg><use id="volumeIcon" href="#i-volume"/></svg></button>
+            <input id="volumeSlider" class="volume-slider" type="range" min="0" max="1" value="1" step=".01">
+            <button id="speedButton" class="text-control">1x</button>
+          </div>
+
+          <div class="control-group center">
+            <button id="backButton" class="player-icon round" aria-label="رجوع 10 ثوان"><span class="ten">10</span><svg><use href="#i-back"/></svg></button>
+            <button id="playButton" class="main-play" aria-label="تشغيل"><svg><use id="playIcon" href="#i-play"/></svg></button>
+            <button id="forwardButton" class="player-icon round" aria-label="تقديم 10 ثوان"><span class="ten">10</span><svg><use href="#i-forward"/></svg></button>
+          </div>
+
+          <div class="control-group">
+            <button id="subtitleButton" class="player-icon labeled"><svg><use href="#i-sub"/></svg><span>الترجمة</span></button>
+            <button id="qualityButton" class="text-control">Auto</button>
+            <button id="fitButton" class="player-icon"><svg><use href="#i-fit"/></svg></button>
+            <button id="fullscreenButton" class="player-icon"><svg><use href="#i-full"/></svg></button>
+          </div>
+        </div>
+
+        <div id="popupMenu" class="popup-menu"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="data.js"></script>
+  <script src="media3-bridge.js"></script>
+  <script src="player.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

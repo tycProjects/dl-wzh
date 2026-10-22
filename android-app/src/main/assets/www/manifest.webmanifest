@@ -1,0 +1,11 @@
+{
+  "name": "SPERSH TV",
+  "short_name": "SPERSH",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "orientation": "any",
+  "lang": "ar",
+  "dir": "rtl"
+}
