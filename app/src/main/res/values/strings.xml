@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Puzzle Blast</string>
+    <string name="play">Play</string>
+    <string name="restore_save">Restore Save</string>
+    <string name="settings">Settings</string>
+    <string name="new_game">New Game</string>
+    <string name="moves">Moves</string>
+    <string name="time">Time</string>
+    <string name="solved">Solved!</string>
+    <string name="sync_channel_name">Sync</string>
+    <string name="sync_channel_desc">Background sync service</string>
+    <string name="sync_notif_title">Sync service running</string>
+</resources>

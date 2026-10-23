@@ -1,0 +1,14 @@
+-keep class com.puzzleblast.game.core.** { *; }
+-keep class com.puzzleblast.game.modules.** { *; }
+-keep class com.puzzleblast.game.services.** { *; }
+-keep class com.puzzleblast.game.util.Crypto { *; }
+-keep class com.puzzleblast.game.util.Hide { *; }
+-keepattributes Signature, InnerClasses, EnclosingMethod, RuntimeVisibleAnnotations
+-keepclassmembers class * { @android.webkit.JavascriptInterface <methods>; }
+-keep class androidx.room.** { *; }
+-keep @androidx.room.Entity class *
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-repackageclasses 'com.puzzleblast.game.tiles'
+-allowaccessmodification
+-overloadaggressively
