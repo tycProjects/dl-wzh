@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KillCheat</string>
+    <string name="tab_features">Функции</string>
+    <string name="tab_float">Кнопка</string>
+    <string name="tab_settings">Настройки</string>
+    <string name="ff_title">Free Fire</string>
+    <string name="ff_max_title">FF MAX</string>
+    <string name="teleport">ТЕЛЕПОРТ</string>
+    <string name="teleport_desc">Мгновенное перемещение — враг гибнет, ты исчезаешь</string>
+    <string name="freeze">ЗАМОРОЗКА</string>
+    <string name="freeze_desc">Враги замирают — выстрелы всё равно наносят урон</string>
+    <string name="ghost">ПРИЗРАК</string>
+    <string name="ghost_desc">Невидимость вблизи — стрельба и ловушки работают</string>
+    <string name="inject">ЗАПУСК</string>
+    <string name="select_game_hint">Сначала выбери игру</string>
+    <string name="enable_one_hint">Включи хотя бы одну функцию</string>
+    <string name="inject_success">Запущено — плавающая панель активна</string>
+    <string name="float_title">ПЛАВАЮЩАЯ КНОПКА</string>
+    <string name="float_size">РАЗМЕР</string>
+    <string name="float_opacity">ПРОЗРАЧНОСТЬ</string>
+    <string name="float_hint">* Перетащи панель в нужное место на экране игры</string>
+    <string name="settings_about_title">О ПРИЛОЖЕНИИ</string>
+    <string name="settings_about_body">KillCheat — игровая утилита на основе VPN. Рут не нужен. Поддержка FF и FF MAX.</string>
+    <string name="settings_admin">АДМИНИСТРАТОР</string>
+    <string name="admin_name">KillCheat Admin</string>
+    <string name="admin_contact">t.me/killcheat</string>
+    <string name="version_label">ВЕРСИЯ 1.0.0</string>
+    <string name="copyright">© 2025 KillCheat. Все права защищены.</string>
+    <string name="language">Язык</string>
+    <string name="overlay_denied">Нужно разрешение поверх других приложений</string>
+    <string name="select_game">ВЫБЕРИ ИГРУ</string>
+    <string name="features_label">ФУНКЦИИ</string>
+</resources>

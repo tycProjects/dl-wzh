@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KillCheat</string>
+    <string name="tab_features">Chức Năng</string>
+    <string name="tab_float">Nút Nổi</string>
+    <string name="tab_settings">Cài Đặt</string>
+    <string name="ff_title">Free Fire</string>
+    <string name="ff_max_title">FF MAX</string>
+    <string name="teleport">TELEPORT</string>
+    <string name="teleport_desc">Dịch chuyển tức thì — địch chết, bạn thoát</string>
+    <string name="freeze">FREEZE</string>
+    <string name="freeze_desc">Đóng băng địch — bắn vào vẫn tính dame bình thường</string>
+    <string name="ghost">GHOST</string>
+    <string name="ghost_desc">Tàng hình phạm vi gần — bắn và đặt bẫy vẫn được</string>
+    <string name="inject">INJECT</string>
+    <string name="select_game_hint">Chọn FF hoặc FF MAX trước</string>
+    <string name="enable_one_hint">Bật ít nhất 1 chức năng</string>
+    <string name="inject_success">Đã inject — nút nổi đang hiển thị</string>
+    <string name="float_title">NÚT NỔI</string>
+    <string name="float_size">KÍCH THƯỚC</string>
+    <string name="float_opacity">ĐỘ MỜ</string>
+    <string name="float_hint">* Kéo nút nổi để di chuyển trên màn hình game</string>
+    <string name="settings_about_title">GIỚI THIỆU</string>
+    <string name="settings_about_body">KillCheat là công cụ game dựa trên VPN. Không cần root. Hỗ trợ Free Fire và FF MAX.</string>
+    <string name="settings_admin">ADMIN</string>
+    <string name="admin_name">KillCheat Admin</string>
+    <string name="admin_contact">t.me/killcheat</string>
+    <string name="version_label">PHIÊN BẢN 1.0.0</string>
+    <string name="copyright">© 2025 KillCheat. Bảo lưu mọi quyền.</string>
+    <string name="language">Ngôn Ngữ</string>
+    <string name="overlay_denied">Cần quyền hiển thị trên ứng dụng khác</string>
+    <string name="select_game">CHỌN GAME</string>
+    <string name="features_label">CHỨC NĂNG</string>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KillCheat</string>
+    <string name="tab_features">Fitur</string>
+    <string name="tab_float">Tombol Apung</string>
+    <string name="tab_settings">Pengaturan</string>
+    <string name="ff_title">Free Fire</string>
+    <string name="ff_max_title">FF MAX</string>
+    <string name="teleport">TELEPORT</string>
+    <string name="teleport_desc">Pindah seketika — musuh mati, kamu selamat</string>
+    <string name="freeze">FREEZE</string>
+    <string name="freeze_desc">Bekukan musuh — tembakan tetap memberikan damage</string>
+    <string name="ghost">GHOST</string>
+    <string name="ghost_desc">Tidak terlihat jarak dekat — tembak dan pasang jebakan tetap bisa</string>
+    <string name="inject">INJECT</string>
+    <string name="select_game_hint">Pilih game dulu</string>
+    <string name="enable_one_hint">Aktifkan minimal 1 fitur</string>
+    <string name="inject_success">Berhasil inject — panel apung aktif</string>
+    <string name="float_title">TOMBOL APUNG</string>
+    <string name="float_size">UKURAN</string>
+    <string name="float_opacity">TRANSPARANSI</string>
+    <string name="float_hint">* Seret panel ke posisi yang kamu inginkan di layar game</string>
+    <string name="settings_about_title">TENTANG</string>
+    <string name="settings_about_body">KillCheat adalah utilitas game berbasis VPN. Tanpa root. Mendukung Free Fire dan FF MAX.</string>
+    <string name="settings_admin">ADMIN</string>
+    <string name="admin_name">KillCheat Admin</string>
+    <string name="admin_contact">t.me/killcheat</string>
+    <string name="version_label">VERSI 1.0.0</string>
+    <string name="copyright">© 2025 KillCheat. Semua hak dilindungi.</string>
+    <string name="language">Bahasa</string>
+    <string name="overlay_denied">Butuh izin tampil di atas aplikasi lain</string>
+    <string name="select_game">PILIH GAME</string>
+    <string name="features_label">FITUR</string>
+</resources>

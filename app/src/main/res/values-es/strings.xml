@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KillCheat</string>
+    <string name="tab_features">Funciones</string>
+    <string name="tab_float">Botón Flotante</string>
+    <string name="tab_settings">Ajustes</string>
+    <string name="ff_title">Free Fire</string>
+    <string name="ff_max_title">FF MAX</string>
+    <string name="teleport">TELETRANSPORTE</string>
+    <string name="teleport_desc">Muévete al instante — el enemigo muere y tú desapareces</string>
+    <string name="freeze">CONGELAR</string>
+    <string name="freeze_desc">Congela enemigos — los disparos siguen causando daño</string>
+    <string name="ghost">FANTASMA</string>
+    <string name="ghost_desc">Invisibilidad cercana — puedes disparar y poner trampas</string>
+    <string name="inject">INYECTAR</string>
+    <string name="select_game_hint">Selecciona un juego primero</string>
+    <string name="enable_one_hint">Activa al menos 1 función</string>
+    <string name="inject_success">Inyectado — el panel flotante está activo</string>
+    <string name="float_title">BOTÓN FLOTANTE</string>
+    <string name="float_size">TAMAÑO</string>
+    <string name="float_opacity">OPACIDAD</string>
+    <string name="float_hint">* Arrastra el panel para reposicionarlo sobre la pantalla del juego</string>
+    <string name="settings_about_title">ACERCA DE</string>
+    <string name="settings_about_body">KillCheat es una utilidad de juego basada en VPN. Sin root. Compatible con FF y FF MAX.</string>
+    <string name="settings_admin">ADMINISTRADOR</string>
+    <string name="admin_name">KillCheat Admin</string>
+    <string name="admin_contact">t.me/killcheat</string>
+    <string name="version_label">VERSIÓN 1.0.0</string>
+    <string name="copyright">© 2025 KillCheat. Todos los derechos reservados.</string>
+    <string name="language">Idioma</string>
+    <string name="overlay_denied">Se necesita permiso para mostrar sobre otras apps</string>
+    <string name="select_game">SELECCIONA JUEGO</string>
+    <string name="features_label">FUNCIONES</string>
+</resources>

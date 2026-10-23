@@ -1,0 +1,6 @@
+Place your launcher icon here as ic_launcher.png
+Sizes:
+  mipmap-hdpi:    72x72
+  mipmap-xhdpi:   96x96
+  mipmap-xxhdpi: 144x144
+  mipmap-xxxhdpi:192x192

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KillCheat</string>
+    <string name="tab_features">الميزات</string>
+    <string name="tab_float">زر عائم</string>
+    <string name="tab_settings">الإعدادات</string>
+    <string name="ff_title">Free Fire</string>
+    <string name="ff_max_title">FF MAX</string>
+    <string name="teleport">نقل فوري</string>
+    <string name="teleport_desc">انتقل فوراً — يموت العدو وأنت تختفي</string>
+    <string name="freeze">تجميد</string>
+    <string name="freeze_desc">تجميد الأعداء — تُحسب الأضرار عند إطلاق النار</string>
+    <string name="ghost">شبح</string>
+    <string name="ghost_desc">اختفاء قريب — يمكنك الإطلاق ووضع الأفخاخ</string>
+    <string name="inject">حقن</string>
+    <string name="select_game_hint">اختر لعبة أولاً</string>
+    <string name="enable_one_hint">فعّل ميزة واحدة على الأقل</string>
+    <string name="inject_success">تم الحقن — اللوحة العائمة تعمل الآن</string>
+    <string name="float_title">الزر العائم</string>
+    <string name="float_size">الحجم</string>
+    <string name="float_opacity">الشفافية</string>
+    <string name="float_hint">* اسحب اللوحة لإعادة تحديد موضعها فوق شاشة اللعبة</string>
+    <string name="settings_about_title">حول</string>
+    <string name="settings_about_body">KillCheat أداة ألعاب مبنية على VPN، لا تحتاج صلاحيات روت.</string>
+    <string name="settings_admin">المشرف</string>
+    <string name="admin_name">KillCheat Admin</string>
+    <string name="admin_contact">t.me/killcheat</string>
+    <string name="version_label">الإصدار 1.0.0</string>
+    <string name="copyright">© 2025 KillCheat. جميع الحقوق محفوظة.</string>
+    <string name="language">اللغة</string>
+    <string name="overlay_denied">يلزم إذن العرض فوق التطبيقات الأخرى</string>
+    <string name="select_game">اختر اللعبة</string>
+    <string name="features_label">قائمة الميزات</string>
+</resources>

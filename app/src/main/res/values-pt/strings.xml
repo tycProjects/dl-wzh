@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KillCheat</string>
+    <string name="tab_features">Funções</string>
+    <string name="tab_float">Botão Flutuante</string>
+    <string name="tab_settings">Configurações</string>
+    <string name="teleport">TELEPORTE</string>
+    <string name="teleport_desc">Mova-se instantaneamente — o inimigo morre, você some</string>
+    <string name="freeze">CONGELAR</string>
+    <string name="freeze_desc">Congela inimigos — os tiros ainda causam dano</string>
+    <string name="ghost">FANTASMA</string>
+    <string name="ghost_desc">Invisibilidade próxima — você pode atirar e colocar armadilhas</string>
+    <string name="inject">INJETAR</string>
+    <string name="select_game_hint">Selecione um jogo primeiro</string>
+    <string name="enable_one_hint">Ative pelo menos 1 função</string>
+    <string name="inject_success">Injetado — painel flutuante ativo</string>
+    <string name="float_title">BOTÃO FLUTUANTE</string>
+    <string name="float_size">TAMANHO</string>
+    <string name="float_opacity">OPACIDADE</string>
+    <string name="float_hint">* Arraste o painel para reposicioná-lo na tela do jogo</string>
+    <string name="settings_about_title">SOBRE</string>
+    <string name="settings_about_body">KillCheat é um utilitário de jogo baseado em VPN. Sem root. Suporta FF e FF MAX.</string>
+    <string name="settings_admin">ADMIN</string>
+    <string name="admin_name">KillCheat Admin</string>
+    <string name="admin_contact">t.me/killcheat</string>
+    <string name="version_label">VERSÃO 1.0.0</string>
+    <string name="copyright">© 2025 KillCheat. Todos os direitos reservados.</string>
+    <string name="language">Idioma</string>
+    <string name="overlay_denied">Permissão necessária para exibir sobre outros apps</string>
+    <string name="select_game">SELECIONAR JOGO</string>
+    <string name="features_label">FUNÇÕES</string>
+</resources>

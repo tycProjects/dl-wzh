@@ -1,0 +1,5 @@
+Download Orbitron font from:
+https://fonts.google.com/specimen/Orbitron
+
+Save the file as: orbitron.ttf
+Place it in this folder: app/src/main/res/font/orbitron.ttf

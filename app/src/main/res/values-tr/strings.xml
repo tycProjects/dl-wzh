@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KillCheat</string>
+    <string name="tab_features">Özellikler</string>
+    <string name="tab_float">Yüzen Tuş</string>
+    <string name="tab_settings">Ayarlar</string>
+    <string name="teleport">IŞINLANMA</string>
+    <string name="teleport_desc">Anında yer değiştir — düşman ölür, sen kaybolursun</string>
+    <string name="freeze">DONDUR</string>
+    <string name="freeze_desc">Düşmanları dondur — atışlar yine de hasar verir</string>
+    <string name="ghost">HAYALET</string>
+    <string name="ghost_desc">Yakın menzil görünmezlik — ateş edebilir, tuzak kurabilirsin</string>
+    <string name="inject">BAŞLAT</string>
+    <string name="select_game_hint">Önce bir oyun seç</string>
+    <string name="enable_one_hint">En az 1 özellik etkinleştir</string>
+    <string name="inject_success">Başlatıldı — yüzen panel aktif</string>
+    <string name="float_title">YÜZEN TUŞLAR</string>
+    <string name="float_size">BOYUT</string>
+    <string name="float_opacity">OPAKLIK</string>
+    <string name="float_hint">* Paneli oyun ekranında istediğin konuma sürükle</string>
+    <string name="settings_about_title">HAKKINDA</string>
+    <string name="settings_about_body">KillCheat, VPN tabanlı bir oyun aracıdır. Root gerektirmez. FF ve FF MAX desteklenir.</string>
+    <string name="settings_admin">YÖNETİCİ</string>
+    <string name="admin_name">KillCheat Admin</string>
+    <string name="admin_contact">t.me/killcheat</string>
+    <string name="version_label">SÜRÜM 1.0.0</string>
+    <string name="copyright">© 2025 KillCheat. Tüm hakları saklıdır.</string>
+    <string name="language">Dil</string>
+    <string name="overlay_denied">Diğer uygulamaların üzerinde görüntüleme izni gerekli</string>
+    <string name="select_game">OYUN SEÇ</string>
+    <string name="features_label">ÖZELLİKLER</string>
+</resources>

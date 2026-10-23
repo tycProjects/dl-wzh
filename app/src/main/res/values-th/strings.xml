@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KillCheat</string>
+    <string name="tab_features">ฟีเจอร์</string>
+    <string name="tab_float">ปุ่มลอย</string>
+    <string name="tab_settings">ตั้งค่า</string>
+    <string name="ff_title">Free Fire</string>
+    <string name="ff_max_title">FF MAX</string>
+    <string name="teleport">เทเลพอร์ต</string>
+    <string name="teleport_desc">เคลื่อนที่ทันที — ศัตรูตาย คุณหนีได้</string>
+    <string name="freeze">แช่แข็ง</string>
+    <string name="freeze_desc">แช่แข็งศัตรู — ยิงยังคิดดาเมจตามปกติ</string>
+    <string name="ghost">โกสต์</string>
+    <string name="ghost_desc">ล่องหนระยะใกล้ — ยิงและวางกับดักได้</string>
+    <string name="inject">เริ่มใช้งาน</string>
+    <string name="select_game_hint">กรุณาเลือกเกมก่อน</string>
+    <string name="enable_one_hint">เปิดฟีเจอร์อย่างน้อย 1 อย่าง</string>
+    <string name="inject_success">เริ่มแล้ว — แผงลอยแสดงบนหน้าจอ</string>
+    <string name="float_title">ปุ่มลอย</string>
+    <string name="float_size">ขนาด</string>
+    <string name="float_opacity">ความโปร่งใส</string>
+    <string name="float_hint">* ลากแผงไปยังตำแหน่งที่ต้องการบนหน้าจอเกม</string>
+    <string name="settings_about_title">เกี่ยวกับ</string>
+    <string name="settings_about_body">KillCheat เป็นเครื่องมือเกมบน VPN ไม่ต้องรูต รองรับ Free Fire และ FF MAX</string>
+    <string name="settings_admin">แอดมิน</string>
+    <string name="admin_name">KillCheat Admin</string>
+    <string name="admin_contact">t.me/killcheat</string>
+    <string name="version_label">เวอร์ชัน 1.0.0</string>
+    <string name="copyright">© 2025 KillCheat. สงวนลิขสิทธิ์</string>
+    <string name="language">ภาษา</string>
+    <string name="overlay_denied">ต้องการสิทธิ์แสดงทับแอปอื่น</string>
+    <string name="select_game">เลือกเกม</string>
+    <string name="features_label">ฟีเจอร์ทั้งหมด</string>
+</resources>

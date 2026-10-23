@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KillCheat</string>
+    <string name="tab_features">功能</string>
+    <string name="tab_float">悬浮按钮</string>
+    <string name="tab_settings">设置</string>
+    <string name="ff_title">Free Fire</string>
+    <string name="ff_max_title">FF MAX</string>
+    <string name="teleport">瞬移</string>
+    <string name="teleport_desc">瞬间移动 — 敌人死亡，你安全脱身</string>
+    <string name="freeze">冻结</string>
+    <string name="freeze_desc">冻结敌人 — 射击依然造成伤害</string>
+    <string name="ghost">隐身</string>
+    <string name="ghost_desc">近程隐身 — 射击和放陷阱均可正常使用</string>
+    <string name="inject">注入</string>
+    <string name="select_game_hint">请先选择游戏</string>
+    <string name="enable_one_hint">至少启用一项功能</string>
+    <string name="inject_success">注入成功 — 悬浮面板已显示</string>
+    <string name="float_title">悬浮按钮</string>
+    <string name="float_size">大小</string>
+    <string name="float_opacity">透明度</string>
+    <string name="float_hint">* 拖动面板以在游戏屏幕上重新定位</string>
+    <string name="settings_about_title">关于</string>
+    <string name="settings_about_body">KillCheat 是基于VPN的游戏工具，无需Root，支持Free Fire和FF MAX。</string>
+    <string name="settings_admin">管理员</string>
+    <string name="admin_name">KillCheat Admin</string>
+    <string name="admin_contact">t.me/killcheat</string>
+    <string name="version_label">版本 1.0.0</string>
+    <string name="copyright">© 2025 KillCheat. 保留所有权利。</string>
+    <string name="language">语言</string>
+    <string name="overlay_denied">需要"显示在其他应用上层"权限</string>
+    <string name="select_game">选择游戏</string>
+    <string name="features_label">功能列表</string>
+</resources>

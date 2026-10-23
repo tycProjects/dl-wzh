@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent_red</item>
+        <item name="colorPrimaryDark">@color/bg_darker</item>
+        <item name="colorAccent">@color/accent_red</item>
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="android:statusBarColor">@color/bg_darker</item>
+        <item name="android:navigationBarColor">@color/bg_darker</item>
+    </style>
+    <style name="TabTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">10sp</item>
+        <item name="textAllCaps">true</item>
+    </style>
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Dialog">
+        <item name="colorPrimary">@color/accent_red</item>
+        <item name="android:background">@color/bg_card</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+</resources>

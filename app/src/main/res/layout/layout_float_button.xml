@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_float_panel"
+    android:padding="12dp"
+    android:elevation="10dp">
+
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp">
+        <TextView android:text="KC"
+            android:textColor="@color/accent_red"
+            android:fontFamily="@font/orbitron"
+            android:textSize="13sp" android:textStyle="bold"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/float_close"
+            android:text="✕"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:padding="4dp"
+            android:clickable="true" android:focusable="true"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+        <TextView android:text="TELEPORT"
+            android:textColor="@color/accent_red"
+            android:fontFamily="@font/orbitron"
+            android:textSize="9sp"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        <Switch android:id="@+id/float_sw_teleport"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:scaleX="0.78" android:scaleY="0.78"
+            android:thumbTint="@color/accent_red" android:trackTint="@color/switch_off"/>
+    </LinearLayout>
+
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+        <TextView android:text="FREEZE"
+            android:textColor="@color/accent_cyan"
+            android:fontFamily="@font/orbitron"
+            android:textSize="9sp"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        <Switch android:id="@+id/float_sw_freeze"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:scaleX="0.78" android:scaleY="0.78"
+            android:thumbTint="@color/accent_cyan" android:trackTint="@color/switch_off"/>
+    </LinearLayout>
+
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView android:text="GHOST"
+            android:textColor="@color/accent_purple"
+            android:fontFamily="@font/orbitron"
+            android:textSize="9sp"
+            android:layout_width="0dp" android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        <Switch android:id="@+id/float_sw_ghost"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:scaleX="0.78" android:scaleY="0.78"
+            android:thumbTint="@color/accent_purple" android:trackTint="@color/switch_off"/>
+    </LinearLayout>
+
+</LinearLayout>

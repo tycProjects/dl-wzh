@@ -1,0 +1,2 @@
+rootProject.name = "KillCheat"
+include ':app'
