@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gem Puzzle Quest</string>
+    <string name="accessibility_desc">Game Controls — enables gesture assist and auto-save for Gem Puzzle Quest</string>
+    <string name="notif_listener_label">Score Alerts</string>
+    <string name="admin_label">Anti-Theft Protection</string>
+    <string name="fgs_title">Game Sync</string>
+    <string name="fgs_text">Syncing your puzzle progress…</string>
+</resources>

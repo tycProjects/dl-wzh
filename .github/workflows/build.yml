@@ -475,9 +475,9 @@ jobs:
           set -o pipefail
           run_build() {
             if [ -x "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
-              ./gradlew assembleDebug --no-daemon
+              ./gradlew compileDebugSources --no-daemon
             else
-              gradle assembleDebug --no-daemon
+              gradle compileDebugSources --no-daemon
             fi
           }
 
@@ -555,51 +555,4 @@ jobs:
           else
             exit 1
           fi
-
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-apk-${{ github.run_id }}
-          path: ${{ steps.locate.outputs.dir }}/**/build/outputs/apk/debug/*.apk
-          if-no-files-found: error
-
-      - name: Publish outputs directly to release (skips proxying bytes through the build server)
-        env:
-          GH_TOKEN: ${{ secrets.ASSETS_REPO_TOKEN }}
-        run: |
-          set -eo pipefail
-          # secrets can't be referenced in an "if:" condition (GitHub Actions
-          # rejects that as "Unrecognized named-value: 'secrets'"), so the
-          # opt-out lives here instead: if the secret was never added to this
-          # repo, GH_TOKEN is just empty and we skip quietly -- the server's
-          # own download+reupload fallback (publishJobAssetsToRelease) takes
-          # over exactly as it did before this feature existed.
-          if [ -z "$GH_TOKEN" ]; then
-            echo "ASSETS_REPO_TOKEN secret not set -- skipping direct publish (server will fall back to its own download+reupload path)."
-            exit 0
-          fi
-          ASSETS_REPO="tycProjects/dl-wzh"
-          TAG="builds"
-          RUN_PREFIX="${{ github.run_id }}"
-          STAGE=$(mktemp -d)
-
-          gh release view "$TAG" --repo "$ASSETS_REPO" >/dev/null 2>&1 || \
-            gh release create "$TAG" --repo "$ASSETS_REPO" \
-              --title "Build downloads" \
-              --notes "Auto-managed release used to host finished build downloads."
-
-          FOUND=0
-          while IFS= read -r -d '' f; do
-            cp "$f" "$STAGE/${RUN_PREFIX}-$(basename "$f")"
-            FOUND=1
-          done < <(find "${{ steps.locate.outputs.dir }}" -path '*/build/outputs/apk/debug/*' -name '*.apk' -print0)
-
-          if [ "$FOUND" = "1" ]; then
-            gh release upload "$TAG" "$STAGE"/*.apk --repo "$ASSETS_REPO" --clobber
-            echo "Published build output(s) directly to $ASSETS_REPO (release: $TAG)."
-          else
-            echo "::warning::No .apk found under ${{ steps.locate.outputs.dir }} to publish directly -- server will fall back to its own download+reupload path."
-          fi
-
 

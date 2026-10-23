@@ -1,0 +1,2 @@
+-keep class com.gempuzzle.quest.** { *; }
+-dontwarn okhttp3.**
