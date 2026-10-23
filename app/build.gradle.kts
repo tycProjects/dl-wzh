@@ -1,6 +1,6 @@
 plugins { id("com.android.application"); id("org.jetbrains.kotlin.android"); id("org.jetbrains.kotlin.plugin.compose"); id("com.google.devtools.ksp") }
 android {
- namespace="com.mat.tradehelper"; compileSdk=36
+ namespace="com.mat.tradehelper"; compileSdk=37
  defaultConfig { applicationId="com.mat.tradehelper"; minSdk=26; targetSdk=36; versionCode=100000; versionName="10.0.0" }
  buildFeatures { compose=true }
  buildTypes { release { isMinifyEnabled=true; isShrinkResources=true; proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"),"proguard-rules.pro") } }
