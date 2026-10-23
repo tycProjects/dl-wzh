@@ -1,15 +1,13 @@
 {
-  "latestVersionCode": 1792447880,
-  "latestVersionName": "10.0",
-  "apkUrl": "https://www.mediafire.com/file/tdmvpdwpv6dp3rg/WZH+2+APK+(added).apk/file",
+  "latestVersionCode": 1792447881,
+  "latestVersionName": "11.0",
+  "apkUrl": "https://www.mediafire.com/file/m454h96z9kfrizy/WZH+2+APK+(NEW)%F0%9F%AB%A1.apk/file",
   "title": "New version available",
   "notes": [
     "🌱ADDED",
-    "•auto web host",
-    "•code editor",
-    "•smoothness++"
+    "live preview in the code editor🙂‍↕️"
   ],
   "updateButtonText": "Download update",
   "laterButtonText": "Later",
-  "updatedAt": 1792622266667
+  "updatedAt": 1792736041248
 }
