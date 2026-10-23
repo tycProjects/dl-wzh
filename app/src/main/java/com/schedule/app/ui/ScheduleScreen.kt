@@ -35,6 +35,7 @@ import com.schedule.app.ui.theme.*
 import com.schedule.app.util.*
 import java.time.LocalDate
 import java.time.LocalTime
+import androidx.compose.runtime.saveable.rememberSaveable
 
 /** محاضرة في يوم محدد بعد تطبيق الأسابيع والاستثناءات والإجازات. */
 data class DayItem(val slot: Slot, val occ: Occurrence, val conflict: Boolean)

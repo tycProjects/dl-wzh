@@ -28,6 +28,7 @@ import com.schedule.app.data.Exam
 import com.schedule.app.ui.theme.*
 import com.schedule.app.util.daysUntil
 import java.time.LocalDate
+import androidx.compose.runtime.saveable.rememberSaveable
 
 /** الملف الشخصي: الاسم والصورة والامتحانات فقط؛ يُعدَّل من الزر العلوي. */
 @OptIn(ExperimentalMaterial3Api::class)
