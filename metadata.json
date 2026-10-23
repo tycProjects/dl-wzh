@@ -1,0 +1,6 @@
+{
+  "name": "ARAFAT AI",
+  "description": "Your Personal AI Assistant with Gemini, Grok, Voice, Coding, App Launcher, and Screen Assistance by ARAFAT MOJMUNDAR",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
