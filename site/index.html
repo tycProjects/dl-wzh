@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Download</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f5f9;--card:#fff;--ink:#101a24;--mut:#5a6876;--line:#dce3ec;--acc:#1668ee;--accInk:#fff;--soft:#e8f0fe;--err:#c62828}
+@media (prefers-color-scheme:dark){:root{--bg:#0c1117;--card:#141b23;--ink:#eef3f8;--mut:#93a1af;--line:#243040;--acc:#4c8dff;--accInk:#06101f;--soft:#16263f;--err:#ff8a80}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Figtree,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--card);border-bottom:1px solid var(--line)}
+header div{max-width:760px;margin:0 auto;padding:14px 20px;font-weight:700;font-size:17px;display:flex;align-items:center;gap:10px}
+header i{width:26px;height:26px;border-radius:7px;background:var(--acc);display:inline-block;position:relative}
+header i:after{content:"";position:absolute;left:8px;top:6px;width:10px;height:10px;border:solid var(--accInk);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(.8);transform-origin:50% 50%}
+main{max-width:760px;margin:0 auto;padding:28px 20px 56px}
+.file{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px}
+.top{display:flex;gap:18px;align-items:center}
+.ico{flex:none;width:68px;height:80px;background:var(--soft);border:1px solid var(--line);border-radius:10px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:9px;font-weight:700;font-size:13px;color:var(--acc);letter-spacing:.04em}
+h1{margin:0;font-size:26px;line-height:1.2;overflow-wrap:anywhere}
+.sub{margin:4px 0 0;color:var(--mut);font-size:14.5px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:24px;width:100%;height:58px;border-radius:10px;background:var(--acc);color:var(--accInk);font:700 18px Figtree,system-ui,sans-serif;text-decoration:none}
+.btn:hover{filter:brightness(1.06)}.btn:focus-visible,.copy:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+dl{margin:22px 0 0;border-top:1px solid var(--line)}
+dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+dt{color:var(--mut)}dd{margin:0;font-weight:600;text-align:right}
+.copy{margin-top:16px;background:none;border:1px solid var(--line);color:var(--ink);border-radius:10px;height:42px;padding:0 16px;font:600 14.5px Figtree,system-ui,sans-serif;cursor:pointer}
+.how{margin:22px 4px 0;color:var(--mut);font-size:14.5px}
+.how b{color:var(--ink)}.how ol{margin:8px 0 0;padding-left:20px}
+.err h1{font-size:22px}.hide{display:none}
+@media(max-width:480px){.file{padding:20px}.ico{width:56px;height:66px}h1{font-size:22px}}
+</style></head><body>
+<header><div><i></i>WZH 2 APK</div></header>
+<main>
+  <section class="file" id="card">
+    <div class="top"><div class="ico" id="ext">APK</div><div><h1 id="name">Loading…</h1><p class="sub" id="sub"></p></div></div>
+    <a class="btn hide" id="btn" rel="nofollow"><svg viewBox="0 0 24 24"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg><span id="btnt">Download</span></a>
+    <dl class="hide" id="meta">
+      <div><dt>File type</dt><dd>Android app (APK)</dd></div>
+      <div><dt>Size</dt><dd id="size"></dd></div>
+      <div><dt>Uploaded</dt><dd id="date"></dd></div>
+      <div><dt>Downloads</dt><dd id="count"></dd></div>
+    </dl>
+    <button class="copy hide" id="copy" type="button">Copy link</button>
+  </section>
+  <div class="how hide" id="how"><b>Installing</b>
+    <ol><li>Open the file from your notifications or the Downloads folder.</li><li>If Android asks, allow installs from this browser.</li><li>Only install apps from people you trust.</li></ol></div>
+</main>
+<script>
+// Your public APK repo, "owner/repo" (the same one as kShareGithubRepo in the app).
+const REPO = 'tycweb/apk-files';
+
+const $ = (i) => document.getElementById(i);
+const size = (b) => b >= 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB';
+const tag = new URLSearchParams(location.search).get('d');
+
+function fail(title, sub) {
+  $('card').classList.add('err');
+  $('ext').textContent = '?';
+  $('name').textContent = title;
+  $('sub').textContent = sub;
+}
+
+if (!tag || !/^[A-Za-z0-9_.-]{3,80}$/.test(tag)) {
+  fail('Open a download link', 'Ask the sender for the link to the app.');
+} else {
+  fetch('https://api.github.com/repos/' + REPO + '/releases/tags/' + encodeURIComponent(tag), { headers: { Accept: 'application/vnd.github+json' } })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((rel) => {
+      const a = (rel.assets || [])[0];
+      if (!a) throw new Error('empty');
+      const name = String(rel.name || a.name.replace(/\.apk$/i, ''));
+      document.title = name + ' – Download';
+      $('name').textContent = name;
+      $('sub').textContent = 'Shared with you';
+      $('btn').href = a.browser_download_url;
+      $('btnt').textContent = 'Download (' + size(a.size) + ')';
+      $('size').textContent = size(a.size);
+      $('date').textContent = new Date(a.created_at).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+      $('count').textContent = a.download_count;
+      ['btn', 'meta', 'copy', 'how'].forEach((i) => $(i).classList.remove('hide'));
+      $('copy').onclick = () => {
+        const done = () => { $('copy').textContent = 'Link copied'; setTimeout(() => $('copy').textContent = 'Copy link', 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, () => {}); else done();
+      };
+    })
+    .catch((e) => String(e.message) === '403'
+      ? fail('Try again in a few minutes', 'Too many people opened links from this network. This is temporary.')
+      : fail('Link not found', 'This file was removed or never existed. Ask the sender for a new link.'));
+}
+</script></body></html>
