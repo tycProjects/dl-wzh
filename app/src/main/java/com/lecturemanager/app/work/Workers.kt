@@ -161,7 +161,7 @@ class OcrEngine(ctx: Context) : AutoCloseable {
     fun recognize(bmp: Bitmap): String {
         val a = api ?: return ""
         a.setImage(bmp)
-        // AUTO-REPAIR: disabled -- unresolved reference 'utf8Text' (was: return a.utf8Text ?: "")
+        return a.getUTF8Text() ?: ""
     }
 
     override fun close() { runCatching { api?.recycle() }; api = null }
