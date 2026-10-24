@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">JNMF Music Player</string>
+
+    
+    <string name="nav_music">Musik</string>
+    <string name="nav_playlists">Daftar Putar</string>
+    <string name="nav_equalizer">Equalizer</string>
+    <string name="nav_videos">Video</string>
+    <string name="nav_settings">Pengaturan</string>
+
+    
+    <string name="search_placeholder">Cari lagu, artis, remix...</string>
+    <string name="sort_by">Urutkan</string>
+    <string name="grant_permission">Izinkan Akses Audio</string>
+    <string name="permission_desc">JNMF memerlukan izin untuk memindai lagu Indo Remix dan file audio lokal Anda.</string>
+    <string name="no_songs_found">Tidak ada file musik yang ditemukan di perangkat.</string>
+    <string name="refresh_library">Segarkan Perpustakaan</string>
+
+    
+    <string name="now_playing">Sedang Memutar</string>
+    <string name="queue_title">Antrean Putar</string>
+    <string name="reverse_queue">Mode Antrean Terbalik</string>
+    <string name="reverse_queue_on">Urutan Terbalik Aktif</string>
+    <string name="reverse_queue_off">Urutan Standar</string>
+
+    
+    <string name="equalizer_title">Equalizer &amp; Pemroses Suara</string>
+    <string name="eq_master_switch">Pemrosesan Suara Master</string>
+    <string name="session_active">Terhubung ke AudioTrack JNMF</string>
+    <string name="session_idle">Menunggu sesi pemutaran</string>
+    <string name="bass_boost">Bass Horeg &amp; Sub-Bass</string>
+    <string name="virtualizer_3d">Lebar Stereo / Spasial 3D</string>
+    <string name="clarity_boost">Kejernihan Vokal &amp; Treble</string>
+    <string name="sound_presets">Preset Suara</string>
+
+    
+    <string name="playlists_title">Daftar Putar Saya</string>
+    <string name="favorites_title">Lagu Favorit</string>
+    <string name="create_playlist">Daftar Putar Baru</string>
+    <string name="playlist_name_hint">Masukkan nama daftar putar</string>
+    <string name="cancel">Batal</string>
+    <string name="create">Buat</string>
+    <string name="rename">Ganti Nama</string>
+    <string name="delete">Hapus</string>
+    <string name="add_to_playlist">Tambah ke Daftar Putar</string>
+    <string name="hide_song">Sembunyikan dari Perpustakaan</string>
+
+    
+    <string name="duplicates_title">Lagu Duplikat &amp; Mirip</string>
+    <string name="scan_duplicates">Pindai Audio Mirip (~80%)</string>
+    <string name="duplicates_desc">Deteksi lagu serupa dan bedakan aransemen remix tanpa menghapus file otomatis.</string>
+    <string name="duplicate_match">Kemiripan</string>
+    <string name="delete_confirm_title">Konfirmasi Penghapusan File</string>
+    <string name="delete_confirm_msg">Apakah Anda yakin ingin menghapus file ini dari penyimpanan?</string>
+
+    
+    <string name="classifier_title">Klasifikasi Remix</string>
+    <string name="classify_desc">Deteksi otomatis tempo dan ritme untuk Fullbeat dan Slow remix.</string>
+    <string name="category_fullbeat">Fullbeat</string>
+    <string name="category_slow">Slow Remix</string>
+    <string name="category_indo">Indo Remix</string>
+    <string name="category_standard">Standar</string>
+
+    
+    <string name="videos_title">Video Lokal</string>
+    <string name="no_videos_found">Tidak ada video yang ditemukan di perangkat.</string>
+
+    
+    <string name="settings_title">Pengaturan JNMF</string>
+    <string name="theme_color_title">Warna Aksen</string>
+    <string name="language_title">Bahasa</string>
+    <string name="hidden_songs_title">Lagu Tersembunyi</string>
+    <string name="unhide_song">Pulihkan ke Perpustakaan</string>
+    <string name="no_hidden_songs">Tidak ada lagu yang disembunyikan.</string>
+    <string name="credits_title">Kredit Pengembang &amp; Proyek</string>
+    <string name="credit_compile">Compile by JUSSAR GOLDEN</string>
+    <string name="credit_create_by">CREATE BY</string>
+    <string name="credit_chatgpt">ChatGPT advisor</string>
+    <string name="credit_aistudio">Google AI Studio: app developer</string>
+</resources>
