@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="@android:style/Theme.Holo">
+        <item name="android:colorBackground">#FF010031</item>
+        <item name="android:windowBackground">#FF010031</item>
+    </style>
+</resources>
