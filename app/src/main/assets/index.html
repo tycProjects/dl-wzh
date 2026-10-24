@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Player Heads Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Top Minecraft Header -->
+        <header class="app-header">
+            <h1>
+                <span class="material-symbols-outlined" style="font-size:24px; color:#3c8527;">extension</span>
+                Player Heads
+            </h1>
+            <div id="header-pack-name" class="header-badge">No Pack Open</div>
+        </header>
+
+        <!-- VIEW 1: CREATE / EDIT PACK -->
+        <main id="view-create" class="tab-view active">
+            <!-- Welcome Screen (when no pack is open) -->
+            <div id="welcome-screen" class="welcome-card">
+                <h2>Player Heads Generator</h2>
+                <p>Create custom Minecraft Bedrock Player Heads add-ons offline with 3D skin preview!</p>
+                <button id="create-pack-btn" class="button primary">
+                    <span class="material-symbols-outlined" style="vertical-align:middle;margin-right:4px;">add</span>
+                    Create New Pack
+                </button>
+                <button id="load-pack-btn" class="button secondary">
+                    <span class="material-symbols-outlined" style="vertical-align:middle;margin-right:4px;">folder_open</span>
+                    Load Existing Pack
+                </button>
+            </div>
+
+            <!-- Pack Editor (when pack is loaded) -->
+            <div id="pack-editor" class="mobile-pack-editor hidden">
+                <div class="pack-header-card">
+                    <div>
+                        <h2 id="pack-title">Pack Name</h2>
+                    </div>
+                    <div class="pack-badges">
+                        <span id="heads-count" class="badge">Heads: 0</span>
+                        <span id="save-state" class="badge save-badge unsaved">Not saved</span>
+                    </div>
+                </div>
+
+                <div class="editor-actions-grid">
+                    <button id="add-head-btn" class="button primary">
+                        <span class="material-symbols-outlined">add</span>
+                        Add Head
+                    </button>
+                    <button id="generate-pack-btn" class="button primary">
+                        <span class="material-symbols-outlined">archive</span>
+                        Generate Add-on
+                    </button>
+                    <button id="save-pack-btn" class="button secondary">
+                        <span class="material-symbols-outlined">save</span>
+                        Save Pack
+                    </button>
+                    <button id="back-to-menu-btn" class="button secondary">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                        Close Pack
+                    </button>
+                    <button id="delete-pack-btn" class="button destructive full-width">
+                        <span class="material-symbols-outlined">delete</span>
+                        Delete Pack
+                    </button>
+                </div>
+
+                <div class="search-container" style="margin-top:4px;">
+                    <input type="text" id="search-heads" placeholder="Search heads in pack...">
+                </div>
+
+                <div id="heads-container" class="heads-container">
+                    <!-- Head cards will be inserted here dynamically -->
+                </div>
+            </div>
+        </main>
+
+        <!-- VIEW 2: LOAD PACK -->
+        <main id="view-load" class="tab-view">
+            <div class="settings-section" style="margin-bottom:12px;">
+                <h3 style="margin-top:0;">
+                    <span class="material-symbols-outlined">upload_file</span>
+                    Import Pack File
+                </h3>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <label for="import-pack-file" class="file-input-label">
+                        <input type="file" id="import-pack-file" accept="application/json,.json" style="display: none;">
+                        <button type="button" class="button secondary file-select-btn" style="width:100%; box-sizing:border-box;">
+                            <span class="material-symbols-outlined">upload_file</span>
+                            Choose Pack File (.json)
+                        </button>
+                    </label>
+                    <button id="import-pack-btn" class="button primary" style="width:100%; box-sizing:border-box;">
+                        Import Pack
+                    </button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3 style="margin-top:0;">
+                    <span class="material-symbols-outlined">folder</span>
+                    Saved Packs
+                </h3>
+                <div id="saved-packs-list" class="saved-packs-list" style="max-height:none; margin-bottom:0;">
+                    <!-- Saved packs inserted here dynamically -->
+                </div>
+            </div>
+        </main>
+
+        <!-- VIEW 3: DOWNLOADS -->
+        <main id="view-downloads" class="tab-view">
+            <div class="download-path-box">
+                <div class="download-path-info">
+                    <span class="material-symbols-outlined" style="font-size:20px; color:#55ff55;">folder</span>
+                    <span>/storage/emulated/0/Download/PlayerHead</span>
+                </div>
+                <div class="download-path-actions">
+                    <button id="refresh-downloads-btn" class="button secondary">
+                        <span class="material-symbols-outlined" style="font-size:16px;">refresh</span>
+                        Refresh
+                    </button>
+                    <button id="open-downloads-folder-btn" class="button secondary">
+                        <span class="material-symbols-outlined" style="font-size:16px;">folder_open</span>
+                        Open Folder
+                    </button>
+                </div>
+            </div>
+
+            <!-- Permission banner if not granted -->
+            <div id="downloads-perm-banner" class="settings-section" style="display:none; border-color:#c83737; margin-bottom:12px;">
+                <p style="color:#ff6b6b; font-size:0.9rem; margin-bottom:8px;">
+                    ⚠️ Storage permission needed to list files in /storage/emulated/0/Download/PlayerHead
+                </p>
+                <button id="grant-permission-btn" class="button primary" style="width:100%;">
+                    Grant Storage Permission
+                </button>
+            </div>
+
+            <!-- Downloaded files list -->
+            <div id="downloaded-files-list" class="downloads-list">
+                <!-- Dynamically populated -->
+            </div>
+
+            <div id="downloads-empty-message" class="welcome-card" style="display:none; margin-top:0;">
+                <p>No add-on files found in Download/PlayerHead folder.</p>
+                <button class="button primary" onclick="UI.switchTab('tab-create')">
+                    Go to Create Pack
+                </button>
+            </div>
+        </main>
+
+        <!-- VIEW 4: SETTINGS -->
+        <main id="view-settings" class="tab-view">
+            <!-- Storage Settings -->
+            <div class="settings-section">
+                <h3>
+                    <span class="material-symbols-outlined">folder_special</span>
+                    Folder & Storage
+                </h3>
+                <div class="settings-row">
+                    <span class="label">Addon Folder:</span>
+                    <span class="value" style="font-size:0.8rem; word-break:break-all;">/Download/PlayerHead</span>
+                </div>
+                <div class="settings-row">
+                    <span class="label">Storage Permission:</span>
+                    <span id="stat-permission-status" class="value">Checking...</span>
+                </div>
+                <button id="settings-req-perm-btn" class="button secondary" style="width:100%; margin-top:10px; font-size:13px;">
+                    Check / Request Storage Permission
+                </button>
+            </div>
+
+            <!-- Pack Stats -->
+            <div class="settings-section">
+                <h3>
+                    <span class="material-symbols-outlined">analytics</span>
+                    Pack Statistics
+                </h3>
+                <div class="settings-row">
+                    <span class="label">Total Saved Packs:</span>
+                    <span id="stat-total-packs" class="value">0</span>
+                </div>
+                <div class="settings-row">
+                    <span class="label">Total Player Heads:</span>
+                    <span id="stat-total-heads" class="value">0</span>
+                </div>
+                <div class="settings-row">
+                    <span class="label">Storage Used:</span>
+                    <span id="stat-storage-usage" class="value">0 KB / 5 MB</span>
+                </div>
+            </div>
+
+            <!-- Backup & Reset -->
+            <div class="settings-section">
+                <h3>
+                    <span class="material-symbols-outlined">backup</span>
+                    Backup & Reset
+                </h3>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <button id="export-backup-btn" class="button secondary" style="width:100%;">
+                        <span class="material-symbols-outlined">save_alt</span>
+                        Export All Packs Backup (.json)
+                    </button>
+                    <button id="clear-all-data-btn" class="button destructive" style="width:100%;">
+                        <span class="material-symbols-outlined">delete_forever</span>
+                        Clear All Saved Packs
+                    </button>
+                </div>
+            </div>
+
+            <!-- How to use Guide (Burmese & English) -->
+            <div class="settings-section">
+                <h3>
+                    <span class="material-symbols-outlined">help</span>
+                    How to Use / အသုံးပြုပုံ
+                </h3>
+                <div class="guide-step">
+                    <strong>၁။ Pack အသစ် ဖန်တီးပါ:</strong><br>
+                    Create Pack tab တွင် "Create New Pack" ကိုနှိပ်ပြီး နာမည်ပေးပါ။
+                </div>
+                <div class="guide-step">
+                    <strong>၂။ Skin (.png) မှ Head ထည့်ပါ:</strong><br>
+                    "Add Head" နှိပ်ပြီး မိမိ Minecraft Skin ပုံကို ရွေးချယ်ကာ 3D Head ကို preview ကြည့်ပါ။
+                </div>
+                <div class="guide-step">
+                    <strong>၃။ Generate Add-on နှိပ်ပါ:</strong><br>
+                    ခေါင်းများထည့်ပြီးလျှင် "Generate Add-on" ကိုနှိပ်ပါ။ Add-on (.mcaddon) ဖိုင်သည် <code>/storage/emulated/0/Download/PlayerHead</code> ထဲသို့ အလိုအလျောက် ရောက်ရှိသွားပါမည်။
+                </div>
+                <div class="guide-step">
+                    <strong>၄။ Pack ကို သိမ်းထားချင်ရင် Save Pack နှိပ်ပါ:</strong><br>
+                    Pack အသစ်ဖန်တီးတာ၊ Generate Add-on နှိပ်တာတွေက Load Pack ထဲကို အလိုအလျောက် မသိမ်းပါ။ "Save Pack" ကိုနှိပ်မှသာ Load Pack ထဲရောက်ပြီး နောက်မှ ပြန်ဖွင့်လို့ရပါမယ်။
+                </div>
+                <div class="guide-step">
+                    <strong>၅။ Downloads tab မှ Minecraft သို့ Import လုပ်ပါ:</strong><br>
+                    Downloads tab သို့သွားပြီး "Open" ကိုနှိပ်လိုက်သည်နှင့် Minecraft Bedrock ထဲသို့ တိုက်ရိုက် Import ဖြစ်သွားပါမည်။
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="settings-section">
+                <h3>
+                    <span class="material-symbols-outlined">info</span>
+                    About & Offline Status
+                </h3>
+                <div class="settings-row">
+                    <span class="label">Offline Mode:</span>
+                    <span class="value">100% Offline Ready</span>
+                </div>
+                <div class="settings-row">
+                    <span class="label">Minecraft Version:</span>
+                    <span class="value">Bedrock 1.16 - 1.21+</span>
+                </div>
+                <div class="settings-row">
+                    <span class="label">App Version:</span>
+                    <span class="value">1.0.0</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- BOTTOM NAVIGATION BAR -->
+        <nav class="bottom-nav">
+            <div class="nav-item active" data-tab="tab-create">
+                <span class="material-symbols-outlined">add_box</span>
+                <span class="nav-label">Create Pack</span>
+            </div>
+            <div class="nav-item" data-tab="tab-load">
+                <span class="material-symbols-outlined">folder_open</span>
+                <span class="nav-label">Load Pack</span>
+            </div>
+            <div class="nav-item" data-tab="tab-downloads">
+                <span class="material-symbols-outlined">download</span>
+                <span class="nav-label">Downloads</span>
+            </div>
+            <div class="nav-item" data-tab="tab-settings">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="nav-label">Settings</span>
+            </div>
+        </nav>
+    </div>
+
+    <!-- MODALS -->
+
+    <!-- Create Pack Modal -->
+    <div id="create-pack-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Pack</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="create-pack-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="pack-name">Pack Name:</label>
+                        <input type="text" id="pack-name" name="pack-name" maxlength="32"
+                            placeholder="Enter pack name..." required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="button secondary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Head Modal -->
+    <div id="add-head-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Player Head</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="add-head-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="head-name">Head Name:</label>
+                        <input type="text" id="head-name" name="head-name" maxlength="16"
+                            placeholder="Enter head name..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="skin-file" class="file-input-label">
+                            Skin File:
+                            <input type="file" id="skin-file" name="skin-file" accept="image/png,.png" style="display: none;">
+                            <button type="button" class="button secondary file-select-btn">
+                                <span class="material-symbols-outlined">upload_file</span>
+                                Choose Skin File (.png)
+                            </button>
+                        </label>
+                    </div>
+                    <div class="preview-container">
+                        <div class="skin-preview">
+                            <h3>Skin Texture</h3>
+                            <canvas id="skin-preview-canvas" width="64" height="64"></canvas>
+                        </div>
+                        <div class="head-preview">
+                            <h3>3D Head Preview</h3>
+                            <div class="head" style="width: 170px; height: 170px; position: relative;">
+                                <div class="faces" id="head-preview-faces">
+                                    <div class="inner back"></div>
+                                    <div class="inner right"></div>
+                                    <div class="inner top"></div>
+                                    <div class="inner bottom"></div>
+                                    <div class="inner front"></div>
+                                    <div class="inner left"></div>
+                                    <div class="outer back"></div>
+                                    <div class="outer right"></div>
+                                    <div class="outer top"></div>
+                                    <div class="outer bottom"></div>
+                                    <div class="outer front"></div>
+                                    <div class="outer left"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="button secondary">Add Head</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Head Modal -->
+    <div id="edit-head-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Player Head</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="edit-head-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-head-name" name="edit-head-name">
+                    <div class="form-group">
+                        <label for="edit-skin-file" class="file-input-label">
+                            New Skin File:
+                            <input type="file" id="edit-skin-file" name="edit-skin-file" accept="image/png,.png"
+                                style="display: none;">
+                            <button type="button" class="button secondary file-select-btn">
+                                <span class="material-symbols-outlined">upload_file</span>
+                                Choose Skin File (.png)
+                            </button>
+                        </label>
+                    </div>
+                    <div class="preview-container">
+                        <div class="current-head">
+                            <h3>Current Head</h3>
+                            <div class="head" style="width: 170px; height: 170px; position: relative;">
+                                <div class="faces" id="current-head-faces">
+                                    <div class="inner back width-ratio-0-25"></div>
+                                    <div class="inner right width-ratio-0-25"></div>
+                                    <div class="inner top width-ratio-0-25"></div>
+                                    <div class="inner bottom width-ratio-0-25"></div>
+                                    <div class="inner front width-ratio-0-25"></div>
+                                    <div class="inner left width-ratio-0-25"></div>
+                                    <div class="outer back width-ratio-0-25"></div>
+                                    <div class="outer right width-ratio-0-25"></div>
+                                    <div class="outer top width-ratio-0-25"></div>
+                                    <div class="outer bottom width-ratio-0-25"></div>
+                                    <div class="outer front width-ratio-0-25"></div>
+                                    <div class="outer left width-ratio-0-25"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="new-head">
+                            <h3>New Head</h3>
+                            <div class="head" style="width: 170px; height: 170px; position: relative;">
+                                <div class="faces" id="new-head-faces">
+                                    <div class="inner back"></div>
+                                    <div class="inner right"></div>
+                                    <div class="inner top"></div>
+                                    <div class="inner bottom"></div>
+                                    <div class="inner front"></div>
+                                    <div class="inner left"></div>
+                                    <div class="outer back"></div>
+                                    <div class="outer right"></div>
+                                    <div class="outer top"></div>
+                                    <div class="outer bottom"></div>
+                                    <div class="outer front"></div>
+                                    <div class="outer left"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="edit-buttons" style="padding: 10px 15px;">
+                    <button type="submit" class="button secondary">Update</button>
+                    <button type="button" id="delete-head-btn" class="button danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="confirm-title">Confirm Action</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-message">Are you sure?</p>
+                <div class="confirm-buttons">
+                    <button id="confirm-cancel" class="button secondary">Cancel</button>
+                    <button id="confirm-alt" class="button primary hidden">Save Pack</button>
+                    <button id="confirm-ok" class="button danger">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generate Add-on Modal -->
+    <div id="generate-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Generate Minecraft Add-on</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="generate-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="addon-name">Add-on Name:</label>
+                        <input type="text" id="addon-name" name="addon-name" maxlength="32" required>
+                    </div>
+                    <div class="pack-preview" style="text-align: center; margin: 15px 0;">
+                        <h3>Pack Icon</h3>
+                        <canvas id="pack-icon-preview" width="128" height="128" style="margin: 8px auto; display:block;"></canvas>
+                        <p id="preview-head-count">Heads: 0</p>
+                    </div>
+                    <div style="background-color: #1e1e1f; padding: 8px 12px; border: 2px solid #1a1a1b; margin-top: 10px; font-size: 0.85rem; color: #55ff55;">
+                        📁 Save location:<br>
+                        <strong>/storage/emulated/0/Download/PlayerHead</strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="button primary" style="width:100%;">Generate Add-on</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts (All 100% Offline Local) -->
+    <script src="js/jszip.min.js"></script>
+    <script src="js/pack-icons.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
