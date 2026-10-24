@@ -145,3 +145,38 @@ dependencies {
   "ksp"(libs.androidx.room.compiler)
   "ksp"(libs.moshi.kotlin.codegen)
 }
+
+// Generate debug keystore if missing
+tasks.register("generateDebugKeystore") {
+    group = "build"
+    description = "Generates a debug keystore if it doesn't exist"
+    doLast {
+        val keystoreFile = file("${rootDir}/debug.keystore")
+        if (!keystoreFile.exists()) {
+            val keytool = file(System.getProperty("java.home") + "/bin/keytool")
+            if (keytool.exists()) {
+                exec {
+                    executable = keytool.absolutePath
+                    args(
+                        "-genkeypair",
+                        "-alias", "androiddebugkey",
+                        "-keyalg", "RSA",
+                        "-keysize", "2048",
+                        "-validity", "10000",
+                        "-dname", "CN=Android Debug,O=Android,C=US",
+                        "-keypass", "android",
+                        "-keystore", keystoreFile.absolutePath,
+                        "-storepass", "android",
+                        "-noprompt"
+                    )
+                }
+            } else {
+                throw Exception("keytool not found at $keytool")
+            }
+        }
+    }
+}
+
+tasks.named("validateSigningDebug") {
+    dependsOn("generateDebugKeystore")
+}
