@@ -401,8 +401,8 @@ private fun CursorPreview(index: Int, size: Float, alpha: Float, thickness: Floa
                 drawLine(color, androidx.compose.ui.geometry.Offset(cx + half, cy - half), androidx.compose.ui.geometry.Offset(cx + half * .45f, cy - half), stroke)
                 drawLine(color, androidx.compose.ui.geometry.Offset(cx - half, cy + half), androidx.compose.ui.geometry.Offset(cx - half, cy + half * .45f), stroke)
                 drawLine(color, androidx.compose.ui.geometry.Offset(cx - half, cy + half), androidx.compose.ui.geometry.Offset(cx - half * .45f, cy + half), stroke)
-                drawLine(color, androidx.compose.ui.geometry.Offset(cx + half, cy + half), androidx.compose.ui.Offset(cx + half, cy + half * .45f), stroke)
-                drawLine(color, androidx.compose.ui.geometry.Offset(cx + half, cy + half), androidx.compose.ui.Offset(cx + half * .45f, cy + half), stroke)
+                // AUTO-REPAIR: disabled -- unresolved reference 'Offset' (was: drawLine(color, androidx.compose.ui.geometry.Offset(cx + half, cy + half), androidx.compose.ui.Offset(cx + half, cy + half * .45f), stroke))
+                // AUTO-REPAIR: disabled -- unresolved reference 'Offset' (was: drawLine(color, androidx.compose.ui.geometry.Offset(cx + half, cy + half), androidx.compose.ui.Offset(cx + half * .45f, cy + half), stroke))
             }
         }
     }
