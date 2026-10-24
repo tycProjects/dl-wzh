@@ -155,7 +155,7 @@ tasks.register("generateDebugKeystore") {
         if (!keystoreFile.exists()) {
             val keytool = file(System.getProperty("java.home") + "/bin/keytool")
             if (keytool.exists()) {
-                exec {
+                project.exec {
                     executable = keytool.absolutePath
                     args(
                         "-genkeypair",
