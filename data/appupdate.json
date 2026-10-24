@@ -1,13 +1,14 @@
 {
-  "latestVersionCode": 1792447881,
-  "latestVersionName": "11.0",
-  "apkUrl": "https://www.mediafire.com/file/m454h96z9kfrizy/WZH+2+APK+(NEW)%F0%9F%AB%A1.apk/file",
+  "latestVersionCode": 1792447882,
+  "latestVersionName": "12.0",
+  "apkUrl": "https://wzhdownload.web.app/?d=a308snv8wu",
   "title": "New version available",
   "notes": [
     "🌱ADDED",
-    "live preview in the code editor🙂‍↕️"
+    "•ApkShare link",
+    "bug fixed"
   ],
   "updateButtonText": "Download update",
   "laterButtonText": "Later",
-  "updatedAt": 1792736041248
+  "updatedAt": 1792815339418
 }
