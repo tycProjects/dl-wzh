@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>FF Proxy</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="bg"></div>
+<div class="credit">by Trần phi thiên</div>
+
+<section id="screenStart" class="screen active">
+  <div class="hero">
+    <div class="logo">⚡</div>
+    <h1>FF PROXY</h1>
+    <p class="tag">Auto scan · Auto replace · Root</p>
+  </div>
+  <div class="status-box">
+    <div class="s-row" id="sRoot">● Root</div>
+    <div class="s-row" id="sOverlay">● Overlay</div>
+    <div class="s-row" id="sStorage">● Storage</div>
+  </div>
+  <button class="btn btn-main" id="btnStart" onclick="App.start()">START</button>
+  <p class="hint">Bật tính năng → tự dò path game → backup → thay file ngay</p>
+</section>
+
+<section id="screenMenu" class="screen">
+  <header class="top">
+    <h2>FF MENU</h2>
+    <span class="badge">AUTO REPLACE</span>
+  </header>
+
+  <div class="card">
+    <div class="card-title">Combat (bật = tự thay file)</div>
+    <div class="row"><span>ESP</span><div class="tog" data-key="esp" onclick="App.toggle(this)"></div></div>
+    <div class="row"><span>Aim Head / Cổ</span><div class="tog" data-key="aimHead" onclick="App.toggle(this)"></div></div>
+    <div class="row"><span>Aim Neck (ghim cổ)</span><div class="tog" data-key="aimNeck" onclick="App.toggle(this)"></div></div>
+    <div class="row"><span>Magic Bullet</span><div class="tog" data-key="magicBullet" onclick="App.toggle(this)"></div></div>
+    <div class="row"><span>Aim Drag</span><div class="tog" data-key="aimDrag" onclick="App.toggle(this)"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">System</div>
+    <div class="row"><span>High FPS</span><div class="tog" data-key="highFps" onclick="App.toggle(this)"></div></div>
+    <div class="row"><span>Antiban mitigation</span><div class="tog" data-key="antiban" onclick="App.toggle(this)"></div></div>
+  </div>
+
+  <button class="btn btn-main" onclick="App.scan()">SCAN GAME PATH</button>
+  <button class="btn btn-main" onclick="App.apply()">ÁP DỤNG TẤT CẢ</button>
+  <button class="btn btn-ghost" onclick="App.reset()">RESET + RESTORE</button>
+  <button class="btn btn-ghost" onclick="App.stop()">TẮT PROXY</button>
+
+  <pre class="log" id="msg">Bật từng tính năng → tự mò & thay file ngay</pre>
+  <p class="note">
+    Đặt file mod vào:<br>
+    <code>/sdcard/FFProxy/mods/esp/libil2cpp.so</code><br>
+    <code>/sdcard/FFProxy/mods/common/libil2cpp.so</code><br>
+    Không có file mod → fallback Frida script.<br>
+    Thay lib sai version = crash / ban.
+  </p>
+</section>
+
+<script src="js/bridge.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
