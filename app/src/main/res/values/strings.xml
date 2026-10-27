@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PorStore</string>
+    <string name="tab_apps">Aplikasi</string>
+    <string name="tab_account">Akun</string>
+    <string name="search_apps">Cari aplikasi</string>
+    <string name="install">Install</string>
+    <string name="open">Buka</string>
+    <string name="submit_app">Buat Aplikasi</string>
+</resources>
