@@ -52,7 +52,7 @@ class MainActivity : Activity() {
             setPadding(0, 18, 0, 20)
         }
         pinInput = EditText(this).apply {
-            hint = "Mã PIN"
+            setHint("Mã PIN")
             inputType = 2
             textSize = 22f
             gravity = Gravity.CENTER
