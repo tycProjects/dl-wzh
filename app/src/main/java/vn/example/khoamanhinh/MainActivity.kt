@@ -52,14 +52,16 @@ class MainActivity : Activity() {
                     android.text.InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             setSingleLine(true)
         }
-        var unlock: TextView = TextView(this)
-        unlock.setOnClickListener {
-            if (pin.text.toString() == configuredPin) {
-                Toast.makeText(this, "Đã mở khóa ứng dụng", Toast.LENGTH_SHORT).show()
-                finish()
-            } else {
-                pin.text.clear()
-                pin.error = "Mã PIN không đúng"
+        val unlock = Button(this).apply {
+            text = "Mở khóa"
+            setOnClickListener {
+                if (pin.text.toString() == configuredPin) {
+                    Toast.makeText(this@MainActivity, "Đã mở khóa ứng dụng", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    pin.text.clear()
+                    pin.error = "Mã PIN không đúng"
+                }
             }
         }
 
