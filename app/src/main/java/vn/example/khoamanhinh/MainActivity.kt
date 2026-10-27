@@ -39,7 +39,7 @@ class MainActivity : Activity() {
             setTextColor(0xFFFFFFFF.toInt())
             gravity = Gravity.CENTER
         }
-        val hint = TextView(this).apply {
+        val hintTextView = TextView(this).apply {
             text = "Nhập mã PIN để tiếp tục"
             textSize = 16f
             setTextColor(0xFFD1D5DB.toInt())
@@ -66,7 +66,7 @@ class MainActivity : Activity() {
         }
 
         root.addView(title)
-        root.addView(hint)
+        root.addView(hintTextView)
         root.addView(pin, LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
