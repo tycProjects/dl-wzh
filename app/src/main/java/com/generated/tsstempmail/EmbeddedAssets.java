@@ -1,0 +1,43 @@
+package com.generated.tsstempmail;
+
+import java.util.HashMap;
+import java.util.Map;
+
+// Generated at build time from the wrapped site's HTML/CSS/JS. Each
+// file's bytes are stored base64-encoded as a compiled string constant
+// (part of classes.dex), not as a loose file under assets/.
+// MainActivity's shouldInterceptRequest override (see EMBED_HOST) decodes
+// these on demand to feed the WebView, in place of the OS resolving
+// file:///android_asset/ requests against a real assets/ folder.
+// Additionally AES-encrypted -- see AssetCrypto -- so the decoded bytes
+// aren't the real file content until AssetCrypto.decrypt() runs on them.
+public final class EmbeddedAssets {
+    // Joins base64 chunks at class-init time. Deliberately NOT string
+    // concatenation on the call site (see the comment above each F<n>
+    // field) -- a method call is not a compile-time constant expression,
+    // so javac can't fold these chunks back into one oversized constant.
+    private static String join(String... parts) {
+        StringBuilder sb = new StringBuilder();
+        for (String p : parts) sb.append(p);
+        return sb.toString();
+    }
+
+    private static final String F0 = join(
+            "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");
+
+    private static final Map<String, String> MAP = new HashMap<>();
+    static {
+        MAP.put("index.html", F0);
+    }
+
+    // rel: path as it would have appeared under assets/, e.g. "index.html"
+    // or "css/style.css". Returns null if nothing was embedded at that path.
+    public static byte[] get(String rel) {
+        String b64 = MAP.get(rel);
+        if (b64 == null) return null;
+        byte[] raw = android.util.Base64.decode(b64, android.util.Base64.DEFAULT);
+        return AssetCrypto.decrypt(raw);
+    }
+
+    private EmbeddedAssets() {}
+}
