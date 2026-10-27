@@ -1,0 +1,10 @@
+build/
+.dart_tool/
+.packages
+.pub-cache/
+**/local.properties
+**/.gradle/
+**/build/
+**/vendor/pr/
+__pycache__/
+*.pyc
