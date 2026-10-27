@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="Theme.YeuEmMoiVuTru" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brand_violet</item>
+        <item name="colorPrimaryVariant">@color/brand_violet_deep</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">@color/brand_pink</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorAccent">@color/brand_cyan</item>
+        <item name="android:colorBackground">@color/bg_base</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/nav_bg</item>
+        <item name="android:windowBackground">@color/bg_base</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="colorControlNormal">@color/text_muted</item>
+        <item name="colorControlActivated">@color/brand_violet</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+</resources>

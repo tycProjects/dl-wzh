@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    
+    <color name="brand_violet">#8B5CF6</color>
+    <color name="brand_violet_deep">#6D28D9</color>
+    <color name="brand_pink">#EC4899</color>
+    <color name="brand_pink_deep">#BE185D</color>
+    <color name="brand_cyan">#06B6D4</color>
+    <color name="brand_cyan_deep">#0891B2</color>
+    <color name="brand_emerald">#10B981</color>
+    <color name="brand_amber">#F59E0B</color>
+
+    
+    <color name="success">#10B981</color>
+    <color name="success_deep">#047857</color>
+    <color name="warning">#F59E0B</color>
+    <color name="danger">#F43F5E</color>
+    <color name="danger_deep">#BE123C</color>
+
+    
+    <color name="bg_base">#0B1020</color>
+    <color name="bg_base_deep">#070A14</color>
+
+    
+    <color name="aurora_bloom_a">#4C1D95</color>
+    <color name="aurora_bloom_b">#831843</color>
+    <color name="aurora_bloom_c">#0E3A5C</color>
+    <color name="aurora_bloom_end">#00070A14</color>
+    <color name="aurora_vignette_end">#80070A14</color>
+
+    <color name="glass_card">#1A1F37</color>
+    <color name="glass_card_alt">#151A2E</color>
+    <color name="glass_card_border">#2D3454</color>
+    <color name="glass_card_border_hi">#3F4A78</color>
+    <color name="glass_input">#0F1426</color>
+    <color name="glass_input_border">#2A3155</color>
+
+    
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#CBD5E1</color>
+    <color name="text_muted">#8B93B0</color>
+    <color name="text_dim">#5B6480</color>
+
+    
+    <color name="nav_bg">#0F1426</color>
+    <color name="nav_active">#A78BFA</color>
+    <color name="nav_inactive">#5B6480</color>
+    <color name="nav_active_pill">#338B5CF6</color>
+
+    
+    <color name="status_ok_bg_start">#064E3B</color>
+    <color name="status_ok_bg_end">#065F46</color>
+    <color name="status_warn_bg_start">#3F2A0A</color>
+    <color name="status_warn_bg_end">#3D1F08</color>
+
+    
+    <color name="hint_cyan_bg_start">#0B2F44</color>
+    <color name="hint_cyan_bg_end">#0A2438</color>
+    <color name="hint_cyan_border">#0E4D6E</color>
+
+    
+    <color name="recent_card_border">@color/glass_card_border</color>
+    <color name="recent_card_active">#A78BFA</color>
+    <color name="search_highlight">#7C3AED</color>
+    <color name="search_highlight_text">#FFFFFF</color>
+
+    
+    <color name="ring_violet">#8B5CF6</color>
+    <color name="ring_pink">#EC4899</color>
+    <color name="ring_cyan">#06B6D4</color>
+    <color name="ring_emerald">#10B981</color>
+    <color name="ring_amber">#F59E0B</color>
+
+    
+    <color name="teal">#8B5CF6</color>
+    <color name="teal_dark">#6D28D9</color>
+    <color name="teal_light">#A78BFA</color>
+    <color name="purple">#8B5CF6</color>
+    <color name="black">#0B1020</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#475569</color>
+    <color name="gray_light">#94A3B8</color>
+    <color name="card_bg">#1A1F37</color>
+    <color name="input_bg">#0F1426</color>
+    <color name="green">#10B981</color>
+    <color name="red">#F43F5E</color>
+    <color name="success_green">#10B981</color>
+    <color name="error_red">#F43F5E</color>
+</resources>

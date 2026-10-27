@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">14dp</dimen>
+    <dimen name="space_lg">20dp</dimen>
+    <dimen name="space_xl">28dp</dimen>
+
+    <dimen name="card_radius">22dp</dimen>
+    <dimen name="card_radius_sm">16dp</dimen>
+    <dimen name="card_radius_pill">999dp</dimen>
+
+    <dimen name="card_padding">18dp</dimen>
+    <dimen name="card_padding_lg">22dp</dimen>
+
+    <dimen name="button_height">52dp</dimen>
+    <dimen name="button_action_height">60dp</dimen>
+
+    <dimen name="input_height">50dp</dimen>
+    <dimen name="input_radius">14dp</dimen>
+
+    
+    <dimen name="avatar_size">96dp</dimen>
+    <dimen name="avatar_ring_size">120dp</dimen>
+    <dimen name="avatar_glow_size">200dp</dimen>
+
+    
+    <dimen name="bottom_nav_height">72dp</dimen>
+</resources>

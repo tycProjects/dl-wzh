@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YEU EM MOI VU TRU</string>
+    <string name="accessibility_service_description">YEU EM MOI VU TRU cần quyền Trợ năng để tự động gõ và gửi tin nhắn. Chỉ dùng cho mục đích giải trí.</string>
+
+    
+    <string name="nav_home">Home</string>
+    <string name="nav_files">Files</string>
+    <string name="nav_config">Config</string>
+
+    
+    <string name="hero_title">YEU EM MOI VU TRU</string>
+    <string name="hero_subtitle">Auto Typer • Chỉ dùng cho mục đích giải trí</string>
+
+    <string name="admin_name">Ryan</string>
+    <string name="admin_role">Author · Auto Typer</string>
+    <string name="admin_bio">"Mỗi tin nhắn là một lời yêu thương — gõ tự động cho những trái tim đang yêu."</string>
+
+    <string name="section_accessibility">Quyền Trợ năng</string>
+    <string name="accessibility_warn">Chưa bật Trợ năng</string>
+    <string name="accessibility_ok">Đã bật Trợ năng</string>
+    <string name="accessibility_action">Bật quyền Trợ năng</string>
+    <string name="hint_volume_title">Phím tắt Volume · Loop tự động</string>
+    <string name="hint_volume_main">▲ Tiếp tục  •  ▼ Tạm dừng</string>
+    <string name="hint_volume_sub">■ STOP = Tắt · 🔄 Tự loop khi hết</string>
+
+    
+    <string name="section_files">Quản lý file văn bản</string>
+    <string name="file_choose">Chọn file .txt</string>
+    <string name="file_new">Tạo file mới</string>
+    <string name="file_none">Chưa chọn file</string>
+    <string name="file_save">Lưu thay đổi</string>
+    <string name="file_reset">Hoàn tác</string>
+    <string name="file_empty_hint">Chọn file .txt hoặc tạo file mới để bắt đầu chỉnh sửa…</string>
+    <string name="file_stats_lines">dòng</string>
+    <string name="file_stats_chars">ký tự</string>
+    <string name="file_stats_words">từ</string>
+    <string name="file_editor_label">Nội dung (chỉnh sửa real-time)</string>
+
+    
+    <string name="section_config">Cài đặt</string>
+    <string name="setting_rows">Số dòng mỗi lần gửi</string>
+    <string name="setting_mode">Cách gõ</string>
+    <string name="setting_delay">Delay giữa các tin</string>
+    <string name="setting_suffix">Réo tên ở cuối dòng (tùy chọn)</string>
+    <string name="mode_type_char">Gõ từng chữ</string>
+    <string name="mode_paste_line">Dán từng dòng</string>
+    <string name="config_apply">Áp dụng cài đặt</string>
+
+    
+    <string name="footer_credit">Made with ❤ by Ryan · v3.4</string>
+    <string name="footer_disclaimer">Chỉ dùng cho mục đích giải trí</string>
+
+    
+    <string name="action_start">START</string>
+    <string name="action_stop">STOP</string>
+</resources>

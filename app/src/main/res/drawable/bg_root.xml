@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="@color/bg_base_deep"
+                android:centerColor="@color/bg_base"
+                android:endColor="@color/bg_base" />
+        </shape>
+    </item>
+
+    <item android:gravity="top|start" android:width="420dp" android:height="420dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="420"
+                android:startColor="@color/aurora_bloom_a"
+                android:endColor="@color/aurora_bloom_end" />
+        </shape>
+    </item>
+
+    <item android:gravity="top|end" android:width="380dp" android:height="380dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="380"
+                android:startColor="@color/aurora_bloom_b"
+                android:endColor="@color/aurora_bloom_end" />
+        </shape>
+    </item>
+
+    <item android:gravity="bottom|start" android:width="460dp" android:height="460dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="460"
+                android:startColor="@color/aurora_bloom_c"
+                android:endColor="@color/aurora_bloom_end" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="90"
+                android:startColor="#00000000"
+                android:centerColor="#00000000"
+                android:endColor="@color/aurora_vignette_end" />
+        </shape>
+    </item>
+
+</layer-list>

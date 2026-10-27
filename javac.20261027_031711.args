@@ -1,0 +1,13 @@
+-d
+/tmp/out
+-cp
+/home/z/android-sdk/platforms/android-34/android.jar
+-sourcepath
+/dev/null
+-source
+1.8
+-target
+1.8
+-Xlint:none
+-proc:none
+app/src/main/java/com/ryan/autotyper/AppState.java

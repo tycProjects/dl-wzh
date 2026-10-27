@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingTop="14dp"
+    android:paddingBottom="14dp"
+    android:paddingStart="14dp"
+    android:paddingEnd="10dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="0dp"
+    android:background="@drawable/bg_recent_card_v2"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    
+    <FrameLayout
+        android:id="@+id/fileBadgeBg"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_file_type_badge"
+        android:backgroundTint="#1A8B5CF6">
+
+        <ImageView
+            android:id="@+id/fileBadgeIcon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_doc_text"
+            app:tint="#FFFFFF"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:id="@+id/fileBadgeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="2dp"
+            android:text="TXT"
+            android:textColor="#FFFFFF"
+            android:textSize="7sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/recentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="middle"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:layout_marginEnd="3dp"
+                android:src="@drawable/ic_clock"
+                app:tint="@color/text_muted"
+                android:importantForAccessibility="no" />
+
+            <TextView
+                android:id="@+id/recentMeta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_muted"
+                android:textSize="10.5sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/recentSizeChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_type_chip"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="—"
+                android:textColor="#A78BFA"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.04"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/recentTypeChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/bg_type_chip"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="TXT"
+                android:textColor="#67E8F9"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.04" />
+        </LinearLayout>
+    </LinearLayout>
+
+    
+    <View
+        android:id="@+id/recentActiveDot"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/bg_status_ok"
+        android:backgroundTint="@color/recent_card_active"
+        android:visibility="gone" />
+
+    
+    <ImageButton
+        android:id="@+id/btnEdit"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/bg_action_btn_outlined_v2"
+        android:src="@drawable/ic_edit"
+        android:scaleType="center"
+        android:contentDescription="Chỉnh sửa"
+        app:tint="@color/brand_violet" />
+
+    
+    <ImageButton
+        android:id="@+id/btnMore"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="6dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_more_vert"
+        android:scaleType="center"
+        android:contentDescription="Thêm tuỳ chọn"
+        app:tint="@color/text_muted" />
+
+</LinearLayout>
