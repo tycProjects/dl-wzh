@@ -52,7 +52,7 @@ class MainActivity : Activity() {
                     android.text.InputType.TYPE_NUMBER_VARIATION_PASSWORD)
             setSingleLine(true)
         }
-        val unlock = Button(this).apply { text = "MỞ KHÓA" }
+        var unlock: TextView = TextView(this)
         unlock.setOnClickListener {
             if (pin.text.toString() == configuredPin) {
                 Toast.makeText(this, "Đã mở khóa ứng dụng", Toast.LENGTH_SHORT).show()
