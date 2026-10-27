@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
+    android:padding="14dp" android:background="@drawable/bg_screen">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="60dp" android:gravity="center_vertical" android:orientation="horizontal">
+        <TextView android:id="@+id/chatBack" android:layout_width="44dp" android:layout_height="48dp" android:gravity="center"
+            android:text="‹" android:textColor="#FFFFFF" android:textSize="32sp"/>
+        <TextView android:id="@+id/chatHeader" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="المحادثة" android:textColor="#FFFFFF" android:textSize="20sp" android:textStyle="bold"/>
+    </LinearLayout>
+    <ScrollView android:id="@+id/messagesScroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <LinearLayout android:id="@+id/messages" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingTop="8dp" android:paddingBottom="8dp"/>
+    </ScrollView>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center_vertical" android:orientation="horizontal"
+        android:background="@drawable/bg_glass" android:paddingStart="8dp" android:paddingEnd="8dp">
+        <EditText android:id="@+id/messageInput" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+            android:hint="اكتب رسالة" android:textColor="#FFFFFF" android:textColorHint="#AEB4D8"
+            android:background="@android:color/transparent" android:paddingStart="10dp" android:paddingEnd="10dp"/>
+        <TextView android:id="@+id/sendButton" android:layout_width="46dp" android:layout_height="46dp" android:gravity="center"
+            android:text="➤" android:textColor="#FFFFFF" android:textSize="20sp" android:background="@drawable/bg_accent"/>
+    </LinearLayout>
+</LinearLayout>
