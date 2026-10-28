@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="assistant" android:enabled="true" android:shortcutShortLabel="@string/sc_assistant" android:shortcutLongLabel="@string/sc_assistant_long">
+        <intent android:action="android.intent.action.VIEW" android:targetPackage="com.schedule.app" android:targetClass="com.schedule.app.MainActivity">
+            <extra android:name="go" android:value="assistant"/>
+        </intent>
+    </shortcut>
+    <shortcut android:shortcutId="tasks" android:enabled="true" android:shortcutShortLabel="@string/sc_tasks" android:shortcutLongLabel="@string/sc_tasks">
+        <intent android:action="android.intent.action.VIEW" android:targetPackage="com.schedule.app" android:targetClass="com.schedule.app.MainActivity">
+            <extra android:name="go" android:value="tasks"/>
+        </intent>
+    </shortcut>
+    <shortcut android:shortcutId="study" android:enabled="true" android:shortcutShortLabel="@string/sc_study" android:shortcutLongLabel="@string/sc_study_long">
+        <intent android:action="android.intent.action.VIEW" android:targetPackage="com.schedule.app" android:targetClass="com.schedule.app.MainActivity">
+            <extra android:name="go" android:value="study"/>
+        </intent>
+    </shortcut>
+    <shortcut android:shortcutId="calendar" android:enabled="true" android:shortcutShortLabel="@string/sc_calendar" android:shortcutLongLabel="@string/sc_calendar">
+        <intent android:action="android.intent.action.VIEW" android:targetPackage="com.schedule.app" android:targetClass="com.schedule.app.MainActivity">
+            <extra android:name="go" android:value="calendar"/>
+        </intent>
+    </shortcut>
+</shortcuts>

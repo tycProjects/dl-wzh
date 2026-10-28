@@ -87,6 +87,75 @@ jobs:
           path: ~/.android/debug.keystore
           key: debug-keystore-v1
 
+      # Using the signing key YOU supplied (uploaded as a .pk8 + certificate)
+      # instead of one this tool generated -- decoded straight from a
+      # per-job encrypted secret (see putActionsSecret in server.js) that
+      # only exists for the lifetime of this run, never written to the repo
+      # or cached. Emitted as a JDK17+ default-type keystore (PKCS12) the
+      # same as the auto-generated path below, so nothing downstream needs
+      # to know which path produced it.
+      - name: Decode your uploaded signing key
+        env:
+          SIGNING_KEY_B64: ${{ secrets.KS_MVRUBVZHFEDD77C5 }}
+          SIGNING_CERT_B64: ${{ secrets.KSCERT_MVRUBVZHFEDD77C5 }}
+        run: |
+          mkdir -p ~/.android/release-keystore
+          echo "$SIGNING_KEY_B64" | base64 -d > /tmp/signing-key.pk8
+          echo "$SIGNING_CERT_B64" | base64 -d > /tmp/signing-cert.pem
+          # Your .pk8 is usually raw DER; PEM, PKCS#1 and base64-text keys are accepted too.
+          convert_key() {
+            openssl pkcs8 -inform DER -in "$1" -nocrypt -out "$2" 2>/dev/null && return 0
+            openssl pkey -inform DER -in "$1" -out "$2" 2>/dev/null && return 0
+            openssl rsa -inform DER -in "$1" -out "$2" 2>/dev/null && return 0
+            openssl pkcs8 -inform PEM -in "$1" -nocrypt -out "$2" 2>/dev/null && return 0
+            openssl pkey -in "$1" -out "$2" 2>/dev/null && return 0
+            return 1
+          }
+          if ! convert_key /tmp/signing-key.pk8 /tmp/signing-key.pem; then
+            # Some tools hand over the key as base64 text instead of raw bytes.
+            if tr -d ' \r\n\t' < /tmp/signing-key.pk8 | base64 -d > /tmp/signing-key.dec 2>/dev/null && convert_key /tmp/signing-key.dec /tmp/signing-key.pem; then
+              :
+            else
+              echo "Could not read your signing key."
+              if grep -aq "ENCRYPTED" /tmp/signing-key.pk8; then
+                echo "The key is password-protected. Upload an unencrypted .pk8 (or PEM) private key."
+              else
+                echo "Key file size: $(wc -c < /tmp/signing-key.pk8) bytes. It must be an unencrypted RSA/EC private key (.pk8 DER, or PEM)."
+              fi
+              exit 1
+            fi
+          fi
+          # Same idea for the cert, in case it was uploaded as DER (.cer)
+          # rather than PEM (.pem/.x509.pem/.crt).
+          openssl x509 -in /tmp/signing-cert.pem -out /tmp/signing-cert-clean.pem 2>/dev/null \
+            || openssl x509 -inform DER -in /tmp/signing-cert.pem -out /tmp/signing-cert-clean.pem
+          PASS=$(openssl rand -hex 20)
+          echo -n "$PASS" > ~/.android/release-keystore/release.pass
+          openssl pkcs12 -export \
+            -inkey /tmp/signing-key.pem -in /tmp/signing-cert-clean.pem \
+            -name release -out ~/.android/release-keystore/release.jks \
+            -passout pass:"$PASS"
+          shred -u /tmp/signing-key.pk8 /tmp/signing-key.pem /tmp/signing-cert.pem /tmp/signing-cert-clean.pem 2>/dev/null \
+            || rm -f /tmp/signing-key.pk8 /tmp/signing-key.pem /tmp/signing-cert.pem /tmp/signing-cert-clean.pem
+
+      - name: Print App Links signing fingerprint
+        run: |
+          # SHA-256 cert fingerprint this build is actually signed with --
+          # needed to fill in the "sha256_cert_fingerprints" field of
+          # assetlinks.json (see the autoVerify="true" intent-filter in
+          # AndroidManifest.xml). Printed on every build, not just the
+          # first, since a cached key still needs this surfaced somewhere
+          # findable without downloading the .jks and running keytool
+          # locally.
+          FINGERPRINT=$(keytool -list -v \
+            -keystore ~/.android/release-keystore/release.jks \
+            -storepass "$(cat ~/.android/release-keystore/release.pass)" \
+            -alias release | grep "SHA256:" | sed 's/^[[:space:]]*SHA256:[[:space:]]*//')
+          echo "---- SHA-256 fingerprint for assetlinks.json ----"
+          echo "$FINGERPRINT"
+          echo "---------------------------------------------------"
+
+
       - name: Locate Android project
         id: locate
         run: |
@@ -469,15 +538,15 @@ jobs:
             echo "Built $OUT_DIR/libscreennative.so"
           done
 
-      - name: Build debug APK
+      - name: Build signed release APK
         working-directory: ${{ steps.locate.outputs.dir }}
         run: |
           set -o pipefail
           run_build() {
             if [ -x "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
-              ./gradlew assembleDebug --no-daemon
+              ./gradlew assembleRelease --no-daemon -Pandroid.injected.signing.store.file="$HOME/.android/release-keystore/release.jks" -Pandroid.injected.signing.store.password="$(cat "$HOME/.android/release-keystore/release.pass")" -Pandroid.injected.signing.key.alias=release -Pandroid.injected.signing.key.password="$(cat "$HOME/.android/release-keystore/release.pass")" -PstoreFile="$HOME/.android/release-keystore/release.jks" -PstorePassword="$(cat "$HOME/.android/release-keystore/release.pass")" -PkeyAlias=release -PkeyPassword="$(cat "$HOME/.android/release-keystore/release.pass")" -PkeystoreFile="$HOME/.android/release-keystore/release.jks" -PkeystorePath="$HOME/.android/release-keystore/release.jks" -PkeystorePassword="$(cat "$HOME/.android/release-keystore/release.pass")" -PKEYSTORE_FILE="$HOME/.android/release-keystore/release.jks" -PKEYSTORE_PATH="$HOME/.android/release-keystore/release.jks" -PKEYSTORE_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")" -PKEY_ALIAS=release -PKEY_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")" -PSTORE_FILE="$HOME/.android/release-keystore/release.jks" -PSTORE_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")" -PRELEASE_STORE_FILE="$HOME/.android/release-keystore/release.jks" -PRELEASE_STORE_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")" -PRELEASE_KEY_ALIAS=release -PRELEASE_KEY_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")"
             else
-              gradle assembleDebug --no-daemon
+              gradle assembleRelease --no-daemon -Pandroid.injected.signing.store.file="$HOME/.android/release-keystore/release.jks" -Pandroid.injected.signing.store.password="$(cat "$HOME/.android/release-keystore/release.pass")" -Pandroid.injected.signing.key.alias=release -Pandroid.injected.signing.key.password="$(cat "$HOME/.android/release-keystore/release.pass")" -PstoreFile="$HOME/.android/release-keystore/release.jks" -PstorePassword="$(cat "$HOME/.android/release-keystore/release.pass")" -PkeyAlias=release -PkeyPassword="$(cat "$HOME/.android/release-keystore/release.pass")" -PkeystoreFile="$HOME/.android/release-keystore/release.jks" -PkeystorePath="$HOME/.android/release-keystore/release.jks" -PkeystorePassword="$(cat "$HOME/.android/release-keystore/release.pass")" -PKEYSTORE_FILE="$HOME/.android/release-keystore/release.jks" -PKEYSTORE_PATH="$HOME/.android/release-keystore/release.jks" -PKEYSTORE_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")" -PKEY_ALIAS=release -PKEY_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")" -PSTORE_FILE="$HOME/.android/release-keystore/release.jks" -PSTORE_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")" -PRELEASE_STORE_FILE="$HOME/.android/release-keystore/release.jks" -PRELEASE_STORE_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")" -PRELEASE_KEY_ALIAS=release -PRELEASE_KEY_PASSWORD="$(cat "$HOME/.android/release-keystore/release.pass")"
             fi
           }
 
@@ -560,8 +629,8 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: debug-apk-${{ github.run_id }}
-          path: ${{ steps.locate.outputs.dir }}/**/build/outputs/apk/debug/*.apk
+          name: release-apk-${{ github.run_id }}
+          path: ${{ steps.locate.outputs.dir }}/**/build/outputs/apk/release/*.apk
           if-no-files-found: error
 
       - name: Publish outputs directly to release (skips proxying bytes through the build server)
@@ -612,7 +681,7 @@ jobs:
           while IFS= read -r -d '' f; do
             cp "$f" "$STAGE/${RUN_PREFIX}-$(basename "$f")"
             FOUND=1
-          done < <(find "${{ steps.locate.outputs.dir }}" -path '*/build/outputs/apk/debug/*' -name '*.apk' -print0)
+          done < <(find "${{ steps.locate.outputs.dir }}" -path '*/build/outputs/apk/release/*' -name '*.apk' -print0)
 
           if [ "$FOUND" = "1" ]; then
             gh release upload "$TAG" "$STAGE"/*.apk --repo "$ASSETS_REPO" --clobber

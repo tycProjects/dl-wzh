@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">منظم الجدول</string>
+    <string name="sc_assistant">المساعد</string>
+    <string name="sc_assistant_long">اسأل المساعد أو أضف بالأمر</string>
+    <string name="sc_tasks">الواجبات</string>
+    <string name="sc_study">المذاكرة</string>
+    <string name="sc_study_long">مؤقت المذاكرة والإحصائيات</string>
+    <string name="sc_calendar">التقويم</string>
+</resources>
