@@ -1,0 +1,6 @@
+{
+  "name": "ZONEX VOICE",
+  "description": "Premium gaming soundboard with dynamic categories, multi-channel mixer, floating overlay, and cloud sync",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // App settings and remote config
+    match /settings/{configId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    // Dynamic categories created by Admin
+    match /categories/{categoryId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    // Global sound library published by Admin
+    match /sounds/{soundId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    // User profile and private sounds
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      match /my_sounds/{soundId} {
+        allow read, write, delete: if isOwner(userId);
+      }
+    }
+
+    // System notifications and alerts
+    match /notifications/{notificationId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+  }
+}
