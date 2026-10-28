@@ -1,0 +1,23 @@
+name: wzh_flutter_ide
+description: WZH Flutter IDE - write, run and build Flutter apps right on your phone
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  http: ^1.2.2
+  path_provider: ^2.1.4
+  file_selector: ^1.0.3
+  archive: ^3.6.1
+  open_filex: ^4.5.0
+  xterm: ^4.0.0
+  flutter_pty: ^0.4.2
+  wakelock_plus: ^1.2.8
+
+flutter:
+  uses-material-design: true
