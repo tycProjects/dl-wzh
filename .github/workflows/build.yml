@@ -1,4 +1,4 @@
-# apk-builder fallback workflow - version: 30
+# apk-builder fallback workflow - version: 31
 # Auto-generated. Edit buildFallbackWorkflowYaml() in server.js, not this
 # file directly - direct edits get overwritten the next time the version
 # above is bumped and this gets re-synced to the base branch.
@@ -105,6 +105,38 @@ jobs:
           PROJECT_DIR=$(dirname "$MATCH")
           echo "Using Gradle project at: $PROJECT_DIR"
           echo "dir=$PROJECT_DIR" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch Node.js runtime for the app
+        if: hashFiles('**/wzh-node-runtime.flag') != ''
+        run: |
+          set -e
+          FLAG=$(find "$GITHUB_WORKSPACE" -name wzh-node-runtime.flag -not -path '*/.git/*' | head -n1)
+          PROJECT_DIR=$(dirname "$FLAG")
+          VER=$(tr -d '[:space:]' < "$FLAG")
+          URL="https://github.com/nodejs-mobile/nodejs-mobile/releases/download/$VER/nodejs-mobile-$VER-android.zip"
+          echo "Downloading $URL"
+          if ! curl -fL --retry 3 --retry-delay 3 -o /tmp/nodejs-mobile.zip "$URL"; then
+            echo "::error::Could not download the Node.js runtime from $URL (check the NODEJS_MOBILE_VERSION setting on the build server)."
+            exit 1
+          fi
+          rm -rf /tmp/nm && mkdir -p /tmp/nm && unzip -q /tmp/nodejs-mobile.zip -d /tmp/nm
+          HDR=$(find /tmp/nm -type f -name node.h | head -n1)
+          if [ -z "$HDR" ]; then
+            echo "::error::node.h not found in the Node.js runtime download."
+            exit 1
+          fi
+          mkdir -p "$PROJECT_DIR/app/src/main/cpp/node-include"
+          cp -r "$(dirname "$HDR")"/. "$PROJECT_DIR/app/src/main/cpp/node-include/"
+          for ABI in arm64-v8a armeabi-v7a x86_64; do
+            LIB=$(find /tmp/nm -type f -path "*/$ABI/libnode.so" | head -n1)
+            if [ -z "$LIB" ]; then
+              echo "::error::libnode.so for $ABI not found in the Node.js runtime download."
+              exit 1
+            fi
+            mkdir -p "$PROJECT_DIR/app/src/main/jniLibs/$ABI"
+            cp "$LIB" "$PROJECT_DIR/app/src/main/jniLibs/$ABI/libnode.so"
+          done
+          echo "Node.js runtime $VER installed for arm64-v8a, armeabi-v7a, x86_64"
 
       # subosito/flutter-action exports FLUTTER_ROOT for later steps, but the
       # Flutter Gradle plugin loader (in the located project's
