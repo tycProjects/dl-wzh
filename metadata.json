@@ -1,0 +1,6 @@
+{
+  "name": "গল্পকথা - Golpokotha",
+  "description": "প্রিমিয়াম আধুনিক বাংলা গল্প পড়ার অ্যাপ্লিকেশন। তৈরি করেছেন মাহিন পারভেজ (Made by Mahin Parvez)।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
