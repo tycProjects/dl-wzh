@@ -1,0 +1,16 @@
+name: screen_recorder
+description: Screen recorder - Flutter UI with a native MediaCodec engine
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  screen_capture_native:
+    path: vendor/screen_capture_native
+
+flutter:
+  uses-material-design: true
