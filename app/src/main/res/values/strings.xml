@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Screen Recorder</string>
+    <string name="start_recording">START RECORDING</string>
+    <string name="stop_recording">STOP RECORDING</string>
+    <string name="status_idle">Ready to record</string>
+    <string name="status_recording">Recording • 1080p60</string>
+    <string name="quality_note">1080p • 60 FPS • H.264 • 32 Mbps</string>
+</resources>
