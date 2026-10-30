@@ -1,0 +1,6 @@
+{
+  "name": "Zonex Emoji",
+  "description": "Zonex Emoji - Single Emoji Secret Message Steganography platform with real Android Floating Window overlay.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

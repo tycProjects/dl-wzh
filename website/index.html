@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zonex Emoji – Single Emoji Secret Chat & Steganography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070B14;
+      --card-bg: rgba(16, 24, 40, 0.75);
+      --card-border: rgba(56, 189, 248, 0.25);
+      --cyan: #38bdf8;
+      --purple: #a855f7;
+      --indigo: #6366f1;
+      --emerald: #10b981;
+      --amber: #fbbf24;
+      --rose: #f43f5e;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(56, 189, 248, 0.12) 0%, transparent 45%);
+    }
+
+    /* Header Nav */
+    header {
+      backdrop-filter: blur(16px);
+      background: rgba(7, 11, 20, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .brand span {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      color: var(--cyan);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .lang-btn {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      color: var(--purple);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    /* Container */
+    main {
+      flex: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      width: 100%;
+    }
+
+    .page-section {
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.8rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2; }
+    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    p.subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.5; }
+
+    /* Forms & Controls */
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--cyan);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    textarea, input[type="text"], input[type="password"] {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    textarea:focus, input[type="text"]:focus, input[type="password"]:focus {
+      border-color: var(--cyan);
+    }
+    textarea { resize: vertical; min-height: 100px; }
+
+    .btn-row {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.4rem;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), var(--indigo));
+      color: #050b14;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .mode-pills {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .pill.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* Output Box */
+    .output-box {
+      margin-top: 1.5rem;
+      background: #090e1a;
+      border: 1px dashed rgba(56, 189, 248, 0.4);
+      border-radius: 14px;
+      padding: 1.2rem;
+      position: relative;
+    }
+    .output-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--cyan);
+      word-break: break-all;
+      white-space: pre-wrap;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--emerald);
+    }
+
+    .alert {
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--rose);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 0.8rem; }
+      nav { overflow-x: auto; width: 100%; justify-content: flex-start; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="brand" onclick="switchPage('home')">
+      <span>🛡️ Zonex Emoji</span>
+    </a>
+    <nav>
+      <button class="nav-btn active" onclick="switchPage('home')" id="nav-home">Home</button>
+      <button class="nav-btn" onclick="switchPage('encode')" id="nav-encode">Encode</button>
+      <button class="nav-btn" onclick="switchPage('decode')" id="nav-decode">Decode</button>
+      <button class="nav-btn" onclick="switchPage('about')" id="nav-about">Security</button>
+      <button class="nav-btn" onclick="switchPage('download')" id="nav-download">App</button>
+      <button class="lang-btn" onclick="toggleLanguage()" id="btn-lang">বাংলা</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME SECTION -->
+    <section id="page-home" class="page-section active">
+      <div class="glass-card" style="text-align: center; padding: 3rem 1.5rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🛡️✨🤐</div>
+        <h1 id="home-title">Zonex Emoji</h1>
+        <p class="subtitle" id="home-subtitle">
+          Encode unlimited text invisibly behind a single custom emoji with zero-width steganography across Android, iOS, and Web.
+        </p>
+        <div class="btn-row" style="justify-content: center;">
+          <button class="btn btn-primary" onclick="switchPage('encode')">🔒 Start Encoding</button>
+          <button class="btn btn-secondary" onclick="switchPage('decode')">🔓 Decode Message</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem;">
+        <div class="glass-card">
+          <h2 style="color: var(--cyan); font-size: 1.2rem;">🔐 Emoji Secret Mode</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+            Converts your messages into playful cyber emoji glyphs. Easy to send across WhatsApp, Messenger, and Telegram.
+          </p>
+        </div>
+        <div class="glass-card">
+          <h2 style="color: var(--purple); font-size: 1.2rem;">⚡ Character Cipher</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+            Transforms sensitive text into an alphanumeric cyber-token for instant clipboard sharing.
+          </p>
+        </div>
+        <div class="glass-card">
+          <h2 style="color: var(--emerald); font-size: 1.2rem;">🛡️ AES-256-GCM Military</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+            True end-to-end PBKDF2 + AES-GCM cryptography. Requires your custom password to decrypt.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENCODE SECTION -->
+    <section id="page-encode" class="page-section">
+      <div class="glass-card">
+        <h2 id="enc-title">Encode Secret Message</h2>
+        <p class="subtitle" id="enc-subtitle">Convert your message into an encrypted secret token or emoji sequence.</p>
+
+        <label id="lbl-mode">Select Format</label>
+        <div class="mode-pills">
+          <div class="pill active" onclick="setEncodeMode('stego')" id="pill-stego">🤫 Single Emoji (Stego)</div>
+          <div class="pill" onclick="setEncodeMode('emoji')" id="pill-emoji">🔐 Emoji Secret</div>
+          <div class="pill" onclick="setEncodeMode('char')" id="pill-char">⚡ Character Cipher</div>
+          <div class="pill" onclick="setEncodeMode('aes')" id="pill-aes">🛡️ AES-256-GCM Military</div>
+        </div>
+
+        <div id="stego-carrier-group" style="margin-bottom: 1rem;">
+          <label id="lbl-carrier" style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Choose / Type Custom Emoji</label>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="text" id="encode-carrier" value="🤔" style="width: 70px; height: 42px; font-size: 1.4rem; text-align: center; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.4); background: #0b132b; color: white;" maxlength="4" />
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('encode-carrier').value='🤔'" style="padding: 0.4rem 0.7rem; font-size: 1.1rem;">🤔</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('encode-carrier').value='😎'" style="padding: 0.4rem 0.7rem; font-size: 1.1rem;">😎</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('encode-carrier').value='❤️'" style="padding: 0.4rem 0.7rem; font-size: 1.1rem;">❤️</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('encode-carrier').value='🔥'" style="padding: 0.4rem 0.7rem; font-size: 1.1rem;">🔥</button>
+          </div>
+        </div>
+
+        <label id="lbl-msg">Original Message</label>
+        <textarea id="encode-input" placeholder="Type normal message here..."></textarea>
+
+        <div id="aes-password-group" style="display: none; margin-top: 1rem;">
+          <label id="lbl-pwd" style="color: var(--amber);">Encryption Password</label>
+          <input type="password" id="encode-password" placeholder="Enter password to encrypt..." />
+        </div>
+
+        <div class="alert" id="encode-error"></div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="doEncode()" id="btn-do-encode">🔒 Generate Secret</button>
+          <button class="btn btn-secondary" onclick="clearEncode()">🗑️ Clear</button>
+        </div>
+
+        <div class="output-box" id="encode-result-box" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span class="badge" id="encode-badge">Encoded Result</span>
+            <button class="btn btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="copyResult('encode-output')">📋 Copy</button>
+          </div>
+          <div class="output-text" id="encode-output"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DECODE SECTION -->
+    <section id="page-decode" class="page-section">
+      <div class="glass-card">
+        <h2 id="dec-title">Decode Secret Message</h2>
+        <p class="subtitle" id="dec-subtitle">Paste encoded text to uncover the original message.</p>
+
+        <label id="lbl-dec-input">Encoded Secret Text</label>
+        <textarea id="decode-input" placeholder="Paste encoded message here (e.g. 🔐[SC-EMOJI]... or 🛡️[SC-AES256]...)" oninput="autoDetectFormat()"></textarea>
+
+        <div style="display: flex; gap: 0.8rem; align-items: center; margin: 0.8rem 0;">
+          <span style="font-size: 0.85rem; color: var(--text-muted);" id="lbl-detected">Detected Format:</span>
+          <span class="badge" id="detected-format-badge">Auto-Detect</span>
+          <button class="btn btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; margin-left: auto;" onclick="pasteToDecode()">📋 Paste Clipboard</button>
+        </div>
+
+        <div id="dec-password-group" style="display: none; margin-top: 0.8rem;">
+          <label style="color: var(--amber);" id="lbl-dec-pwd">Decryption Password</label>
+          <input type="password" id="decode-password" placeholder="Enter sender's password..." />
+        </div>
+
+        <div class="alert" id="decode-error"></div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="doDecode()" id="btn-do-decode">🔓 Decode Message</button>
+          <button class="btn btn-secondary" onclick="clearDecode()">🗑️ Clear</button>
+        </div>
+
+        <div class="output-box" id="decode-result-box" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: var(--cyan);">Decoded Content</span>
+            <button class="btn btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;" onclick="copyResult('decode-output')">📋 Copy</button>
+          </div>
+          <div class="output-text" id="decode-output" style="color: #ffffff; font-size: 1rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECURITY / ABOUT SECTION -->
+    <section id="page-about" class="page-section">
+      <div class="glass-card">
+        <h2>Security & Cryptography Protocol</h2>
+        <p class="subtitle">Mathematical specifications and cross-platform compatibility.</p>
+
+        <div style="line-height: 1.8; color: var(--text-muted); font-size: 0.95rem;">
+          <p><strong style="color: var(--cyan);">1. True AES-256-GCM:</strong> Our military mode uses 10,000 PBKDF2 derivation iterations with HMAC-SHA-256, generating a 256-bit AES key. Each message includes a unique 16-byte random salt and 12-byte nonce (IV) with a 128-bit authentication tag.</p>
+          <br>
+          <p><strong style="color: var(--purple);">2. Emoji & Cipher Substitution:</strong> Emoji encoding maps UTF-8 bytes to our 16-element cyber emoji alphabet. It is designed for visual disguise and casual concealment across chat apps.</p>
+          <br>
+          <p><strong style="color: var(--emerald);">3. 100% Offline:</strong> All operations execute purely client-side inside your browser or device. No server requests, no telemetry, no tracking.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section id="page-download" class="page-section">
+      <div class="glass-card" style="text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">📱🪟</div>
+        <h2>Secret Chat Android Application</h2>
+        <p class="subtitle">Experience the system-wide Floating Window over WhatsApp, Messenger, and Telegram.</p>
+
+        <div style="max-width: 480px; margin: 0 auto; text-align: left; background: rgba(15, 23, 42, 0.6); padding: 1.2rem; border-radius: 12px; margin-bottom: 1.5rem;">
+          <p style="color: var(--cyan); font-weight: bold; margin-bottom: 0.4rem;">Android App Features:</p>
+          <ul style="color: var(--text-muted); padding-left: 1.2rem; line-height: 1.7; font-size: 0.9rem;">
+            <li>Real system overlay (WindowManager Service)</li>
+            <li>Minimizes to draggable floating bubble</li>
+            <li>Instant clipboard paste and automatic format detection</li>
+            <li>Bengali and English full bilingual localization</li>
+            <li>Offline Room database history</li>
+          </ul>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.85rem;">Export your APK directly from the top-right settings menu in AI Studio Build.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Secret Chat &copy; 2026. Zero Server Tracking. End-to-End Cryptographic Security.
+  </footer>
+
+  <script>
+    // ==========================================
+    // SHARED ZERO-WIDTH STEGANOGRAPHY ENGINE
+    // ==========================================
+    const ZW_ZERO = '\u200B';
+    const ZW_ONE = '\u200C';
+    const ZW_MARKER_START = '\u2060';
+    const ZW_MARKER_END = '\uFEFF';
+
+    function encodeSteganography(carrier, message) {
+      if (!message) return carrier;
+      const safeCarrier = carrier || "🤔";
+      const bytes = new TextEncoder().encode(message);
+      let bits = "";
+      for (let b of bytes) {
+        for (let i = 7; i >= 0; i--) {
+          const bit = (b >> i) & 1;
+          bits += (bit === 0 ? ZW_ZERO : ZW_ONE);
+        }
+      }
+      return safeCarrier + ZW_MARKER_START + bits + ZW_MARKER_END;
+    }
+
+    function hasSteganography(str) {
+      return str.includes(ZW_ZERO) || str.includes(ZW_ONE) || str.includes(ZW_MARKER_START);
+    }
+
+    function decodeSteganography(str) {
+      if (!hasSteganography(str)) throw new Error("কোনো গোপন বার্তা পাওয়া যায়নি");
+      let bits = "";
+      if (str.includes(ZW_MARKER_START) && str.includes(ZW_MARKER_END)) {
+        const payload = str.split(ZW_MARKER_START)[1].split(ZW_MARKER_END)[0];
+        bits = payload.split('').filter(c => c === ZW_ZERO || c === ZW_ONE).join('');
+      }
+      if (!bits) {
+        bits = str.split('').filter(c => c === ZW_ZERO || c === ZW_ONE).join('');
+      }
+      if (!bits || bits.length < 8) throw new Error("কোনো গোপন বার্তা পাওয়া যায়নি");
+
+      const byteCount = Math.floor(bits.length / 8);
+      const bytes = new Uint8Array(byteCount);
+      for (let i = 0; i < byteCount; i++) {
+        let b = 0;
+        for (let j = 0; j < 8; j++) {
+          b = (b << 1) | (bits[i * 8 + j] === ZW_ONE ? 1 : 0);
+        }
+        bytes[i] = b;
+      }
+      return new TextDecoder().decode(bytes);
+    }
+
+    const EMOJI_HEX_LIST = [
+      "🔮", "✨", "🌙", "⭐",
+      "⚡", "🔥", "💧", "🌿",
+      "💎", "🗝️", "🪐", "🌌",
+      "🌀", "🛸", "👾", "🛡️"
+    ];
+
+    const PREFIX_EMOJI = "🔐[SC-EMOJI] ";
+    const SUFFIX_EMOJI = " [SC-END]";
+    const PREFIX_CHAR = "⚡[SC-CHAR] ";
+    const SUFFIX_CHAR = " [SC-END]";
+    const PREFIX_AES = "🛡️[SC-AES256] ";
+    const SUFFIX_AES = " [SC-END]";
+
+    // Reverse emoji map
+    const EMOJI_TO_HEX = {};
+    const hexChars = "0123456789abcdef";
+    for (let i = 0; i < EMOJI_HEX_LIST.length; i++) {
+      EMOJI_TO_HEX[EMOJI_HEX_LIST[i]] = hexChars[i];
+      const stripped = EMOJI_HEX_LIST[i].replace(/\uFE0F/g, '');
+      if (stripped !== EMOJI_HEX_LIST[i]) {
+        EMOJI_TO_HEX[stripped] = hexChars[i];
+      }
+    }
+
+    // Emoji Encode
+    function encodeEmoji(str) {
+      const bytes = new TextEncoder().encode(str);
+      let out = "";
+      for (let b of bytes) {
+        const high = (b >> 4) & 0x0F;
+        const low = b & 0x0F;
+        out += EMOJI_HEX_LIST[high] + EMOJI_HEX_LIST[low];
+      }
+      return PREFIX_EMOJI + out + SUFFIX_EMOJI;
+    }
+
+    // Emoji Decode
+    function decodeEmoji(str) {
+      let content = str.trim();
+      if (content.includes(PREFIX_EMOJI)) content = content.split(PREFIX_EMOJI)[1];
+      if (content.includes(SUFFIX_EMOJI)) content = content.split(SUFFIX_EMOJI)[0];
+      content = content.replace(/\s+/g, '');
+
+      let hex = "";
+      let i = 0;
+      while (i < content.length) {
+        let matched = false;
+        for (let len = 3; len >= 1; len--) {
+          if (i + len <= content.length) {
+            const sub = content.substring(i, i + len);
+            if (EMOJI_TO_HEX[sub] !== undefined) {
+              hex += EMOJI_TO_HEX[sub];
+              i += len;
+              matched = true;
+              break;
+            }
+          }
+        }
+        if (!matched) i++;
+      }
+
+      if (!hex || hex.length % 2 !== 0) throw new Error("Invalid or incomplete emoji message");
+      const bytes = new Uint8Array(hex.length / 2);
+      for (let j = 0; j < bytes.length; j++) {
+        bytes[j] = parseInt(hex.substr(j * 2, 2), 16);
+      }
+      return new TextDecoder().decode(bytes);
+    }
+
+    // Character Cipher
+    function rot13Char(ch) {
+      if (ch >= 'a' && ch <= 'm') return String.fromCharCode(ch.charCodeAt(0) + 13);
+      if (ch >= 'n' && ch <= 'z') return String.fromCharCode(ch.charCodeAt(0) - 13);
+      if (ch >= 'A' && ch <= 'M') return String.fromCharCode(ch.charCodeAt(0) + 13);
+      if (ch >= 'N' && ch <= 'Z') return String.fromCharCode(ch.charCodeAt(0) - 13);
+      return ch;
+    }
+
+    function encodeCharacter(str) {
+      const b64 = btoa(unescape(encodeURIComponent(str)));
+      let out = "";
+      for (let ch of b64) out += rot13Char(ch);
+      return PREFIX_CHAR + out + SUFFIX_CHAR;
+    }
+
+    function decodeCharacter(str) {
+      let content = str.trim();
+      if (content.includes(PREFIX_CHAR)) content = content.split(PREFIX_CHAR)[1];
+      if (content.includes(SUFFIX_CHAR)) content = content.split(SUFFIX_CHAR)[0];
+      content = content.trim();
+
+      let b64 = "";
+      for (let ch of content) b64 += rot13Char(ch);
+      return decodeURIComponent(escape(atob(b64)));
+    }
+
+    // AES-256-GCM via Web Crypto API
+    async function deriveAesKey(password, salt) {
+      const enc = new TextEncoder();
+      const keyMaterial = await crypto.subtle.importKey(
+        "raw",
+        enc.encode(password),
+        "PBKDF2",
+        false,
+        ["deriveKey"]
+      );
+      return crypto.subtle.deriveKey(
+        {
+          name: "PBKDF2",
+          salt: salt,
+          iterations: 10000,
+          hash: "SHA-256"
+        },
+        keyMaterial,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["encrypt", "decrypt"]
+      );
+    }
+
+    function bufToB64(buf) {
+      const bytes = new Uint8Array(buf);
+      let binary = "";
+      for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return btoa(binary);
+    }
+
+    function b64ToBuf(b64) {
+      const binary = atob(b64);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+      return bytes;
+    }
+
+    async function encryptAes(str, password) {
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const key = await deriveAesKey(password, salt);
+      const data = new TextEncoder().encode(str);
+      const cipherBuf = await crypto.subtle.encrypt(
+        { name: "AES-GCM", iv: iv, tagLength: 128 },
+        key,
+        data
+      );
+      const saltB64 = bufToB64(salt);
+      const ivB64 = bufToB64(iv);
+      const cipherB64 = bufToB64(cipherBuf);
+      return PREFIX_AES + `${saltB64}:${ivB64}:${cipherB64}` + SUFFIX_AES;
+    }
+
+    async function decryptAes(str, password) {
+      let content = str.trim();
+      if (content.includes(PREFIX_AES)) content = content.split(PREFIX_AES)[1];
+      if (content.includes(SUFFIX_AES)) content = content.split(SUFFIX_AES)[0];
+      content = content.trim();
+
+      const parts = content.split(":");
+      if (parts.length !== 3) throw new Error("Malformed AES-256 encrypted payload");
+
+      const salt = b64ToBuf(parts[0]);
+      const iv = b64ToBuf(parts[1]);
+      const cipherBytes = b64ToBuf(parts[2]);
+
+      const key = await deriveAesKey(password, salt);
+      const decryptedBuf = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: iv, tagLength: 128 },
+        key,
+        cipherBytes
+      );
+      return new TextDecoder().decode(decryptedBuf);
+    }
+
+    function detectFormat(str) {
+      if (hasSteganography(str)) return "stego";
+      const t = str.trim();
+      if (t.includes(PREFIX_AES) || (t.includes(":") && t.split(":").length === 3)) return "aes";
+      if (t.includes(PREFIX_CHAR)) return "char";
+      if (t.includes(PREFIX_EMOJI)) return "emoji";
+      let count = 0;
+      for (let e of EMOJI_HEX_LIST) {
+        if (t.includes(e)) count++;
+      }
+      if (count >= 2) return "emoji";
+      return null;
+    }
+
+    // ==========================================
+    // UI CONTROLS & LOCALIZATION
+    // ==========================================
+    let currentMode = "stego";
+    let isBengali = false;
+
+    function switchPage(pageId) {
+      document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+      const page = document.getElementById('page-' + pageId);
+      const nav = document.getElementById('nav-' + pageId);
+      if (page) page.classList.add('active');
+      if (nav) nav.classList.add('active');
+    }
+
+    function setEncodeMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.mode-pills .pill').forEach(el => el.classList.remove('active'));
+      const pill = document.getElementById('pill-' + mode);
+      if (pill) pill.classList.add('active');
+      document.getElementById('aes-password-group').style.display = mode === 'aes' ? 'block' : 'none';
+      const carrierGroup = document.getElementById('stego-carrier-group');
+      if (carrierGroup) carrierGroup.style.display = mode === 'stego' ? 'block' : 'none';
+    }
+
+    async function doEncode() {
+      const text = document.getElementById('encode-input').value.trim();
+      const errEl = document.getElementById('encode-error');
+      errEl.style.display = 'none';
+
+      if (!text) {
+        errEl.innerText = isBengali ? "অনুগ্রহ করে একটি বার্তা লিখুন।" : "Please enter a message to encode.";
+        errEl.style.display = 'block';
+        return;
+      }
+
+      try {
+        let result = "";
+        if (currentMode === 'stego') {
+          const carrier = (document.getElementById('encode-carrier') ? document.getElementById('encode-carrier').value : "🤔") || "🤔";
+          result = encodeSteganography(carrier, text);
+        } else if (currentMode === 'emoji') {
+          result = encodeEmoji(text);
+        } else if (currentMode === 'char') {
+          result = encodeCharacter(text);
+        } else if (currentMode === 'aes') {
+          const pwd = document.getElementById('encode-password').value;
+          if (!pwd) {
+            errEl.innerText = isBengali ? "পাসওয়ার্ড দেওয়া আবশ্যক।" : "Password is required for AES-256 encryption.";
+            errEl.style.display = 'block';
+            return;
+          }
+          result = await encryptAes(text, pwd);
+        }
+
+        document.getElementById('encode-output').innerText = result;
+        document.getElementById('encode-result-box').style.display = 'block';
+      } catch (e) {
+        errEl.innerText = e.message;
+        errEl.style.display = 'block';
+      }
+    }
+
+    function clearEncode() {
+      document.getElementById('encode-input').value = "";
+      document.getElementById('encode-password').value = "";
+      document.getElementById('encode-result-box').style.display = 'none';
+      document.getElementById('encode-error').style.display = 'none';
+    }
+
+    function autoDetectFormat() {
+      const val = document.getElementById('decode-input').value;
+      const detected = detectFormat(val);
+      const badge = document.getElementById('detected-format-badge');
+      const pwdGroup = document.getElementById('dec-password-group');
+
+      if (detected === 'stego') {
+        badge.innerText = "🤫 Single Emoji (Stego)";
+        badge.style.color = "var(--emerald)";
+        pwdGroup.style.display = 'none';
+      } else if (detected === 'aes') {
+        badge.innerText = "🛡️ AES-256";
+        badge.style.color = "var(--amber)";
+        pwdGroup.style.display = 'block';
+      } else if (detected === 'char') {
+        badge.innerText = "⚡ Character";
+        badge.style.color = "var(--purple)";
+        pwdGroup.style.display = 'none';
+      } else if (detected === 'emoji') {
+        badge.innerText = "🔐 Emoji";
+        badge.style.color = "var(--cyan)";
+        pwdGroup.style.display = 'none';
+      } else {
+        badge.innerText = isBengali ? "অজ্ঞাত" : "Auto-Detect";
+        badge.style.color = "var(--text-muted)";
+        pwdGroup.style.display = 'none';
+      }
+    }
+
+    async function pasteToDecode() {
+      try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById('decode-input').value = text;
+        autoDetectFormat();
+      } catch {
+        alert("Clipboard permission denied. Please paste manually into the box.");
+      }
+    }
+
+    async function doDecode() {
+      const text = document.getElementById('decode-input').value.trim();
+      const errEl = document.getElementById('decode-error');
+      errEl.style.display = 'none';
+
+      if (!text) {
+        errEl.innerText = isBengali ? "এনকোড করা বার্তা পেস্ট করুন।" : "Please paste an encoded message to decode.";
+        errEl.style.display = 'block';
+        return;
+      }
+
+      const format = detectFormat(text) || (hasSteganography(text) ? "stego" : "emoji");
+
+      try {
+        let result = "";
+        if (format === 'stego') {
+          result = decodeSteganography(text);
+        } else if (format === 'emoji') {
+          result = decodeEmoji(text);
+        } else if (format === 'char') {
+          result = decodeCharacter(text);
+        } else if (format === 'aes') {
+          const pwd = document.getElementById('decode-password').value;
+          if (!pwd) {
+            errEl.innerText = isBengali ? "ডিক্রিপ্ট করতে পাসওয়ার্ড দিন।" : "Please enter the decryption password.";
+            errEl.style.display = 'block';
+            return;
+          }
+          result = await decryptAes(text, pwd);
+        }
+
+        document.getElementById('decode-output').innerText = result;
+        document.getElementById('decode-result-box').style.display = 'block';
+      } catch (e) {
+        errEl.innerText = isBengali ? "ভুল পাসওয়ার্ড অথবা বার্তার তথ্য বিকৃত হয়েছে!" : "Decryption failed! Incorrect password or corrupted data.";
+        errEl.style.display = 'block';
+      }
+    }
+
+    function clearDecode() {
+      document.getElementById('decode-input').value = "";
+      document.getElementById('decode-password').value = "";
+      document.getElementById('decode-result-box').style.display = 'none';
+      document.getElementById('decode-error').style.display = 'none';
+      autoDetectFormat();
+    }
+
+    function copyResult(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text);
+      alert(isBengali ? "ক্লিপবোর্ডে কপি করা হয়েছে!" : "Copied to clipboard!");
+    }
+
+    function toggleLanguage() {
+      isBengali = !isBengali;
+      document.getElementById('btn-lang').innerText = isBengali ? "English" : "বাংলা";
+      if (isBengali) {
+        document.getElementById('home-title').innerText = "সিক্রেট চ্যাট ওয়েব প্ল্যাটফর্ম";
+        document.getElementById('home-subtitle').innerText = "অ্যান্ড্রয়েড, আইফোন এবং কম্পিউটারে অফলাইনে নিরাপদ গোপন বার্তা এনকোড ও ডিকোড করুন।";
+        document.getElementById('enc-title').innerText = "গোপন বার্তা এনকোড করুন";
+        document.getElementById('dec-title').innerText = "গোপন বার্তা ডিকোড করুন";
+        document.getElementById('btn-do-encode').innerText = "🔒 গোপন বার্তা তৈরি করুন";
+        document.getElementById('btn-do-decode').innerText = "🔓 ডিকোড করুন";
+      } else {
+        document.getElementById('home-title').innerText = "Secret Chat Companion";
+        document.getElementById('home-subtitle').innerText = "Encode and decode secret messages seamlessly across Android, iOS, Windows, and Mac with zero server tracking.";
+        document.getElementById('enc-title').innerText = "Encode Secret Message";
+        document.getElementById('dec-title').innerText = "Decode Secret Message";
+        document.getElementById('btn-do-encode').innerText = "🔒 Generate Secret";
+        document.getElementById('btn-do-decode').innerText = "🔓 Decode Message";
+      }
+    }
+  </script>
+</body>
+</html>
