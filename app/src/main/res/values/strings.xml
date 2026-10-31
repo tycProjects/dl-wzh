@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fake Social</string>
+    <string name="home_title">مولّد صور المحاكاة</string>
+    <string name="home_subtitle">اختر المنصة</string>
+    <string name="history">السجل</string>
+    <string name="back">رجوع</string>
+
+    <string name="disclaimer_title">تنبيه مهم</string>
+    <string name="disclaimer_body">هذا التطبيق لإنشاء صور محاكاة (Mockup) لأغراض ترفيهية وتعليمية وتصميمية فقط.\n\nممنوع استخدامه للاحتيال أو انتحال الشخصية أو التضليل أو التشهير أو تلفيق أدلة.\n\nالتطبيق غير تابع لأي منصة تواصل ولا يستخدم شعاراتها الرسمية.</string>
+    <string name="disclaimer_ok">فهمت وأوافق</string>
+
+    <string name="dark_mode">الوضع الداكن</string>
+    <string name="rtl_mode">اتجاه المحتوى من اليمين لليسار</string>
+    <string name="watermark_option">علامة «محاكاة» على الصورة</string>
+    <string name="style_post">منشور</string>
+    <string name="style_dm">رسائل خاصة</string>
+
+    <string name="avatar">صورة البروفايل</string>
+    <string name="pick_gallery">المعرض</string>
+    <string name="take_photo">الكاميرا</string>
+    <string name="remove">إزالة</string>
+
+    <string name="field_name">الاسم</string>
+    <string name="field_handle">اسم المستخدم</string>
+    <string name="field_text">النص</string>
+    <string name="field_time">الوقت</string>
+    <string name="field_status">الحالة</string>
+    <string name="field_likes">عدد الإعجابات</string>
+    <string name="field_comments">عدد التعليقات</string>
+
+    <string name="items_chat">الرسائل</string>
+    <string name="items_comments">الردود / التعليقات</string>
+    <string name="item_author">الاسم</string>
+    <string name="item_text">النص</string>
+    <string name="item_mine">رسالتي</string>
+    <string name="add_item">إضافة</string>
+    <string name="delete">حذف</string>
+
+    <string name="save_project">حفظ في السجل</string>
+    <string name="save_gallery">حفظ في المعرض</string>
+    <string name="share">مشاركة</string>
+    <string name="saved_project">تم الحفظ في السجل</string>
+    <string name="saved_gallery">تم حفظ الصورة في المعرض</string>
+    <string name="save_failed">تعذّر الحفظ</string>
+    <string name="need_permission">مطلوب إذن التخزين لحفظ الصورة</string>
+
+    <string name="history_empty">لا توجد مشاريع محفوظة بعد</string>
+    <string name="watermark_text">Mockup • محاكاة</string>
+</resources>
