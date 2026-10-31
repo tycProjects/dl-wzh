@@ -1,0 +1,1 @@
+Placeholder so the builder sets up native library packaging. patch_android.py adds the AI engine here at build time.
