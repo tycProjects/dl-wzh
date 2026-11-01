@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ZewMod</string>
+
+    
+    <string-array name="bone_options">
+        <item>Head</item>
+        <item>Chest (Spine)</item>
+        <item>Hips</item>
+        <item>Random</item>
+    </string-array>
+</resources>

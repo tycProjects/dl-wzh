@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1a1a"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ZewMod"
+            android:textColor="#7EC8E3"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="v3.0.0 — No Shizuku"
+            android:textColor="#888888"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:paddingBottom="16dp"/>
+
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#252525"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Wireless ADB"
+                    android:textColor="#cccccc"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/tv_shizuku_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="● Not Connected"
+                    android:textColor="#ff4444"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            
+            <Button
+                android:id="@+id/btn_pair_adb"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:text="CONNECT / PAIR"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                android:background="#1a5276"
+                android:onClick="onPairAdbClicked"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tap → buka Wireless Debugging → Ghép nối bằng mã → masukkan kode"
+                android:textColor="#666666"
+                android:textSize="10sp"
+                android:paddingTop="6dp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ESP"
+            android:textColor="#aaaaaa"
+            android:textSize="11sp"
+            android:letterSpacing="0.15"
+            android:paddingBottom="6dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#252525"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Enable ESP"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"/>
+                <ToggleButton
+                    android:id="@+id/toggle_esp"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:textOn="ON"
+                    android:textOff="OFF"
+                    android:textSize="10sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Box ESP (Cyan)"
+                    android:textColor="#cccccc"
+                    android:textSize="13sp"/>
+                <ToggleButton
+                    android:id="@+id/toggle_esp_box"
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:textOn="ON"
+                    android:textOff="OFF"
+                    android:textSize="9sp"
+                    android:checked="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Skeleton ESP"
+                    android:textColor="#cccccc"
+                    android:textSize="13sp"/>
+                <ToggleButton
+                    android:id="@+id/toggle_esp_skeleton"
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:textOn="ON"
+                    android:textOff="OFF"
+                    android:textSize="9sp"
+                    android:checked="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="HP Bar (hijau/merah)"
+                    android:textColor="#cccccc"
+                    android:textSize="13sp"/>
+                <ToggleButton
+                    android:id="@+id/toggle_esp_hp"
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:textOn="ON"
+                    android:textOff="OFF"
+                    android:textSize="9sp"
+                    android:checked="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Names"
+                    android:textColor="#cccccc"
+                    android:textSize="13sp"/>
+                <ToggleButton
+                    android:id="@+id/toggle_esp_name"
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:textOn="ON"
+                    android:textOff="OFF"
+                    android:textSize="9sp"
+                    android:checked="true"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AIMBOT"
+            android:textColor="#aaaaaa"
+            android:textSize="11sp"
+            android:letterSpacing="0.15"
+            android:paddingBottom="6dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#252525"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Enable Aimbot"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"/>
+                <ToggleButton
+                    android:id="@+id/toggle_aimbot"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:textOn="ON"
+                    android:textOff="OFF"
+                    android:textSize="10sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FOV: "
+                    android:textColor="#cccccc"
+                    android:textSize="13sp"/>
+                <TextView
+                    android:id="@+id/tv_fov_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="45°"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+            <SeekBar
+                android:id="@+id/seek_fov"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="180"
+                android:progress="45"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Target Bone"
+                android:textColor="#cccccc"
+                android:textSize="13sp"
+                android:paddingBottom="4dp"/>
+            <Spinner
+                android:id="@+id/spinner_bone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:entries="@array/bone_options"
+                android:background="#333333"/>
+        </LinearLayout>
+
+        
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="START MOD"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:background="#2d7a2d"
+            android:onClick="onStartClicked"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="STOP"
+            android:textColor="#ffffff"
+            android:background="#7a2d2d"
+            android:onClick="onStopClicked"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
