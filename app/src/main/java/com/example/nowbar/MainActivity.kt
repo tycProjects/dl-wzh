@@ -178,7 +178,6 @@ class MainActivity : Activity() {
 
         if (Build.VERSION.SDK_INT >= 36) {
             builder.setShortCriticalText(text)
-            builder.setRequestPromotedOngoing(true)
         }
 
         nm.notify(notifId, builder.build())
