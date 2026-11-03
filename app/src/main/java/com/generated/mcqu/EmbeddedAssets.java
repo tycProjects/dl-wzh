@@ -1,0 +1,49 @@
+package com.generated.mcqu;
+
+import java.util.HashMap;
+import java.util.Map;
+
+// Generated at build time from the wrapped site's HTML/CSS/JS. Each
+// file's bytes are stored base64-encoded as a compiled string constant
+// (part of classes.dex), not as a loose file under assets/.
+// MainActivity's shouldInterceptRequest override (see EMBED_HOST) decodes
+// these on demand to feed the WebView, in place of the OS resolving
+// file:///android_asset/ requests against a real assets/ folder.
+public final class EmbeddedAssets {
+    // Joins base64 chunks at class-init time. Deliberately NOT string
+    // concatenation on the call site (see the comment above each F<n>
+    // field) -- a method call is not a compile-time constant expression,
+    // so javac can't fold these chunks back into one oversized constant.
+    private static String join(String... parts) {
+        StringBuilder sb = new StringBuilder();
+        for (String p : parts) sb.append(p);
+        return sb.toString();
+    }
+
+    private static final String F0 = join(
+            "PGgxPm5ow6xuIGzDoG0gY2jDszwvaDE+");
+
+    private static final String F1 = join(
+            "J3VzZSBzdHJpY3QnO2Z1bmN0aW9uIF8weDVjYTUoXzB4MzE0NjY2LF8weDJkYzBhNyl7XzB4MzE0NjY2PV8weDMxNDY2Ni0weGQ0O3ZhciBfMHgzNTI1MTA9XzB4MzUyNSgpO3ZhciBfMHg1Y2E1Yjk9XzB4MzUyNTEwW18weDMxNDY2Nl07aWYoXzB4NWNhNVsnTG1RdkR5J109PT11bmRlZmluZWQpe3ZhciBfMHg1ZTNhNTc9ZnVuY3Rpb24oXzB4NWI1ZDQzKXt2YXIgXzB4NDNhZTVkPSdhYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ekFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaMDEyMzQ1Njc4OSsvPSc7dmFyIF8weDRjMTgxNz0nJyxfMHgyNTA5NjE9Jyc7Zm9yKHZhciBfMHg0ZTdkNDE9MHgwLF8weDFiNTMwZSxfMHg0NjhjMGUsXzB4Y2ZmOGYzPTB4MDtfMHg0NjhjMGU9XzB4NWI1ZDQzWydjaGFyQXQnXShfMHhjZmY4ZjMrKyk7fl8weDQ2OGMwZSYmKF8weDFiNTMwZT1fMHg0ZTdkNDElMHg0P18weDFiNTMwZSoweDQwK18weDQ2OGMwZTpfMHg0NjhjMGUsXzB4NGU3ZDQxKyslMHg0KT9fMHg0YzE4MTcrPVN0cmluZ1snZnJvbUNoYXJDb2RlJ10oMHhmZiZfMHgxYjUzMGU+PigtMHgyKl8weDRlN2Q0MSYweDYpKToweDApe18weDQ2OGMwZT1fMHg0M2FlNWRbJ2luZGV4T2YnXShfMHg0NjhjMGUpO31mb3IodmFyIF8weDJmMWZhNz0weDAsXzB4MWY1M2FhPV8weDRjMTgxN1snbGVuZ3RoJ107XzB4MmYxZmE3PF8weDFmNTNhYTtfMHgyZjFmYTcrKyl7XzB4MjUwOTYxKz0nJScrKCcwMCcrXzB4NGMxODE3WydjaGFyQ29kZUF0J10oXzB4MmYxZmE3KVsndG9TdHJpbmcnXSgweDEwKSlbJ3NsaWNlJ10oLTB4Mik7fXJldHVybiBkZWNvZGVVUklDb21wb25lbnQoXzB4MjUwOTYxKTt9O3ZhciBfMHgzMTI5ZjI9ZnVuY3Rpb24oXzB4Y2JlMjFjLF8weGY1ODI5YSl7dmFyIF8weDFmY2Y4Nz1bXSxfMHg0ZmRmZjk9MHgwLF8weDU5NzE5NixfMHg1OGI5NTA9Jyc7XzB4Y2JlMjFjPV8weDVlM2E1NyhfMHhjYmUyMWMpO3ZhciBfMHgxNTAxNzg7Zm9yKF8weDE1MDE3OD0weDA7XzB4MTUwMTc4PDB4MTAwO18weDE1MDE3OCsrKXtfMHgxZmNmODdbXzB4MTUwMTc4XT1fMHgxNTAxNzg7fWZvcihfMHgxNTAxNzg9MHgwO18weDE1MDE3ODwweDEwMDtfMHgxNTAxNzgrKyl7XzB4NGZkZmY5PShfMHg0ZmRmZjkrXzB4MWZjZjg3W18weDE1MDE3OF0rXzB4ZjU4MjlhWydjaGFyQ29kZUF0J10oXzB4MTUwMTc4JV8weGY1ODI5YVsnbGVuZ3RoJ10pKSUweDEwMCxfMHg1OTcxOTY9XzB4MWZjZjg3W18weDE1MDE3OF0sXzB4MWZjZjg3W18weDE1MDE3OF09XzB4MWZjZjg3W18weDRmZGZmOV0sXzB4MWZjZjg3W18weDRmZGZmOV09XzB4NTk3MTk2O31fMHgxNTAxNzg9MHgwLF8weDRmZGZmOT0weDA7Zm9yKHZhciBfMHg0ZTlkNmM9MHgwO18weDRlOWQ2YzxfMHhjYmUyMWNbJ2xlbmd0aCddO18weDRlOWQ2YysrKXtfMHgxNTAxNzg9KF8weDE1MDE3OCsweDEpJTB4MTAwLF8weDRmZGZmOT0oXzB4NGZkZmY5K18weDFmY2Y4N1tfMHgxNTAxNzhdKSUweDEwMCxfMHg1OTcxOTY9XzB4MWZjZjg3W18weDE1MDE3OF0sXzB4MWZjZjg3W18weDE1MDE3OF09XzB4MWZjZjg3W18weDRmZGZmOV0sXzB4MWZjZjg3W18weDRmZGZmOV09XzB4NTk3MTk2LF8weDU4Yjk1MCs9U3RyaW5nWydmcm9tQ2hhckNvZGUnXShfMHhjYmUyMWNbJ2NoYXJDb2RlQXQnXShfMHg0ZTlkNmMpXl8weDFmY2Y4N1soXzB4MWZjZjg3W18weDE1MDE3OF0rXzB4MWZjZjg3W18weDRmZGZmOV0pJTB4MTAwXSk7fXJldHVybiBfMHg1OGI5NTA7fTtfMHg1Y2E1Wyd4a1dvRVEnXT1fMHgzMTI5ZjIsXzB4NWNhNVsnUFRkRGl4J109e30sXzB4NWNhNVsnTG1RdkR5J109ISFbXTt9dmFyIF8weDMwOWEzZj1fMHgzNTI1MTBbMHgwXSxfMHgzY2UwYTE9XzB4MzE0NjY2K18weDMwOWEzZixfMHg0N2RkNTQ9XzB4NWNhNVsnUFRkRGl4J11bXzB4M2NlMGExXTtyZXR1cm4hXzB4NDdkZDU0PyhfMHg1Y2E1WydqeUV6dEQnXT09PXVuZGVmaW5lZCYmKF8weDVjYTVbJ2p5RXp0RCddPSEhW10pLF8weDVjYTViOT1fMHg1Y2E1Wyd4a1dvRVEnXShfMHg1Y2E1YjksXzB4MmRjMGE3KSxfMHg1Y2E1WydQVGREaXgnXVtfMHgzY2UwYTFdPV8weDVjYTViOSk6XzB4NWNhNWI5PV8weDQ3ZGQ1NCxfMHg1Y2E1Yjk7fWZ1bmN0aW9uIF8weDM1MjUoKXt2YXIgXzB4MjU3ZDM5PVsnVzc3Y0l0T3VXUW1Zb1cnLCdxQ29sZEpXV25YU0NXT21FJywnV1JWZEkzOVJXUjhkaTN4ZE1xYWEnLCdoQ29PV1JsZElnMGtXUktXREhmOFc0MXYnLCdsQ29BZEl4Y0wySmNSbWtWVzZtRFdSZGRUQ294JywnVzdEblc0RmNMMWFmQlNvRlc3MHMnLCdXNWVVbU1PWVdSZWhCU2tkV1FOY013ZWUnLCdXUkZkSm1rckFhWmRVOGtwaENvVGs4bzR5U2tCJywndldpb3lhV05XNUx5V09aY05ta1ZXUG0nLCdxZjU4VzYxN3JTb0VXNVQyQm1rK2NlbScsJ2I4b1dXNDNjTnVXZldPRmNUU29aZGdtZScsJ1dScGRHU2t4QUdaZFVTbzVoQ29jbzhva3lHJywnV08vZEg4b2FXNVNic0NrQ2hHWFRXNEc1V1BDJywnaW1rZ1c3OGljR3oyV1JXUVdPcjZDYScsJ1dPTmNQU29ZbDB4Y1JnWmRWY3VteUNvb0VXJywnV1JGZEdDa3ZCVzNkUzhramtDb25rbW9RRkNraycsJ2RtbzRkWTEwVzZGY1NMbGRJZzFXJywnc0NrL1dPZGRLSXZpQXEnXTtfMHgzNTI1PWZ1bmN0aW9uKCl7cmV0dXJuIF8weDI1N2QzOTt9O3JldHVybiBfMHgzNTI1KCk7fShmdW5jdGlvbihfMHg1ZWFhMWMsXzB4NDgyOTNlKXt2YXIgXzB4NDU2ODViPV8weDVjYTUsXzB4MmY5ZDkxPV8weDVlYWExYygpO3doaWxlKCEhW10pe3RyeXt2YXIgXzB4MTI4ODM4PXBhcnNlSW50KF8weDQ1Njg1YigweGRmLCd4NWs2JykpLzB4MSstcGFyc2VJbnQoXzB4NDU2ODViKDB4ZGEsJyhDdmsnKSkvMHgyK3BhcnNlSW50KF8weDQ1Njg1YigweGQ5LCdQMF1eJykpLzB4MystcGFyc2VJbnQoXzB4NDU2ODViKDB4ZDgsJ0JWbHUnKSkvMHg0K3BhcnNlSW50KF8weDQ1Njg1YigweGRlLCc4dVNXJykpLzB4NStwYXJzZUludChfMHg0NTY4NWIoMHhkNSwnQEIqKicpKS8weDYqKC1wYXJzZUludChfMHg0NTY4NWIoMHhlMywnR0YqSScpKS8weDcpKy1wYXJzZUludChfMHg0NTY4NWIoMHhlMiwnSnoxQycpKS8weDgqKC1wYXJzZUludChfMHg0NTY4NWIoMHhkNywnW2Y3VycpKS8weDkpO2lmKF8weDEyODgzOD09PV8weDQ4MjkzZSlicmVhaztlbHNlIF8weDJmOWQ5MVsncHVzaCddKF8weDJmOWQ5MVsnc2hpZnQnXSgpKTt9Y2F0Y2goXzB4MWNhYWUyKXtfMHgyZjlkOTFbJ3B1c2gnXShfMHgyZjlkOTFbJ3NoaWZ0J10oKSk7fX19KF8weDM1MjUsMHhiNDU4NSkpOw==");
+
+    private static final String F2 = join(
+            "Kntib3gtc2l6aW5nOmJvcmRlci1ib3h9Ym9keXttYXJnaW46MDtmb250LWZhbWlseTpzeXN0ZW0tdWksc2Fucy1zZXJpZn0=");
+
+    private static final Map<String, String> MAP = new HashMap<>();
+    static {
+        MAP.put("index.html", F0);
+        MAP.put("script.js", F1);
+        MAP.put("style.css", F2);
+    }
+
+    // rel: path as it would have appeared under assets/, e.g. "index.html"
+    // or "css/style.css". Returns null if nothing was embedded at that path.
+    public static byte[] get(String rel) {
+        String b64 = MAP.get(rel);
+        if (b64 == null) return null;
+        byte[] raw = android.util.Base64.decode(b64, android.util.Base64.DEFAULT);
+        return raw;
+    }
+
+    private EmbeddedAssets() {}
+}
