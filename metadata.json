@@ -1,0 +1,6 @@
+{
+  "name": "Tumba Notes",
+  "description": "Minimalist graphite personal notes management with offline storage, hierarchical folders, rich text editing, and instant search.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
