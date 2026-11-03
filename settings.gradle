@@ -1,0 +1,2 @@
+rootProject.name = 'JUMA AI'
+include ':app'

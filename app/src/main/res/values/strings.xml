@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JUMA AI</string>
+    <string name="accessibility_service_description">JUMA AI Accessibility Service provides hands-free system navigation, device automation, and voice-assisted controls for your Android device.</string>
+    <string name="remote_web_url">https://ais-dev-elhzbu2fape477grwkez6w-210483887445.asia-southeast1.run.app</string>
+</resources>
