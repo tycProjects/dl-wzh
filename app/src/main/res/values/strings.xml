@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnapStreak</string>
+    <string name="service_label">SnapStreak tapper</string>
+    <string name="service_description">Taps fixed screen positions when you press Start in the SnapStreak app. It shows a STOP button while running, takes a screenshot only to check which tab is selected on the Send To screen, and notices when another app comes to the front so it can stop. Nothing is saved or sent anywhere (this app has no internet access). Volume Down also stops a run.</string>
+</resources>
