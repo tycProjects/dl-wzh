@@ -223,7 +223,7 @@ class MainActivity : Activity() {
 
         if (Build.VERSION.SDK_INT >= 36) {
             builder.setShortCriticalText(text)
-            builder.setPromotedOngoing(true)
+            // AUTO-REPAIR: disabled -- unresolved reference 'setPromotedOngoing' (was: builder.setPromotedOngoing(true))
         }
 
         val n = builder.build()
