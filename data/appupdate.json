@@ -1,6 +1,6 @@
 {
   "latestVersionCode": 1792447886,
-  "latestVersionName": "6.0.0",
+  "latestVersionName": "7.0.0",
   "apkUrl": "https://www.mediafire.com/file/u7errsqdnx8640k/WZH+2+APK+(bug+fixed).apk/file",
   "title": "New version available",
   "notes": [
@@ -9,5 +9,5 @@
   ],
   "updateButtonText": "Download update",
   "laterButtonText": "Later",
-  "updatedAt": 1793796866827
+  "updatedAt": 1793796880547
 }
