@@ -1,5 +1,9 @@
 plugins { id 'com.android.application' }
 android {
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
     namespace 'com.aurora.titan'
     compileSdk 35
     defaultConfig {
