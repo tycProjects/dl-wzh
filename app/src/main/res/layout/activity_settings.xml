@@ -1,0 +1,18 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/bg" android:layout_width="match_parent" android:layout_height="match_parent">
+ <LinearLayout android:orientation="vertical" android:padding="22dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="RECORDING SETTINGS" android:textColor="@color/text" android:textSize="23sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+  <TextView android:text="Capture profile" android:textColor="@color/cyan" android:layout_marginTop="24dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+  <Spinner android:id="@+id/resolution" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Spinner android:id="@+id/fps" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Spinner android:id="@+id/quality" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Spinner android:id="@+id/countdown" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <TextView android:text="Audio source" android:textColor="@color/cyan" android:layout_marginTop="18dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+  <Spinner android:id="@+id/audio" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <TextView android:text="Appearance" android:textColor="@color/cyan" android:layout_marginTop="18dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+  <Spinner android:id="@+id/theme" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Spinner android:id="@+id/mode" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Spinner android:id="@+id/language" android:layout_width="match_parent" android:layout_height="52dp"/>
+  <Button android:id="@+id/save" android:text="SAVE SETTINGS" android:backgroundTint="@color/accent" android:layout_marginTop="24dp" android:layout_width="match_parent" android:layout_height="54dp"/>
+  <TextView android:text="Compatibility note: actual capture size and frame pacing depend on the device display and encoder. Audio capture is subject to Android version and app playback policy." android:textColor="@color/muted" android:textSize="12sp" android:layout_marginTop="18dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+ </LinearLayout>
+</ScrollView>
