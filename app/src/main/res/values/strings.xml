@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JoyArk Queue Skip</string>
+    <string name="acc_label">JoyArk Queue Reader</string>
+    <string name="acc_desc">Le a tela de fila do JoyArk e executa o pulo de fila.</string>
+</resources>
