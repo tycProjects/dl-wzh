@@ -1,0 +1,12 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.aurora.titan'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.aurora.titan'
+        minSdk 23
+        targetSdk 28
+        versionCode 2
+        versionName '2.0'
+    }
+}
