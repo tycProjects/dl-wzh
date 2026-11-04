@@ -1,0 +1,8 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:padding="20dp" android:background="@color/bg" android:layout_width="match_parent" android:layout_height="match_parent">
+ <TextView android:text="YOUR RECORDINGS" android:textColor="@color/text" android:textSize="24sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+ <TextView android:text="Gameplay captures saved on this device" android:textColor="@color/muted" android:textSize="12sp" android:layout_marginTop="5dp" android:layout_marginBottom="18dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+ <TextView android:id="@+id/empty" android:text="No captures yet
+
+Your finished recordings will appear here." android:textColor="@color/muted" android:gravity="center" android:background="@drawable/bg_panel" android:layout_gravity="center" android:layout_width="match_parent" android:layout_height="match_parent"/>
+ <androidx.recyclerview.widget.RecyclerView android:id="@+id/list" android:visibility="gone" android:clipToPadding="false" android:paddingBottom="12dp" android:layout_width="match_parent" android:layout_height="match_parent"/>
+</LinearLayout>

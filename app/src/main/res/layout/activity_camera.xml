@@ -1,0 +1,8 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/bg" android:layout_width="match_parent" android:layout_height="match_parent">
+ <androidx.camera.view.PreviewView android:id="@+id/preview" android:layout_width="match_parent" android:layout_height="match_parent"/>
+ <LinearLayout android:orientation="vertical" android:padding="18dp" android:background="#E6111827" android:layout_gravity="bottom" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="CAMERA MONITOR" android:textColor="@color/cyan" android:textStyle="bold" android:textSize="11sp" android:letterSpacing="0.12" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+  <TextView android:text="Live camera preview" android:textColor="@color/text" android:textSize="18sp" android:textStyle="bold" android:layout_marginTop="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+  <Button android:id="@+id/switchCamera" android:text="SWITCH CAMERA" android:textColor="@color/text" android:background="@drawable/bg_button" android:stateListAnimator="@null" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="52dp"/>
+ </LinearLayout>
+</FrameLayout>

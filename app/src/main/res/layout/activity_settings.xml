@@ -1,0 +1,33 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/bg" android:fillViewport="true" android:layout_width="match_parent" android:layout_height="match_parent">
+ <LinearLayout android:orientation="vertical" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="26dp" android:paddingBottom="30dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+  <TextView android:text="RECORDING SETUP" android:textColor="@color/text" android:textSize="24sp" android:textStyle="bold" android:letterSpacing="0.015" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+  <TextView android:text="Tune your capture profile and save your preferences" android:textColor="@color/muted" android:textSize="12sp" android:layout_marginTop="5dp" android:layout_marginBottom="20dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+  <LinearLayout android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_panel" android:layout_width="match_parent" android:layout_height="wrap_content">
+   <TextView android:text="01   VIDEO PROFILE" android:textColor="@color/cyan" android:textStyle="bold" android:textSize="12sp" android:letterSpacing="0.08" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <TextView android:text="Resolution" android:textColor="@color/text" android:textSize="13sp" android:layout_marginTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <Spinner android:id="@+id/resolution" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="6dp"/>
+   <TextView android:text="Frame rate" android:textColor="@color/text" android:textSize="13sp" android:layout_marginTop="12dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <Spinner android:id="@+id/fps" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="6dp"/>
+   <TextView android:text="Encoding quality" android:textColor="@color/text" android:textSize="13sp" android:layout_marginTop="12dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <Spinner android:id="@+id/quality" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="6dp"/>
+   <TextView android:text="Start countdown" android:textColor="@color/text" android:textSize="13sp" android:layout_marginTop="12dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <Spinner android:id="@+id/countdown" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="6dp"/>
+  </LinearLayout>
+  <LinearLayout android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_panel" android:layout_marginTop="14dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+   <TextView android:text="02   AUDIO INPUT" android:textColor="@color/cyan" android:textStyle="bold" android:textSize="12sp" android:letterSpacing="0.08" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <TextView android:text="Choose an audio source supported by this device" android:textColor="@color/muted" android:textSize="12sp" android:layout_marginTop="5dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+   <Spinner android:id="@+id/audio" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="12dp"/>
+  </LinearLayout>
+  <LinearLayout android:orientation="vertical" android:padding="16dp" android:background="@drawable/bg_panel" android:layout_marginTop="14dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+   <TextView android:text="03   LOOK &amp; FEEL" android:textColor="@color/cyan" android:textStyle="bold" android:textSize="12sp" android:letterSpacing="0.08" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <TextView android:text="Accent theme" android:textColor="@color/text" android:textSize="13sp" android:layout_marginTop="14dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <Spinner android:id="@+id/theme" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="6dp"/>
+   <TextView android:text="Display mode" android:textColor="@color/text" android:textSize="13sp" android:layout_marginTop="12dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <Spinner android:id="@+id/mode" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="6dp"/>
+   <TextView android:text="Language" android:textColor="@color/text" android:textSize="13sp" android:layout_marginTop="12dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+   <Spinner android:id="@+id/language" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="6dp"/>
+  </LinearLayout>
+  <Button android:id="@+id/save" android:text="SAVE PREFERENCES" android:textColor="@color/text" android:textStyle="bold" android:letterSpacing="0.08" android:background="@drawable/bg_button" android:stateListAnimator="@null" android:layout_marginTop="20dp" android:layout_width="match_parent" android:layout_height="58dp"/>
+  <TextView android:text="Compatibility note: capture size and frame pacing depend on the display and hardware encoder. Internal audio availability is controlled by Android and the source app." android:textColor="@color/muted" android:textSize="11sp" android:lineSpacingExtra="3dp" android:layout_marginTop="14dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+ </LinearLayout>
+</ScrollView>
