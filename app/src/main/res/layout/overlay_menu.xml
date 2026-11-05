@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    
+    <LinearLayout
+        android:id="@+id/side_tab"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_side_tab"
+        android:paddingVertical="12dp"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/tab_performa"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_speed"
+            android:padding="4dp"
+            android:contentDescription="Performa"
+            android:background="@drawable/bg_tab_selected" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/performa"
+            android:textColor="@color/accent_green"
+            android:textSize="10sp"
+            android:layout_marginTop="2dp" />
+
+        <ImageView
+            android:id="@+id/tab_alat"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_grid"
+            android:padding="4dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Alat" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alat"
+            android:textColor="@color/text_secondary"
+            android:textSize="10sp"
+            android:layout_marginTop="2dp" />
+
+        <ImageView
+            android:id="@+id/tab_saya"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_person"
+            android:padding="4dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Saya" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/saya"
+            android:textColor="@color/text_secondary"
+            android:textSize="10sp"
+            android:layout_marginTop="2dp" />
+
+        
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_unity"
+            android:layout_marginTop="20dp"
+            android:contentDescription="Unity" />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_wechat"
+            android:layout_marginTop="12dp"
+            android:contentDescription="WeChat" />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_tiktok"
+            android:layout_marginTop="12dp"
+            android:contentDescription="TikTok" />
+
+    </LinearLayout>
+
+    
+    <LinearLayout
+        android:id="@+id/menu_panel"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_overlay_panel"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jaringan"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_latency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="77.7 ms"
+                    android:textColor="@color/green_fps"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/laju_bingkai"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_fps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="60 fps"
+                    android:textColor="@color/green_fps"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/suhu"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="39 °C"
+                    android:textColor="@color/green_fps"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_tool_button"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_brightness"
+                android:contentDescription="Brightness" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="12dp"
+                android:background="@drawable/bg_seekbar" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_lock"
+                android:contentDescription="Lock" />
+        </LinearLayout>
+
+        
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:layout_marginTop="16dp"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true">
+
+            <LinearLayout
+                android:id="@+id/tool_notif"
+                style="@style/ToolButton">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                    android:src="@drawable/ic_notification" android:contentDescription="Notif" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/notifikasi_bertitik" android:textColor="@color/text_primary"
+                    android:textSize="11sp" android:layout_marginTop="6dp"
+                    android:gravity="center" android:maxLines="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tool_assistant"
+                style="@style/ToolButton">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                    android:src="@drawable/ic_folder_star" android:contentDescription="Assistant" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/tambahkan_ke_asisten" android:textColor="@color/text_primary"
+                    android:textSize="11sp" android:layout_marginTop="6dp"
+                    android:gravity="center" android:maxLines="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tool_network"
+                style="@style/ToolButton">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                    android:src="@drawable/ic_globe" android:contentDescription="Network" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/optimalisasi_jaringan" android:textColor="@color/text_primary"
+                    android:textSize="11sp" android:layout_marginTop="6dp"
+                    android:gravity="center" android:maxLines="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tool_wlan"
+                style="@style/ToolButton">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                    android:src="@drawable/ic_wifi" android:contentDescription="WLAN" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/wlan" android:textColor="@color/text_primary"
+                    android:textSize="11sp" android:layout_marginTop="6dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tool_status"
+                style="@style/ToolButton">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                    android:src="@drawable/ic_monitor" android:contentDescription="Status" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/status_sistem" android:textColor="@color/text_primary"
+                    android:textSize="11sp" android:layout_marginTop="6dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tool_clear"
+                style="@style/ToolButton">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                    android:src="@drawable/ic_nuclear" android:contentDescription="Clear" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/kosongkan" android:textColor="@color/text_primary"
+                    android:textSize="11sp" android:layout_marginTop="6dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tool_aim"
+                style="@style/ToolButton">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                    android:src="@drawable/ic_crosshair" android:contentDescription="Aim" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/bantuan_bidik" android:textColor="@color/text_primary"
+                    android:textSize="11sp" android:layout_marginTop="6dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tool_screenshot"
+                style="@style/ToolButton">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                    android:src="@drawable/ic_scissors" android:contentDescription="Screenshot" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/cuplikan_layar" android:textColor="@color/text_primary"
+                    android:textSize="11sp" android:layout_marginTop="6dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tool_record"
+                style="@style/ToolButton">
+                <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                    android:src="@drawable/ic_video" android:contentDescription="Record" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/perekaman_layar" android:textColor="@color/text_primary"
+                    android:textSize="11sp" android:layout_marginTop="6dp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+        </GridLayout>
+    </LinearLayout>
+</LinearLayout>

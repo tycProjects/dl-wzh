@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    tools:context=".MainActivity">
+
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        
+        <LinearLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_menu"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_menu"
+                android:contentDescription="Menu"
+                android:padding="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/app_name"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp" />
+
+            <ImageView
+                android:id="@+id/btn_add_game"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_add"
+                android:contentDescription="Tambah Game"
+                android:padding="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginEnd="4dp" />
+
+            <ImageView
+                android:id="@+id/btn_search"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_search"
+                android:contentDescription="Search"
+                android:padding="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+        </LinearLayout>
+
+        
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recent_icons"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginTop="4dp"
+            android:clipToPadding="false"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            app:layout_constraintTop_toBottomOf="@id/top_bar" />
+
+        
+        <LinearLayout
+            android:id="@+id/empty_state"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/rv_recent_icons"
+            app:layout_constraintBottom_toTopOf="@id/bottom_bar">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_speed"
+                android:alpha="0.4"
+                android:contentDescription="Empty" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Belum ada game"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tambahkan game secara manual agar muncul di sini"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:gravity="center" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_empty_add"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="24dp"
+                android:text="Tambah Game"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/accent_green"
+                app:cornerRadius="24dp"
+                app:icon="@drawable/ic_add"
+                app:iconTint="@color/black" />
+        </LinearLayout>
+
+        
+        <LinearLayout
+            android:id="@+id/selected_game_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp"
+            app:layout_constraintTop_toBottomOf="@id/rv_recent_icons"
+            app:layout_constraintBottom_toTopOf="@id/bottom_bar">
+
+            <FrameLayout
+                android:layout_width="130dp"
+                android:layout_height="130dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_icon_glow" />
+
+                <ImageView
+                    android:id="@+id/iv_selected_icon"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/bg_icon_rounded"
+                    android:contentDescription="Game Icon" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_selected_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Pilih Game"
+                android:textColor="@color/text_primary"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/tv_selected_playtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Dimainkan 0 jam dalam 30 hari terakhir"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            
+            <View
+                android:layout_width="180dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/bg_geometric"
+                android:alpha="0.5" />
+
+        </LinearLayout>
+
+        
+        <LinearLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:background="@color/background_dark"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_settings"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@drawable/ic_settings"
+                android:contentDescription="Settings"
+                android:padding="9dp"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pengaturan_pe"
+                android:textColor="@color/text_hint"
+                android:textSize="12sp"
+                android:layout_marginStart="2dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_open"
+                android:layout_width="190dp"
+                android:layout_height="54dp"
+                android:text="@string/buka"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/accent_green"
+                app:cornerRadius="27dp"
+                app:rippleColor="#80FFFFFF" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/card_darker">
+
+        <include layout="@layout/drawer_profile" />
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

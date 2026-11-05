@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nexus Launcher</string>
+    <string name="buka">Buka</string>
+    <string name="waktu_dimainkan">Waktu dimainkan</string>
+    <string name="promo_top_up">Promo Top Up</string>
+    <string name="pergi_ke_pusat_top_up">Pergi ke Pusat Top Up</string>
+    <string name="album_game">Album game</string>
+    <string name="pengaturan_ikon_game">Pengaturan ikon game</string>
+    <string name="atur_ikon_game">Atur ikon game</string>
+    <string name="cache_game">Cache game</string>
+    <string name="tidak_ada_cache">Tidak ada cache</string>
+    <string name="pengaturan_lainnya">Pengaturan lainnya</string>
+    <string name="performa">Performa</string>
+    <string name="alat">Alat</string>
+    <string name="saya">Saya</string>
+    <string name="jaringan">Jaringan</string>
+    <string name="laju_bingkai">Laju bingkai</string>
+    <string name="suhu">Suhu</string>
+    <string name="notifikasi_bertitik">Notifikasi bertitik</string>
+    <string name="tambahkan_ke_asisten">Tambahkan ke Asisten G...</string>
+    <string name="optimalisasi_jaringan">Optimalisasi jaringan</string>
+    <string name="wlan">WLAN</string>
+    <string name="status_sistem">Status sistem</string>
+    <string name="kosongkan">Kosongkan</string>
+    <string name="bantuan_bidik">Bantuan bidik</string>
+    <string name="cuplikan_layar">Cuplikan layar</string>
+    <string name="perekaman_layar">Perekaman layar</string>
+    <string name="pengaturan_pe">Pengaturan pe</string>
+    <string name="dimainkan">Dimainkan</string>
+    <string name="hari_terakhir">hari terakhir</string>
+    <string name="aktifkan_overlay">Aktifkan Overlay</string>
+    <string name="izin_overlay">Izin Overlay Diperlukan</string>
+    <string name="izin_overlay_desc">Nexus Launcher membutuhkan izin untuk menampilkan menu di atas game. Silakan aktifkan di pengaturan.</string>
+    <string name="buka_pengaturan">Buka Pengaturan</string>
+    <string name="batal">Batal</string>
+    <string name="tidak_ada_game">Tidak ada game terdeteksi</string>
+    <string name="cari_game">Cari game...</string>
+</resources>
