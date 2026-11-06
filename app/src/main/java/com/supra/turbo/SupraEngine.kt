@@ -57,7 +57,7 @@ object SupraEngine {
         val m = Shizuku::class.java.getDeclaredMethod(
             "newProcess", Array<String>::class.java, Array<String>::class.java, String::class.java)
         m.isAccessible = true
-        val p = m.invoke(null, arrayOf("sh", "-c", cmd), null, null) as Process
+        val p = m.invoke(null, arrayOf("sh", "-c", cmd), null, null) as java.lang.Process
         val out = p.inputStream.bufferedReader().readText()
         val err = p.errorStream.bufferedReader().readText()
         Out(p.waitFor(), (out + err).trim())
@@ -94,8 +94,8 @@ object SupraEngine {
     fun sessionStart(c: Context) {
         val s = sp(c)
         if (s.getBoolean("sessionActive", false)) return
-        val prev = run("echo \"\$(settings get global window_animation_scale)|" +
-            "\$(settings get global transition_animation_scale)|\$(settings get global animator_duration_scale)\"").out
+        val prev = run("echo \"\$(settings get global window_animation_scale)|"
+            + "\$(settings get global transition_animation_scale)|\$(settings get global animator_duration_scale)\"").out
         s.edit().putString("prevAnim", prev).putBoolean("sessionActive", true).apply()
         if (s.getBoolean("session", true)) {
             run("am kill-all; settings put global window_animation_scale 0; " +
