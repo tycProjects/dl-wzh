@@ -4002,12 +4002,10 @@ public class MainActivity extends AppCompatActivity {
                         notifyGoogleSignInError("Unexpected credential type");
                         return;
                     }
-                    try {
+                     {
                         GoogleIdTokenCredential googleIdTokenCredential =
                             GoogleIdTokenCredential.createFrom(((CustomCredential) credential).getData());
                         notifyGoogleSignInSuccess(googleIdTokenCredential.getIdToken());
-                    } catch (GoogleIdTokenParsingException e) {
-                        notifyGoogleSignInError("Could not parse Google ID token");
                     }
                 }
 
