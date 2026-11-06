@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111112" media="(prefers-color-scheme: dark)">
+<title>Download</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234dd8a6'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11' fill='none' stroke='%23062a1d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f2f7;--grp:#ffffff;--ink:#111114;--mut:#6c6c72;--line:rgba(60,60,67,.18);
+  --acc:#16a77a;--accInk:#ffffff;--ok:#1f9d47;--okInk:#ffffff;--good:#1f9d47;--err:#d62f2f;--bar:rgba(242,242,247,.8);--sk:#e3e3e8;
+  --spring:cubic-bezier(.34,1.56,.64,1);--ease:cubic-bezier(.2,.8,.2,1);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#111112;--grp:#1d1d20;--ink:#f5f5f7;--mut:#8e8e93;--line:rgba(255,255,255,.1);
+  --acc:#4dd8a6;--accInk:#062a1d;--ok:#1f4a3b;--okInk:#4dd8a6;--good:#4dd8a6;--err:#ff6961;--bar:rgba(17,17,18,.8);--sk:#2a2a2e;
+}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Onest,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.hide{display:none!important}
+button{font:inherit;color:inherit}
+
+/* top bar: translucent, like a system navigation bar */
+.bar{position:sticky;top:0;z-index:5;padding-top:env(safe-area-inset-top);background:var(--bar);
+  -webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:520px;margin:0 auto;height:48px;padding:0 20px;display:flex;align-items:center;gap:9px;font-weight:600;font-size:16px;letter-spacing:-.01em}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--acc);display:grid;place-items:center}
+.mark svg{width:13px;height:13px;stroke:var(--accInk);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+
+main{max-width:520px;margin:0 auto;padding:26px 20px calc(48px + env(safe-area-inset-bottom))}
+
+/* hero: app tile + name, laid out like a store listing */
+.hero{display:flex;align-items:center;gap:18px}
+.tile{flex:none;width:96px;height:96px;border-radius:23%;background:var(--sk);display:grid;place-items:center;
+  color:#fff;font-weight:700;font-size:46px;line-height:1;letter-spacing:-.02em;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);transition:background-color .45s var(--ease)}
+.tile span{opacity:0}
+.who{min-width:0;flex:1}
+h1{margin:0;font-size:28px;line-height:1.14;font-weight:700;letter-spacing:-.025em;overflow-wrap:anywhere}
+.sub{margin:5px 0 0;color:var(--mut);font-size:15.5px}
+.sk .tile{animation:pulse 1.4s ease-in-out infinite}
+.sk h1{width:62%;height:28px;border-radius:8px;background:var(--sk);color:transparent;overflow:hidden;animation:pulse 1.4s ease-in-out infinite}
+.sk .sub{width:38%;height:16px;border-radius:6px;background:var(--sk);color:transparent;margin-top:10px;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.55}}
+/* the one orchestrated moment: when the file is found, the tile settles in and the button rises */
+.ready .tile{animation:settle .7s var(--spring) both}
+.ready .tile span{opacity:1;transition:opacity .3s .12s}
+@keyframes settle{0%{transform:scale(.8)}100%{transform:none}}
+.ready .btn{animation:rise .6s var(--spring) .08s both}
+@keyframes rise{0%{opacity:0;transform:translateY(14px) scale(.96)}100%{opacity:1;transform:none}}
+.ready .fade{animation:fade .4s var(--ease) .15s both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* primary action */
+.btn{position:relative;display:block;width:100%;height:56px;margin-top:26px;border-radius:14px;background:var(--acc);color:var(--accInk);
+  text-decoration:none;font-weight:600;font-size:17.5px;letter-spacing:-.01em;overflow:hidden;
+  transition:transform .4s var(--spring),filter .2s,background-color .3s}
+.btn:active{transform:scale(.965);transition-duration:.1s}
+.btn:focus-visible,.ghost:focus-visible,.row-btn:focus-visible,.mini:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:9px;transition:transform .5s var(--spring),opacity .25s}
+.lbl svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.lbl-b,.lbl-c{transform:translateY(120%);opacity:0}
+.lbl-c .spin{width:19px;height:19px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn .prog{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(0,0,0,.18);transition:width .2s linear;pointer-events:none}
+/* loading: waiting for the download to actually begin / in progress */
+.btn.loading{pointer-events:none}
+.btn.loading .lbl-a{transform:translateY(-120%);opacity:0}
+.btn.loading .lbl-c{transform:none;opacity:1}
+/* done: only after the file has really been received */
+.btn.done{background:var(--ok);color:var(--okInk)}
+.btn.done .lbl-a,.btn.done .lbl-c{transform:translateY(-120%);opacity:0}
+.btn.done .prog{opacity:0}
+.btn.done .lbl-b{transform:none;opacity:1}
+.btn.done .tick{stroke-dasharray:24;stroke-dashoffset:24;animation:draw .5s .15s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (hover:hover){.btn:hover{filter:brightness(1.07)}}
+.ghost{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px auto 0;height:44px;padding:0 16px;background:none;border:0;
+  color:var(--acc);font-weight:600;font-size:16px;cursor:pointer;border-radius:10px;transition:transform .35s var(--spring),opacity .2s}
+.ghost:active{transform:scale(.95);opacity:.7;transition-duration:.1s}
+.ghost svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+
+/* facts strip */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:22px;padding:15px 0;background:var(--grp);border-radius:16px}
+.facts div{padding:0 14px;text-align:center}
+.facts div+div{border-left:1px solid var(--line)}
+.facts dt{color:var(--mut);font-size:13px}
+.facts dd{margin:3px 0 0;font-weight:600;font-size:16.5px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.facts{margin-bottom:0}
+
+/* grouped lists */
+.gh{margin:26px 0 8px 16px;color:var(--mut);font-size:14px}
+.group{background:var(--grp);border-radius:16px;overflow:hidden}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:50px;padding:12px 16px;background:none;border:0;text-align:left;font-size:16px}
+.row+.row,.row+.disc,.disc+.row{position:relative}
+.row+.row::before,.disc+.row::before{content:"";position:absolute;left:16px;right:0;top:0;border-top:1px solid var(--line)}
+.row .k{color:var(--ink)}
+.row .v{color:var(--mut);text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere;display:flex;align-items:center;gap:7px}
+.v .ok{width:17px;height:17px;flex:none;fill:none;stroke:var(--good);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.row-btn{cursor:pointer}
+.row-btn .chev{width:15px;height:15px;flex:none;fill:none;stroke:var(--mut);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--spring)}
+.row-btn[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.disc{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.disc.open{grid-template-rows:1fr}
+.disc-in{overflow:hidden;min-height:0}
+.disc-pad{padding:2px 16px 16px}
+code{display:block;padding:11px 12px;border-radius:10px;background:var(--bg);font:500 13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere;color:var(--ink)}
+.disc p{margin:10px 0 0;color:var(--mut);font-size:14.5px}
+.mini{margin-top:10px;height:38px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:none;color:var(--acc);font-weight:600;font-size:15px;cursor:pointer;transition:transform .35s var(--spring)}
+.mini:active{transform:scale(.95);transition-duration:.1s}
+
+.steps .row{align-items:flex-start;justify-content:flex-start;gap:14px;line-height:1.4}
+.n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--bg);color:var(--mut);display:grid;place-items:center;font-size:13px;font-weight:600;margin-top:1px}
+
+/* confirmation toast */
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 10px);z-index:10;transform:translate(-50%,-160%);
+  padding:11px 18px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:600;font-size:15px;white-space:nowrap;
+  box-shadow:0 8px 28px rgba(0,0,0,.22);transition:transform .55s var(--spring);pointer-events:none}
+.toast.show{transform:translate(-50%,0)}
+
+/* problem state */
+.err .tile{background:var(--sk);color:var(--mut);animation:none}
+.err .tile span{opacity:1}
+.err h1{font-size:24px}
+
+@media (max-width:380px){.tile{width:80px;height:80px;font-size:38px}h1{font-size:24px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style></head>
+<body>
+<header class="bar"><div class="bar-in"><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>WZH 2 APK</div></header>
+<main id="app" class="sk">
+  <section class="hero" aria-live="polite">
+    <div class="tile" id="tile" aria-hidden="true"><span id="letter">A</span></div>
+    <div class="who"><h1 id="name">Loading</h1><p class="sub" id="sub">Loading</p></div>
+  </section>
+
+  <a class="btn hide" id="btn" rel="nofollow">
+    <span class="lbl lbl-a"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/></svg>Download</span>
+    <span class="prog" id="prog" aria-hidden="true"></span>
+    <span class="lbl lbl-c" aria-hidden="true"><span class="spin"></span><span id="ldTxt">Starting…</span></span>
+    <span class="lbl lbl-b" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="tick" d="M5 12.5l4.5 4.5L19 7.5"/></svg>Download started</span>
+  </a>
+  <button class="ghost hide" id="copy" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg>Copy link</button>
+
+  <dl class="facts hide fade" id="facts">
+    <div><dt>Size</dt><dd id="size"></dd></div>
+    <div><dt>Uploaded</dt><dd id="date"></dd></div>
+    <div><dt>Downloads</dt><dd id="count"></dd></div>
+  </dl>
+
+  <h2 class="gh hide fade" id="aboutH" style="font-weight:400">About this file</h2>
+  <section class="group hide fade" id="about">
+    <div class="row"><span class="k">File type</span><span class="v">Android app (APK)</span></div>
+    <div class="row"><span class="k">Hosted on</span><span class="v">WZH 2 APK</span></div>
+    <div class="row hide" id="httpsRow"><span class="k">Connection</span><span class="v"><svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Encrypted (HTTPS)</span></div>
+    <button class="row row-btn hide" id="hashRow" type="button" aria-expanded="false" aria-controls="hashBox">
+      <span class="k">Checksum</span>
+      <span class="v"><span id="hashShort"></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+    </button>
+    <div class="disc" id="hashBox"><div class="disc-in"><div class="disc-pad">
+      <code id="hashFull"></code>
+      <p>This is the SHA-256 fingerprint of the file you will get. Ask the sender for theirs: if the two match, the file was not changed on the way.</p>
+      <button class="mini" id="hashCopy" type="button">Copy checksum</button>
+    </div></div></div>
+  </section>
+
+  <h2 class="gh hide fade" id="howH" style="font-weight:400">Installing</h2>
+  <section class="group steps hide fade" id="how">
+    <div class="row"><span class="n">1</span><span>Open the file from your notifications or the Downloads folder.</span></div>
+    <div class="row"><span class="n">2</span><span>If Android asks, allow installs from this browser.</span></div>
+    <div class="row"><span class="n">3</span><span>Only install apps from people you trust.</span></div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+// Your public APK repo, "owner/repo" (the same one as kShareGithubRepo in the app).
+const REPO = 'tycweb/apk-files';
+
+const $ = (i) => document.getElementById(i);
+const show = (...ids) => ids.forEach((i) => $(i).classList.remove('hide'));
+const size = (b) => b >= 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB';
+const tag = new URLSearchParams(location.search).get('d');
+
+let toastTimer;
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1900);
+}
+function copyText(text, msg) {
+  const ok = () => toast(msg);
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, () => toast('Couldn’t copy. Select and copy it by hand.'));
+  else toast('Couldn’t copy. Select and copy it by hand.');
+}
+// each shared app gets its own tile colour, taken from its name
+const HUES = [214, 262, 332, 8, 24, 172, 196, 146];
+function hue(s) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return HUES[h % HUES.length]; }
+
+function fail(title, sub) {
+  const app = $('app');
+  app.classList.remove('sk');
+  app.classList.add('err');
+  $('letter').textContent = '?';
+  $('name').textContent = title;
+  $('sub').textContent = sub;
+}
+
+if (!tag || !/^[A-Za-z0-9_.-]{3,80}$/.test(tag)) {
+  fail('Open a download link', 'Ask the sender for the link to the app.');
+} else {
+  fetch('https://api.github.com/repos/' + REPO + '/releases/tags/' + encodeURIComponent(tag), { headers: { Accept: 'application/vnd.github+json' } })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((rel) => {
+      const a = (rel.assets || []).find((x) => /\.apk$/i.test(x.name)) || (rel.assets || [])[0];
+      if (!a) throw new Error('empty');
+      const name = String(rel.name || a.name.replace(/\.apk$/i, ''));
+      document.title = name + ' – Download';
+      $('name').textContent = name;
+      $('sub').textContent = 'Shared with you';
+      $('letter').textContent = (name.match(/[A-Za-z0-9]/) || ['A'])[0].toUpperCase();
+      $('tile').style.backgroundColor = 'hsl(' + hue(name) + ' 50% 38%)';
+      // optional per-app logo: an image file uploaded to the same release. If there is none, the letter tile stays.
+      const img = (rel.assets || []).find((x) => /\.(png|jpe?g|webp|gif)$/i.test(x.name) || /^image\//.test(x.content_type || ''));
+      if (img) {
+        const logo = new Image();
+        logo.alt = '';
+        logo.style.cssText = 'width:100%;height:100%;border-radius:23%;object-fit:cover;display:block';
+        logo.onload = () => { $('tile').style.background = 'none'; $('tile').textContent = ''; $('tile').appendChild(logo); };
+        logo.src = img.browser_download_url;
+      }
+      $('btn').href = a.browser_download_url;
+      $('size').textContent = size(a.size);
+      const up = new Date(a.created_at);
+      $('date').textContent = up.toLocaleDateString(undefined, up.getFullYear() === new Date().getFullYear() ? { day: 'numeric', month: 'short' } : { month: 'short', year: 'numeric' });
+      $('date').title = up.toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
+      $('count').textContent = a.download_count;
+
+      if (location.protocol === 'https:') show('httpsRow');
+      const m = /^sha256:([0-9a-f]{64})$/i.exec(a.digest || '');
+      if (m) {
+        const hex = m[1].toLowerCase();
+        $('hashShort').textContent = hex.slice(0, 8) + '…' + hex.slice(-6);
+        $('hashFull').textContent = hex;
+        show('hashRow');
+        $('hashRow').onclick = () => {
+          const open = $('hashBox').classList.toggle('open');
+          $('hashRow').setAttribute('aria-expanded', String(open));
+        };
+        $('hashCopy').onclick = () => copyText(hex, 'Checksum copied');
+      }
+
+      show('btn', 'copy', 'facts', 'aboutH', 'about', 'howH', 'how');
+      const app = $('app');
+      app.classList.remove('sk');
+      void app.offsetWidth;            // restart the entrance
+      app.classList.add('ready');
+
+      const btn = $('btn');
+      let doneTimer, busy = false;
+      const reset = (ms) => { clearTimeout(doneTimer); doneTimer = setTimeout(() => { btn.classList.remove('done', 'loading'); $('prog').style.width = '0'; busy = false; }, ms); };
+      const saveBlob = (blob, fname) => {
+        const u = URL.createObjectURL(blob);
+        const l = document.createElement('a');
+        l.href = u; l.download = fname; l.rel = 'nofollow';
+        document.body.appendChild(l); l.click(); l.remove();
+        setTimeout(() => URL.revokeObjectURL(u), 60000);
+      };
+      btn.addEventListener('click', async (ev) => {
+        ev.preventDefault();
+        if (busy) return;
+        busy = true;
+        btn.classList.add('loading');
+        $('ldTxt').textContent = 'Starting…';
+        $('prog').style.width = '0';
+        try {
+          const res = await fetch(a.browser_download_url);      // resolves only once the server starts sending
+          if (!res.ok || !res.body) throw new Error('nostream');
+          const total = Number(res.headers.get('content-length')) || a.size || 0;
+          const reader = res.body.getReader();
+          const parts = [];
+          let got = 0;
+          for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            parts.push(value); got += value.length;               // first chunk = the download has really begun
+            if (total) {
+              const p = Math.min(100, Math.round(got / total * 100));
+              $('ldTxt').textContent = 'Downloading ' + p + '%';
+              $('prog').style.width = p + '%';
+            } else $('ldTxt').textContent = 'Downloading…';
+          }
+          saveBlob(new Blob(parts, { type: 'application/vnd.android.package-archive' }), a.name);
+          btn.classList.remove('loading');
+          btn.classList.add('done');
+          reset(4200);
+        } catch (e) {
+          // fallback: let the browser handle it natively, confirm only after a real navigation was handed off
+          $('ldTxt').textContent = 'Starting…';
+          const l = document.createElement('a');
+          l.href = a.browser_download_url; l.rel = 'nofollow';
+          document.body.appendChild(l); l.click(); l.remove();
+          setTimeout(() => { btn.classList.remove('loading'); btn.classList.add('done'); reset(4200); }, 1800);
+        }
+      });
+      $('copy').onclick = () => copyText(location.href, 'Link copied');
+    })
+    .catch((e) => String(e.message) === '403'
+      ? fail('Try again in a few minutes', 'Too many people opened links from this network. This is temporary.')
+      : fail('Link not found', 'This file was removed or never existed. Ask the sender for a new link.'));
+}
+</script></body></html>
