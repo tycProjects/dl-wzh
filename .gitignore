@@ -1,0 +1,74 @@
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+
+# Private keys, certificates, signing configs
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+*.mobileprovision
+keystore.properties
+signing.properties
+key.properties
+secrets.properties
+
+# Firebase / Google service credentials
+/google-services.json
+**/google-services.json
+app/google-services.json
+*service-account*.json
+*firebase-adminsdk*.json
+.firebaserc
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Android / Gradle generated files
+.gradle/
+.kotlin/
+**/build/
+**/captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+*.iml
+
+# IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Distribution / generated outputs
+/dist/
+/dist-public-release/
+/release/
+/outputs/
+
+# Node / JavaScript tooling (if used by project tooling)
+node_modules/
+.npm/
+.pnpm-store/
+.vercel/
+.turbo/
+coverage/
+
+# Logs and crash dumps
+*.log
+hs_err_pid*.log
+replay_pid*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# Assistant working files
+.workbuddy-ai/
