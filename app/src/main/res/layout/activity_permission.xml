@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/bg" android:fillViewport="true">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="24dp">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="24dp" android:text="Cấp quyền để bắt đầu"
+        android:textColor="@color/text" android:textSize="26sp" android:textStyle="bold"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="6dp" android:layout_marginBottom="22dp"
+        android:text="Supra Turbo cần 3 quyền dưới đây để tối ưu Free Fire. App tự vào màn hình chính khi bạn cấp đủ."
+        android:textColor="@color/text_dim" android:textSize="13sp"/>
+
+    <LinearLayout style="@style/Card">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="1 · Shizuku" android:textColor="@color/text" android:textSize="16sp" android:textStyle="bold"/>
+        <TextView style="@style/Help" android:text="Để chạy lệnh hệ thống (độ phân giải, khóa FPS, dọn nền). Mở Shizuku → Gỡ lỗi không dây → Pairing → Start, rồi quay lại cấp quyền. Cần làm lại sau mỗi lần khởi động máy."/>
+        <TextView android:id="@+id/st1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold"/>
+        <Button android:id="@+id/b1" android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_marginTop="8dp" android:text="Cấp quyền Shizuku" android:textAllCaps="false"
+            android:textColor="#001014" android:backgroundTint="@color/neon_blue"/>
+    </LinearLayout>
+
+    <LinearLayout style="@style/Card" android:layout_marginTop="12dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="2 · Truy cập dữ liệu sử dụng" android:textColor="@color/text" android:textSize="16sp" android:textStyle="bold"/>
+        <TextView style="@style/Help" android:text="Để biết khi nào bạn mở hoặc thoát Free Fire. Chọn Supra Turbo rồi bật “Cho phép”."/>
+        <TextView android:id="@+id/st2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold"/>
+        <Button android:id="@+id/b2" android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_marginTop="8dp" android:text="Mở cài đặt" android:textAllCaps="false"
+            android:textColor="#001014" android:backgroundTint="@color/neon_blue"/>
+    </LinearLayout>
+
+    <LinearLayout style="@style/Card" android:layout_marginTop="12dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="3 · Thông báo" android:textColor="@color/text" android:textSize="16sp" android:textStyle="bold"/>
+        <TextView style="@style/Help" android:text="Để dịch vụ chờ Free Fire chạy ổn định ở nền."/>
+        <TextView android:id="@+id/st3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold"/>
+        <Button android:id="@+id/b3" android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_marginTop="8dp" android:text="Cho phép thông báo" android:textAllCaps="false"
+            android:textColor="#001014" android:backgroundTint="@color/neon_blue"/>
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+    <TextView android:id="@+id/tvCopyright" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:gravity="center" android:paddingTop="24dp"
+        android:textColor="@color/text_dim" android:textSize="11sp"/>
+</LinearLayout>
+</ScrollView>

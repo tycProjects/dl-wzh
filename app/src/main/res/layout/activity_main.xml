@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/bg" android:fillViewport="true">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="20dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center_vertical" android:orientation="horizontal">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="SUPRA " android:textColor="@color/text" android:textSize="22sp"
+                    android:textStyle="bold" android:letterSpacing="0.12"/>
+                <TextView android:id="@+id/tvTitle2" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="TURBO" android:textColor="@color/neon_blue"
+                    android:textSize="22sp" android:textStyle="bold" android:letterSpacing="0.12"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Tối ưu Free Fire" android:textColor="@color/text_dim" android:textSize="12sp"/>
+        </LinearLayout>
+        <TextView android:id="@+id/tvPill" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:background="@drawable/bg_pill" android:paddingStart="12dp" android:paddingEnd="12dp"
+            android:paddingTop="6dp" android:paddingBottom="6dp" android:textSize="11sp" android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="18dp" android:orientation="horizontal" android:weightSum="3">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:background="@drawable/bg_card" android:orientation="vertical" android:padding="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="RAM TRỐNG" android:textColor="@color/text_dim" android:textSize="10sp"/>
+            <TextView android:id="@+id/tvRam" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/text" android:textSize="17sp" android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:layout_marginStart="8dp" android:layout_marginEnd="8dp" android:background="@drawable/bg_card"
+            android:orientation="vertical" android:padding="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="NHIỆT ĐỘ PIN" android:textColor="@color/text_dim" android:textSize="10sp"/>
+            <TextView android:id="@+id/tvTemp" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/text" android:textSize="17sp" android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:background="@drawable/bg_card" android:orientation="vertical" android:padding="14dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="GAME MODE" android:textColor="@color/text_dim" android:textSize="10sp"/>
+            <TextView android:id="@+id/tvSupport" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/text" android:textSize="17sp" android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    
+    <LinearLayout style="@style/Card" android:layout_marginTop="14dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical" android:orientation="horizontal">
+            <ImageView android:id="@+id/ivIcon" android:layout_width="48dp" android:layout_height="48dp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:layout_marginStart="12dp" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Free Fire" android:textColor="@color/text" android:textSize="17sp" android:textStyle="bold"/>
+                <TextView android:id="@+id/tvFf" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/text_dim" android:textSize="11sp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/swEnable"
+            style="@style/Sw" android:layout_marginTop="12dp" android:text="Bật tối ưu Free Fire"
+            android:textStyle="bold"/>
+        <Button android:id="@+id/btnOpen" android:layout_width="match_parent" android:layout_height="50dp"
+            android:layout_marginTop="8dp" android:text="Mở Free Fire" android:textAllCaps="false"
+            android:textColor="#001014" android:backgroundTint="@color/neon_blue"/>
+    </LinearLayout>
+
+    <TextView style="@style/Section" android:text="ĐỘ PHÂN GIẢI"/>
+    <LinearLayout style="@style/Card">
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgRes" android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true"
+            app:chipSpacingHorizontal="8dp"/>
+        <TextView android:id="@+id/tvResCap" style="@style/Help" android:layout_marginBottom="0dp"/>
+    </LinearLayout>
+
+    <TextView style="@style/Section" android:text="ỔN ĐỊNH TÂM &amp; KHUNG HÌNH"/>
+    <LinearLayout style="@style/Card">
+        <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/swFps" style="@style/Sw"
+            android:text="Khóa FPS ổn định"/>
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgFps" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="6dp" app:singleSelection="true"
+            app:selectionRequired="true" app:chipSpacingHorizontal="8dp"/>
+        <TextView style="@style/Help" android:text="FPS dao động là nguyên nhân chính làm tâm rung. Chọn mức máy giữ được ổn định (thường là 60)."/>
+        <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/swSession" style="@style/Sw"
+            android:text="Dọn nền &amp; tắt hiệu ứng khi vào game"/>
+        <TextView style="@style/Help" android:layout_marginBottom="0dp"
+            android:text="Giải phóng RAM, tắt animation và overlay debug cảm ứng; tự khôi phục khi thoát game. Máy nóng trên 42°C sẽ giật dù bật gì, hãy nghỉ máy."/>
+    </LinearLayout>
+
+    <TextView style="@style/Section" android:text="HÌNH ẢNH SẮC NÉT"/>
+    <LinearLayout style="@style/Card">
+        <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/swSharp" style="@style/Sw"
+            android:text="Tối ưu hình ảnh sắc nét"/>
+        <com.google.android.material.chip.ChipGroup android:id="@+id/cgSharp" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="6dp" app:singleSelection="true"
+            app:selectionRequired="true" app:chipSpacingHorizontal="8dp"/>
+        <TextView android:id="@+id/tvSharpCap" style="@style/Help" android:layout_marginBottom="0dp"/>
+    </LinearLayout>
+
+    <TextView style="@style/Section" android:text="TỰ ĐỘNG"/>
+    <LinearLayout style="@style/Card">
+        <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/swAuto" style="@style/Sw"
+            android:text="Tự động khi mở Free Fire"/>
+        <TextView style="@style/Help" android:layout_marginBottom="0dp"
+            android:text="Chạy nền để bật phiên chơi khi vào game và khôi phục khi thoát."/>
+    </LinearLayout>
+
+    <TextView style="@style/Section" android:text="MÀU GIAO DIỆN"/>
+    <LinearLayout style="@style/Card">
+        <LinearLayout android:id="@+id/llAccent" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal"/>
+    </LinearLayout>
+
+    <Button android:id="@+id/btnRestore" android:layout_width="match_parent" android:layout_height="52dp"
+        android:layout_marginTop="22dp" android:text="Khôi phục mặc định" android:textAllCaps="false"
+        android:textColor="@color/neon_red" android:backgroundTint="@color/surface2"/>
+
+    <TextView android:id="@+id/tvCopyright" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center" android:paddingTop="22dp" android:paddingBottom="8dp"
+        android:textColor="@color/text_dim" android:textSize="11sp"/>
+</LinearLayout>
+</ScrollView>

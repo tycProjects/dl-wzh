@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Supra Turbo – Preview</title>
+<style>
+:root{color-scheme:dark;--page:#06070b;--note:#8b90a5;--ac:#00e5ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--page:#e8e9f1;--note:#55596b}}
+:root[data-theme="dark"]{--page:#06070b;--note:#8b90a5}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;justify-content:center;padding:16px}
+.app{width:100%;max-width:420px;background:#0a0b10;border-radius:28px;padding:20px;color:#e8eaf2;border:1px solid #23273a}
+.hd{display:flex;align-items:center;justify-content:space-between}
+h1{margin:0;font-size:22px;letter-spacing:.12em}h1 span{color:var(--ac)}.sub{font-size:12px;color:#8b90a5}
+.pill{font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;background:#1a1d28;border:1px solid #23273a;color:#2ee6a6}
+.card{background:#12141c;border:1px solid #23273a;border-radius:16px;padding:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.stats .card{padding:14px}.stats small{display:block;font-size:10px;color:#8b90a5}.stats b{font-size:17px}
+.sec{font-size:11px;font-weight:700;letter-spacing:.15em;color:#8b90a5;margin:22px 0 8px}
+.top{display:flex;align-items:center;gap:12px}
+.ic{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#ff7a18,#ffcc00);flex:none}
+.top b{display:block;font-size:17px}.top span{font-size:11px;color:#8b90a5}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px}
+.sw{width:46px;height:26px;border-radius:13px;background:#2a2d3b;position:relative;cursor:pointer;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#8b90a5;transition:.2s}
+.sw.on{background:color-mix(in srgb,var(--ac) 40%,#000)}.sw.on::after{left:23px;background:var(--ac)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{border:0;border-radius:16px;padding:8px 14px;font:inherit;font-size:13px;background:#1a1d28;color:#e8eaf2;cursor:pointer}
+.chip.on{background:var(--ac);color:#001014;font-weight:700}
+.help{font-size:11px;color:#8b90a5;margin:8px 0 10px}.help.ok{color:#2ee6a6}
+.btn{width:100%;height:50px;border:0;border-radius:12px;font:inherit;font-size:14px;cursor:pointer;color:#e8eaf2;background:#1a1d28;margin-top:8px}
+.btn.p{background:var(--ac);color:#001014;font-weight:700}.btn.d{color:#ff4d6a;margin-top:22px;height:52px}
+.sw-row{display:flex;gap:12px}.dot{width:40px;height:40px;border-radius:50%;cursor:pointer;border:3px solid transparent}.dot.on{border-color:#fff}
+.copy{text-align:center;font-size:11px;color:#8b90a5;padding:22px 0 6px}
+.perm h2{font-size:26px;margin:24px 0 6px}.perm p{color:#8b90a5;font-size:13px;margin:0 0 22px}
+.perm .card{margin-bottom:12px}.perm h3{margin:0;font-size:16px}.st{font-weight:700;font-size:13px;color:#ff4d6a}.st.ok{color:#2ee6a6}
+.hide{display:none}
+.note{max-width:420px;margin:12px auto 0;font-size:11px;color:var(--note);text-align:center}
+.note button{background:none;border:0;color:var(--ac);font:inherit;cursor:pointer;text-decoration:underline}
+</style>
+</head>
+<body>
+<main>
+<!-- Màn cấp quyền: tự hiện khi vào app nếu còn thiếu quyền -->
+<div class="app perm" id="perm">
+  <h2>Cấp quyền để bắt đầu</h2>
+  <p>Supra Turbo cần 3 quyền dưới đây để tối ưu Free Fire. App tự vào màn hình chính khi bạn cấp đủ.</p>
+  <div class="card"><h3>1 · Shizuku</h3><div class="help">Để chạy lệnh hệ thống (độ phân giải, khóa FPS, dọn nền). Mở Shizuku → Gỡ lỗi không dây → Pairing → Start.</div>
+    <div class="st" id="s1">Chưa cấp</div><button class="btn p" data-i="1">Cấp quyền Shizuku</button></div>
+  <div class="card"><h3>2 · Truy cập dữ liệu sử dụng</h3><div class="help">Để biết khi nào bạn mở hoặc thoát Free Fire.</div>
+    <div class="st" id="s2">Chưa cấp</div><button class="btn p" data-i="2">Mở cài đặt</button></div>
+  <div class="card"><h3>3 · Thông báo</h3><div class="help">Để dịch vụ chờ Free Fire chạy ổn định ở nền.</div>
+    <div class="st" id="s3">Chưa cấp</div><button class="btn p" data-i="3">Cho phép thông báo</button></div>
+  <div class="copy">© 2026 Long Supra // MOD LAB · Supra Turbo. Bảo lưu mọi quyền.</div>
+</div>
+
+<div class="app hide" id="main">
+  <div class="hd"><div><h1>SUPRA <span>TURBO</span></h1><div class="sub">Tối ưu Free Fire</div></div><div class="pill">● Shizuku sẵn sàng</div></div>
+  <div class="stats">
+    <div class="card"><small>RAM TRỐNG</small><b id="ram">2410 MB</b></div>
+    <div class="card"><small>NHIỆT ĐỘ PIN</small><b id="tmp">36.5°C</b></div>
+    <div class="card"><small>GAME MODE</small><b id="sup">Chưa thử</b></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="top"><div class="ic"></div><div><b>Free Fire</b><span>Free Fire · Free Fire MAX</span></div></div>
+    <div class="row" style="margin-top:14px"><b>Bật tối ưu Free Fire</b><div class="sw on" id="en"></div></div>
+    <button class="btn p">Mở Free Fire</button>
+  </div>
+
+  <div class="sec">ĐỘ PHÂN GIẢI</div>
+  <div class="card"><div class="chips" id="res"></div><div class="help" id="resCap" style="margin-bottom:0"></div></div>
+
+  <div class="sec">ỔN ĐỊNH TÂM &amp; KHUNG HÌNH</div>
+  <div class="card">
+    <div class="row"><span>Khóa FPS ổn định</span><div class="sw on" data-sw></div></div>
+    <div class="chips" id="fps"></div>
+    <div class="help">FPS dao động là nguyên nhân chính làm tâm rung. Chọn mức máy giữ được ổn định (thường là 60).</div>
+    <div class="row"><span>Dọn nền &amp; tắt hiệu ứng khi vào game</span><div class="sw on" data-sw></div></div>
+    <div class="help" style="margin-bottom:0">Giải phóng RAM, tắt animation và overlay debug cảm ứng; tự khôi phục khi thoát game. Máy nóng trên 42°C sẽ giật dù bật gì, hãy nghỉ máy.</div>
+  </div>
+
+  <div class="sec">HÌNH ẢNH SẮC NÉT</div>
+  <div class="card">
+    <div class="row"><span>Tối ưu hình ảnh sắc nét</span><div class="sw" data-sw></div></div>
+    <div class="chips" id="sh"></div>
+    <div class="help" style="margin-bottom:0">Tăng tương phản và độ rực khi vào game để hình nét hơn. Đây là tăng cảm giác nét, không phải làm nét thật; có thể tốn GPU.</div>
+  </div>
+
+  <div class="sec">TỰ ĐỘNG</div>
+  <div class="card"><div class="row"><span>Tự động khi mở Free Fire</span><div class="sw on" data-sw></div></div>
+    <div class="help" style="margin-bottom:0">Chạy nền để bật phiên chơi khi vào game và khôi phục khi thoát.</div></div>
+
+  <div class="sec">MÀU GIAO DIỆN</div>
+  <div class="card"><div class="sw-row" id="dots"></div></div>
+
+  <button class="btn d" id="rs">Khôi phục mặc định</button>
+  <div class="copy">© 2026 Long Supra // MOD LAB · Supra Turbo. Bảo lưu mọi quyền.</div>
+</div>
+<p class="note">Bản xem trước giao diện – số liệu là giả lập. Bấm cấp đủ 3 quyền để vào màn hình chính. <button id="again">Xem lại màn cấp quyền</button></p>
+</main>
+<script>
+const $=id=>document.getElementById(id),g=new Set();
+function chips(id,labels,sel,cb){const el=$(id);el.innerHTML="";labels.forEach((t,i)=>{const b=document.createElement("button");b.className="chip"+(i===sel?" on":"");b.textContent=t;b.onclick=()=>{cb(i);chips(id,labels,i,cb)};el.appendChild(b)})}
+document.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>{const i=b.dataset.i;g.add(i);$("s"+i).textContent="✔ Đã cấp";$("s"+i).className="st ok";b.classList.add("hide");
+  if(g.size===3)setTimeout(()=>{$("perm").classList.add("hide");$("main").classList.remove("hide")},500)});
+$("again").onclick=()=>{g.clear();[1,2,3].forEach(i=>{$("s"+i).textContent="Chưa cấp";$("s"+i).className="st"});document.querySelectorAll("[data-i]").forEach(b=>b.classList.remove("hide"));$("main").classList.add("hide");$("perm").classList.remove("hide")};
+document.querySelectorAll(".sw").forEach(s=>s.onclick=()=>{s.classList.toggle("on");if(s.id==="en")cap()});
+const R=[["Cân bằng",85],["Mượt",70],["Siêu mượt",60],["Cực nhẹ",50]];let r=1;
+function cap(){const on=$("en").classList.contains("on");$("resCap").className="help"+(on?" ok":"");
+  $("resCap").textContent=on?"Đã áp dụng "+R[r][1]+"% ("+R[r][0]+") · khởi động lại Free Fire để có hiệu lực.":"Đang tắt · giữ độ phân giải gốc. Bật tối ưu để áp dụng mức "+R[r][1]+"%.";
+  $("resCap").style.marginBottom="0";if(on)$("sup").textContent="Hỗ trợ"}
+chips("res",R.map(x=>x[1]+"%"),r,i=>{r=i;cap()});cap();
+chips("fps",["45 FPS","60 FPS","90 FPS"],1,()=>{});
+chips("sh",["Nhẹ","Vừa","Mạnh"],1,()=>{});
+const C=["#00e5ff","#7c4dff","#ff4d6a","#2ee6a6","#ffb300"];
+function dots(s){const el=$("dots");el.innerHTML="";C.forEach((c,i)=>{const d=document.createElement("div");d.className="dot"+(i===s?" on":"");d.style.background=c;
+  d.onclick=()=>{document.documentElement.style.setProperty("--ac",c);dots(i)};el.appendChild(d)})}
+dots(0);
+$("rs").onclick=()=>{$("en").classList.remove("on");cap();$("rs").textContent="Đã khôi phục ✔";setTimeout(()=>$("rs").textContent="Khôi phục mặc định",1200)};
+setInterval(()=>{const t=36+Math.random()*7;$("tmp").textContent=t.toFixed(1)+"°C";$("tmp").style.color=t>=42?"#ff4d6a":t>=39?"#ffb300":"#e8eaf2";$("ram").textContent=(2300+Math.floor(Math.random()*300))+" MB"},2000);
+</script>
+</body>
+</html>
