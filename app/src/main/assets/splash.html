@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#000"><title>BLACKMAGIC</title>
+<style>*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000}video{width:100vw;height:100vh;object-fit:cover;display:block;background:#000}</style>
+</head>
+<body>
+<video id="intro" autoplay muted playsinline preload="auto">
+ <source src="splash_intro.mp4" type="video/mp4">
+</video>
+<script>
+const v=document.getElementById('intro');let done=false;
+function enter(){if(done)return;done=true;location.replace('index.html')}
+v.addEventListener('ended',enter);v.addEventListener('error',enter);
+setTimeout(enter,5200);
+v.play().catch(()=>setTimeout(enter,1200));
+</script>
+</body></html>

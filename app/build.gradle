@@ -1,0 +1,13 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.blackmagic.gamerspace'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.blackmagic.gamerspace'
+        minSdk 26
+        targetSdk 28
+        versionCode 7
+        versionName '1.0.0'
+    }
+}
