@@ -40,7 +40,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import android.content.Intent
-import com.hyperboost.engine.ads.findActivity
+// AUTO-REPAIR: disabled -- unresolved reference 'ads' (was: import com.hyperboost.engine.ads.findActivity)
 import kotlinx.coroutines.launch
 import com.hyperboost.engine.core.PerformanceEngine
 import com.hyperboost.engine.core.ShizukuManager
