@@ -35,6 +35,7 @@ import com.hyperboost.engine.core.FfOptions
 import com.hyperboost.engine.core.FreeFireBoost
 import com.hyperboost.engine.core.ShizukuManager
 import com.hyperboost.engine.core.TurboModes
+import androidx.compose.runtime.saveable.rememberSaveable
 
 private val Orange = Color(0xFFFF9100)
 private val Red = Color(0xFFFF2D55)
