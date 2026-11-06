@@ -1,0 +1,7 @@
+Android Island 1.4.5
+
+- Animasi expand/collapse/banner: progress morph tidak lagi restart saat media metadata update (penyebab patah-patah). Banner entrance hanya saat masuk state BANNER / ganti chat.
+- Glow + shine lirik: diperkuat, tetap terlihat (lebih lembut) meski Mode hemat / Ultra Mode aktif. Slider intensitas & kecepatan dihormati.
+- Lebar banner: clamp longgar (margin 16dp). Slider compact banner hingga 640dp; nilai yang dipilih benar-benar dipakai selama muat di layar.
+- Swipe dismiss/swipe-up tetap dari 1.4.4 (travel lebih lebar, tidak terpotong, tuck ke capsule).
+- Capsule tetap diam saat banner muncul (scene full-width).

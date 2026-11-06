@@ -1,0 +1,10 @@
+Android Island 1.4.6 — maintenance and permission hardening
+
+- Align Gradle versionName/versionCode with the project release metadata.
+- Normalize the Shizuku provider permission entry in AndroidManifest.xml.
+- Use the Android user ID (UserHandle.myUserId()) for the disableForUser fallback;
+  UserHandle.hashCode() is not a valid Android user identifier.
+- No permission is silently granted or bypassed. Shizuku remains an optional,
+  user-approved bridge for shell-level operations supported by the device.
+- Build verification remains pending in this environment because Gradle 8.9
+  cannot be downloaded without network access.
