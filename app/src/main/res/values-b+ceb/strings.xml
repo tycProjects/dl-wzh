@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">JNMF Music Player</string>
+
+    
+    <string name="nav_music">Musika</string>
+    <string name="nav_playlists">Playlists</string>
+    <string name="nav_equalizer">Equalizer</string>
+    <string name="nav_videos">Mga Video</string>
+    <string name="nav_settings">Settings</string>
+
+    
+    <string name="search_placeholder">Pangitaa ang kanta, artist, remix...</string>
+    <string name="sort_by">I-sort Pinaagi</string>
+    <string name="grant_permission">Tugoti ang Audio Access</string>
+    <string name="permission_desc">Kinahanglan sa JNMF ang pagtugot aron ma-scan ang imong mga kanta ug audio files.</string>
+    <string name="no_songs_found">Walay nakit-ang mga kanta sa device.</string>
+    <string name="refresh_library">I-refresh ang Library</string>
+
+    
+    <string name="now_playing">Gipatokar Karon</string>
+    <string name="queue_title">Han-ay sa Pagpatokar</string>
+    <string name="reverse_queue">Reverse Queue Mode</string>
+    <string name="reverse_queue_on">Balit-ad nga Han-ay Aktibo</string>
+    <string name="reverse_queue_off">Normal nga Han-ay</string>
+
+    
+    <string name="equalizer_title">Equalizer &amp; Tingog</string>
+    <string name="eq_master_switch">Master Sound Processing</string>
+    <string name="session_active">Konektado sa JNMF Audio Track</string>
+    <string name="session_idle">Naghulat sa sesyon sa pagpatokar</string>
+    <string name="bass_boost">Bass Horeg &amp; Sub-Bass</string>
+    <string name="virtualizer_3d">Stereo Width / Spatial 3D</string>
+    <string name="clarity_boost">Katin-aw sa Tingog &amp; Treble</string>
+    <string name="sound_presets">Mga Presets sa Tingog</string>
+
+    
+    <string name="playlists_title">Akong mga Playlist</string>
+    <string name="favorites_title">Paboritong mga Kanta</string>
+    <string name="create_playlist">Bag-ong Playlist</string>
+    <string name="playlist_name_hint">Ibutang ang ngalan sa playlist</string>
+    <string name="cancel">Kanselahon</string>
+    <string name="create">Paghimo</string>
+    <string name="rename">Usba ang Ngalan</string>
+    <string name="delete">Tangtanga</string>
+    <string name="add_to_playlist">Idugang sa Playlist</string>
+    <string name="hide_song">Itago gikan sa Library</string>
+
+    
+    <string name="duplicates_title">Doble ug Parehas nga mga Kanta</string>
+    <string name="scan_duplicates">I-scan ang Parehas nga Audio (~80%)</string>
+    <string name="duplicates_desc">Pangitaa ang mga doble nga kanta ug ilha ang managlahing remix.</string>
+    <string name="duplicate_match">Pagkaparehas</string>
+    <string name="delete_confirm_title">Kumpirmaha ang Pagtangtang</string>
+    <string name="delete_confirm_msg">Sigurado ba ka nga tangtangon kini nga file sa memory?</string>
+
+    
+    <string name="classifier_title">Klasipikasyon sa Remix</string>
+    <string name="classify_desc">Awtomatikong pag-ila sa tempo ug ritmo para sa Fullbeat ug Slow tracks.</string>
+    <string name="category_fullbeat">Fullbeat</string>
+    <string name="category_slow">Slow Remix</string>
+    <string name="category_indo">Indo Remix</string>
+    <string name="category_standard">Standard</string>
+
+    
+    <string name="videos_title">Lokal nga mga Video</string>
+    <string name="no_videos_found">Walay nakit-ang video sa device.</string>
+
+    
+    <string name="settings_title">Mga Setting sa JNMF</string>
+    <string name="theme_color_title">Kolor sa Tema</string>
+    <string name="language_title">Pinulongan</string>
+    <string name="hidden_songs_title">Gitago nga mga Kanta</string>
+    <string name="unhide_song">Ibalik sa Library</string>
+    <string name="no_hidden_songs">Walay gitago nga kanta karon.</string>
+    <string name="credits_title">Kredito sa Naghimo</string>
+    <string name="credit_compile">Compile by JUSSAR GOLDEN</string>
+    <string name="credit_create_by">CREATE BY</string>
+    <string name="credit_chatgpt">ChatGPT advisor</string>
+    <string name="credit_aistudio">Google AI Studio: app developer</string>
+</resources>
