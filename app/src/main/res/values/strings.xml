@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Sharp Calculator</string>
+    <string name="tab_basic">Basic</string>
+    <string name="tab_scientific">Scientific</string>
+    <string name="tab_vat">VAT / Tax</string>
+    <string name="tab_converter">Unit Converter</string>
+    <string name="tab_discount">Discount &amp; Tip</string>
+    <string name="tab_history">History</string>
+    <string name="tab_settings">Themes &amp; Settings</string>
+    <string name="clear_history">Clear History</string>
+    <string name="history_empty">No calculations yet</string>
+    <string name="vat_rate">VAT Rate (%)</string>
+    <string name="vat_amount">VAT Amount</string>
+    <string name="net_price">Net Price (Excl. VAT)</string>
+    <string name="gross_price">Gross Price (Incl. VAT)</string>
+    <string name="vat_tax_plus">Tax +</string>
+    <string name="vat_tax_minus">Tax -</string>
+</resources>

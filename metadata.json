@@ -1,0 +1,6 @@
+{
+  "name": "Sharp Calculator",
+  "description": "High-precision calculator with Basic, Scientific, dedicated VAT & Tax tools, Unit & Currency converters, History Tape, and customizable dark themes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
