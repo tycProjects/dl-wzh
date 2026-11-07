@@ -72,13 +72,13 @@ class CaptureService : Service() {
         val y0=(h*0.39).toInt(); val y1=(h*0.70).toInt()
         val xL0=(w*0.12).toInt(); val xL1=(w*0.48).toInt()
         val xR0=(w*0.52).toInt(); val xR1=(w*0.88).toInt()
-        var y=y0
-        while(y<y1 step 4) {
-            var x=xL0
-            while(x<xL1 step 4) { if(isOrange(buf,rowStride,pixelStride,x,y)) left++; x+=4 }
-            x=xR0
-            while(x<xR1 step 4) { if(isOrange(buf,rowStride,pixelStride,x,y)) right++; x+=4 }
-            y+=4
+        for (y in y0 until y1 step 4) {
+            for (x in xL0 until xL1 step 4) {
+                if (isOrange(buf, rowStride, pixelStride, x, y)) left++
+            }
+            for (x in xR0 until xR1 step 4) {
+                if (isOrange(buf, rowStride, pixelStride, x, y)) right++
+            }
         }
         // The target is the side with the stronger connected stair-color signal.
         // Low confidence is explicitly reported as HOLD to avoid blind repeated tapping.
