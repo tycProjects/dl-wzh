@@ -2,7 +2,6 @@ package com.liveisland
 
 import android.app.PendingIntent
 import android.graphics.drawable.Drawable
-import android.app.PendingIntent
 import android.media.session.MediaSession
 
 class IslandAction(val label: String, val intent: PendingIntent?)
