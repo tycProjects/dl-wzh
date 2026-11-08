@@ -213,7 +213,7 @@ jobs:
           # own -- currently just this tool's own AGP 8.4.0 WebView-wrapper fallback
           # template (see generateWebViewWrapperProject in server.js), which ships no
           # gradlew/wrapper at all. Bump this if that template's AGP version changes.
-          DEFAULT_GRADLE_VERSION="8.9"
+          DEFAULT_GRADLE_VERSION="8.10.2"
           DETECTED=""
           PROPS="./gradle/wrapper/gradle-wrapper.properties"
 
@@ -466,9 +466,9 @@ jobs:
           cat > "$GRADLE_HOME_DIR/init.d/align-jvm-target.gradle" <<'GRADLE_INIT_EOF'
           // Injected by the CI builder. Makes Kotlin's jvmTarget match the Java compile
           // target of the same variant, for every module, whatever the project does or
-          // does not declare. Fixes "Inconsistent JVM-target compatibility detected for
-          // tasks compileReleaseJavaWithJavac (1.8) and compileReleaseKotlin (17)".
-          // Works with any AGP and Kotlin plugin version and never fails the build.
+          # does not declare. Fixes "Inconsistent JVM-target compatibility detected for
+          # tasks compileReleaseJavaWithJavac (1.8) and compileReleaseKotlin (17)".
+          # Works with any AGP and Kotlin plugin version and never fails the build.
           gradle.projectsEvaluated {
               gradle.allprojects { p ->
                   try {
@@ -860,4 +860,3 @@ jobs:
             cp ~/.android/release-keystore/release.jks "$STAGE/${RUN_PREFIX}-release-signing-key.jks"
             gh release upload "$TAG" "$STAGE/${RUN_PREFIX}-release-signing-key.jks" --repo "$ASSETS_REPO" --clobber
           fi
-
