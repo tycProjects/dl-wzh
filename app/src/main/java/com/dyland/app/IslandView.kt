@@ -36,7 +36,7 @@ class IslandView(c: Context, private val resize: (Int, Int) -> Unit) : FrameLayo
     }
     private val tt = TextView(c).apply { setTextColor(Color.WHITE); typeface = Typeface.DEFAULT_BOLD; maxLines = 1; ellipsize = android.text.TextUtils.TruncateAt.END }
     private val bd = TextView(c).apply { setTextColor(0xB3FFFFFF.toInt()); textSize = 13f; maxLines = 2; ellipsize = android.text.TextUtils.TruncateAt.END }
-    private fun pill(t: String) = TextView(c).apply {
+    private fun pill(t: String) = TextView(context).apply {
         text = t; setTextColor(Color.WHITE); textSize = 13f; gravity = Gravity.CENTER
         setPadding(px(18), px(8), px(18), px(8))
         background = GradientDrawable().apply { setColor(0x26FFFFFF); cornerRadius = dp(30f) }
