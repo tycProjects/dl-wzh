@@ -281,6 +281,8 @@ jobs:
           echo "version=$DETECTED" >> "$GITHUB_OUTPUT"
 
       - name: Set up Gradle
+        id: gradle-setup
+        continue-on-error: true
         uses: gradle/actions/setup-gradle@v4
         with:
           # Whatever the previous step detected for THIS project, rather
@@ -296,6 +298,19 @@ jobs:
           # validation!". Disabled since every jar this workflow runs
           # against is either the project's own upload or one this same
           # pipeline just generated from the official Gradle distribution.
+          validate-wrappers: false
+
+      # The Gradle download from GitHub sometimes answers 504. If the step above failed, wait and run it once
+      # more (and only then). If it was fine, both of these steps are skipped.
+      - name: Wait before retrying the Gradle setup
+        if: steps.gradle-setup.outcome == 'failure'
+        run: sleep 45
+
+      - name: Set up Gradle (retry)
+        if: steps.gradle-setup.outcome == 'failure'
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: ${{ steps.gradle-detect.outputs.version }}
           validate-wrappers: false
 
       - name: Normalize the project for CI
@@ -522,6 +537,19 @@ jobs:
           if run_build 2>&1 | tee build.log; then
             exit 0
           fi
+
+          # Downloads (Maven Central, GitHub releases) sometimes time out. Re-run the build, up to 3 tries in
+          # all, ONLY when the log shows a network failure. Any other failure skips this loop and goes to the
+          # handling below exactly as before.
+          NET_TRY=1
+          while [ "$NET_TRY" -lt 3 ] && grep -qiE 'Could not (GET|HEAD|download|resolve|read)|Gateway Time-out|timed out|Connection reset|Connection refused|Received status code 5[0-9][0-9]|Server returned HTTP response code: 5[0-9][0-9]|Premature end of Content-Length|Remote host terminated|SocketTimeoutException|UnknownHostException|SSLHandshakeException|Temporary failure' build.log; do
+            echo "::warning::Build attempt $NET_TRY failed on a network error while downloading. Retrying in $((NET_TRY * 30))s..."
+            sleep $((NET_TRY * 30))
+            NET_TRY=$((NET_TRY + 1))
+            if run_build 2>&1 | tee build.log; then
+              exit 0
+            fi
+          done
 
           # The "Detect required Gradle version" step (further up) trusts
           # whatever version the project's own committed
