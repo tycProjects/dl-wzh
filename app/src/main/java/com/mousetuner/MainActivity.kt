@@ -92,7 +92,7 @@ class MainActivity : Activity() {
             c.addView(r)
         }
         val go = row()
-        go.put(gbtn("Cấp mục tiếp theo", true) { ps.firstOrNull { !it.ok }?.act() ?: run { page = 0; buildUi() } })
+        go.put(gbtn("Cấp mục tiếp theo", true) { ps.firstOrNull { !it.ok }?.act?.invoke() ?: run { page = 0; buildUi() } })
         go.put(gbtn(if (ps.all { it.ok }) "VÀO APP" else "Bỏ qua", false) { skipPerm = true; page = 0; buildUi() })
         c.put(go); return listOf(c)
     }
