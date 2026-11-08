@@ -1,0 +1,166 @@
+name: Сборка APK
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+# Сборка только читает репозиторий: Gradle и его зависимости не получают права на запись.
+# Писать (выпускать релиз) может только отдельная задача ниже, и только на основной ветке или теге.
+permissions:
+  contents: read
+
+# Отпечаток сертификата, которым подписан остров с 1.6.1. Если секрет подменят другим ключом,
+# сборка остановится: иначе у всех перестали бы ставиться обновления.
+env:
+  SIGNING_CERT_SHA256: c691aa99b1d38518d066066fcb31664374f6a21d65180f7c0565c37a073a12dd
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.ver.outputs.tag }}
+      release: ${{ steps.ver.outputs.release }}
+      update: ${{ steps.ver.outputs.update }}
+      signed: ${{ steps.sign.outputs.signed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      # Релиз выходит сам, когда в app/build.gradle.kts повышают versionName
+      # (или когда пушат тег v*). Описание на двух языках: CHANGELOG.en.md и CHANGELOG.md.
+      # Если релиз этой версии уже есть, push в основную ветку обновляет его описание.
+      - name: Версия
+        id: ver
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          v=$(grep -oP 'versionName = "\K[0-9A-Za-z.\-]+(?=")' app/build.gradle.kts)
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then tag="$GITHUB_REF_NAME"; else tag="v$v"; fi
+          # Тег идёт в имя релиза и в команды — только буквы, цифры, точки и дефисы
+          if [[ ! "$tag" =~ ^v[0-9A-Za-z.\-]+$ ]]; then echo "Странный тег: $tag" >&2; exit 1; fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          exists=false
+          gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 && exists=true
+          release=false
+          update=false
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            release=true
+          elif [[ "$GITHUB_EVENT_NAME" == push && "$GITHUB_REF" == "refs/heads/$DEFAULT_BRANCH" ]]; then
+            if [[ "$exists" == true ]]; then update=true; else release=true; fi
+          fi
+          echo "release=$release" >> "$GITHUB_OUTPUT"
+          echo "update=$update" >> "$GITHUB_OUTPUT"
+
+      # Gradle собирает APK без подписи: ключ ему не нужен, и сторонний код сборки его не увидит
+      - name: Сборка
+        run: ./gradlew --no-daemon assembleRelease
+
+      # Подпись — отдельным шагом: ключ из секретов есть только здесь и сразу удаляется
+      - name: Подпись
+        id: sign
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          RELEASE: ${{ steps.ver.outputs.release }}
+          UPDATE: ${{ steps.ver.outputs.update }}
+        run: |
+          if [[ -z "$KEYSTORE_BASE64" || -z "$KEYSTORE_PASSWORD" ]]; then
+            if [[ "$RELEASE" == true || "$UPDATE" == true ]]; then
+              echo "::error::Нет секретов KEYSTORE_BASE64 и KEYSTORE_PASSWORD — релиз без подписи не выпускается"
+              exit 1
+            fi
+            echo "::notice::Секретов с ключом нет (например, pull request из форка) — APK собран, но не подписан и не выложен"
+            echo "signed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          ks="$RUNNER_TEMP/island.p12"
+          trap 'rm -f "$ks"' EXIT
+          printf '%s' "$KEYSTORE_BASE64" | base64 -d > "$ks"
+          # Сначала — тот ли ключ лежит в секрете
+          info=$(keytool -list -v -keystore "$ks" -storetype PKCS12 -storepass:env KEYSTORE_PASSWORD -alias island)
+          key=$(awk -F'SHA256: *' 'NF > 1 {gsub(":", "", $2); print tolower($2); exit}' <<<"$info")
+          if [[ "$key" != "$SIGNING_CERT_SHA256" ]]; then
+            echo "::error::В секрете KEYSTORE_BASE64 другой ключ ($key) — ожидался $SIGNING_CERT_SHA256"
+            exit 1
+          fi
+          bt=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          echo "build-tools: $bt"
+          mkdir -p out
+          "$bt/zipalign" -f 4 app/build/outputs/apk/release/app-release-unsigned.apk "$RUNNER_TEMP/aligned.apk"
+          "$bt/apksigner" sign --ks "$ks" --ks-type PKCS12 --ks-key-alias island \
+            --ks-pass env:KEYSTORE_PASSWORD --key-pass env:KEYSTORE_PASSWORD \
+            --out out/DynamicIsland.apk "$RUNNER_TEMP/aligned.apk"
+          # Потом — что APK подписан именно им (сертификат не секрет, его видно в логе)
+          certs=$("$bt/apksigner" verify --verbose --print-certs out/DynamicIsland.apk)
+          echo "$certs"
+          got=$(awk 'tolower($0) ~ /certificate sha-256 digest:/ {print tolower($NF); exit}' <<<"$certs")
+          if [[ "$got" != "$SIGNING_CERT_SHA256" ]]; then
+            echo "::error::APK подписан не тем ключом ($got) — ожидался $SIGNING_CERT_SHA256"
+            exit 1
+          fi
+          echo "signed=true" >> "$GITHUB_OUTPUT"
+
+      # Тестовые APK лежат неделю: потом пропадают сами, а версии для всех — в релизах
+      - uses: actions/upload-artifact@v4
+        if: steps.sign.outputs.signed == 'true'
+        with:
+          name: DynamicIsland-apk
+          path: out/DynamicIsland.apk
+          retention-days: 7
+
+  release:
+    needs: build
+    if: needs.build.outputs.signed == 'true' && (needs.build.outputs.release == 'true' || needs.build.outputs.update == 'true')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ needs.build.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: DynamicIsland-apk
+          path: out
+
+      - name: Описание релиза из CHANGELOG.en.md и CHANGELOG.md
+        run: |
+          v="${TAG#v}"
+          section() { awk -v v="$v" 'index($0, "## [" v "]") == 1 {f=1; next} /^## \[/ {f=0} f' "$1"; }
+          {
+            echo "## 🇬🇧 English"
+            section CHANGELOG.en.md
+            printf '\n**Install:** download `DynamicIsland.apk` below and open it on your phone. A new version installs over the old one, your settings are kept. **Coming from 1.6.0 or older:** uninstall the old version first — once, because the app now has a new signing key.\n\n---\n\n'
+            echo "## 🇷🇺 Русский"
+            section CHANGELOG.md
+            printf '\n**Установка:** скачайте `DynamicIsland.apk` ниже и откройте на телефоне. Новая версия ставится поверх старой, настройки сохраняются. **С версии 1.6.0 и старше:** сначала удалите старую версию — один раз, потому что у приложения новый ключ подписи.\n'
+          } > notes.md
+          cat notes.md
+
+      # Релиз выпускает сам gh — без сторонних действий, которым пришлось бы доверить право на запись
+      - name: Релиз
+        if: needs.build.outputs.release == 'true'
+        run: |
+          gh release create "$TAG" out/DynamicIsland.apk -R "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "Dynamic Island $TAG · Динамический остров" --notes-file notes.md --latest
+
+      - name: Обновить описание вышедшего релиза
+        if: needs.build.outputs.update == 'true'
+        run: |
+          gh release edit "$TAG" -R "$GITHUB_REPOSITORY" --notes-file notes.md --title "Dynamic Island $TAG · Динамический остров"
