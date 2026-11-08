@@ -88,7 +88,7 @@ class MainActivity : Activity() {
             val col = vbox(); col.addView(TextView(this).apply { text = (if (p.ok) "✔ " else "○ ") + p.name; setTextColor(if (p.ok) 0xFF3DDC84.toInt() else Color.WHITE); textSize = 14f; typeface = Typeface.DEFAULT_BOLD })
             col.addView(TextView(this).apply { text = p.desc; setTextColor(0xFF9A9AA0.toInt()); textSize = 11f })
             r.addView(col, lpw(0, -2, 1f))
-            r.addView(gbtn(if (p.ok) "Đã cấp" else "Cấp", !p.ok) { if (!p.ok) p.act() }, lpw(dp(90), -2))
+            r.addView(gbtn(if (p.ok) "Đã cấp" else "Cấp", !p.ok) { if (!p.ok) p.act?.invoke() }, lpw(dp(90), -2))
             c.addView(r)
         }
         val go = row()
