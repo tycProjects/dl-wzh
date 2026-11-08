@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Lua Learn</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#edf2ff;font:15px system-ui}
+header{padding:20px 18px;background:linear-gradient(120deg,#5b35d5,#1679bd)}h1{margin:0;font-size:23px}
+nav{display:flex;gap:8px;padding:12px;background:#111a30;position:sticky;top:0}
+button{border:0;border-radius:10px;padding:11px 14px;background:#263653;color:white;font-weight:700}
+nav button.active,.primary{background:#7655ed}.page{display:none;padding:16px}.page.show{display:block}
+.card{background:#151f35;border:1px solid #293957;border-radius:14px;padding:15px;margin:12px 0}
+h2{font-size:19px;margin:4px 0 12px}h3{font-size:16px;margin:10px 0}
+.lesson{padding:12px;background:#1c2944;border-radius:10px;margin:10px 0}
+code,pre{background:#080d18;border-radius:8px;padding:10px;display:block;white-space:pre-wrap;color:#91e5c0}
+textarea{width:100%;min-height:175px;resize:vertical;background:#080d18;color:#e8efff;border:1px solid #354666;border-radius:10px;padding:12px;font:14px monospace}
+.output{min-height:100px;white-space:pre-wrap;overflow-wrap:anywhere;color:#9ee7b6}
+.hint{color:#aab8d3;font-size:13px;line-height:1.5}.row{display:flex;gap:8px;flex-wrap:wrap}
+</style></head><body>
+<header><h1>☾ Lua Learn</h1><div>Học Lua và chạy thử code ngay trên điện thoại</div></header>
+<nav><button id="tabLearn" class="active" onclick="showPage('learn')">📚 Học Lua</button><button id="tabTest" onclick="showPage('test')">▶ Test code</button></nav>
+<section id="learn" class="page show">
+<div class="card"><h2>Bài học Lua cơ bản</h2><p class="hint">Chọn một bài để xem ví dụ. Bạn có thể sao chép code sang mục Test code.</p>
+<div class="lesson"><h3>1. In chữ ra màn hình</h3><code>print("Hello world")</code><p class="hint">print() dùng để hiển thị nội dung.</p><button onclick="loadExample('print(&quot;Hello world&quot;)')">Thử bài này</button></div>
+<div class="lesson"><h3>2. Biến</h3><code>local ten = "An"
+local tuoi = 14
+print(ten)
+print(tuoi)</code><p class="hint">local tạo biến cục bộ. Lua không cần khai báo kiểu dữ liệu.</p><button onclick="loadExample('local ten = &quot;An&quot;\nlocal tuoi = 14\nprint(ten)\nprint(tuoi)')">Thử bài này</button></div>
+<div class="lesson"><h3>3. Phép tính</h3><code>local a = 10
+local b = 5
+print(a + b)
+print(a * b)</code><p class="hint">Toán tử: +, -, *, /, %.</p><button onclick="loadExample('local a = 10\nlocal b = 5\nprint(a + b)\nprint(a * b)')">Thử bài này</button></div>
+<div class="lesson"><h3>4. Điều kiện</h3><code>local diem = 8
+if diem >= 5 then
+  print("Dat")
+else
+  print("Chua dat")
+end</code><p class="hint">if / else / end dùng để rẽ nhánh.</p><button onclick="loadExample('local diem = 8\nif diem >= 5 then\n print(&quot;Dat&quot;)\nelse\n print(&quot;Chua dat&quot;)\nend')">Thử bài này</button></div>
+<div class="lesson"><h3>5. Vòng lặp</h3><code>for i = 1, 5 do
+  print(i)
+end</code><p class="hint">Vòng for lặp từ 1 đến 5.</p><button onclick="loadExample('for i = 1, 5 do\n print(i)\nend')">Thử bài này</button></div>
+</div></section>
+<section id="test" class="page">
+<div class="card"><h2>⌨️ Trình soạn thảo Lua</h2><p class="hint">Ô chữ nhật phía trên: viết code. Nhấn Chạy để xem kết quả ở ô phía dưới.</p>
+<textarea id="code" spellcheck="false">print("Hello world")</textarea>
+<div class="row" style="margin:10px 0"><button class="primary" onclick="runCode()">▶ Chạy code</button><button onclick="document.getElementById('code').value=''">Xóa code</button><button onclick="document.getElementById('code').value='print(&quot;Hello world&quot;)'">Code mẫu</button></div>
+<h3>📟 Kết quả</h3><div id="output" class="card output">Kết quả sẽ hiện ở đây...</div>
+<p class="hint">Lưu ý: bản demo hỗ trợ các lệnh cơ bản: print, biến local, phép tính, nối chuỗi .. và if/else đơn giản. Chưa phải trình thông dịch Lua đầy đủ.</p>
+</div></section>
+<script>
+function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));document.getElementById(id).classList.add('show');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));document.getElementById(id==='learn'?'tabLearn':'tabTest').classList.add('active')}
+function loadExample(s){document.getElementById('code').value=s;showPage('test')}
+function runCode(){
+ const src=document.getElementById('code').value, out=[];
+ const vars={};
+ const emit=v=>out.push(v===undefined?'nil':String(v));
+ const evalExpr=(s)=>{
+  s=s.trim();
+  if((s[0]==='"'&&s.at(-1)==='"')||(s[0]==="'"&&s.at(-1)==="'")) return s.slice(1,-1);
+  if(s==='true')return true;if(s==='false')return false;if(s==='nil')return null;
+  if(Object.prototype.hasOwnProperty.call(vars,s))return vars[s];
+  const concat=s.split('..');if(concat.length>1)return concat.map(x=>evalExpr(x)).join('');
+  if(/^[0-9+*/%().\s-]+$/.test(s)){try{return Function('"use strict";return ('+s+')')()}catch(e){}}
+  throw Error('Không hiểu biểu thức: '+s);
+ };
+ try{
+  const lines=src.split(/\r?\n/);let skip=false, inIf=false, condition=false;
+  for(let raw of lines){let line=raw.trim();if(!line||line.startsWith('--'))continue;
+   if(line.startsWith('if ')&&line.endsWith(' then')){let c=line.slice(3,-5).trim().replace(/~=+/g,'!=');condition=!!evalExpr(c);inIf=true;skip=!condition;continue}
+   if(line==='else'&&inIf){skip=condition;continue}if(line==='end'&&inIf){inIf=false;skip=false;continue}if(skip)continue;
+   let m=line.match(/^print\s*\((.*)\)\s*$/);if(m){emit(evalExpr(m[1]));continue}
+   m=line.match(/^(?:local\s+)?([A-Za-z_]\w*)\s*=\s*(.+)$/);if(m){vars[m[1]]=evalExpr(m[2]);continue}
+   m=line.match(/^for\s+([A-Za-z_]\w*)\s*=\s*(-?\d+)\s*,\s*(-?\d+)\s+do$/);
+   if(m){let end=Number(m[3]),start=Number(m[2]),body=[];let j=lines.indexOf(raw)+1;for(;j<lines.length&&lines[j].trim()!=='end';j++)body.push(lines[j]);if(j===lines.length)throw Error('Thiếu end trong vòng for');for(let i=start;i<=end;i++){vars[m[1]]=i;body.forEach(r=>{let z=r.trim().match(/^print\s*\((.*)\)$/);if(z)emit(evalExpr(z[1]));});}continue}
+   throw Error('Cú pháp chưa được hỗ trợ: '+line);
+  }
+  document.getElementById('output').textContent=out.length?out.join('\n'):'Chạy xong, không có kết quả.';
+ }catch(e){document.getElementById('output').textContent='Lỗi: '+e.message}
+}
+</script></body></html>
