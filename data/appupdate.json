@@ -1,17 +1,14 @@
 {
-  "latestVersionCode": 1792447887,
-  "latestVersionName": "8.0.0",
+  "latestVersionCode": 1792447888,
+  "latestVersionName": "8.2.0",
   "apkUrl": "https://dropmb.com/s/wzh2apk_update",
   "title": "New version available",
   "notes": [
     "⌯⌲WHAT'S NEW?",
-    "»you can now upload screenshots to your app(store)",
-    "»website hosting update(you can now host your website)",
-    "»customizable color(settings, appearance)",
-    "»SOME BUG FIXED(Fixed several bugs for a smoother experience)",
-    "»UI IMPROVEMENT"
+    "» signing key improve(you can now update your app, however this will not affect old build/app so it's still need you to uninstall your old app)",
+    "» REFUNDABLE BUILD!!!(just request why you need a refund🧐)"
   ],
   "updateButtonText": "Download update",
   "laterButtonText": "Later",
-  "updatedAt": 1794050897043
+  "updatedAt": 1794149310310
 }
