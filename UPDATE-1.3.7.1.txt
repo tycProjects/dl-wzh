@@ -1,0 +1,13 @@
+Android Island 1.3.7.1 - Banner Alignment & Width Fix
+
+Fixes:
+- Media capsule remains aligned to the screen center when a WhatsApp banner is shown simultaneously.
+- WhatsApp banner is placed below the capsule instead of participating in a centered Column layout.
+- Compact and standard WhatsApp banner widths are clamped to the available display width (screen width minus 16dp safe margins).
+- Expanded island maximum width uses the same symmetric 8dp side margins.
+- WhatsAppBanner accepts a Modifier for precise overlay placement.
+
+Package: com.android.island
+Version: 1.3.7.1 (versionCode 12)
+
+Build status: Source archive validated. Full Gradle build has not been verified in this environment.

@@ -1,0 +1,10 @@
+Android Island 1.4.0 - Display-first layout and motion foundation
+
+- Measure real display metrics before creating the accessibility overlay.
+- Cache width/height in dp and refresh on configuration changes.
+- Pass the measured width to the shared IslandRoot renderer.
+- WhatsApp compact and standard banners now use the available display width (screen - 16dp), rather than capping standard width at expanded media width.
+- Keep the overlay centered while banner/media activities coexist.
+- Tune shared morph motion for a firmer, less oscillatory settle and shorter smooth tween.
+
+Build status: source archive validated; Gradle compilation not verified in this environment.

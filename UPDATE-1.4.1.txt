@@ -1,0 +1,31 @@
+ANDROID ISLAND — UPDATE 1.4.1
+Banner motion, stable capsule anchor, and WhatsApp chat stack
+
+CHANGES
+1. Banner entrance animation runs on its own spring channel. The capsule does not
+   follow the banner's translation.
+2. Compose overlay host has child clipping disabled, allowing the banner's entrance
+   frame to render through the reserved area below the capsule without being cut by
+   the composable's local bounds.
+3. WhatsApp notifications are queued FIFO. New contacts wait while the active card
+   remains stable; updates for the same notification refresh that entry.
+4. Tapping the WhatsApp banner/capsule opens a scrollable stack of individual chat
+   cards. Reply, Open, and Dismiss remain per-contact actions.
+5. Pending WhatsApp count is exposed in the capsule; a green WhatsApp indicator
+   remains visible beside the media capsule when media is active.
+6. Per-notification expiry jobs are cancelled/replaced safely to prevent stale
+   timeout jobs clearing refreshed notifications.
+7. Removed an unused duplicate generic animation-spec helper.
+
+REFERENCE IMPLEMENTATIONS
+- https://github.com/Arnav-Dugad/dynamic-island-android
+- https://github.com/bughunter11/Islandify
+
+These repositories informed animation/queue design only. Their source code was
+not copied into this project.
+
+VALIDATION
+Source-level changes completed. A Gradle build could not be run in this environment
+because the Gradle distribution download host was unreachable and no local Android
+SDK/Gradle distribution was available. Please run :app:assembleDebug in Android
+Studio or on a machine with the configured Android SDK to confirm device build.

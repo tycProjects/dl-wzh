@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Island</string>
+    <string name="island_service_channel">Android Island Service</string>
+    <string name="accessibility_description">Android Island membutuhkan Accessibility agar kapsul dapat digambar di area kamera/status bar. Notifikasi WhatsApp dibaca lewat Notification Listener.</string>
+    <string name="a11y_label">Android Island</string>
+</resources>

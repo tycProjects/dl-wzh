@@ -1,0 +1,8 @@
+Android Island 1.4.10 — overlay anchor and Shizuku status-bar fix
+
+- WhatsApp overlay host width is reserved to the maximum of compact, banner, and expanded widths for the whole WhatsApp lifecycle.
+- Expanded morph is top-anchored; the compact capsule no longer gets vertically centered inside a growing card.
+- Removed the expandedOffsetY translation from the entire overlay root so expand/collapse does not move the capsule anchor.
+- Shizuku status-bar control now prefers disableForUser for the active Android user and falls back to the legacy disable overload only when unavailable.
+
+Build verification: static checks only. A release APK has not been built in this environment. Device/OEM behavior still requires on-device validation.
