@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.android.island"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.android.island"
-        minSdk = 35
-        targetSdk = 35
+        minSdk = 21
+        targetSdk = 34
         versionCode = 99
         versionName = "1.9.0"
     }
