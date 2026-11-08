@@ -663,6 +663,8 @@ jobs:
           fi
           tar -xzf /tmp/dex2c.tar.gz -C /tmp/dex2c-tool --strip-components=1
           cd /tmp/dex2c-tool
+          # Fix hash mismatch for asn1crypto (the hash in requirements.txt is outdated)
+          sed -i 's/asn1crypto>=0.24.0 --hash=sha256:29112bfcab83d0af2e494a5de4e95e71c51e1113255d7f82536160366550f194/asn1crypto>=0.24.0 --hash=sha256:b09fea08ad3d337fd8e2d6ef1ee03ac03c22fdb48add6dfa701c7cfd16da73bb/' requirements.txt
           pip3 install -q -r requirements.txt
           if ! curl -fsSL -o tools/apktool.jar https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.10.0.jar; then
             echo "::error::Dex2C: failed to download apktool.jar."
@@ -832,4 +834,3 @@ jobs:
             cp ~/.android/release-keystore/release.jks "$STAGE/${RUN_PREFIX}-release-signing-key.jks"
             gh release upload "$TAG" "$STAGE/${RUN_PREFIX}-release-signing-key.jks" --repo "$ASSETS_REPO" --clobber
           fi
-
