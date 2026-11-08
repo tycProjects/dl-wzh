@@ -1,0 +1,18 @@
+Android Island 1.4.12 — Internal Diagnostics Build
+
+This is a diagnostic instrumentation release, not the completed Akira-style animation rewrite.
+
+Added:
+- In-app bounded diagnostic buffer (up to 1,800 entries), independent of Android Logcat.
+- Home > Diagnostik internal: view the latest 500 entries, copy all logs, or clear the buffer.
+- Window create/dispose/layout, display metrics, view bounds, focus mode, outside touches,
+  Island state, Compose state, geometry, and throttled morph-progress samples.
+- Shizuku status-bar request, selected binder API path, applied flags, and failures.
+- Diagnostic records intentionally omit notification text and message contents.
+
+Important:
+- This build does not claim the capsule jump or open/close animation is fixed.
+- It does not yet replace the single WRAP_CONTENT overlay with Akira's two-window
+  drawing/touch architecture. That is the next required structural rewrite.
+- Shizuku icon hiding remains under diagnosis; the logs should reveal whether the
+  binder call is unavailable, rejected, or accepted without the expected OEM effect.
