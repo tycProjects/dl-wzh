@@ -1,0 +1,9 @@
+Android Island 1.4.17 - Kotlin compile fix
+
+Fixed the compile error reported by the 1.4.16 build:
+- Removed the stale StatusBarIconController.initialize(this) call from IslandApplication.
+- StatusBarIconController is a Kotlin object with no initialize() method; ShizukuState.start(this) and the settings/status collector already own initialization and application of the controller.
+
+Validation:
+- Source inspection confirms no remaining StatusBarIconController.initialize references.
+- Gradle compile could not be rerun in this environment because services.gradle.org DNS resolution is unavailable. Please run the same release build pipeline again.

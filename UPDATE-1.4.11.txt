@@ -1,0 +1,11 @@
+Android Island 1.4.11 — Expanded layer refactor
+
+- Expanded content is now rendered as a separate panel below the fixed capsule anchor; it no longer resizes the capsule itself.
+- The capsule fades fully out while expanded and returns at the same anchor as the panel closes.
+- The expanded Y offset is applied to the panel only; the capsule remains at the top anchor.
+- Expanded panel width/height remain independent of capsule dimensions.
+- Expanded corner-radius setting clips the expanded panel.
+- Reduced-motion modes disable lyric shine while retaining the primary open/close transition.
+- Overlay width is stable during each transition and remains compact during ordinary compact playback.
+
+Validation note: source-level checks are run in this package. A successful Android/Gradle compile and on-device behavior test are not claimed unless separately reported.

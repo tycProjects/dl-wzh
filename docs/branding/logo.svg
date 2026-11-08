@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="108" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B2F77"/><stop offset="0.55" stop-color="#14163A"/><stop offset="1" stop-color="#07080F"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="54" cy="52" r="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C5CFF" stop-opacity="0.55"/><stop offset="1" stop-color="#7C5CFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="86" cy="18" r="34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#29D3FF" stop-opacity="0.32"/><stop offset="1" stop-color="#29D3FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="40" x2="0" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.75"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="eq" x1="37" y1="0" x2="58" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5CE1FF"/><stop offset="1" stop-color="#A78BFF"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="66" y1="46" x2="74" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5CE1FF"/><stop offset="1" stop-color="#8B6CFF"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="67" x2="0" y2="76" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.26"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0.06"/>
+    </linearGradient>
+    <clipPath id="m"><rect width="108" height="108" rx="26"/></clipPath>
+  </defs>
+  <g clip-path="url(#m)">
+    <rect width="108" height="108" fill="url(#bg)"/>
+    <rect width="108" height="108" fill="url(#glow)"/>
+    <rect width="108" height="108" fill="url(#glow2)"/>
+    <path d="M37,40h34a10,10 0 0 1 0,20h-34a10,10 0 0 1 0,-20z" fill="#000000"/>
+    <path d="M37,40h34a10,10 0 0 1 0,20h-34a10,10 0 0 1 0,-20z" fill="none" stroke="url(#rim)" stroke-width="0.9"/>
+    <path d="M39,41.7h30" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="0.8" stroke-linecap="round"/>
+    <path d="M38.5,48.5V51.5M44,45.5V54.5M49.5,47V53M55,48.5V51.5" stroke="url(#eq)" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <circle cx="70" cy="50" r="4.2" fill="#0E1230" stroke="url(#ring)" stroke-width="1"/>
+    <circle cx="70" cy="50" r="1.5" fill="#5CE1FF" fill-opacity="0.9"/>
+    <path d="M41,67.5h26a4.5,4.5 0 0 1 0,9h-26a4.5,4.5 0 0 1 0,-9z" fill="url(#card)" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="0.6"/>
+  </g>
+</svg>

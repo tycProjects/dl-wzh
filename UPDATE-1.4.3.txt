@@ -1,0 +1,9 @@
+Android Island 1.4.3
+
+- Keep the capsule at a fixed scale while a WhatsApp banner enters.
+- Move the unread WhatsApp marker to the left by default and add a persistent left/right setting.
+- Make banner horizontal dismissal track both swipe directions and keep the card within the overlay scene gutter.
+- Swipe up now tucks the notification into the compact capsule without clearing the unread item; tapping the capsule opens the queued WhatsApp stack.
+- Keep the existing Kotlin/Compose and Android SDK configuration unchanged.
+
+Reference: EvanKoe/expressive-cutout (GPL-3.0). This update uses its publicly documented interaction concepts as reference; it does not copy source files.

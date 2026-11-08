@@ -1,0 +1,8 @@
+Android Island 1.4.14
+
+- Added selectable animation profiles: Option 1 keeps the previous stable animation; Option 2 uses a softer, longer flow-oriented spring/easing profile.
+- Added a persistent setting to enable or disable in-app diagnostic log recording. Existing log entries remain available when recording is turned off; no new diagnostic entries are captured.
+- Reduced repeated Shizuku request log noise by logging only when an actual state change needs to be applied.
+- Retained the existing Shizuku DISABLE_NOTIFICATION_ICONS status-bar service call. Device/OEM confirmation is still required; Shizuku READY alone is not proof that One UI hides the icons.
+
+Not device-tested or Gradle-compiled in this package.
