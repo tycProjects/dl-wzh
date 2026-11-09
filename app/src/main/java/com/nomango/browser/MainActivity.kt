@@ -3835,7 +3835,7 @@ class MainActivity : Activity() {
     private fun probeThenEnqueue(r: DlReq) {
         showToast("Starting download")
         io.execute {
-            var mime = r.mime ?: ""
+            val mime: String = r.mime ?: ""
             var cd = r.cd
             var con: HttpURLConnection? = null
             try {
