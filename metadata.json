@@ -1,0 +1,6 @@
+{
+  "name": "SV Keyboard",
+  "description": "A fast, stylish, and highly customizable Android keyboard with liquid glass themes, bordered/borderless keys, clipboard manager, custom fonts, wallpapers, and haptic feedback.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
