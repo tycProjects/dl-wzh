@@ -1125,7 +1125,7 @@ class MainActivity : Activity() {
         ui.removeCallbacks(t.watch)
         if (t === current) {
             setLoading(false)
-            if (was && !t.trusted) setProgress(100)
+            if (was && !t.trusted) updateProgress(100)
             if (ptrRefreshing) ptrStop()
         }
         // a moment after the page is done, take a fresh preview picture of it
@@ -1150,7 +1150,7 @@ class MainActivity : Activity() {
         }
     }
 
-    private fun setProgress(p: Int) {
+    private fun updateProgress(p: Int) {
         progress.update(p, d(1L) > 0L)
         if (p >= 100 && ptrRefreshing) ptrStop()
     }
@@ -3835,7 +3835,7 @@ class MainActivity : Activity() {
     private fun probeThenEnqueue(r: DlReq) {
         showToast("Starting download")
         io.execute {
-            var mime = r.mime
+            var mime = r.mime ?: ""
             var cd = r.cd
             var con: HttpURLConnection? = null
             try {
