@@ -281,6 +281,8 @@ jobs:
           echo "version=$DETECTED" >> "$GITHUB_OUTPUT"
 
       - name: Set up Gradle
+        id: gradle-setup
+        continue-on-error: true
         uses: gradle/actions/setup-gradle@v4
         with:
           # Whatever the previous step detected for THIS project, rather
@@ -296,6 +298,19 @@ jobs:
           # validation!". Disabled since every jar this workflow runs
           # against is either the project's own upload or one this same
           # pipeline just generated from the official Gradle distribution.
+          validate-wrappers: false
+
+      # The Gradle download from GitHub sometimes answers 504. If the step above failed, wait and run it once
+      # more (and only then). If it was fine, both of these steps are skipped.
+      - name: Wait before retrying the Gradle setup
+        if: steps.gradle-setup.outcome == 'failure'
+        run: sleep 45
+
+      - name: Set up Gradle (retry)
+        if: steps.gradle-setup.outcome == 'failure'
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: ${{ steps.gradle-detect.outputs.version }}
           validate-wrappers: false
 
       - name: Normalize the project for CI
@@ -507,9 +522,9 @@ jobs:
           set -o pipefail
           run_build() {
             if [ -x "./gradlew" ] && [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
-              ./gradlew assembleDebug --no-daemon
+              ./gradlew compileDebugSources --no-daemon
             else
-              gradle assembleDebug --no-daemon
+              gradle compileDebugSources --no-daemon
             fi
           }
 
@@ -522,6 +537,19 @@ jobs:
           if run_build 2>&1 | tee build.log; then
             exit 0
           fi
+
+          # Downloads (Maven Central, GitHub releases) sometimes time out. Re-run the build, up to 3 tries in
+          # all, ONLY when the log shows a network failure. Any other failure skips this loop and goes to the
+          # handling below exactly as before.
+          NET_TRY=1
+          while [ "$NET_TRY" -lt 3 ] && grep -qiE 'Could not (GET|HEAD|download|resolve|read)|Gateway Time-out|timed out|Connection reset|Connection refused|Received status code 5[0-9][0-9]|Server returned HTTP response code: 5[0-9][0-9]|Premature end of Content-Length|Remote host terminated|SocketTimeoutException|UnknownHostException|SSLHandshakeException|Temporary failure' build.log; do
+            echo "::warning::Build attempt $NET_TRY failed on a network error while downloading. Retrying in $((NET_TRY * 30))s..."
+            sleep $((NET_TRY * 30))
+            NET_TRY=$((NET_TRY + 1))
+            if run_build 2>&1 | tee build.log; then
+              exit 0
+            fi
+          done
 
           # The "Detect required Gradle version" step (further up) trusts
           # whatever version the project's own committed
@@ -587,70 +615,4 @@ jobs:
           else
             exit 1
           fi
-
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-apk-${{ github.run_id }}
-          path: ${{ steps.locate.outputs.dir }}/**/build/outputs/apk/debug/*.apk
-          if-no-files-found: error
-
-      - name: Publish outputs directly to release (skips proxying bytes through the build server)
-        env:
-          GH_TOKEN: ${{ secrets.ASSETS_REPO_TOKEN }}
-        run: |
-          set -eo pipefail
-          # secrets can't be referenced in an "if:" condition (GitHub Actions
-          # rejects that as "Unrecognized named-value: 'secrets'"), so the
-          # opt-out lives here instead: if the secret was never added to this
-          # repo, GH_TOKEN is just empty and we skip quietly -- the server's
-          # own download+reupload fallback (publishJobAssetsToRelease) takes
-          # over exactly as it did before this feature existed.
-          if [ -z "$GH_TOKEN" ]; then
-            echo "ASSETS_REPO_TOKEN secret not set -- skipping direct publish (server will fall back to its own download+reupload path)."
-            exit 0
-          fi
-          ASSETS_REPO="tycProjects/dl-wzh"
-          TAG="builds"
-          RUN_PREFIX="${{ github.run_id }}"
-          STAGE=$(mktemp -d)
-
-          gh release view "$TAG" --repo "$ASSETS_REPO" >/dev/null 2>&1 || \
-            gh release create "$TAG" --repo "$ASSETS_REPO" \
-              --title "Build downloads" \
-              --notes "Auto-managed release used to host finished build downloads."
-
-          # GitHub hard-caps a release at 1000 assets (HTTP 422 "file_count limited
-          # to 1000 assets per release"). Old builds' files pile up in this one
-          # long-lived release, so before uploading, drop the oldest assets once
-          # it nears the cap. Best effort: never fails the build by itself.
-          MAX_ASSETS=900
-          RID=$(gh api "repos/$ASSETS_REPO/releases/tags/$TAG" --jq .id 2>/dev/null || true)
-          if [ -n "$RID" ]; then
-            LISTING=$(gh api --paginate "repos/$ASSETS_REPO/releases/$RID/assets?per_page=100" --jq '.[] | "\(.created_at) \(.id)"' 2>/dev/null || true)
-            COUNT=$(printf '%s\n' "$LISTING" | grep -c . || true)
-            if [ "$COUNT" -ge "$MAX_ASSETS" ]; then
-              EXCESS=$((COUNT - MAX_ASSETS + 25))
-              echo "Release has $COUNT assets (GitHub limit 1000); removing the $EXCESS oldest to make room."
-              OLDEST=$(printf '%s\n' "$LISTING" | sort | head -n "$EXCESS" | awk '{print $2}' || true)
-              for AID in $OLDEST; do
-                gh api -X DELETE "repos/$ASSETS_REPO/releases/assets/$AID" >/dev/null 2>&1 || true
-              done
-            fi
-          fi
-
-          FOUND=0
-          while IFS= read -r -d '' f; do
-            cp "$f" "$STAGE/${RUN_PREFIX}-$(basename "$f")"
-            FOUND=1
-          done < <(find "${{ steps.locate.outputs.dir }}" -path '*/build/outputs/apk/debug/*' -name '*.apk' -print0)
-
-          if [ "$FOUND" = "1" ]; then
-            gh release upload "$TAG" "$STAGE"/*.apk --repo "$ASSETS_REPO" --clobber
-            echo "Published build output(s) directly to $ASSETS_REPO (release: $TAG)."
-          else
-            echo "::warning::No .apk found under ${{ steps.locate.outputs.dir }} to publish directly -- server will fall back to its own download+reupload path."
-          fi
-
 

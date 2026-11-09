@@ -1,0 +1,6 @@
+id=hyperstatusbarpro
+name=HyperStatusBar Pro Config Bridge
+version=0.1.0
+versionCode=1
+author=HyperStatusBar Pro
+description=Configuration transport template. No SystemUI patches are bundled.
