@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_history">السجل</string>
+    <string name="nav_knowledge">المعرفة</string>
+    <string name="nav_settings">الإعدادات</string>
+
+    <string name="tagline_1">افهم الخطأ.</string>
+    <string name="tagline_2">اعرف الحل.</string>
+
+    <string name="home_title">حلّل سجل ماينكرافت الخاص بك</string>
+    <string name="home_desc">ارفع ملف السجل ودع Logalyze يكتشف سبب المشكلة وحلها.</string>
+    <string name="upload_log">رفع السجل</string>
+    <string name="analyze_log">تحليل السجل</string>
+    <string name="analyzing">جارٍ التحليل…</string>
+    <string name="remove_file">إزالة الملف</string>
+    <string name="view_history">عرض السجل</string>
+    <string name="supported_launchers">اللانشرات المدعومة</string>
+    <string name="launcher_more">المزيد</string>
+    <string name="unknown_size">الحجم غير معروف</string>
+    <string name="err_read">تعذّرت قراءة هذا الملف.</string>
+    <string name="err_ext">ملف غير مدعوم. استخدم ملف log أو txt.</string>
+    <string name="err_empty">هذا الملف فارغ.</string>
+    <string name="err_large">الملف كبير جدًا. الحد الأقصى 5 ميجابايت.</string>
+    <string name="toast_read_fail">تعذّرت قراءة هذا السجل.</string>
+
+    <string name="analyzing_title">جارٍ تحليل السجل</string>
+    <string name="step_read">قراءة ملف السجل</string>
+    <string name="step_scan">البحث عن الأخطاء</string>
+    <string name="step_match">المطابقة مع قاعدة المعرفة</string>
+    <string name="step_build">تجهيز النتيجة</string>
+
+    <string name="result_title">نتيجة التحليل</string>
+    <string name="tag_crash">تم اكتشاف انهيار</string>
+    <string name="tag_none">لم يتم العثور على خطأ</string>
+    <string name="log_label">السجل: %1$s</string>
+    <string name="launcher_label">اللانشر: %1$s</string>
+    <string name="device_info">معلومات الجهاز</string>
+    <string name="info_device">الجهاز</string>
+    <string name="info_android">أندرويد</string>
+    <string name="info_cpu">المعالج</string>
+    <string name="info_arch">المعمارية</string>
+    <string name="info_ram">الذاكرة (RAM)</string>
+    <string name="info_java">Java</string>
+    <string name="info_renderer">المُصيّر</string>
+    <string name="info_gpu">كرت الشاشة (GPU)</string>
+    <string name="mods_title">المودات المشتبه بها</string>
+    <string name="mods_hint">مأخوذة من السجل. ابدأ بفحصها أولًا.</string>
+    <string name="feedback_question">هل حلّ هذا المشكلة؟</string>
+    <string name="feedback_yes">نعم، تم الحل</string>
+    <string name="feedback_resolved">تم وضعها كمحلولة</string>
+    <string name="feedback_undo">إعادتها إلى قيد الحل</string>
+    <string name="status_resolved">تم الحل</string>
+    <string name="status_pending">قيد الحل</string>
+    <string name="filter_all">الكل</string>
+    <string name="theme_title">المظهر</string>
+    <string name="theme_system">النظام</string>
+    <string name="theme_dark">داكن</string>
+    <string name="theme_light">فاتح</string>
+    <string name="accent_title">لون التطبيق</string>
+    <string name="ai_title">شات الذكاء الاصطناعي</string>
+    <string name="ai_note">أضف مفتاح API الخاص بك لتناقش الأخطاء. يُرسل ملخص التحليل فقط وليس السجل نفسه، ويبقى المفتاح على جهازك.</string>
+    <string name="ai_key">مفتاح API</string>
+    <string name="ai_base_url">رابط الخدمة</string>
+    <string name="ai_model">النموذج</string>
+    <string name="ask_ai">اسأل الذكاء الاصطناعي عن هذا الخطأ</string>
+    <string name="chat_title">شات الذكاء الاصطناعي</string>
+    <string name="chat_hint">اسأل عن هذا الخطأ…</string>
+    <string name="chat_send">إرسال</string>
+    <string name="chat_no_key">أضف مفتاح API في الإعدادات لاستخدام الشات.</string>
+    <string name="chat_open_settings">فتح الإعدادات</string>
+    <string name="chat_error">تعذّر الحصول على رد</string>
+    <string name="chat_suggest_1">كيف أحل هذه المشكلة خطوة بخطوة؟</string>
+    <string name="chat_suggest_2">لماذا حدث هذا؟</string>
+    <string name="knowledge_title">الأخطاء المعروفة</string>
+    <string name="knowledge_search">ابحث عن خطأ…</string>
+    <string name="no_results">لا توجد نتائج مطابقة</string>
+    <string name="chat_unavailable">شات الذكاء الاصطناعي غير متاح حاليًا.</string>
+    <string name="confidence">نسبة الثقة</string>
+    <string name="root_cause">السبب الجذري</string>
+    <string name="evidence">الأدلة</string>
+    <string name="fixes">الحلول المقترحة</string>
+    <string name="kb_note">تمت المطابقة مع قاعدة المعرفة المدمجة.</string>
+    <string name="back">رجوع</string>
+
+    <string name="history_title">السجل</string>
+    <string name="clear_all">مسح الكل</string>
+    <string name="empty_title">لا توجد تحليلات بعد</string>
+    <string name="empty_desc">ارفع سجلًا من الرئيسية للبدء.</string>
+    <string name="delete">حذف</string>
+
+    <string name="settings_title">الإعدادات</string>
+    <string name="language">اللغة</string>
+    <string name="language_hint">اختر لغة التطبيق</string>
+    <string name="about">حول التطبيق</string>
+    <string name="about_text">يحلل Logalyze سجلات ماينكرافت، ويشرح الخطأ، ويقترح الحل.</string>
+    <string name="version_label">الإصدار 1.0</string>
+</resources>

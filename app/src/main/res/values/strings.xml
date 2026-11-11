@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_home">Home</string>
+    <string name="nav_history">History</string>
+    <string name="nav_knowledge">Knowledge</string>
+    <string name="nav_settings">Settings</string>
+
+    <string name="tagline_1">Understand the error.</string>
+    <string name="tagline_2">Find the fix.</string>
+
+    <string name="home_title">Analyze your Minecraft log</string>
+    <string name="home_desc">Upload a log file and let Logalyze find the cause and the solution for your crash.</string>
+    <string name="upload_log">Upload log</string>
+    <string name="analyze_log">Analyze log</string>
+    <string name="analyzing">Analyzing…</string>
+    <string name="remove_file">Remove file</string>
+    <string name="view_history">View history</string>
+    <string name="supported_launchers">Supported launchers</string>
+    <string name="launcher_more">More</string>
+    <string name="unknown_size">Unknown size</string>
+    <string name="err_read">Couldn\'t read this file.</string>
+    <string name="err_ext">Unsupported file. Use a .log or .txt file.</string>
+    <string name="err_empty">This file is empty.</string>
+    <string name="err_large">File is too large. The limit is 5 MB.</string>
+    <string name="toast_read_fail">Couldn\'t read this log.</string>
+
+    <string name="analyzing_title">Analyzing your log</string>
+    <string name="step_read">Reading the log file</string>
+    <string name="step_scan">Scanning for errors</string>
+    <string name="step_match">Matching the knowledge base</string>
+    <string name="step_build">Preparing the result</string>
+
+    <string name="result_title">Analysis result</string>
+    <string name="tag_crash">Crash detected</string>
+    <string name="tag_none">No error found</string>
+    <string name="log_label">Log: %1$s</string>
+    <string name="launcher_label">Launcher: %1$s</string>
+    <string name="device_info">Device info</string>
+    <string name="info_device">Device</string>
+    <string name="info_android">Android</string>
+    <string name="info_cpu">CPU</string>
+    <string name="info_arch">Architecture</string>
+    <string name="info_ram">RAM</string>
+    <string name="info_java">Java</string>
+    <string name="info_renderer">Renderer</string>
+    <string name="info_gpu">GPU</string>
+    <string name="mods_title">Suspected mods</string>
+    <string name="mods_hint">Taken from the log. Check these first.</string>
+    <string name="feedback_question">Did this fix the problem?</string>
+    <string name="feedback_yes">Yes, it\'s fixed</string>
+    <string name="feedback_resolved">Marked as resolved</string>
+    <string name="feedback_undo">Mark as pending</string>
+    <string name="status_resolved">Resolved</string>
+    <string name="status_pending">Pending</string>
+    <string name="filter_all">All</string>
+    <string name="theme_title">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_light">Light</string>
+    <string name="accent_title">Accent color</string>
+    <string name="ai_title">AI chat</string>
+    <string name="ai_note">Add your own API key to chat about errors. Only the analysis summary is sent, never your log. The key stays on this device.</string>
+    <string name="ai_key">API key</string>
+    <string name="ai_base_url">Base URL</string>
+    <string name="ai_model">Model</string>
+    <string name="ask_ai">Ask AI about this error</string>
+    <string name="chat_title">AI chat</string>
+    <string name="chat_hint">Ask about this error…</string>
+    <string name="chat_send">Send</string>
+    <string name="chat_no_key">Add your API key in Settings to use the AI chat.</string>
+    <string name="chat_open_settings">Open settings</string>
+    <string name="chat_error">Couldn\'t get a reply</string>
+    <string name="chat_suggest_1">How do I fix this step by step?</string>
+    <string name="chat_suggest_2">Why did this happen?</string>
+    <string name="knowledge_title">Known errors</string>
+    <string name="knowledge_search">Search errors…</string>
+    <string name="no_results">No matching errors</string>
+    <string name="chat_unavailable">AI chat isn\'t available right now.</string>
+    <string name="confidence">Confidence</string>
+    <string name="root_cause">Root cause</string>
+    <string name="evidence">Evidence</string>
+    <string name="fixes">Recommended fixes</string>
+    <string name="kb_note">Matched against the built-in knowledge base.</string>
+    <string name="back">Back</string>
+
+    <string name="history_title">History</string>
+    <string name="clear_all">Clear all</string>
+    <string name="empty_title">No analyses yet</string>
+    <string name="empty_desc">Upload a log from Home to get started.</string>
+    <string name="delete">Delete</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="language">Language</string>
+    <string name="language_hint">Choose the app language</string>
+    <string name="about">About</string>
+    <string name="about_text">Logalyze analyzes Minecraft logs, explains the error, and suggests a fix.</string>
+    <string name="version_label">Version 1.0</string>
+</resources>
