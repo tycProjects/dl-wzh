@@ -1,0 +1,49 @@
+package com.generated.kairou;
+
+import java.util.HashMap;
+import java.util.Map;
+
+// Generated at build time from the wrapped site's HTML/CSS/JS. Each
+// file's bytes are stored base64-encoded as a compiled string constant
+// (part of classes.dex), not as a loose file under assets/.
+// MainActivity's shouldInterceptRequest override (see EMBED_HOST) decodes
+// these on demand to feed the WebView, in place of the OS resolving
+// file:///android_asset/ requests against a real assets/ folder.
+public final class EmbeddedAssets {
+    // Joins base64 chunks at class-init time. Deliberately NOT string
+    // concatenation on the call site (see the comment above each F<n>
+    // field) -- a method call is not a compile-time constant expression,
+    // so javac can't fold these chunks back into one oversized constant.
+    private static String join(String... parts) {
+        StringBuilder sb = new StringBuilder();
+        for (String p : parts) sb.append(p);
+        return sb.toString();
+    }
+
+    private static final String F0 = join(
+            "PCFkb2N0eXBlIGh0bWw+PGh0bWwgbGFuZz0iZW4iPjxoZWFkPjxtZXRhIGNoYXJzZXQ9InV0Zi04Ij48bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLGluaXRpYWwtc2NhbGU9MSI+PHRpdGxlPmthaXJvdTwvdGl0bGU+PGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJzdHlsZS5jc3MiPjwvaGVhZD48Ym9keT48aDE+a2Fpcm91PC9oMT48c2NyaXB0IHNyYz0ic2NyaXB0LmpzIj48L3NjcmlwdD48L2JvZHk+PC9odG1sPg==");
+
+    private static final String F1 = join(
+            "J3VzZSBzdHJpY3QnO2Z1bmN0aW9uIF8weDNmMTQoXzB4MTE5YjQ0LF8weDNhY2RhYyl7XzB4MTE5YjQ0PV8weDExOWI0NC0weDE4YTt2YXIgXzB4MzNmMWIzPV8weDMzZjEoKTt2YXIgXzB4M2YxNDE4PV8weDMzZjFiM1tfMHgxMTliNDRdO2lmKF8weDNmMTRbJ1ZwTmlFciddPT09dW5kZWZpbmVkKXt2YXIgXzB4MTBjYjExPWZ1bmN0aW9uKF8weDM4ZWUxYyl7dmFyIF8weGU5OGQ3Nz0nYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXpBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWjAxMjM0NTY3ODkrLz0nO3ZhciBfMHgyMzI4MTM9JycsXzB4MjI4Y2ZkPScnO2Zvcih2YXIgXzB4MzUyYmJkPTB4MCxfMHgzN2I2ZjEsXzB4MTc1Njc1LF8weDU5ZTk3Yz0weDA7XzB4MTc1Njc1PV8weDM4ZWUxY1snY2hhckF0J10oXzB4NTllOTdjKyspO35fMHgxNzU2NzUmJihfMHgzN2I2ZjE9XzB4MzUyYmJkJTB4ND9fMHgzN2I2ZjEqMHg0MCtfMHgxNzU2NzU6XzB4MTc1Njc1LF8weDM1MmJiZCsrJTB4NCk/XzB4MjMyODEzKz1TdHJpbmdbJ2Zyb21DaGFyQ29kZSddKDB4ZmYmXzB4MzdiNmYxPj4oLTB4MipfMHgzNTJiYmQmMHg2KSk6MHgwKXtfMHgxNzU2NzU9XzB4ZTk4ZDc3WydpbmRleE9mJ10oXzB4MTc1Njc1KTt9Zm9yKHZhciBfMHg2YWMxYzY9MHgwLF8weDI0MDQ0Yz1fMHgyMzI4MTNbJ2xlbmd0aCddO18weDZhYzFjNjxfMHgyNDA0NGM7XzB4NmFjMWM2Kyspe18weDIyOGNmZCs9JyUnKygnMDAnK18weDIzMjgxM1snY2hhckNvZGVBdCddKF8weDZhYzFjNilbJ3RvU3RyaW5nJ10oMHgxMCkpWydzbGljZSddKC0weDIpO31yZXR1cm4gZGVjb2RlVVJJQ29tcG9uZW50KF8weDIyOGNmZCk7fTt2YXIgXzB4NDcxY2M1PWZ1bmN0aW9uKF8weDUyYzk3YyxfMHgxY2QzYTIpe3ZhciBfMHgzYWJiNDQ9W10sXzB4NzA2NmIyPTB4MCxfMHgyODg2YjksXzB4MjkxZjhiPScnO18weDUyYzk3Yz1fMHgxMGNiMTEoXzB4NTJjOTdjKTt2YXIgXzB4MTMxN2RlO2ZvcihfMHgxMzE3ZGU9MHgwO18weDEzMTdkZTwweDEwMDtfMHgxMzE3ZGUrKyl7XzB4M2FiYjQ0W18weDEzMTdkZV09XzB4MTMxN2RlO31mb3IoXzB4MTMxN2RlPTB4MDtfMHgxMzE3ZGU8MHgxMDA7XzB4MTMxN2RlKyspe18weDcwNjZiMj0oXzB4NzA2NmIyK18weDNhYmI0NFtfMHgxMzE3ZGVdK18weDFjZDNhMlsnY2hhckNvZGVBdCddKF8weDEzMTdkZSVfMHgxY2QzYTJbJ2xlbmd0aCddKSklMHgxMDAsXzB4Mjg4NmI5PV8weDNhYmI0NFtfMHgxMzE3ZGVdLF8weDNhYmI0NFtfMHgxMzE3ZGVdPV8weDNhYmI0NFtfMHg3MDY2YjJdLF8weDNhYmI0NFtfMHg3MDY2YjJdPV8weDI4ODZiOTt9XzB4MTMxN2RlPTB4MCxfMHg3MDY2YjI9MHgwO2Zvcih2YXIgXzB4MTQ0N2QwPTB4MDtfMHgxNDQ3ZDA8XzB4NTJjOTdjWydsZW5ndGgnXTtfMHgxNDQ3ZDArKyl7XzB4MTMxN2RlPShfMHgxMzE3ZGUrMHgxKSUweDEwMCxfMHg3MDY2YjI9KF8weDcwNjZiMitfMHgzYWJiNDRbXzB4MTMxN2RlXSklMHgxMDAsXzB4Mjg4NmI5PV8weDNhYmI0NFtfMHgxMzE3ZGVdLF8weDNhYmI0NFtfMHgxMzE3ZGVdPV8weDNhYmI0NFtfMHg3MDY2YjJdLF8weDNhYmI0NFtfMHg3MDY2YjJdPV8weDI4ODZiOSxfMHgyOTFmOGIrPVN0cmluZ1snZnJvbUNoYXJDb2RlJ10oXzB4NTJjOTdjWydjaGFyQ29kZUF0J10oXzB4MTQ0N2QwKV5fMHgzYWJiNDRbKF8weDNhYmI0NFtfMHgxMzE3ZGVdK18weDNhYmI0NFtfMHg3MDY2YjJdKSUweDEwMF0pO31yZXR1cm4gXzB4MjkxZjhiO307XzB4M2YxNFsnS2NQc25jJ109XzB4NDcxY2M1LF8weDNmMTRbJ2hvYVdhVCddPXt9LF8weDNmMTRbJ1ZwTmlFciddPSEhW107fXZhciBfMHg0YmQyNTI9XzB4MzNmMWIzWzB4MF0sXzB4NWIyYTg5PV8weDExOWI0NCtfMHg0YmQyNTIsXzB4MmUwZjAwPV8weDNmMTRbJ2hvYVdhVCddW18weDViMmE4OV07cmV0dXJuIV8weDJlMGYwMD8oXzB4M2YxNFsnbm1HblRJJ109PT11bmRlZmluZWQmJihfMHgzZjE0WydubUduVEknXT0hIVtdKSxfMHgzZjE0MTg9XzB4M2YxNFsnS2NQc25jJ10oXzB4M2YxNDE4LF8weDNhY2RhYyksXzB4M2YxNFsnaG9hV2FUJ11bXzB4NWIyYTg5XT1fMHgzZjE0MTgpOl8weDNmMTQxOD1fMHgyZTBmMDAsXzB4M2YxNDE4O30oZnVuY3Rpb24oXzB4MjllZjBkLF8weDVlMzEyMil7dmFyIF8weDFjMTA1OT1fMHgzZjE0LF8weDEyNjlmMj1fMHgyOWVmMGQoKTt3aGlsZSghIVtdKXt0cnl7dmFyIF8weDEyZDY5Mz0tcGFyc2VJbnQoXzB4MWMxMDU5KDB4MTkxLCdDSClHJykpLzB4MSstcGFyc2VJbnQoXzB4MWMxMDU5KDB4MTkwLCd2cERAJykpLzB4MistcGFyc2VJbnQoXzB4MWMxMDU5KDB4MTk2LCc4W3dIJykpLzB4MyooLXBhcnNlSW50KF8weDFjMTA1OSgweDE5NywneDh4MicpKS8weDQpKy1wYXJzZUludChfMHgxYzEwNTkoMHgxOGQsJ0R0Ql0nKSkvMHg1KigtcGFyc2VJbnQoXzB4MWMxMDU5KDB4MThhLCdEdEJdJykpLzB4NikrLXBhcnNlSW50KF8weDFjMTA1OSgweDE5OCwnRmkjJScpKS8weDcrcGFyc2VJbnQoXzB4MWMxMDU5KDB4MTkzLCdKUm4oJykpLzB4OCtwYXJzZUludChfMHgxYzEwNTkoMHgxOGIsJ0llVUEnKSkvMHg5O2lmKF8weDEyZDY5Mz09PV8weDVlMzEyMilicmVhaztlbHNlIF8weDEyNjlmMlsncHVzaCddKF8weDEyNjlmMlsnc2hpZnQnXSgpKTt9Y2F0Y2goXzB4MWE0NTQ5KXtfMHgxMjY5ZjJbJ3B1c2gnXShfMHgxMjY5ZjJbJ3NoaWZ0J10oKSk7fX19KF8weDMzZjEsMHgzYTA2ZSkpO2Z1bmN0aW9uIF8weDMzZjEoKXt2YXIgXzB4MTBjM2NhPVsna1NvUldQQmNMbWtoRDFLRHFMakV6Q2txJywndm1vN0FMbGNNU2tJaENvQ3QzaGRIOGswJywnelNvMkZkamxFckZkSlNrMVc0eGNLMW0nLCd2OG83QXYzY01Ta0t3U28reU1aZFRDa2tXUmEnLCdic0pjSVNrTGRTa2xsS2UyV1BLN0FLSycsJ1dRbGNOZGpwV09IM1c1WmNSMnlyV09PbicsJ3FDb3hXUGRkSElPblc2eGRKcScsJ2NkalFXNm1oZ3VXcicsJ2k4a09tOG9KV1JiMlc3M2RIbW9zelNvRycsJ3hTb1BXNE9VV09GY01ta0lXUUpjT3ZSY1NLUFgnLCdjdGVDV09Mdnh3V3FXNldzbE5pJywneENvUFc0aVVXT3hjTkNvSFdQbGNJdWhjTmdTJywnV1JCZFExeGRQQ296QUNrcVdRdGRQd2FoQW1vRCcsJ2xKOWpoZ0hCVzZoZEhXJywnVzZwZFVDa2FFTlZjVlNvc1c0eGRHOG8yczNMWCcsJ1c1cGNOQ28ycThrY1c2V3R0cTdjSXF5JywnbHQwU3FjT2pXNC9kS0psY00xQmRVcScsJ3cyWmNId3BkS21velc0VmNKVyddO18weDMzZjE9ZnVuY3Rpb24oKXtyZXR1cm4gXzB4MTBjM2NhO307cmV0dXJuIF8weDMzZjEoKTt9");
+
+    private static final String F2 = join(
+            "Kntib3gtc2l6aW5nOmJvcmRlci1ib3h9Ym9keXttYXJnaW46MDtmb250LWZhbWlseTpzeXN0ZW0tdWksc2Fucy1zZXJpZn0=");
+
+    private static final Map<String, String> MAP = new HashMap<>();
+    static {
+        MAP.put("index.html", F0);
+        MAP.put("script.js", F1);
+        MAP.put("style.css", F2);
+    }
+
+    // rel: path as it would have appeared under assets/, e.g. "index.html"
+    // or "css/style.css". Returns null if nothing was embedded at that path.
+    public static byte[] get(String rel) {
+        String b64 = MAP.get(rel);
+        if (b64 == null) return null;
+        byte[] raw = android.util.Base64.decode(b64, android.util.Base64.DEFAULT);
+        return raw;
+    }
+
+    private EmbeddedAssets() {}
+}
