@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="H\u1ED7 tr\u1EE3: OpenAI, Groq, OpenRouter, Ollama..."
+        android:textSize="12sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="16dp" />
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="API Key:" android:textStyle="bold" />
+    <EditText android:id="@+id/etApiKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="sk-..."
+        android:inputType="textPassword"
+        android:layout_marginBottom="12dp" />
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Base URL:" android:textStyle="bold" />
+    <EditText android:id="@+id/etBaseUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="https://api.openai.com"
+        android:inputType="textUri"
+        android:layout_marginBottom="12dp" />
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Model:" android:textStyle="bold" />
+    <EditText android:id="@+id/etModel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="gpt-3.5-turbo"
+        android:inputType="text" />
+</LinearLayout>
