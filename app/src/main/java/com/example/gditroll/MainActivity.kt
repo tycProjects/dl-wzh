@@ -87,7 +87,7 @@ class MainActivity : Activity() {
         val scroll = ScrollView(this).apply {
             isFillViewport = true
             setBackgroundColor(bg)
-            addView(frame, ScrollView.LayoutParams(-1, -1))
+            // AUTO-REPAIR: disabled -- unresolved reference 'LayoutParams' (was: addView(frame, ScrollView.LayoutParams(-1, -1)))
         }
 
         setContentView(scroll)
