@@ -1,0 +1,21 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.pb.browser'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.pb.browser'
+        minSdk 28
+        targetSdk 34
+        versionCode 22
+        versionName '3.3.5'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes { release { minifyEnabled false } }
+}
+dependencies {
+    implementation 'androidx.webkit:webkit:1.11.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+}
