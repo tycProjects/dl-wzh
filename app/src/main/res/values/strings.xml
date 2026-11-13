@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meloza</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_library">Library</string>
+    <string name="nav_profile">Profile</string>
+
+    <string name="state_loading">Scanning your music…</string>
+    <string name="permission_title">Allow access to music</string>
+    <string name="permission_text">Meloza plays the audio files stored on this device. It only reads your music library.</string>
+    <string name="action_grant">Allow access</string>
+    <string name="empty_title">No music found</string>
+    <string name="empty_text">Add MP3, FLAC or other audio files to your device storage, then tap Refresh.</string>
+    <string name="error_title">Could not read the library</string>
+    <string name="action_retry">Refresh</string>
+
+    <string name="action_play">Play</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_next">Next</string>
+    <string name="action_prev">Previous</string>
+    <string name="action_favorite">Favorite</string>
+    <string name="action_back">Back</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    <string name="action_create">Create</string>
+    <string name="action_rename">Rename</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_shuffle">Shuffle</string>
+    <string name="action_repeat">Repeat one</string>
+    <string name="action_queue">Queue</string>
+    <string name="action_equalizer">Equalizer</string>
+    <string name="action_sleep_timer">Sleep timer</string>
+    <string name="action_lyrics">Lyrics</string>
+    <string name="action_radio">Radio from this song</string>
+    <string name="action_start">Start</string>
+    <string name="action_ok">OK</string>
+    <string name="action_done">Done</string>
+    <string name="action_add_tracks">Add tracks</string>
+    <string name="action_move_up">Move up</string>
+    <string name="action_move_down">Move down</string>
+    <string name="action_remove">Remove</string>
+
+    <string name="greeting_night">Good night</string>
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="home_subtitle">Music from your device</string>
+    <string name="section_continue">Continue listening</string>
+    <string name="section_daily_mix">Daily mix</string>
+    <string name="section_new_releases">New in your library</string>
+    <string name="section_popular_albums">Popular albums</string>
+    <string name="section_favorite_artists">Favorite artists</string>
+    <string name="section_genres">Genres</string>
+    <string name="genres_none">No genre tags found in your files.</string>
+    <string name="home_local_note">Recommendations are built from your device library and your listening history. Online recommendations need a connected music source (see README).</string>
+
+    <string name="search_hint">Songs, artists, albums</string>
+    <string name="search_idle">Type to search your library.</string>
+    <string name="search_empty">Nothing found for “%s”.</string>
+    <string name="search_artists">Artists</string>
+    <string name="search_albums">Albums</string>
+    <string name="search_songs">Songs</string>
+
+    <string name="lib_songs">Songs</string>
+    <string name="lib_albums">Albums</string>
+    <string name="lib_artists">Artists</string>
+    <string name="lib_genres">Genres</string>
+    <string name="lib_playlists">Playlists</string>
+    <string name="lib_favorites">Favorites</string>
+    <string name="lib_recent">Recently added</string>
+    <string name="lib_history">History</string>
+    <string name="playlists_empty">No playlists yet. Tap + to create one.</string>
+    <string name="favorites_empty">Tap the heart on a song to add it here.</string>
+    <string name="history_empty">Songs you play will appear here.</string>
+    <string name="list_empty">Nothing here yet.</string>
+    <string name="playlist_empty_tracks">This playlist is empty. Tap + to add songs.</string>
+    <string name="playlist_new">New playlist</string>
+    <string name="playlist_name">Playlist name</string>
+
+    <string name="profile_default_name">Music lover</string>
+    <string name="profile_edit_hint">Tap to edit your name</string>
+    <string name="profile_name">Your name</string>
+    <string name="profile_plays">Plays</string>
+    <string name="profile_favorites">Favorites</string>
+    <string name="profile_playlists">Playlists</string>
+    <string name="profile_top_artists">Most played artists</string>
+    <string name="profile_no_history">Listening stats will appear after you play some songs.</string>
+    <string name="profile_open_history">Open listening history</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_theme">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="settings_artwork_accent">Colors from album art</string>
+    <string name="settings_artwork_accent_hint">The interface adapts to the current cover</string>
+    <string name="settings_quality_note">Local files play at their original quality, with no re-encoding.</string>
+    <string name="online_not_connected">Online streaming is not connected. Online features show as unavailable until a licensed source is set up.</string>
+
+    <string name="now_playing">Now playing</string>
+    <string name="queue_title">Up next</string>
+    <string name="sleep_off">Off</string>
+    <string name="sleep_minutes">%d minutes</string>
+    <string name="sleep_active">Stops in %s</string>
+    <string name="eq_title">Equalizer</string>
+    <string name="eq_enabled">Enabled</string>
+    <string name="eq_unsupported">Equalizer is not available on this device.</string>
+    <string name="lyrics_unavailable">No lyrics source is connected. Lyrics appear only when a licensed lyrics provider is added.</string>
+    <string name="radio_explain">Starts a queue from this song: other songs by the same artist first, then a shuffle of your library.</string>
+
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_start">Start listening</string>
+    <string name="tutorial_1_title">Welcome to Meloza</string>
+    <string name="tutorial_1_text">Meloza plays the music already on your phone. Allow access to your audio files to begin.</string>
+    <string name="tutorial_2_title">Your library</string>
+    <string name="tutorial_2_text">Browse songs, albums, artists and genres. Use Search to find anything in seconds.</string>
+    <string name="tutorial_3_title">Playlists and favorites</string>
+    <string name="tutorial_3_text">Tap the heart to save songs. Create playlists in Library, then rename, reorder or edit them.</string>
+    <string name="tutorial_4_title">Make it yours</string>
+    <string name="tutorial_4_text">Use the equalizer, sleep timer and queue on the player. The colors follow the album cover.</string>
+</resources>

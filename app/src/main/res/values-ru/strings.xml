@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meloza</string>
+
+    <string name="nav_home">Главная</string>
+    <string name="nav_search">Поиск</string>
+    <string name="nav_library">Библиотека</string>
+    <string name="nav_profile">Профиль</string>
+
+    <string name="state_loading">Ищем вашу музыку…</string>
+    <string name="permission_title">Разрешите доступ к музыке</string>
+    <string name="permission_text">Meloza воспроизводит аудиофайлы из памяти устройства. Приложение только читает вашу медиатеку.</string>
+    <string name="action_grant">Разрешить доступ</string>
+    <string name="empty_title">Музыка не найдена</string>
+    <string name="empty_text">Добавьте MP3, FLAC или другие аудиофайлы в память устройства и нажмите «Обновить».</string>
+    <string name="error_title">Не удалось прочитать библиотеку</string>
+    <string name="action_retry">Обновить</string>
+
+    <string name="action_play">Воспроизвести</string>
+    <string name="action_pause">Пауза</string>
+    <string name="action_next">Следующий</string>
+    <string name="action_prev">Предыдущий</string>
+    <string name="action_favorite">В избранное</string>
+    <string name="action_back">Назад</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_create">Создать</string>
+    <string name="action_rename">Переименовать</string>
+    <string name="action_delete">Удалить</string>
+    <string name="action_clear">Очистить</string>
+    <string name="action_shuffle">Перемешать</string>
+    <string name="action_repeat">Повтор трека</string>
+    <string name="action_queue">Очередь</string>
+    <string name="action_equalizer">Эквалайзер</string>
+    <string name="action_sleep_timer">Таймер сна</string>
+    <string name="action_lyrics">Текст песни</string>
+    <string name="action_radio">Радио по треку</string>
+    <string name="action_start">Начать</string>
+    <string name="action_ok">ОК</string>
+    <string name="action_done">Готово</string>
+    <string name="action_add_tracks">Добавить треки</string>
+    <string name="action_move_up">Выше</string>
+    <string name="action_move_down">Ниже</string>
+    <string name="action_remove">Убрать</string>
+
+    <string name="greeting_night">Доброй ночи</string>
+    <string name="greeting_morning">Доброе утро</string>
+    <string name="greeting_afternoon">Добрый день</string>
+    <string name="greeting_evening">Добрый вечер</string>
+    <string name="home_subtitle">Музыка с вашего устройства</string>
+    <string name="section_continue">Продолжить слушать</string>
+    <string name="section_daily_mix">Микс дня</string>
+    <string name="section_new_releases">Новое в библиотеке</string>
+    <string name="section_popular_albums">Популярные альбомы</string>
+    <string name="section_favorite_artists">Любимые исполнители</string>
+    <string name="section_genres">Жанры</string>
+    <string name="genres_none">В файлах не найдены метки жанров.</string>
+    <string name="home_local_note">Рекомендации строятся на вашей медиатеке и истории прослушивания. Онлайн-рекомендации требуют подключённого легального источника музыки (см. README).</string>
+
+    <string name="search_hint">Песни, исполнители, альбомы</string>
+    <string name="search_idle">Введите запрос, чтобы искать в библиотеке.</string>
+    <string name="search_empty">По запросу «%s» ничего не найдено.</string>
+    <string name="search_artists">Исполнители</string>
+    <string name="search_albums">Альбомы</string>
+    <string name="search_songs">Песни</string>
+
+    <string name="lib_songs">Песни</string>
+    <string name="lib_albums">Альбомы</string>
+    <string name="lib_artists">Исполнители</string>
+    <string name="lib_genres">Жанры</string>
+    <string name="lib_playlists">Плейлисты</string>
+    <string name="lib_favorites">Избранное</string>
+    <string name="lib_recent">Недавно добавленные</string>
+    <string name="lib_history">История</string>
+    <string name="playlists_empty">Плейлистов пока нет. Нажмите +, чтобы создать.</string>
+    <string name="favorites_empty">Нажмите сердечко у песни, чтобы добавить её сюда.</string>
+    <string name="history_empty">Песни, которые вы слушаете, появятся здесь.</string>
+    <string name="list_empty">Здесь пока пусто.</string>
+    <string name="playlist_empty_tracks">Плейлист пуст. Нажмите +, чтобы добавить песни.</string>
+    <string name="playlist_new">Новый плейлист</string>
+    <string name="playlist_name">Название плейлиста</string>
+
+    <string name="profile_default_name">Меломан</string>
+    <string name="profile_edit_hint">Нажмите, чтобы изменить имя</string>
+    <string name="profile_name">Ваше имя</string>
+    <string name="profile_plays">Прослушиваний</string>
+    <string name="profile_favorites">Избранное</string>
+    <string name="profile_playlists">Плейлистов</string>
+    <string name="profile_top_artists">Чаще всего слушаете</string>
+    <string name="profile_no_history">Статистика появится после первых прослушиваний.</string>
+    <string name="profile_open_history">Открыть историю прослушивания</string>
+    <string name="settings_title">Настройки</string>
+    <string name="settings_theme">Тема</string>
+    <string name="theme_system">Как в системе</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+    <string name="settings_artwork_accent">Цвета из обложки</string>
+    <string name="settings_artwork_accent_hint">Интерфейс подстраивается под обложку трека</string>
+    <string name="settings_quality_note">Локальные файлы играют в исходном качестве, без перекодирования.</string>
+    <string name="online_not_connected">Онлайн-стриминг не подключён. Онлайн-функции недоступны, пока не настроен легальный источник.</string>
+
+    <string name="now_playing">Сейчас играет</string>
+    <string name="queue_title">Далее в очереди</string>
+    <string name="sleep_off">Выключен</string>
+    <string name="sleep_minutes">%d мин</string>
+    <string name="sleep_active">Остановится через %s</string>
+    <string name="eq_title">Эквалайзер</string>
+    <string name="eq_enabled">Включён</string>
+    <string name="eq_unsupported">Эквалайзер недоступен на этом устройстве.</string>
+    <string name="lyrics_unavailable">Источник текстов не подключён. Тексты появятся после подключения легального провайдера.</string>
+    <string name="radio_explain">Создаёт очередь от этого трека: сначала другие песни того же исполнителя, затем перемешанная медиатека.</string>
+
+    <string name="tutorial_skip">Пропустить</string>
+    <string name="tutorial_next">Далее</string>
+    <string name="tutorial_start">Начать слушать</string>
+    <string name="tutorial_1_title">Добро пожаловать в Meloza</string>
+    <string name="tutorial_1_text">Meloza играет музыку, которая уже есть в телефоне. Разрешите доступ к аудиофайлам, чтобы начать.</string>
+    <string name="tutorial_2_title">Ваша библиотека</string>
+    <string name="tutorial_2_text">Листайте песни, альбомы, исполнителей и жанры. Поиск найдёт нужное за секунды.</string>
+    <string name="tutorial_3_title">Плейлисты и избранное</string>
+    <string name="tutorial_3_text">Нажмите сердечко, чтобы сохранить песню. Создавайте плейлисты в Библиотеке и редактируйте их.</string>
+    <string name="tutorial_4_title">Настройте под себя</string>
+    <string name="tutorial_4_text">В плеере есть эквалайзер, таймер сна и очередь. Цвета следуют за обложкой альбома.</string>
+</resources>
