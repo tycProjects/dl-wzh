@@ -108,7 +108,7 @@ class EffectView(
             (hash(i*11+4)*2f*PI.toFloat()), hash(i*11+5)*6.28f)
     }}
 
-    private val frame = object : Runnable {
+    private val frameRunnable = object : Runnable {
         override fun run() {
             if (!running) return
             invalidate()
@@ -136,12 +136,12 @@ class EffectView(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         running = true
-        postOnAnimation(frame)
+        postOnAnimation(frameRunnable)
     }
 
     override fun onDetachedFromWindow() {
         running = false
-        removeCallbacks(frame)
+        removeCallbacks(frameRunnable)
         super.onDetachedFromWindow()
     }
 
