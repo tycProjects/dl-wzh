@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent" android:layout_height="match_parent"
+  android:orientation="vertical" android:background="?attr/colorSurface"
+  android:padding="24dp" android:gravity="center_horizontal">
+
+  <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:text="@string/dl_screen_title" android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+    android:textColor="?attr/colorOnSurface"/>
+  <TextView android:id="@+id/dlScreenStatus" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_marginTop="6dp" android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+    android:textColor="?attr/colorOnSurfaceVariant"/>
+
+  <FrameLayout android:layout_width="220dp" android:layout_height="220dp" android:layout_marginTop="24dp">
+    <com.liveisland.MorphLoaderView android:id="@+id/dlLoader"
+      android:layout_width="match_parent" android:layout_height="match_parent"/>
+    <TextView android:id="@+id/dlScreenPct" android:layout_width="match_parent" android:layout_height="match_parent"
+      android:gravity="center" android:textSize="40sp" android:textStyle="bold" android:textColor="#FFFFFFFF"/>
+  </FrameLayout>
+
+  <com.google.android.material.progressindicator.LinearProgressIndicator android:id="@+id/dlScreenBar"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp"
+    android:max="100" android:progress="0" app:trackCornerRadius="6dp" app:trackThickness="8dp"
+    app:indicatorColor="#FF0B57D0"/>
+
+  <TextView android:id="@+id/dlScreenSize" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_marginTop="10dp" android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+    android:textColor="?attr/colorOnSurfaceVariant"/>
+
+  <com.google.android.material.button.MaterialButton android:id="@+id/dlCancel"
+    style="@style/Widget.Material3.Button.TonalButton"
+    android:layout_width="wrap_content" android:layout_height="52dp" android:layout_marginTop="28dp"
+    android:text="@string/dl_cancel"/>
+</LinearLayout>

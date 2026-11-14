@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent"
+  android:orientation="vertical" android:background="?attr/colorSurface" android:clipToPadding="false">
+
+  
+  <LinearLayout android:id="@+id/hero" android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:gravity="center_horizontal"
+    android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="12dp"
+    android:background="@drawable/hero_bg" android:paddingTop="20dp" android:paddingBottom="20dp">
+    <ImageView android:id="@+id/heroIcon" android:layout_width="96dp" android:layout_height="96dp"
+      android:padding="0dp" android:src="@drawable/ic_brand" android:contentDescription="@null"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp"
+      android:text="@string/app_name" android:letterSpacing="0.02" android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+      android:textStyle="bold" android:textColor="?attr/colorOnSurface"/>
+    <TextView android:id="@+id/heroVer" android:layout_width="wrap_content" android:layout_height="wrap_content"
+      android:layout_marginTop="6dp" android:paddingStart="12dp" android:paddingEnd="12dp"
+      android:paddingTop="4dp" android:paddingBottom="4dp" android:background="@drawable/chip_bg"
+      android:textAppearance="@style/TextAppearance.Material3.LabelLarge" android:textColor="?attr/colorOnSurfaceVariant"/>
+  </LinearLayout>
+
+  
+  <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+
+    <ScrollView android:id="@+id/pageHome" android:layout_width="match_parent" android:layout_height="match_parent"
+      android:clipToPadding="false">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+        android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="12dp" android:paddingBottom="130dp">
+        <FrameLayout android:id="@+id/stage" android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:background="@drawable/bg_stage" android:minHeight="200dp" android:padding="16dp"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+          android:gravity="center" android:text="@string/preview_hint"
+          android:textAppearance="@style/TextAppearance.Material3.BodySmall" android:textColor="?attr/colorOnSurfaceVariant"/>
+        <include android:id="@+id/step1" layout="@layout/item_step"
+          android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp"/>
+        <include android:id="@+id/step2" layout="@layout/item_step"
+          android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"/>
+        <include android:id="@+id/step3" layout="@layout/item_step"
+          android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/replay"
+          style="@style/Widget.Material3.Button.TextButton"
+          android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal" android:layout_marginTop="12dp"
+          android:text="@string/tutorial_again"/>
+      </LinearLayout>
+    </ScrollView>
+
+    <ScrollView android:id="@+id/pageLook" android:layout_width="match_parent" android:layout_height="match_parent"
+      android:visibility="gone" android:clipToPadding="false">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+        android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="12dp" android:paddingBottom="130dp">
+        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/swAppDark"
+          android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp"
+          android:text="@string/app_dark" android:textColor="?attr/colorOnSurface"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:text="@string/lang_title" android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+          android:textColor="?attr/colorOnSurface"/>
+        <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/langGroup"
+          android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+          android:layout_marginBottom="20dp" app:singleSelection="true" app:selectionRequired="true">
+          <com.google.android.material.button.MaterialButton android:id="@+id/langEn" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/lang_en"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/langRu" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/lang_ru"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/langUk" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/lang_uk"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+          android:text="@string/theme_title" android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+          android:textColor="?attr/colorOnSurface"/>
+        <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/themeGroup"
+          android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+          app:singleSelection="true" app:selectionRequired="true">
+          <com.google.android.material.button.MaterialButton android:id="@+id/themeMaterial" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/theme_material"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/themeBlack" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/theme_black"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/themeWhite" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/theme_white"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20dp"
+          android:text="@string/accent_title" android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+          android:textColor="?attr/colorOnSurface"/>
+        <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/accentGroup"
+          android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+          app:singleSelection="true" app:selectionRequired="true">
+          <com.google.android.material.button.MaterialButton android:id="@+id/accAuto" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/acc_auto"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/accBlue" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/acc_blue"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/accPink" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/acc_pink"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/accGreen" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/acc_green"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20dp"
+          android:text="@string/anim_title" android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+          android:textColor="?attr/colorOnSurface"/>
+        <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/animGroup"
+          android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+          app:singleSelection="true" app:selectionRequired="true">
+          <com.google.android.material.button.MaterialButton android:id="@+id/animOff" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/anim_off"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/animFast" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/anim_fast"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/animNormal" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/anim_normal"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+          <com.google.android.material.button.MaterialButton android:id="@+id/animSlow" android:layout_width="0dp"
+            android:layout_height="44dp" android:layout_weight="1" android:text="@string/anim_slow"
+            style="@style/Widget.Material3.Button.OutlinedButton" android:insetTop="0dp" android:insetBottom="0dp"/>
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+      </LinearLayout>
+    </ScrollView>
+
+    <ScrollView android:id="@+id/pageUpdate" android:layout_width="match_parent" android:layout_height="match_parent"
+      android:visibility="gone" android:clipToPadding="false">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+        android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="12dp" android:paddingBottom="130dp">
+        <TextView android:id="@+id/updVer" android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:gravity="center" android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+          android:textColor="?attr/colorOnSurfaceVariant" android:visibility="gone"/>
+        <TextView android:id="@+id/dlStatus" android:layout_width="match_parent" android:layout_height="wrap_content"
+          android:layout_marginTop="20dp" android:gravity="center" android:text="@string/dl_idle"
+          android:textAppearance="@style/TextAppearance.Material3.BodyMedium" android:textColor="?attr/colorOnSurfaceVariant" android:visibility="gone"/>
+        <com.google.android.material.progressindicator.LinearProgressIndicator android:id="@+id/dlBar"
+          android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp"
+          android:max="100" android:progress="0" android:visibility="gone" app:trackCornerRadius="4dp" app:trackThickness="8dp"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/checkUpdate"
+          style="@style/Widget.Material3.Button.TonalButton"
+          android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="16dp"
+          android:text="@string/check_updates"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/openDownload"
+          style="@style/Widget.Material3.Button.OutlinedButton"
+          android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="10dp"
+          android:text="@string/open_download"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/tgChannel"
+          style="@style/Widget.Material3.Button.OutlinedButton"
+          android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="10dp"
+          android:text="@string/tg_channel"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/tgSupport"
+          style="@style/Widget.Material3.Button.OutlinedButton"
+          android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="10dp"
+          android:text="@string/tg_support"/>
+      </LinearLayout>
+    </ScrollView>
+  </FrameLayout>
+
+  
+  <FrameLayout android:id="@+id/navBar" android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="12dp"
+    android:padding="6dp" android:background="@drawable/nav_container">
+    <View android:id="@+id/navIndicator" android:layout_width="0dp" android:layout_height="58dp"
+      android:background="@drawable/nav_pill"/>
+    <LinearLayout android:id="@+id/tabRow" android:layout_width="match_parent" android:layout_height="58dp"
+      android:orientation="horizontal">
+      <LinearLayout android:id="@+id/tabHome" android:layout_width="0dp" android:layout_height="wrap_content" android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingTop="8dp" android:paddingBottom="8dp">
+        <ImageView android:id="@+id/icHome" android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_nav_home" android:contentDescription="@null"/>
+        <TextView android:id="@+id/lblHome" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textStyle="bold"/>
+      </LinearLayout>
+      <LinearLayout android:id="@+id/tabLook" android:layout_width="0dp" android:layout_height="wrap_content" android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingTop="8dp" android:paddingBottom="8dp">
+        <ImageView android:id="@+id/icLook" android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_nav_look" android:contentDescription="@null"/>
+        <TextView android:id="@+id/lblLook" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textStyle="bold"/>
+      </LinearLayout>
+      <LinearLayout android:id="@+id/tabIsland" android:layout_width="0dp" android:layout_height="wrap_content" android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingTop="8dp" android:paddingBottom="8dp">
+        <ImageView android:id="@+id/icIsland" android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_nav_island" android:contentDescription="@null"/>
+        <TextView android:id="@+id/lblIsland" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textStyle="bold"/>
+      </LinearLayout>
+      <LinearLayout android:id="@+id/tabUpdate" android:layout_width="0dp" android:layout_height="wrap_content" android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:paddingTop="8dp" android:paddingBottom="8dp">
+        <ImageView android:id="@+id/icUpdate" android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_nav_update" android:contentDescription="@null"/>
+        <TextView android:id="@+id/lblUpdate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textStyle="bold"/>
+      </LinearLayout>
+    </LinearLayout>
+  </FrameLayout>
+</LinearLayout>
