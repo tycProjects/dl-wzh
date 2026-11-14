@@ -761,7 +761,7 @@ public class ShareActivity extends AppCompatActivity {
     
     private String sanitize(String name) {
         if (name == null) return "Mori_Media";
-        String clean = name.replaceAll("[\\\/:*?\"<>|]", "_").trim();
+        String clean = name.replaceAll("[\\/:*?\"<>|]", "_").trim();
         // Remove leading dots to prevent creating Android hidden files (.filename)
         while (clean.startsWith(".")) {
             clean = clean.substring(1).trim();
