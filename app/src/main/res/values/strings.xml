@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BLACKMAGIC PS5 PRO</string>
+    <string name="accessibility_description">Permite enviar gestos de toque solicitados pelo controle virtual.</string>
+</resources>
