@@ -1,0 +1,13 @@
+Android Island 1.4.15 — Shizuku status-bar integration
+
+- Keeps notification app-icon suppression on StatusBarManager.DISABLE_NOTIFICATION_ICONS.
+- Adds a separate Settings.Secure.icon_blacklist path for common system status slots (alarm, Bluetooth, cast, hotspot, location, mobile, Wi-Fi, battery, clock, volume, DND, headset, rotation, VPN, airplane mode and NFC).
+- Reads and stores the exact pre-existing icon_blacklist value before changing it. Disabling the feature restores that value exactly; if no value existed, the key is deleted.
+- Verifies each write by reading icon_blacklist back and records explicit backup/apply/restore/failure events in the optional diagnostic recorder.
+- Repeated apply calls are skipped only after both notification-icon and secure-setting paths complete.
+- The diagnostic recording toggle from 1.4.14 remains persistent; turning it off stops new in-app diagnostic entries while retaining existing entries.
+
+Important limitations:
+- icon_blacklist controls SystemUI status slots, not notification app icons; those are handled separately by DISABLE_NOTIFICATION_ICONS. Samsung One UI may privately manage notification-icon visibility and may ignore or override some generic SystemUI slots. The app records success/failure of the command and read-back verification, but only on-device observation can confirm the visual result.
+- The current overlay is still a single accessibility overlay window. This release does not claim a full Akira-style two-window renderer.
+- Not Gradle-compiled or device-tested in this environment because the Gradle 8.9 distribution could not be fetched (network DNS unavailable).

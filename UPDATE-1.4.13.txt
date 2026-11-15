@@ -1,0 +1,12 @@
+Android Island 1.4.13 — Stable Host & Motion Retargeting
+
+Changes:
+- Keep the Compose overlay host width stable across compact, expanded, and WhatsApp banner states to prevent WindowManager WRAP_CONTENT resize/recenter artifacts during transitions.
+- Use one animation effect as the sole owner of expand/collapse progress; interrupted transitions retarget from the current value.
+- Low Power / Ultra retain a smooth core transition (235ms); performance modes should reduce decorative effects rather than make the island snap.
+- Skip redundant WindowManager layout updates when the notch anchor Y has not changed.
+- Expanded panel Y offset remains independent from the capsule's WindowManager anchor offset.
+
+Important limitation:
+- This release does not yet implement Akira's separate full-width non-touchable drawing window plus a dedicated touch-forwarding window. The current accessibility overlay remains a single interactive window.
+- No device test or Gradle build is claimed for this package.

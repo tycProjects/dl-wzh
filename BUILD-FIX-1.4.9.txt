@@ -1,0 +1,9 @@
+Android Island 1.4.9 — animation and banner layout update
+
+- Reduces motion overhead when Low Power Mode and Ultra Mode are enabled together.
+- Removes per-pointer-event coroutine launches from WhatsApp banner swipe tracking.
+- Disables expensive avatar blur and content-size animation in reduced-motion mode.
+- Keeps the WhatsApp overlay host width stable across compact/banner/expanded transitions to avoid WindowManager re-centering jumps.
+- Makes the banner width slider adapt to the current display width, with an 8 dp total side margin.
+
+Build verification: static checks only. A release APK has not been built in this environment.

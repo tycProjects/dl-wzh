@@ -1,0 +1,13 @@
+Android Island 1.3.7 - Motion, Preview & Lyrics Sync
+
+Changes:
+- Replaced the abrupt iPhone/waterdrop notch shape threshold with a continuous progress-driven morph shape. The camera-cutout silhouette now morphs gradually during both expand and collapse.
+- Added adjustable white lyric glow, applied only to lyric text (track title is not modified).
+- Improved active playback position sampling from 250ms to 100ms in normal mode and 350ms in low-power/Ultra mode. Playback position remains based on MediaController playback timestamps.
+- Added Restart Island action in settings. It cycles the enabled setting to force overlay recreation when the service is connected.
+- Added media, WhatsApp, and combined notification demo scenarios accessible from settings.
+- Existing Ultra Mode and HiddenApiBypass 4.3 dependency are retained.
+
+Build status:
+- ZIP integrity checked.
+- Gradle compilation could not be verified in this environment because services.gradle.org DNS resolution failed.

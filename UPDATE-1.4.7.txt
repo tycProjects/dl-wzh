@@ -1,0 +1,20 @@
+ANDROID ISLAND 1.4.7 — STABILITY & PRIVACY HARDENING
+
+Implemented in this revision:
+- Fixed malformed literal newline in AndroidManifest.xml.
+- Corrected DISABLE_NOTIFICATION_ICONS to the Android status-bar flag bit (1 << 1).
+- Made Shizuku listener registration idempotent and permission requests state-aware.
+- Serialized IslandBus activity/queue mutations to avoid races between notification and media callbacks.
+- Improved cutout detection with DisplayCutout geometry on Android 11+; legacy devices retain a conservative heuristic.
+- Disabled AccessibilityService window-content retrieval; overlay rendering does not require reading other apps' view trees.
+- Incremented app version to 1.4.7 / versionCode 18.
+
+Validation:
+- XML well-formedness and manifest/resource consistency are checked by the packaging audit.
+- Kotlin/Android Gradle compilation and device runtime tests require Android SDK + dependency resolution and must be run in Android Studio or CI. They are not claimed as passed by this package.
+
+Known scope retained from the base project:
+- Real notification mirroring currently handles WhatsApp / WhatsApp Business.
+- Media metadata and transport controls use Android MediaSession access.
+- Other apps' generic notifications, Telegram, Instagram, Gmail and SMS still require a dedicated generic notification activity model and UI presenter; they are not advertised as implemented in this revision.
+- Shizuku remains optional and cannot grant Notification Access or Accessibility consent on behalf of the user.

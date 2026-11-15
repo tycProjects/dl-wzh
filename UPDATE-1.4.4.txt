@@ -1,0 +1,33 @@
+Android Island 1.4.4
+
+Fixes (proven against remaining 1.4.3 bugs):
+
+1. Capsule fixed position
+   - COMPACT and BANNER now share one full-width scene (screen width).
+   - WindowManager WRAP_CONTENT width no longer changes when a banner appears,
+     so the capsule never re-centers or shifts by even 1px.
+   - Capsule is placed with an absolute offset inside that scene; banner is a
+     separate sibling layer.
+
+2. WhatsApp indicator
+   - Defaults to the LEFT of the capsule.
+   - Toggle in settings (left / right) is preserved and applied in both
+     COMPACT and BANNER states.
+
+3. Banner swipe dismiss no longer clipped
+   - Parent scene is full-width → horizontal travel has room.
+   - Travel limit raised to ~55% of banner width.
+   - Scale + alpha track the finger continuously so the card does not get
+     cut by window bounds while swiping either direction.
+
+4. Swipe up → tuck
+   - Swipe up on the banner collapses to COMPACT while keeping the unread
+     item in the queue (collapseWhatsAppBanner). Tap capsule to reopen.
+
+5. Smoother motion
+   - IslandMotion springs re-tuned (lower base stiffness, higher damping)
+     to reduce stutter on both high and low refresh-rate panels.
+
+Reference: interaction concepts from EvanKoe/expressive-cutout (GPL-3.0)
+and other public Dynamic Island Android projects. No upstream source files
+were copied; implementation stays on this project's Compose architecture.

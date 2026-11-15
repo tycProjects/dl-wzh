@@ -1,0 +1,8 @@
+Android Island 1.4.18 — Capsule Anchor & Morph Stability
+
+- Keep the expanded host width reserved until the close morph reaches its compact endpoint. This prevents WindowManager WRAP_CONTENT recentering while the capsule is animating closed.
+- Correct MORPH_SAMPLE diagnostic initialization so a restarted observer does not report a fictitious delta=2.000.
+- Deduplicate identical DataStore settings snapshots before the service applies settings, avoiding redundant overlay/layout work.
+- Preserve the existing Shizuku implementation from 1.4.16 unchanged.
+
+Build status: Kotlin/Gradle compilation was not run in this environment because Gradle 8.9 could not be downloaded (network DNS unavailable). Structural/package checks only.
