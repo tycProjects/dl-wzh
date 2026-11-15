@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/float_root"
+    android:layout_width="220dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_float_root">
+
+    
+    <LinearLayout
+        android:id="@+id/float_drag_handle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp"
+        android:background="@drawable/bg_float_header"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ZEWMOD"
+            android:textColor="@color/zew_accent"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="≡"
+            android:textColor="@color/zew_text_dim"
+            android:textSize="18sp"
+            android:padding="4dp" />
+    </LinearLayout>
+
+    
+    <LinearLayout
+        android:id="@+id/float_menu_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/zew_bg_surface">
+
+        
+        <LinearLayout
+            android:id="@+id/float_feature_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
+
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_float_footer">
+
+            <ImageButton
+                android:id="@+id/float_btn_open_ui"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_open_ui"
+                android:tint="@color/zew_text_secondary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Mở UI đầy đủ"
+                android:scaleType="fitCenter"
+                android:padding="10dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:background="@color/zew_card_stroke"
+                android:layout_gravity="center_vertical" />
+
+            <ImageButton
+                android:id="@+id/float_btn_close"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_stop"
+                android:tint="@color/zew_red"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Đóng menu"
+                android:scaleType="fitCenter"
+                android:padding="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

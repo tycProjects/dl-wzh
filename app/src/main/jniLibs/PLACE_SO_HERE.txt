@@ -1,0 +1,14 @@
+== HƯỚNG DẪN TÍCH HỢP NATIVE LIB GỐC ==
+
+Nếu bạn có các file .so từ APK gốc, hãy đổi tên và đặt vào đúng thư mục:
+
+  l30848996_a64.so  ->  arm64-v8a/libzewmod_engine.so   (Android ARM 64-bit)
+  l30848996_a32.so  ->  armeabi-v7a/libzewmod_engine.so  (Android ARM 32-bit)
+  l30848996_x64.so  ->  x86_64/libzewmod_engine.so       (Android x86 64-bit)
+  l30848996_x86.so  ->  x86/libzewmod_engine.so          (Android x86 32-bit)
+
+Sau đó XÓA externalNativeBuild block trong app/build.gradle và
+XÓA thư mục app/src/main/cpp/ để dùng lib gốc thay stub.
+
+Nếu không có lib gốc: project vẫn build được với stub JNI
+(app chạy ở mock mode - không có chức năng thực).

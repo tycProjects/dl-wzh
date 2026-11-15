@@ -1,0 +1,15 @@
+{
+  "name": "LOCAL",
+  "ip": "127.0.0.1",
+  "port": 38571,
+  "key": "local",
+  "features": "track,head,legit,freeze,scope",
+  "vpnIp": "10.0.0.2",
+  "vpnRoute": "0.0.0.0/0",
+  "vpnDns": "1.1.1.1",
+  "vpnMtu": 1500,
+  "slotMin": 1,
+  "slotMax": 10,
+  "maxTargets": 10,
+  "excludeSelfTeam": false
+}

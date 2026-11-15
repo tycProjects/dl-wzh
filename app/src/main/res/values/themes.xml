@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ZewMod" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/zew_accent</item>
+        <item name="colorPrimaryVariant">@color/zew_accent_dark</item>
+        <item name="colorSecondary">@color/zew_cyan</item>
+        <item name="colorOnPrimary">@color/zew_text_primary</item>
+        <item name="colorSurface">@color/zew_card</item>
+        <item name="colorSurfaceVariant">@color/zew_card_elevated</item>
+        <item name="colorBackground">@color/zew_bg</item>
+        <item name="android:colorBackground">@color/zew_bg</item>
+        <item name="colorOnBackground">@color/zew_text_primary</item>
+        <item name="colorOnSurface">@color/zew_text_primary</item>
+        <item name="colorOutline">@color/zew_card_stroke</item>
+        <item name="android:windowBackground">@color/zew_bg</item>
+        <item name="android:statusBarColor">@color/zew_bg</item>
+        <item name="android:navigationBarColor">@color/zew_nav_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.ZewMod.Dialog</item>
+    </style>
+
+    <style name="Theme.ZewMod.Splash" parent="Theme.ZewMod">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/zew_splash_bg</item>
+    </style>
+
+    
+    <style name="ZewMod.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/zew_card</item>
+        <item name="strokeColor">@color/zew_card_stroke</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="ZewMod.Card.Accent" parent="ZewMod.Card">
+        <item name="strokeColor">@color/zew_accent</item>
+        <item name="strokeWidth">1.5dp</item>
+    </style>
+
+    
+    <style name="ZewMod.Button.Primary" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/zew_accent</item>
+        <item name="android:textColor">@color/zew_text_primary</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="ZewMod.Button.Secondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/zew_card_stroke</item>
+        <item name="android:textColor">@color/zew_text_secondary</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="ZewMod.Button.IconNav" parent="Widget.Material3.Button.IconButton.Outlined">
+        <item name="strokeColor">@color/zew_card_stroke</item>
+        <item name="android:tint">@color/zew_text_secondary</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
+    
+    <style name="ZewMod.Text.Title" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/zew_text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <style name="ZewMod.Text.Subtitle" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/zew_text_secondary</item>
+    </style>
+
+    <style name="ZewMod.Text.Badge" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
+    
+    <style name="ThemeOverlay.ZewMod.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/zew_card_elevated</item>
+        <item name="colorOnSurface">@color/zew_text_primary</item>
+        <item name="colorPrimary">@color/zew_accent</item>
+    </style>
+
+    
+    <style name="ZewMod.BottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_nav_colors</item>
+        <item name="itemTextColor">@color/bottom_nav_colors</item>
+        <item name="backgroundTint">@color/zew_nav_bg</item>
+        <item name="itemActiveIndicatorColor">@color/zew_nav_indicator</item>
+    </style>
+
+    
+    <style name="ZewMod.Slider" parent="Widget.Material3.Slider">
+        <item name="trackColorActive">@color/zew_accent</item>
+        <item name="trackColorInactive">@color/zew_card_stroke</item>
+        <item name="thumbColor">@color/zew_accent</item>
+    </style>
+
+    
+    <style name="ZewMod.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="tabSelectedTextColor">@color/zew_accent</item>
+        <item name="tabTextColor">@color/zew_text_dim</item>
+        <item name="tabIndicatorColor">@color/zew_accent</item>
+        <item name="tabBackground">@android:color/transparent</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+</resources>

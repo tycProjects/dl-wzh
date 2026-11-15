@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ZewMod Engine</string>
+    <string name="app_name_short">ZewMod</string>
+    <string name="app_tagline">Powered by ZewMod</string>
+    <string name="version">v1.0</string>
+
+    
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_features">Tính năng</string>
+    <string name="nav_server">Server</string>
+    <string name="nav_settings">Cài đặt</string>
+
+    
+    <string name="select_game">CHỌN GAME</string>
+    <string name="select_mode">CHỌN CHẾ ĐỘ</string>
+    <string name="select_launch">CHỌN SẴN</string>
+    <string name="launch_mode">CHẾ ĐỘ KHỞI CHẠY</string>
+    <string name="btn_launch">KHỞI CHẠY</string>
+    <string name="btn_stop">ĐÓNG ENGINE</string>
+    <string name="launching">Đang khởi chạy…</string>
+    <string name="engine_active">ACTIVE</string>
+    <string name="engine_stopped">ĐÃ DỪNG</string>
+    <string name="not_ready">CHƯA SẴN SÀNG</string>
+
+    
+    <string name="game_ff">Free Fire</string>
+    <string name="game_ff_max">Free Fire MAX</string>
+    <string name="game_ff_th">Free Fire TH</string>
+    <string name="game_installed">ĐÃ CÀI</string>
+    <string name="game_not_installed">CHƯA CÀI</string>
+
+    
+    <string name="perm_title">Cấp quyền</string>
+    <string name="perm_subtitle">Cần 3 quyền để engine hoạt động</string>
+    <string name="perm_overlay">Hiển thị trên ứng dụng khác</string>
+    <string name="perm_overlay_desc">Cần để hiển thị menu nổi trên game</string>
+    <string name="perm_vpn">Kết nối VPN</string>
+    <string name="perm_vpn_desc">Cần để engine xử lý gói tin mạng</string>
+    <string name="perm_battery">Tắt tối ưu pin</string>
+    <string name="perm_battery_desc">Giúp engine chạy ổn định trong nền</string>
+    <string name="perm_granted">ĐÃ CẤP</string>
+    <string name="perm_not_granted">CHƯA CẤP</string>
+    <string name="grant_overlay">CẤP QUYỀN OVERLAY</string>
+    <string name="grant_vpn">CẤP QUYỀN VPN</string>
+    <string name="grant_battery">TẮT TỐI ƯU PIN</string>
+    <string name="all_granted">Cấp đủ 3 quyền — SẴN SÀNG</string>
+    <string name="unlock_all">Cấp đủ 3 quyền để mở khóa</string>
+    <string name="btn_open_app">MỞ ỨNG DỤNG</string>
+
+    
+    <string name="tab_combat">Tấn công</string>
+    <string name="tab_vision">Hiển thị</string>
+    <string name="tab_utility">Tiện ích</string>
+    <string name="features_enabled">đang bật</string>
+
+    
+    <string name="server_list">DANH SÁCH SERVER</string>
+    <string name="server_offline">OFFLINE</string>
+    <string name="server_checking">Đang kiểm tra…</string>
+    <string name="refresh_ping">Làm mới ping</string>
+
+    
+    <string name="settings_title">Cài đặt</string>
+    <string name="menu_opacity">Độ trong suốt menu</string>
+    <string name="menu_size">Kích thước menu</string>
+    <string name="exclude_self_team">Loại trừ đồng đội</string>
+    <string name="exclude_self_team_desc">Chỉ áp dụng trên kẻ địch, không ảnh hưởng đồng đội</string>
+    <string name="emergency_stop">DỪNG KHẨN CẤP</string>
+    <string name="permission_status">Trạng thái quyền</string>
+    <string name="about">Thông tin ứng dụng</string>
+
+    
+    <string name="float_close">Đóng menu</string>
+    <string name="float_open_ui">Mở UI đầy đủ</string>
+
+    
+    <string name="notif_vpn_title">ZewMod Engine</string>
+    <string name="notif_vpn_body">Engine đang chạy • Nhấn để mở</string>
+    <string name="notif_float_title">ZewMod Menu</string>
+    <string name="notif_float_body">Menu nổi đang hiển thị</string>
+    <string name="notif_stop">Dừng</string>
+</resources>

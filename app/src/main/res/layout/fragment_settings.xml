@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zew_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CÀI ĐẶT"
+            android:textColor="@color/zew_text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="16dp" />
+
+        
+        <com.google.android.material.card.MaterialCardView
+            style="@style/ZewMod.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HIỂN THỊ MENU NỔI"
+                    android:textColor="@color/zew_text_dim"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.15"
+                    android:layout_marginBottom="16dp" />
+
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="4dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Độ trong suốt"
+                        android:textColor="@color/zew_text_primary"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_opacity_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/zew_accent"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/slider_opacity"
+                    style="@style/ZewMod.Slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:valueFrom="20"
+                    android:valueTo="100"
+                    android:value="90"
+                    android:stepSize="5"
+                    android:layout_marginBottom="12dp" />
+
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="4dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Kích thước"
+                        android:textColor="@color/zew_text_primary"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_menu_size_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/zew_accent"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/slider_menu_size"
+                    style="@style/ZewMod.Slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:valueFrom="60"
+                    android:valueTo="150"
+                    android:value="100"
+                    android:stepSize="10" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        
+        <com.google.android.material.card.MaterialCardView
+            style="@style/ZewMod.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TÙY CHỌN ENGINE"
+                    android:textColor="@color/zew_text_dim"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.15"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Loại trừ đồng đội"
+                            android:textColor="@color/zew_text_primary"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Chỉ áp dụng trên kẻ địch"
+                            android:textColor="@color/zew_text_dim"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switch_exclude_team"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        
+        <com.google.android.material.card.MaterialCardView
+            style="@style/ZewMod.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TRẠNG THÁI QUYỀN"
+                    android:textColor="@color/zew_text_dim"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.15"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                        android:text="Overlay" android:textColor="@color/zew_text_primary" android:textSize="13sp" />
+                    <TextView android:id="@+id/tv_perm_overlay" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="12sp" android:textStyle="bold" />
+                    <com.google.android.material.button.MaterialButton android:id="@+id/btn_re_grant_overlay"
+                        style="@style/ZewMod.Button.Secondary" android:layout_width="wrap_content"
+                        android:layout_height="32dp" android:text="Cấp lại" android:textSize="11sp" android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                        android:text="VPN" android:textColor="@color/zew_text_primary" android:textSize="13sp" />
+                    <TextView android:id="@+id/tv_perm_vpn" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="12sp" android:textStyle="bold" />
+                    <com.google.android.material.button.MaterialButton android:id="@+id/btn_re_grant_vpn"
+                        style="@style/ZewMod.Button.Secondary" android:layout_width="wrap_content"
+                        android:layout_height="32dp" android:text="Cấp lại" android:textSize="11sp" android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                        android:text="Tối ưu pin" android:textColor="@color/zew_text_primary" android:textSize="13sp" />
+                    <TextView android:id="@+id/tv_perm_battery" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="12sp" android:textStyle="bold" />
+                    <com.google.android.material.button.MaterialButton android:id="@+id/btn_re_grant_battery"
+                        style="@style/ZewMod.Button.Secondary" android:layout_width="wrap_content"
+                        android:layout_height="32dp" android:text="Tắt" android:textSize="11sp" android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_emergency_stop"
+            style="@style/ZewMod.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:backgroundTint="@color/zew_red"
+            android:text="DỪNG KHẨN CẤP"
+            android:textSize="15sp"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="12dp" />
+
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/zew_text_dim"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_build_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/zew_text_dim"
+                android:textSize="11sp"
+                android:gravity="center"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

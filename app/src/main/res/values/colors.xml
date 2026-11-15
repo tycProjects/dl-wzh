@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="zew_accent">#FF6B2C</color>
+    <color name="zew_accent_dark">#CC5522</color>
+    <color name="zew_accent_light">#FF8C5A</color>
+
+    
+    <color name="zew_bg">#0D0D0F</color>
+    <color name="zew_bg_surface">#141418</color>
+    <color name="zew_card">#1A1A20</color>
+    <color name="zew_card_elevated">#22222A</color>
+    <color name="zew_card_stroke">#2A2A35</color>
+
+    
+    <color name="zew_text_primary">#EEEEF2</color>
+    <color name="zew_text_secondary">#9999AA</color>
+    <color name="zew_text_dim">#555566</color>
+
+    
+    <color name="zew_green">#22DD77</color>
+    <color name="zew_green_bg">#0D2B1A</color>
+    <color name="zew_red">#FF4455</color>
+    <color name="zew_red_bg">#2B0D10</color>
+    <color name="zew_yellow">#FFCC33</color>
+    <color name="zew_yellow_bg">#2B2000</color>
+    <color name="zew_cyan">#33DDFF</color>
+    <color name="zew_cyan_bg">#0D2228</color>
+    <color name="zew_purple">#AA66FF</color>
+    <color name="zew_purple_bg">#1A0D2B</color>
+
+    
+    <color name="zew_nav_bg">#15151B</color>
+    <color name="zew_nav_indicator">#FF6B2C22</color>
+
+    
+    <color name="zew_splash_bg">#0D0D0F</color>
+
+    
+    <color name="zew_scrim">#CC000000</color>
+
+    
+    <color name="zew_switch_thumb_on">#FF6B2C</color>
+    <color name="zew_switch_track_on">#FF6B2C55</color>
+    <color name="zew_switch_thumb_off">#444455</color>
+    <color name="zew_switch_track_off">#33333D</color>
+</resources>
