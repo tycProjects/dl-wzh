@@ -1,0 +1,165 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<RelativeLayout
+		android:id="@+id/linear1"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#121212"
+		android:orientation="vertical">
+		<LinearLayout
+			android:id="@+id/emoji"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal" />
+		<LinearLayout
+			android:id="@+id/linear100"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center_horizontal|center_vertical"
+			android:orientation="vertical">
+			<LinearLayout
+				android:id="@+id/linear2"
+				android:layout_width="300dp"
+				android:layout_height="wrap_content"
+				android:layout_margin="50dp"
+				android:padding="8dp"
+				android:background="#1A1A1A"
+				android:orientation="vertical">
+				<LinearLayout
+					android:id="@+id/linear3"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center_vertical"
+					android:orientation="horizontal">
+					<de.hdodenhof.circleimageview.CircleImageView
+						android:id="@+id/circleimageview1"
+						android:layout_width="50dp"
+						android:layout_height="50dp"
+						android:src="@drawable/filmmy_mod"
+						app:civ_border_width="0dp"
+						app:civ_border_color="#1A1A1A"
+						app:civ_circle_background_color="#1A1A1A"
+						app:civ_border_overlay="false" />
+					<TextView
+						android:id="@+id/textview1"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:text="FILMMY PROXY "
+						android:textSize="14sp"
+						android:textStyle="bold"
+						android:textColor="#FFFFFF" />
+				</LinearLayout>
+				<TextView
+					android:id="@+id/textview2"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="ENTER YOUR USERNAME"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF" />
+				<EditText
+					android:id="@+id/edittext1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="12dp"
+					android:background="#0F0F0F"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"
+					android:hint="𝐔sᴇʀɴᴀᴍᴇ"
+					android:textColorHint="#E0E0E0"
+					android:singleLine="true"
+					android:lines="6" />
+				<TextView
+					android:id="@+id/textview3"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:padding="8dp"
+					android:text="ENTER YOUR PASSWORD "
+					android:textSize="12sp"
+					android:textColor="#FFFFFF" />
+				<EditText
+					android:id="@+id/edittext2"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="12dp"
+					android:background="#0F0F0F"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF"
+					android:hint="𝐏ᴀssᴡᴏʀᴅ"
+					android:textColorHint="#E0E0E0"
+					android:singleLine="true"
+					android:lines="5" />
+				<LinearLayout
+					android:id="@+id/linear101"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:orientation="horizontal">
+					<Switch
+						android:id="@+id/switch2"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:text="SAVE LOGIN"
+						android:textSize="12sp"
+						android:textStyle="bold"
+						android:textColor="#FFFFFF" />
+					<LinearLayout
+						android:id="@+id/linear103"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:padding="8dp"
+						android:orientation="vertical"
+						android:layout_weight="1" />
+					<Switch
+						android:id="@+id/switch3"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:gravity="right"
+						android:text="SHOW PASS"
+						android:textSize="12sp"
+						android:textStyle="bold"
+						android:textColor="#FFFFFF" />
+				</LinearLayout>
+				<Button
+					android:id="@+id/button2"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:padding="8dp"
+					android:background="#FF0000"
+					android:text="𝙇𝙤𝙜𝙞𝙣 𝙋𝙧𝙤𝙭𝙮  𝙀𝙣𝙩𝙚𝙧"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF" />
+				<Button
+					android:id="@+id/button1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="15dp"
+					android:layout_marginBottom="15dp"
+					android:padding="8dp"
+					android:background="#FF0000"
+					android:text="FILMMY MODS YOUTUBE"
+					android:textSize="12sp"
+					android:textColor="#FFFFFF" />
+				<TextView
+					android:id="@+id/terminal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:gravity="center_horizontal|center_vertical"
+					android:text="© 𝙲𝙾𝙿𝚈𝚁𝙸𝙶𝙷𝚃 𝙱𝚈 FILMMY "
+					android:textSize="12sp"
+					android:textColor="#FF0000" />
+			</LinearLayout>
+		</LinearLayout>
+	</RelativeLayout>
+</LinearLayout>
