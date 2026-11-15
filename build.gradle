@@ -15,3 +15,13 @@ allprojects {
         google()
     }
 }
+
+subprojects {
+    afterEvaluate { p ->
+        if (p.extensions.findByName('android') != null) {
+            p.android {
+                compileSdkVersion 33
+            }
+        }
+    }
+}
