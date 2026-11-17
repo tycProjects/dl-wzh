@@ -1,0 +1,12 @@
+{
+  "name": "droidstore-backend",
+  "version": "0.2.0",
+  "private": true,
+  "description": "DroidStore backend (zero dependencies, Node.js 18+)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "DEV_AUTH=1 node src/server.js"
+  },
+  "engines": { "node": ">=18" }
+}
