@@ -1,0 +1,33 @@
+plugins { id 'com.android.application' }
+
+def selectedWeb2ApkBuildTools = (project.findProperty('web2apkBuildToolsVersion') ?: '34.0.0').toString()
+
+android {
+    namespace 'com.web2apk.runtime'
+    compileSdk 33
+    // Selected by build-v4.sh from the Build Tools already installed in the user's SDK.
+    buildToolsVersion selectedWeb2ApkBuildTools
+    defaultConfig {
+        applicationId 'com.web2apk.runtime'
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName '1.0'
+    }
+    buildTypes {
+        release {
+            // The template is re-signed by WEB2APK after customization.
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.5.0'
+}

@@ -1,0 +1,75 @@
+plugins { id 'com.android.application' }
+
+def selectedWeb2ApkBuildTools = (project.findProperty('web2apkBuildToolsVersion') ?: '34.0.0').toString()
+
+android {
+    namespace 'com.web2apk.v4'
+    compileSdk 33
+    // Selected by build-v4.sh from the Build Tools already installed in the user's SDK.
+    buildToolsVersion selectedWeb2ApkBuildTools
+    defaultConfig {
+        applicationId 'com.web2apk.v4.internal'
+        minSdk 23
+        targetSdk 33
+        versionCode 25
+        versionName '4.8.6'
+    }
+    buildTypes { release { minifyEnabled false } }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.9.0'
+    // These Java libraries are packaged inside WEB2APK; they run in the app process.
+    implementation 'io.github.reandroid:ARSCLib:1.4.0'
+    implementation 'com.android.tools.build:apksig:8.7.3'
+}
+
+def runtimeTemplateApkDir = project(':runtimeTemplate').layout.buildDirectory.dir('outputs/apk')
+tasks.register('bundleRuntimeTemplate') {
+    dependsOn ':runtimeTemplate:assembleRelease'
+    doLast {
+        // AGP may append variant/output qualifiers; discover the produced APK instead of
+        // assuming a single fixed filename. Small valid WebView templates can be < 50 KB.
+        def outputRoot = runtimeTemplateApkDir.get().asFile
+        def candidates = []
+        if (outputRoot.isDirectory()) {
+            outputRoot.eachFileRecurse { f ->
+                if (f.isFile() && f.name.toLowerCase(Locale.ROOT).endsWith('.apk') && f.length() > 1024L) {
+                    candidates << f
+                }
+            }
+        }
+        candidates.sort { a, b -> b.lastModified() <=> a.lastModified() }
+        def source = candidates.find { it.isFile() }
+        if (source == null) {
+            def listing = outputRoot.exists() ? outputRoot.toString() + '\n' + outputRoot.listFiles()?.collect { it.name }?.join('\n') : 'APK output directory does not exist'
+            throw new GradleException("Runtime template APK was not found under ${outputRoot}. Contents: ${listing}")
+        }
+        // Verify the artifact is a real runtime APK before copying it into the builder assets.
+        def zip = new java.util.zip.ZipFile(source)
+        try {
+            if (zip.getEntry('AndroidManifest.xml') == null ||
+                zip.getEntry('assets/site/index.html') == null ||
+                !zip.entries().toList().any { it.name ==~ /classes(\d+)?\.dex/ }) {
+                throw new GradleException("Runtime template APK is incomplete: ${source}")
+            }
+        } finally {
+            zip.close()
+        }
+        logger.lifecycle("Bundling verified runtime template APK: ${source} (${source.length()} bytes)")
+        copy {
+            from source
+            into file('src/main/assets')
+            rename { 'runtime-template.apk' }
+        }
+        def bundled = file('src/main/assets/runtime-template.apk')
+        if (!bundled.isFile() || bundled.length() < 1024L) {
+            throw new GradleException("Runtime template was not copied into builder assets: ${bundled}")
+        }
+    }
+}
+tasks.named('preBuild').configure { dependsOn 'bundleRuntimeTemplate' }

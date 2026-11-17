@@ -1,0 +1,9 @@
+<resources>
+    <style name="RuntimeTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorAccent">#6857D9</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@drawable/runtime_splash</item>
+    </style>
+</resources>

@@ -1,0 +1,735 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#e7eaff"><title>WEB2APK V4.8 Pro AI Studio</title>
+<style>
+:root{--ink:#172b4d;--muted:#5d6f8a;--glass:rgba(255,255,255,.67);--line:rgba(255,255,255,.96);--accent:#6b5ce7;--cyan:#29b6c8;--pink:#ed72ad;--gold:#f4ad55;--icon:#6657d9}*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:Inter,system-ui,-apple-system,Roboto,sans-serif;background:linear-gradient(145deg,#e7ecff 0%,#e6f8fb 36%,#f7eafa 72%,#fff2e4 100%);min-height:100vh}body:before,body:after{content:"";position:fixed;border-radius:50%;filter:blur(34px);pointer-events:none;z-index:-1}body:before{width:270px;height:270px;background:#a6b5ff;top:5px;right:-85px;opacity:.58}body:after{width:260px;height:260px;background:#ffb9dc;bottom:90px;left:-95px;opacity:.48}.app{max-width:700px;margin:auto;padding:22px 18px 104px}.top{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:1.5px;color:#50618a;font-weight:850}.brand{display:flex;gap:9px;align-items:center}.logo{width:36px;height:36px;border-radius:14px;background:linear-gradient(145deg,#fff,#cbd6ff 55%,#efccf2);display:grid;place-items:center;box-shadow:0 7px 20px #6b5ce744;font-size:20px;color:#5141c8}.logo svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.glass{background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,255,255,.47));border:1px solid var(--line);border-radius:25px;padding:17px;box-shadow:0 14px 36px rgba(79,86,155,.12),inset 0 1px 0 #fff;backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);margin-top:14px}.hero{padding:27px 21px;margin-top:19px;background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(219,229,255,.58),rgba(255,225,242,.43))}.eyebrow{font-size:10px;letter-spacing:1.7px;font-weight:850;color:#6658c5}.hero h1{font-size:34px;line-height:1.08;letter-spacing:-1.2px;margin:12px 0 8px;color:#1d2c55}.sub{color:var(--muted);font-size:13px;line-height:1.55}.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.pill{padding:7px 11px;border-radius:30px;background:linear-gradient(120deg,#fff,#e8e9ff);border:1px solid #fff;font-size:9px;letter-spacing:.7px;font-weight:850;color:#5147aa}.sectionTitle{font-size:10px;letter-spacing:1.5px;color:#7566c8;font-weight:850;margin:0 0 12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{border:1px solid #fff;background:linear-gradient(140deg,#ffffffdc,#e8edffb8);border-radius:19px;padding:15px;text-align:left;color:var(--ink);min-height:94px;box-shadow:0 6px 18px #7275c018}.tile b{display:block;font-size:14px;margin:8px 0 3px}.tile small{font-size:11px;color:var(--muted)}.tile .ico{font-size:22px;color:var(--icon)}.field{margin:12px 0}.field label{display:block;font-size:11px;font-weight:800;color:#5964a0;margin-bottom:6px}.input{width:100%;border:1px solid #fff;border-radius:14px;padding:13px 14px;background:linear-gradient(135deg,#fffdebdc,#eff2ffd9);color:#172b4d;font-size:14px;outline:none;box-shadow:inset 0 1px 3px #7b81b018}.input:focus{border-color:#9c91ff;box-shadow:0 0 0 3px #8e80ff26}.btn{border:1px solid #ffffff;background:linear-gradient(115deg,#7464ee,#5e73dd 55%,#35b8c5);color:white;border-radius:16px;padding:14px 16px;font-size:13px;font-weight:850;box-shadow:0 9px 20px #665ce744;min-height:47px}.btn.light{background:linear-gradient(120deg,#ffffffec,#e7eaffde);color:#4f4aa4;box-shadow:0 5px 14px #6b6caa15}.btn.wide{width:100%}.row{display:flex;gap:9px}.row>*{flex:1}.note{font-size:10px;color:#6a7898;line-height:1.45;margin-top:7px}.pick{border:1px dashed #8e83e6;background:linear-gradient(120deg,#ffffffc9,#e9e8ffad);border-radius:17px;padding:14px;text-align:center;font-size:12px;color:#554bb0}.toggle{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #dedfff;font-size:12px;color:#26395e}.toggle:last-child{border:0}.toggle small{display:block;color:#71809e;margin-top:3px}.toggle input{width:20px;height:20px;accent-color:#6b5ce7}.page{display:none}.page.active{display:block}.nav{position:fixed;bottom:0;left:0;right:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(100deg,#f5f5ffdf,#e7faffdf,#fff0f8df);backdrop-filter:blur(28px);border-top:1px solid #fff;display:flex;justify-content:center;gap:7px;z-index:5}.nav button{flex:1;max-width:150px;border:0;border-radius:17px;background:transparent;color:#7c82a5;padding:9px 4px;font-size:10px;font-weight:800}.nav button.active{background:linear-gradient(135deg,#fff,#e7e8ff);color:#5545bf;box-shadow:0 5px 16px #615bd22a}.nav .ni{display:block;font-size:19px;margin-bottom:3px;color:var(--icon)}.status{font-size:12px;line-height:1.5;color:#3e5278;white-space:pre-wrap}history{padding:12px 0;border-bottom:1px solid #dedfff;font-size:12px}.history:last-child{border:0}.history b{font-size:13px;color:#26395e}.tag{font-size:9px;background:linear-gradient(110deg,#e6e8ff,#e2fbff);color:#574fb0;border-radius:20px;padding:5px 8px}.muted{color:#7784a2}.progress{height:9px;background:#dfe3fb;border-radius:20px;overflow:hidden;margin-top:12px;box-shadow:inset 0 1px 3px #4b55902a}.bar{height:100%;width:0;background:linear-gradient(90deg,#ff83bd,#8877ff,#35c4d2);transition:width .45s;border-radius:20px;box-shadow:0 0 12px #8877ff70}.hidden{display:none!important}.fileline{font-size:11px;color:#526b93;margin-top:9px;word-break:break-all}.previewbox{height:170px;border-radius:16px;background:linear-gradient(135deg,#ffffffdc,#e7ecffba);border:1px solid #fff;padding:14px;overflow:hidden;color:#50618e;font-size:12px}.ico svg,.ni svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}.feedbackIn{animation:feedbackIn .34s var(--ease-smooth) both}@keyframes feedbackIn{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.buildPulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:#29b6c8;box-shadow:0 0 0 4px #29b6c822;margin-right:7px}
+
+/* WEB2APK motion + color system */
+:root{--motion-fast:160ms;--motion-mid:280ms;--motion-slow:520ms;--ease-smooth:cubic-bezier(.22,.8,.22,1);--purple:#7658e8;--blue:#4b83e8;--cyan:#20aebc;--pink:#e75caa;--orange:#e99a3e;--green:#24a789}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body:before{animation:orbFloatA 16s ease-in-out infinite alternate;will-change:transform}
+body:after{animation:orbFloatB 19s ease-in-out infinite alternate;will-change:transform}
+@keyframes orbFloatA{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-22px,34px,0) scale(1.12)}}
+@keyframes orbFloatB{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(28px,-26px,0) scale(1.1)}}
+.top{animation:topIn .62s var(--ease-smooth) both;text-shadow:0 1px 2px rgba(80,74,150,.12)}
+@keyframes topIn{from{opacity:0;transform:translateY(-12px);}to{opacity:1;transform:translateY(0)}}
+.page{display:none;opacity:0;transform:translateY(12px) scale(.992);transform-origin:50% 0;}
+.page.active{display:block;animation:pageEnter .48s var(--ease-smooth) both}.page.page-exit{display:block;pointer-events:none;animation:pageExit .24s var(--ease-smooth) both}
+@keyframes pageEnter{0%{opacity:0;transform:translateY(15px) scale(.99)}65%{opacity:1}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes pageExit{to{opacity:0;transform:translateY(-8px) scale(.995)}}
+.glass{position:relative;isolation:isolate;overflow:hidden;transition:transform var(--motion-mid) var(--ease-smooth),box-shadow var(--motion-mid) var(--ease-smooth),border-color var(--motion-mid) var(--ease-smooth);will-change:transform,opacity}
+.glass:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background:linear-gradient(115deg,rgba(255,255,255,.33),transparent 36%,rgba(255,255,255,.12) 68%,transparent);opacity:.8}
+.page.active .glass{animation:cardLift .62s var(--ease-smooth) both}
+.page.active .glass:nth-child(2){animation-delay:55ms}.page.active .glass:nth-child(3){animation-delay:105ms}.page.active .glass:nth-child(4){animation-delay:155ms}.page.active .glass:nth-child(5){animation-delay:205ms}
+@keyframes cardLift{from{opacity:0;transform:translateY(17px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.hero{box-shadow:0 18px 42px rgba(94,93,175,.16),inset 0 1px 0 #fff,0 0 0 1px rgba(255,255,255,.32)}
+.hero h1{ text-shadow:0 2px 0 rgba(255,255,255,.8),0 7px 18px rgba(76,79,157,.16);}
+.eyebrow,.sectionTitle{ text-shadow:0 1px 1px rgba(255,255,255,.9),0 2px 8px rgba(90,80,180,.12)}
+.sectionTitle{display:flex;align-items:center;gap:9px;letter-spacing:1.35px;font-size:10px;margin-bottom:14px}
+.sectionNo{display:inline-grid;place-items:center;width:27px;height:27px;flex:0 0 27px;border-radius:9px;color:white;font-size:10px;letter-spacing:0;font-weight:950;text-shadow:0 1px 2px rgba(0,0,0,.16);box-shadow:0 5px 12px rgba(76,83,160,.18),inset 0 1px 0 rgba(255,255,255,.55)}
+.section-source .sectionNo,.section-home-1 .sectionNo{background:linear-gradient(145deg,#9a7cf7,#5d58d9)}
+.section-identity .sectionNo,.section-home-2 .sectionNo{background:linear-gradient(145deg,#59bce8,#3979d6)}
+.section-icon .sectionNo,.section-permissions .sectionNo,.section-home-3 .sectionNo{background:linear-gradient(145deg,#f18ac1,#d84e9b)}
+.section-build .sectionNo,.section-settings-2 .sectionNo{background:linear-gradient(145deg,#f4ba67,#e58b35)}
+.section-projects .sectionNo,.section-settings-3 .sectionNo{background:linear-gradient(145deg,#48cbb3,#179b88)}
+.section-settings-1 .sectionNo,.section-settings-4 .sectionNo{background:linear-gradient(145deg,#8296e9,#596dca)}
+.section-source,.section-home-1{color:#6753c8}.section-identity,.section-home-2{color:#367fc2}.section-icon,.section-permissions,.section-home-3{color:#c34c91}.section-build{color:#c47b2e}.section-projects{color:#168e7d}
+.tile{position:relative;overflow:hidden;transition:transform var(--motion-fast) var(--ease-smooth),box-shadow var(--motion-mid) var(--ease-smooth),filter var(--motion-mid) var(--ease-smooth);will-change:transform;}
+.tile:after{content:"";position:absolute;top:-70%;left:-55%;width:42%;height:240%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.62),transparent);transform:rotate(22deg) translateX(-180%);transition:transform .8s var(--ease-smooth);pointer-events:none}
+.tile:active{transform:scale(.965) translateY(1px);box-shadow:0 3px 10px rgba(79,86,155,.14)}
+.tile:active:after{transform:rotate(22deg) translateX(520%)}
+.tile b{color:#25345f;text-shadow:0 1px 1px rgba(255,255,255,.8)}
+.ico{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:12px;background:linear-gradient(140deg,rgba(255,255,255,.9),rgba(230,232,255,.75));box-shadow:0 5px 13px rgba(89,82,170,.12),inset 0 1px 0 #fff}
+.ico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
+.tone-purple{color:#7658df}.tone-cyan{color:#189eac}.btn,.pick,.nav button,.input{transition:transform var(--motion-fast) var(--ease-smooth),box-shadow var(--motion-mid) var(--ease-smooth),background var(--motion-mid) var(--ease-smooth),border-color var(--motion-mid) var(--ease-smooth),color var(--motion-mid) var(--ease-smooth)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;position:relative;overflow:hidden;text-shadow:0 1px 2px rgba(35,29,100,.25);}
+.btn:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 22%,rgba(255,255,255,.25) 48%,transparent 74%);transform:translateX(-120%);transition:transform .65s var(--ease-smooth)}
+.btn:active{transform:scale(.975);filter:saturate(1.15)}.btn:active:before{transform:translateX(120%)}
+.btn.light{text-shadow:0 1px 1px #fff}
+.btnIcon{width:17px;height:17px;flex:0 0 17px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.pick{display:flex;align-items:center;justify-content:center;gap:9px;transition:transform var(--motion-fast) var(--ease-smooth),box-shadow var(--motion-mid) var(--ease-smooth)}.pick:active{transform:scale(.98);box-shadow:0 4px 12px rgba(104,89,203,.16)}
+.input{box-shadow:inset 0 1px 3px rgba(77,78,145,.07),0 2px 8px rgba(97,91,160,.04);text-shadow:0 1px 0 rgba(255,255,255,.65)}.input:focus{transform:translateY(-1px);box-shadow:0 0 0 3px rgba(124,105,232,.16),0 8px 18px rgba(90,83,175,.11)}
+.field label{ text-shadow:0 1px 1px #fff }
+.toggle{transition:background var(--motion-fast) ease,padding var(--motion-fast) ease;border-radius:12px;padding-left:9px;padding-right:9px}.toggle:has(input:checked){background:linear-gradient(100deg,rgba(111,91,223,.09),rgba(42,177,189,.08))}.toggle input{transition:transform var(--motion-fast) ease}.toggle input:active{transform:scale(.92)}
+.nav{box-shadow:0 -9px 28px rgba(90,91,156,.10);transition:background var(--motion-mid) ease;}
+.nav button{position:relative;overflow:hidden;min-height:51px}.nav button.active{transform:translateY(-2px);box-shadow:0 7px 18px rgba(91,83,193,.14),inset 0 1px 0 #fff}.nav button:active{transform:scale(.96)}.nav button.active:after{content:"";position:absolute;left:35%;right:35%;bottom:3px;height:3px;border-radius:5px;background:linear-gradient(90deg,#8c6af0,#31b8c5);box-shadow:0 0 9px rgba(102,91,220,.48)}
+.ni{transition:transform var(--motion-mid) var(--ease-smooth),filter var(--motion-mid) ease}.nav button.active .ni{transform:translateY(-2px) scale(1.08);filter:drop-shadow(0 3px 5px rgba(91,80,195,.23))}
+.tag{box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 3px 10px rgba(95,93,165,.08)}.liveDot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#1dbb9e;margin-right:5px;box-shadow:0 0 0 4px rgba(29,187,158,.13);animation:livePulse 1.8s ease-out infinite}@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(29,187,158,.38)}100%{box-shadow:0 0 0 7px rgba(29,187,158,0)}}
+.status{text-shadow:0 1px 1px rgba(255,255,255,.7)}
+.progress{height:10px;background:linear-gradient(90deg,#e1e5fa,#e0f5f5);box-shadow:inset 0 2px 4px rgba(67,76,132,.12)}.bar{transition:width .22s linear;background:linear-gradient(90deg,#f07ab5 0%,#8b72ef 48%,#37bfcb 100%);background-size:100% 100%}.buildPulse{animation:buildPulse 1.4s ease-in-out infinite}@keyframes buildPulse{50%{transform:scale(1.35);opacity:.6}}
+.previewbox,.history{transition:transform var(--motion-mid) var(--ease-smooth),background var(--motion-mid) ease}.history{animation:historyIn .35s var(--ease-smooth) both}@keyframes historyIn{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
+.sub,.note,.muted,.history b{ text-shadow:0 1px 1px rgba(255,255,255,.8)}
+@media (hover:hover){.tile:hover{transform:translateY(-3px);box-shadow:0 13px 25px rgba(80,84,160,.15)}.glass:hover{box-shadow:0 17px 40px rgba(79,86,155,.15),inset 0 1px 0 #fff}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+
+/* V4.1 permission controls + icon picker */
+.iconPickerRow{display:flex;align-items:center;gap:13px;margin-top:7px}
+.iconPreview{width:82px;height:82px;flex:0 0 82px;border-radius:23px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#fff,#e5e8ff 58%,#f9dff0);border:1px solid #fff;box-shadow:0 8px 20px rgba(94,84,185,.16),inset 0 1px 0 #fff}
+.iconPreview svg{width:34px;height:34px;stroke:#6a5bd3;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.iconPreview img{width:100%;height:100%;object-fit:cover}
+.iconPickerActions{flex:1;min-width:0;display:grid;gap:7px}
+.iconReset{min-height:38px;padding:9px 12px;font-size:11px}
+.permissionIntro{font-size:11px;color:#697695;line-height:1.5;margin:0 0 13px}
+.permissionGroup{border:1px solid rgba(255,255,255,.9);border-radius:18px;padding:12px 11px 5px;margin:11px 0;background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(227,233,255,.55));box-shadow:inset 0 1px 0 #fff,0 4px 14px rgba(91,95,163,.055)}
+.permissionGroupHead{display:flex;align-items:center;gap:9px;margin:0 0 5px;padding:0 2px 8px;border-bottom:1px solid rgba(111,117,168,.13);color:var(--group-color,#6657d9)}
+.permissionGroupNo{display:grid;place-items:center;width:28px;height:28px;flex:0 0 28px;border-radius:9px;color:#fff;background:var(--group-gradient,linear-gradient(145deg,#9078ed,#5b63d8));font-size:10px;font-weight:900;box-shadow:0 5px 12px rgba(77,83,160,.15)}
+.permissionGroupTitle{font-size:10px;letter-spacing:1.1px;font-weight:900;text-shadow:0 1px 1px #fff}
+.permissionRow{display:grid;grid-template-columns:34px minmax(0,1fr) 30px;gap:9px;align-items:center;min-height:61px;padding:8px 3px;border-bottom:1px solid rgba(111,117,168,.11);color:#263858}
+.permissionRow:last-child{border-bottom:0}
+.permissionRow.is-disabled{opacity:.76}
+.permissionIcon{width:32px;height:32px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,#fff,rgba(226,231,255,.86));color:var(--group-color,#6657d9);box-shadow:inset 0 1px 0 #fff,0 3px 9px rgba(87,90,160,.08)}
+.permissionIcon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.permissionText{min-width:0}
+.permissionText b{display:block;font-size:12px;font-weight:850;line-height:1.25}
+.permissionText small{display:block;color:#74819b;font-size:10px;line-height:1.35;margin-top:3px}
+.permissionStatus{display:inline-block;margin-top:4px;border-radius:20px;padding:2px 6px;background:rgba(101,87,212,.09);color:#6558b9;font-size:8px;font-weight:900;letter-spacing:.4px;text-transform:uppercase}
+.permissionStatus.native{background:rgba(218,153,69,.13);color:#a66b20}
+.permissionStatus.system{background:rgba(35,160,139,.12);color:#168772}
+.permissionStatus.off{background:rgba(123,132,153,.12);color:#74809a}
+.permissionControl{position:relative;width:26px;height:26px;display:grid;place-items:center}
+.permissionControl input{position:absolute;inset:0;width:26px;height:26px;margin:0;opacity:0;z-index:2}
+.permissionCheck{width:23px;height:23px;border-radius:7px;display:grid;place-items:center;background:linear-gradient(145deg,#f9faff,#e3e7f5);border:1px solid rgba(113,121,161,.24);box-shadow:inset 0 1px 2px rgba(67,74,119,.08);transition:all .2s cubic-bezier(.2,.8,.2,1)}
+.permissionCheck svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.65);transition:all .18s ease}
+.permissionControl input:checked+.permissionCheck{background:linear-gradient(145deg,#7b64ec,#4d9cde 62%,#28b5be);border-color:transparent;box-shadow:0 3px 9px rgba(91,88,207,.28)}
+.permissionControl input:checked+.permissionCheck svg{opacity:1;transform:scale(1)}
+.permissionControl input:disabled+.permissionCheck{opacity:.9}
+.permissionControl input:focus-visible+.permissionCheck{outline:3px solid rgba(93,127,224,.28);outline-offset:2px}
+.permissionRow:has(input:not(:disabled):active) .permissionCheck{transform:scale(.9)}
+
+/* V4.2 Dark Mode — persisted by the theme control */
+.topActions{display:flex;align-items:center;gap:8px}
+.themeButton{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:7px 10px;background:linear-gradient(135deg,#ffffffd9,#e9eaffbd);color:#5147aa;font-size:10px;font-weight:900;box-shadow:0 5px 15px rgba(82,74,155,.13);transition:transform .22s var(--ease-smooth),background .25s}
+.themeButton:active{transform:scale(.94)}.themeButton svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.themeSetting{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--ink);font-size:13px}.themeSetting small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+.themeSwitch{width:48px;height:28px;border:0;border-radius:20px;padding:3px;background:#c8cede;transition:background .25s}.themeSwitch span{display:block;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 6px #0003;transition:transform .25s var(--ease-smooth)}.themeSwitch.on{background:linear-gradient(110deg,#7562ea,#28b9c3)}.themeSwitch.on span{transform:translateX(20px)}
+body.dark{--ink:#edf1ff;--muted:#aab5cf;--glass:rgba(22,27,45,.78);--line:rgba(190,202,255,.18);--icon:#b9b2ff;background:linear-gradient(145deg,#070a13 0%,#10182b 42%,#171128 78%,#101a25 100%);color:var(--ink)}
+body.dark:before{background:#6359d8;opacity:.22}body.dark:after{background:#bd4c92;opacity:.17}
+body.dark .top{color:#c6cdec}body.dark .glass{background:linear-gradient(135deg,rgba(35,41,63,.88),rgba(18,24,42,.78));border-color:rgba(195,205,255,.17);box-shadow:0 16px 38px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.07)}
+body.dark .hero{background:linear-gradient(135deg,rgba(48,52,90,.9),rgba(25,47,74,.8),rgba(65,32,70,.68))}body.dark .hero h1{color:#f4f2ff;text-shadow:0 3px 18px rgba(0,0,0,.4)}
+body.dark .eyebrow,body.dark .sectionTitle{color:#c0b6ff;text-shadow:0 2px 10px rgba(0,0,0,.35)}body.dark .sub,body.dark .status{color:#b6c1db}
+body.dark .pill{background:linear-gradient(120deg,#252d48,#302849);border-color:rgba(255,255,255,.1);color:#d6d0ff}
+body.dark .tile{background:linear-gradient(140deg,#242c43,#1b2438);border-color:rgba(255,255,255,.1);color:#f0f3ff;box-shadow:0 8px 20px rgba(0,0,0,.2)}body.dark .tile small,body.dark .note,body.dark .muted{color:#9aa8c6}
+body.dark .input{background:linear-gradient(135deg,#141d31,#20263c);border-color:rgba(207,214,255,.17);color:#f2f4ff;box-shadow:inset 0 1px 3px #0005}body.dark .field label{color:#beb8ff}
+body.dark .btn.light,body.dark .pick{background:linear-gradient(120deg,#252d48,#24263e);border-color:rgba(216,220,255,.18);color:#dcd8ff;box-shadow:0 6px 17px rgba(0,0,0,.2)}
+body.dark .nav{background:linear-gradient(100deg,rgba(12,17,31,.95),rgba(18,27,43,.94),rgba(34,20,43,.93));border-color:rgba(255,255,255,.12)}body.dark .nav button{color:#9ba9c7}body.dark .nav button.active{background:linear-gradient(135deg,#2b3152,#28364a);color:#e7e2ff;box-shadow:0 5px 18px rgba(0,0,0,.32)}
+body.dark .permissionRow{background:linear-gradient(135deg,rgba(37,45,69,.9),rgba(25,32,53,.88));border-color:rgba(211,219,255,.1)}body.dark .permissionIcon{background:linear-gradient(145deg,#303858,#252c45);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}body.dark .permissionText b{color:#edf1ff}body.dark .permissionText small{color:#a3afca}body.dark .permissionCheck{background:#303953;border-color:#58617d}
+body.dark .tag{background:linear-gradient(110deg,#2b3151,#203e4a);color:#d9d4ff}
+body.dark .progress{background:#262e49}body.dark .previewbox{background:linear-gradient(135deg,#202943,#28243f);border-color:rgba(255,255,255,.12);color:#b8c4e2}body.dark .history{border-color:rgba(211,219,255,.13)}body.dark .history b{color:#eef1ff}
+@media(max-width:390px){.topActions{gap:5px}.themeButton{padding:7px 8px}.top .tag{font-size:8px;padding:5px 7px}}
+@media(prefers-reduced-motion:reduce){body:before,body:after,.page.active,.page.page-exit,.page.active .glass,.top{animation:none!important;transition:none!important}}
+
+
+/* V4.3: true-black dark mode, animated solar/lunar SVG toggle, accordion permissions and creator watermark switch. */
+.themeButton .themeIcon{overflow:visible}
+.themeIcon .sunGlyph,.themeIcon .moonGlyph{transform-origin:12px 12px;transition:opacity .42s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
+.themeIcon .sunGlyph{opacity:1;transform:rotate(0) scale(1)}
+.themeIcon .moonGlyph{opacity:0;transform:rotate(-48deg) scale(.35)}
+body.dark .themeIcon .sunGlyph{opacity:0;transform:rotate(65deg) scale(.35)}
+body.dark .themeIcon .moonGlyph{opacity:1;transform:rotate(0) scale(1)}
+.themeButton:active .themeIcon{transform:rotate(-12deg) scale(.92)}
+.permissionsToggle{width:100%;display:flex;align-items:center;gap:11px;padding:13px 13px;border:1px solid rgba(132,129,204,.22);border-radius:17px;background:linear-gradient(120deg,rgba(255,255,255,.92),rgba(229,234,255,.72));color:var(--ink);text-align:left;box-shadow:0 7px 18px rgba(80,80,160,.08),inset 0 1px 0 #fff;transition:transform .25s ease,box-shadow .25s ease,background .3s ease}
+.permissionsToggle:active{transform:scale(.985)}
+.permissionsToggleIcon{width:36px;height:36px;flex:0 0 36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#a18af5,#5c62d6 60%,#36b9c7);color:#fff;box-shadow:0 6px 15px rgba(105,88,210,.23)}
+.permissionsToggleIcon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.permissionsToggleText{flex:1;min-width:0}.permissionsToggleText b{display:block;font-size:13px;font-weight:900}.permissionsToggleText small{display:block;color:var(--muted);font-size:10px;margin-top:3px;line-height:1.35}
+.permissionsChevron{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(106,91,215,.09);color:#7665dc;transition:transform .42s cubic-bezier(.2,.8,.2,1),background .3s}
+.permissionsChevron svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.permissionsToggle[aria-expanded="true"] .permissionsChevron{transform:rotate(180deg);background:rgba(106,91,215,.17)}
+.permissionExpand{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(-7px);transition:grid-template-rows .48s cubic-bezier(.2,.75,.2,1),opacity .3s ease,transform .38s ease}
+.permissionExpand.open{grid-template-rows:1fr;opacity:1;transform:translateY(0)}
+.permissionExpandInner{min-height:0;overflow:hidden;padding:0 1px}
+.permissionExpand.open .permissionExpandInner{padding-top:10px}
+body.dark{--ink:#fff;--muted:#c5cada;--glass:rgba(255,255,255,.055);--line:rgba(255,255,255,.14);--icon:#c6bbff;background:#000!important;color:#fff!important}
+body.dark:before,body.dark:after{opacity:0!important;display:none!important}
+body.dark .top{color:#f4f5ff}
+body.dark .glass{background:linear-gradient(140deg,rgba(255,255,255,.085),rgba(255,255,255,.035));border-color:rgba(255,255,255,.15);box-shadow:0 14px 38px rgba(0,0,0,.68),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px)}
+body.dark .hero{background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.035),rgba(121,92,210,.09))}
+body.dark .hero h1,body.dark .status,body.dark .sub,body.dark .themeSetting,body.dark .permissionText b,body.dark .history b{color:#fff}
+body.dark .eyebrow,body.dark .sectionTitle{color:#c8bdff;text-shadow:0 2px 14px rgba(126,103,245,.24)}
+body.dark .note,body.dark .muted,body.dark .permissionIntro,body.dark .themeSetting small,body.dark .permissionText small{color:#c1c7d8;text-shadow:none}
+body.dark .pill{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.12);color:#eeeaff}
+body.dark .tile{background:linear-gradient(140deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border-color:rgba(255,255,255,.14);color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.38)}
+body.dark .input{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.2);color:#fff;box-shadow:inset 0 1px 3px #0008}
+body.dark .input::placeholder{color:#aeb5c8}body.dark .field label{color:#ddd7ff}
+body.dark .btn.light,body.dark .pick{background:linear-gradient(120deg,rgba(255,255,255,.13),rgba(255,255,255,.055));border-color:rgba(255,255,255,.18);color:#fff;box-shadow:0 6px 17px rgba(0,0,0,.42)}
+body.dark .nav{background:rgba(0,0,0,.94);border-color:rgba(255,255,255,.15);box-shadow:0 -7px 30px rgba(0,0,0,.6)}body.dark .nav button{color:#aeb5ca}body.dark .nav button.active{background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(125,101,230,.18));color:#fff;box-shadow:0 5px 18px rgba(0,0,0,.5)}
+body.dark .permissionGroup{background:linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border-color:rgba(255,255,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 5px 18px #0008}
+body.dark .permissionGroupTitle{color:var(--group-color);text-shadow:0 2px 12px rgba(0,0,0,.7)}body.dark .permissionRow{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.09);color:#fff}
+body.dark .permissionIcon{background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+body.dark .permissionCheck{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.2)}body.dark .permissionStatus{background:rgba(142,127,245,.18);color:#d5ccff}
+body.dark .permissionStatus.native{background:rgba(240,173,84,.15);color:#ffd293}body.dark .permissionStatus.system{background:rgba(50,193,169,.15);color:#9df0dc}body.dark .permissionStatus.off{background:rgba(255,255,255,.08);color:#c0c5d4}
+body.dark .permissionsToggle{background:linear-gradient(120deg,rgba(255,255,255,.11),rgba(255,255,255,.045));border-color:rgba(255,255,255,.17);color:#fff;box-shadow:0 7px 20px #0008,inset 0 1px 0 rgba(255,255,255,.08)}body.dark .permissionsToggleText small{color:#c0c6d7}
+body.dark .themeButton{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18);color:#fff;box-shadow:0 5px 16px #0008}
+body.dark .themeSwitch{background:#333}.themeSwitch.on{background:linear-gradient(110deg,#7562ea,#28b9c3)}
+body.dark .progress{background:#24242b}body.dark .history{border-color:rgba(255,255,255,.14)}body.dark .previewbox{background:#111;border-color:rgba(255,255,255,.14);color:#eee}
+.creatorBrandMark{font-size:10px;letter-spacing:.2px;color:#8d96aa;opacity:.6}
+@media(prefers-reduced-motion:reduce){.themeIcon .sunGlyph,.themeIcon .moonGlyph,.permissionsToggle,.permissionsChevron,.permissionExpand{transition:none!important}}
+
+
+/* Code Editor module — additive styles, independent of existing Builder pages */
+.editorShell{display:flex;flex-direction:column;gap:11px}
+.editorHead{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.editorProjectName{font-size:14px;font-weight:900;color:var(--ink)}
+.editorToolRow{display:flex;gap:7px;flex-wrap:wrap}
+.editorTool{border:1px solid rgba(255,255,255,.85);border-radius:12px;padding:9px 11px;background:linear-gradient(130deg,#fff,#e8edff);color:#5146a9;font-size:11px;font-weight:850;box-shadow:0 5px 13px #7164c51a}
+.editorFileTabs{display:flex;gap:6px;overflow-x:auto;padding:3px 1px 7px;scrollbar-width:none}
+.editorFileTabs::-webkit-scrollbar{display:none}
+.editorFileTab{flex:0 0 auto;border:1px solid #dfe3f5;border-radius:12px 12px 7px 7px;padding:9px 12px;background:rgba(255,255,255,.52);font-size:11px;font-weight:850;color:#71809b}
+.editorFileTab.active{background:linear-gradient(120deg,#7964eb,#4db7c8);border-color:transparent;color:#fff;box-shadow:0 5px 15px #7564db44}
+.editorCodeFrame{position:relative;display:flex;min-height:310px;height:44vh;max-height:620px;overflow:hidden;border-radius:17px;border:1px solid rgba(150,157,195,.45);background:#f6f7fc;box-shadow:inset 0 1px 5px #172b4d0b}
+.editorGutter{flex:0 0 38px;padding:13px 8px 13px 0;text-align:right;overflow:hidden;color:#9ba4b8;background:rgba(226,231,244,.62);font:11px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;user-select:none;white-space:pre}
+.editorTextarea{flex:1;min-width:0;width:100%;height:100%;resize:none;border:0;outline:0;padding:13px 12px;background:transparent;color:#27334d;font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2;white-space:pre;overflow:auto;caret-color:#6d5ce8;spellcheck:false}
+.editorTextarea::selection{background:#a99bff66}
+.editorStatus{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:#73809b;font-size:10px;font-weight:750}
+.editorKeys{display:flex;gap:6px;overflow-x:auto;padding:2px 0 4px}
+.editorKeys button{flex:0 0 auto;min-width:34px;border:1px solid #dce2f0;border-radius:9px;padding:9px;background:linear-gradient(120deg,#fff,#edf0fb);color:#535c77;font-weight:850}
+.editorMenu{display:none;position:relative;border:1px solid rgba(255,255,255,.9);border-radius:17px;padding:9px;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(232,237,255,.94));box-shadow:0 12px 28px #3f477d25;max-height:260px;overflow:auto}
+.editorMenu.open{display:grid;grid-template-columns:1fr 1fr;gap:6px;animation:feedbackIn .22s var(--ease-smooth) both}
+.editorMenu button{border:0;text-align:left;padding:10px;border-radius:10px;background:rgba(255,255,255,.68);color:#394665;font-size:11px;font-weight:800}
+.editorFindPanel{display:none;grid-template-columns:1fr 1fr;gap:8px;padding:10px;border-radius:14px;background:rgba(255,255,255,.68);border:1px solid #e1e5f5}
+.editorFindPanel.open{display:grid;animation:feedbackIn .22s var(--ease-smooth) both}
+.editorFindPanel .wide{grid-column:1/-1}
+.editorPreview{display:none;width:100%;height:300px;border:1px solid #e0e4f3;border-radius:16px;background:#fff}
+.editorPreview.open{display:block;animation:cardLift .28s var(--ease-smooth) both}
+.editorBuildCard{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px;border:1px solid rgba(255,255,255,.86);border-radius:16px;background:linear-gradient(120deg,rgba(255,255,255,.68),rgba(222,241,255,.48))}
+.editorBuildCard small{display:block;color:#73809b;font-size:10px;margin-top:3px;line-height:1.4}
+body.dark .editorTool,body.dark .editorKeys button,body.dark .editorFileTab{background:linear-gradient(130deg,#20202a,#17171e);border-color:#3a3a4b;color:#d7d8e8}
+body.dark .editorFileTab.active{background:linear-gradient(120deg,#7964eb,#269eac);color:#fff}
+body.dark .editorCodeFrame{background:#09090d;border-color:#30303d}
+body.dark .editorGutter{background:#121219;color:#6d7185;border-color:#30303d}
+body.dark .editorTextarea{color:#f0f1f7;caret-color:#a99aff}
+body.dark .editorMenu{background:linear-gradient(135deg,#191921,#101016);border-color:#343443;box-shadow:0 12px 30px #000b}
+body.dark .editorMenu button,body.dark .editorFindPanel{background:#242430;color:#e9eaf2;border-color:#3a3a4c}
+body.dark .editorBuildCard{background:linear-gradient(120deg,#171720,#101820);border-color:#333344}
+body.dark .editorBuildCard small,body.dark .editorStatus{color:#aeb5ca}
+@media(max-width:380px){.editorCodeFrame{height:40vh}.editorMenu.open{grid-template-columns:1fr}}
+
+
+/* V4.6 API settings + contrast and editor reliability pass */
+.builderApiPanel{margin:10px 4px 5px;padding:14px;border:1px solid rgba(110,100,210,.22);border-radius:17px;background:linear-gradient(135deg,rgba(112,100,220,.10),rgba(41,182,200,.08));}
+.builderApiTitle{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:950;letter-spacing:1px;color:#6558c8;margin:0 0 8px}
+.builderApiBadge{font-size:9px;letter-spacing:.5px;border-radius:20px;padding:5px 8px;background:#e2fff5;color:#14775e}
+.builderApiEnable{border-bottom:1px solid rgba(130,130,180,.22);margin:0 0 8px}
+.builderApiPanel .field{margin:9px 0}.builderApiPanel .field label{font-size:10px}
+.builderApiActions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.builderApiActions button{flex:1;min-width:92px;padding:10px 8px;font-size:11px}
+.builderApiEmbed{align-items:flex-start;margin:9px 0 4px;padding:10px 0;border-top:1px solid rgba(190,90,70,.24);border-bottom:0}
+.builderApiEmbed b{color:#a54b39}.builderApiEmbed small{color:#9a594c;line-height:1.45}
+.builderApiStatus{padding:9px 10px;border-radius:11px;background:rgba(64,125,125,.10);font-size:10px;line-height:1.5;color:#3d6b6d;overflow-wrap:anywhere}
+.editorToolRow{flex-wrap:wrap}.editorToolRow .editorTool{flex:1;min-width:90px}
+.editorTextarea{tab-size:2;line-height:1.65;white-space:pre;}
+body.dark{--ink:#f5f6fb;--muted:#c1c6d2;--glass:#101014;--line:#2a2a31;background:#000!important;color:#f5f6fb;color-scheme:dark}
+body.dark:before,body.dark:after{opacity:0!important}
+body.dark .top{color:#f1f2f7;text-shadow:none}
+body.dark .tag{background:#1b1b22;border:1px solid #34343d;color:#e4e5ee}
+body.dark .glass,body.dark .hero{background:#101014!important;border:1px solid #292930!important;box-shadow:0 10px 28px #000!important;color:#f5f6fb}
+body.dark .hero h1,body.dark h1,body.dark h2,body.dark h3,body.dark b,body.dark strong{color:#fff}
+body.dark .hero h1{text-shadow:none}
+body.dark .sub,body.dark .status,body.dark .note,body.dark .muted,body.dark .fileline,body.dark small{color:#c2c5d0}
+body.dark .eyebrow,body.dark .sectionTitle{color:#c8bdff;text-shadow:none}
+body.dark .pill{background:#1b1b24;border:1px solid #33333e;color:#dedaff}
+body.dark .tile,body.dark .previewbox{background:#17171d;border:1px solid #34343c;color:#f4f4f8;box-shadow:none}
+body.dark .tile small{color:#c3c5cf}
+body.dark .field label{color:#e1ddff}
+body.dark .input,body.dark input,body.dark textarea,body.dark select{background:#09090d!important;border:1px solid #3a3a45!important;color:#fff!important;box-shadow:none!important;caret-color:#c7baff}
+body.dark .input::placeholder,body.dark input::placeholder,body.dark textarea::placeholder{color:#9297a8!important;opacity:1}
+body.dark .btn.light,body.dark .pick,body.dark .editorTool,body.dark .editorKeys button{background:#202028!important;border:1px solid #3b3b47!important;color:#f1efff!important;box-shadow:none!important}
+body.dark .btn:not(.light){color:#fff!important}
+body.dark .toggle{color:#f5f6fb;border-color:#33333d}
+body.dark .toggle small{color:#bec2cf}
+body.dark .nav{background:#08080b!important;border-top:1px solid #2e2e36!important}
+body.dark .nav button{color:#aeb2c1}
+body.dark .nav button.active{background:#242431!important;color:#fff!important;box-shadow:inset 0 0 0 1px #504a73}
+body.dark .permissionsToggle,body.dark .permissionGroup,body.dark .permissionRow,body.dark .permissionIntro{background:#15151b!important;border-color:#34343d!important;color:#f4f4fa!important}
+body.dark .permissionText b,body.dark .permissionGroupTitle{color:#fff!important}
+body.dark .permissionText small,body.dark .permissionStatus,body.dark .permissionIntro{color:#bfc3d0!important}
+body.dark .permissionCheck{background:#282837;border-color:#4b4b58}
+body.dark .permissionRow input:checked+.permissionCheck{background:#7263df;color:#fff}
+body.dark .progress{background:#24242e}
+body.dark .history{border-color:#34343d}
+body.dark .history b{color:#fff}
+body.dark .themeButton,body.dark .themeSwitch{background:#23232b;border-color:#3b3b46;color:#fff}
+body.dark .editorHead,body.dark .editorFindPanel,body.dark .editorMenu,body.dark .editorBuildCard{background:#111117!important;border-color:#363640!important;color:#f5f5fa!important}
+body.dark .editorMenu button{background:#22222b!important;color:#f0f0f8!important;border-color:#3b3b46!important}
+body.dark .editorCodeFrame{background:#050507!important;border-color:#383842!important}
+body.dark .editorGutter{background:#111116!important;color:#8c91a2!important}
+body.dark .editorTextarea{background:#050507!important;color:#f6f6fb!important}
+body.dark .editorStatus,body.dark .editorBuildCard small{color:#c0c4d2!important}
+body.dark .builderApiPanel{background:#14141b!important;border-color:#3d3a50!important}
+body.dark .builderApiTitle{color:#d2c8ff!important}
+body.dark .builderApiBadge{background:#16372e;color:#a8f1d5}
+body.dark .builderApiEmbed{border-color:#71443d}
+body.dark .builderApiEmbed b,body.dark .builderApiEmbed small{color:#ffb6a8!important}
+body.dark .builderApiStatus{background:#17282a;color:#b8e4e2!important}
+@media(max-width:390px){.builderApiPanel{padding:11px}.builderApiActions button{min-width:82px;font-size:10px}.top{font-size:11px}.topActions .tag{display:none}}
+
+/* V4.8 generated-app controls */
+.appControlsCard{margin-top:14px}
+.appOptionGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.appOptionField{min-width:0;padding:10px;border:1px solid rgba(120,128,160,.18);border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.68),rgba(232,237,249,.52))}
+.appOptionField label{display:block;font-size:10px;font-weight:850;color:#64708a;margin:0 0 7px;letter-spacing:.35px}
+.appOptionField select{width:100%;min-width:0;border:1px solid rgba(125,132,160,.24);border-radius:10px;padding:10px 8px;background:#fff;color:#28354e;font:inherit;font-size:11px;outline:none}
+.appOptionToggle{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:10px 11px;border:1px solid rgba(120,128,160,.16);border-radius:13px;background:rgba(255,255,255,.48);font-size:11px;font-weight:750;color:var(--ink)}
+.appOptionToggle input{width:19px;height:19px;flex:0 0 19px;accent-color:#168d7b}
+.appOptionHint{font-size:10px;color:#74809a;line-height:1.45;margin-top:10px}
+body.dark .appOptionField{background:linear-gradient(135deg,#181820,#111119);border-color:#34343e}
+body.dark .appOptionField label{color:#c4c8d4}
+body.dark .appOptionField select{background:#09090d;color:#f3f3f7;border-color:#3a3a45}
+body.dark .appOptionToggle{background:#181820;border-color:#34343e;color:#f1f2f7}
+body.dark .appOptionHint{color:#aeb4c2}
+@media(max-width:360px){.appOptionGrid{grid-template-columns:1fr}}
+
+/* V4.7 startup loading + creator credit placement */
+.creatorCredit{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 13px;margin:0 0 11px;border:1px solid rgba(120,128,145,.18);border-radius:15px;background:linear-gradient(120deg,rgba(255,255,255,.7),rgba(230,233,239,.55));}
+.creatorCredit b{display:block;color:#68717e;font-size:12px;font-weight:850;letter-spacing:.15px}
+.creatorCredit small{display:block;color:#858d99;font-size:10px;margin-top:3px;line-height:1.35}
+.creatorCredit .themeSwitch{flex:0 0 auto}
+body.dark .creatorCredit{background:linear-gradient(120deg,#17171d,#111116);border-color:#34343d}
+body.dark .creatorCredit b{color:#c7cbd4}body.dark .creatorCredit small{color:#9da4b2}
+.startupCard{margin-top:14px}
+.startupOptions{display:grid;gap:7px;margin:7px 0 10px}
+.startupOption{display:grid;grid-template-columns:34px minmax(0,1fr) 22px;gap:10px;align-items:center;width:100%;text-align:left;padding:10px 11px;border:1px solid rgba(130,135,170,.2);border-radius:15px;background:linear-gradient(120deg,rgba(255,255,255,.8),rgba(234,238,250,.65));color:var(--ink)}
+.startupOptionIcon{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:rgba(115,126,150,.12);color:#667385;font-size:18px}
+.startupOption b{display:block;font-size:12px;font-weight:850}.startupOption small{display:block;color:#7a8493;font-size:10px;font-weight:550;margin-top:3px;line-height:1.3}
+.startupOptionCheck{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(110,120,145,.3);color:transparent;font-size:12px}
+.startupOption.active{border-color:#15927c;background:linear-gradient(120deg,rgba(28,160,135,.12),rgba(65,185,169,.06));box-shadow:0 3px 12px rgba(27,140,120,.08)}
+.startupOption.active .startupOptionIcon{background:linear-gradient(145deg,#15927c,#3db8a5);color:#fff}
+.startupOption.active .startupOptionCheck{background:#15927c;border-color:#15927c;color:#fff}
+.startupChoice{display:flex;align-items:center;gap:10px;padding:11px 12px;margin:8px 0;border:1px solid rgba(130,135,170,.18);border-radius:15px;background:linear-gradient(120deg,rgba(255,255,255,.8),rgba(234,238,250,.65));color:var(--ink);font-size:12px;font-weight:800}
+.startupChoice input{width:18px;height:18px;accent-color:#178d79}
+.startupChoice small{display:block;color:#788292;font-size:10px;font-weight:550;margin-top:3px;line-height:1.35}
+.startupSelect{width:100%;border:1px solid rgba(125,132,160,.25);border-radius:13px;padding:12px;background:#fff;color:#29364e;font:inherit;font-size:12px;outline:none}
+.startupPreview{min-height:74px;border:1px solid rgba(120,128,160,.2);border-radius:15px;padding:12px;display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#f2f4fb,#e8edf5);color:#667080;font-size:11px;text-align:center}
+.startupPreviewIcon{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#7c6be8,#36b7c2);display:grid;place-items:center;color:#fff;font-size:21px;box-shadow:0 5px 14px #6559b333}
+.startupSpeed{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}
+.startupSpeed button{border:1px solid rgba(120,128,160,.25);border-radius:12px;padding:10px 4px;background:rgba(255,255,255,.72);color:#687285;font-size:10px;font-weight:850}
+.startupSpeed button.active{background:linear-gradient(120deg,#167f70,#26a28e);border-color:transparent;color:#fff;box-shadow:0 4px 12px #168b7733}
+body.dark .startupOption{background:#181820;border-color:#34343e;color:#f2f2f8}body.dark .startupOption small{color:#aeb4c2}body.dark .startupOptionIcon{background:#282833;color:#c5c8d4}body.dark .startupOption.active{background:#142723;border-color:#2caa91}body.dark .startupOption.active .startupOptionIcon{background:#167f70;color:#fff}
+body.dark .startupChoice{background:#181820;border-color:#34343e;color:#f2f2f8}
+body.dark .startupChoice small{color:#aeb4c2}
+body.dark .startupSelect{background:#09090d;color:#f3f3f7;border-color:#3a3a45}
+body.dark .startupPreview{background:#15151c;border-color:#353540;color:#bfc4d0}
+body.dark .startupSpeed button{background:#20202a;border-color:#3a3a46;color:#c6c9d4}
+body.dark .startupSpeed button.active{background:#167f70;color:#fff}
+@media(prefers-reduced-motion:reduce){.startupPreview *{animation:none!important;transition:none!important}}
+
+/* V4.8.4: compact raised-center navigation matching the supplied reference */
+.nav{
+ position:fixed!important;left:50%!important;right:auto!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;
+ transform:translateX(-50%)!important;width:min(540px,calc(100% - 28px))!important;height:82px!important;
+ padding:7px 9px 6px!important;display:grid!important;grid-template-columns:1fr 1fr 76px 1fr 1fr!important;
+ align-items:center!important;justify-content:stretch!important;gap:2px!important;
+ background:rgba(255,255,255,.94)!important;border:1px solid rgba(255,255,255,.98)!important;
+ border-radius:27px!important;box-shadow:0 9px 28px rgba(57,72,125,.20),inset 0 1px 0 #fff!important;
+ backdrop-filter:blur(24px)!important;-webkit-backdrop-filter:blur(24px)!important;z-index:100!important;
+}
+.nav button{
+ position:relative!important;overflow:visible!important;display:flex!important;flex:none!important;width:100%!important;max-width:none!important;
+ height:66px!important;min-height:0!important;padding:7px 2px 5px!important;margin:0!important;
+ flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;
+ border:0!important;border-radius:17px!important;background:transparent!important;box-shadow:none!important;
+ color:#8b93a5!important;font-size:10px!important;font-weight:750!important;line-height:1.1!important;
+ touch-action:manipulation;cursor:pointer; -webkit-tap-highlight-color:transparent;
+}
+.nav button .ni{display:grid!important;place-items:center!important;height:24px!important;margin:0!important;font-size:0!important;color:currentColor!important;}
+.nav button .ni svg{display:block!important;width:22px!important;height:22px!important;stroke:currentColor!important;fill:none!important;stroke-width:1.8!important;}
+.nav button.active:not(.nav-create){background:transparent!important;color:#1687e8!important;box-shadow:none!important;transform:none!important;}
+.nav button.active:not(.nav-create):after{display:none!important;}
+.nav button.nav-create{
+ z-index:2!important;justify-self:center!important;align-self:start!important;position:relative!important;top:-21px!important;
+ width:68px!important;height:68px!important;min-height:68px!important;padding:0!important;margin:0!important;
+ border:4px solid #fff!important;border-radius:24px!important;
+ background:linear-gradient(145deg,#269cff 0%,#0878e5 100%)!important;color:#fff!important;
+ box-shadow:0 9px 19px rgba(12,116,220,.35),0 2px 5px rgba(0,0,0,.08)!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+}
+.nav button.nav-create .ni{height:34px!important;width:34px!important;color:#fff!important;}
+.nav button.nav-create .ni svg{width:32px!important;height:32px!important;stroke:#fff!important;stroke-width:2.2!important;}
+/* Keep the centre Create button and its label in a fixed position on tap/selection. */
+.nav button.nav-create,
+.nav button.nav-create:active,
+.nav button.nav-create.active,
+.nav button.nav-create:focus{transform:none!important;filter:none!important;transition:none!important;}
+.nav button.nav-create:after{content:none!important;display:none!important;}
+.nav button.nav-create .nav-create-label{display:block!important;position:absolute!important;left:50%!important;top:68px!important;
+ transform:translateX(-50%)!important;color:#1687e8!important;font-size:9px!important;font-weight:850!important;line-height:1.1!important;
+ white-space:nowrap!important;pointer-events:none!important;transition:none!important;}
+.nav button:active:not(.nav-create){transform:scale(.96)!important;}
+.nav button.nav-create .ni,.nav button.nav-create .nav-create-label{flex:none!important;}
+.telegram-card{padding-bottom:18px;}
+.telegram-profile{display:flex;align-items:center;gap:12px;margin:15px 0 10px;padding:12px;border-radius:16px;background:linear-gradient(120deg,#ffffffd9,#e9f2ffcf);border:1px solid rgba(255,255,255,.95);}
+.telegram-avatar{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#229ed9,#1675cb);color:#fff;flex:0 0 42px;}
+.telegram-avatar svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.telegram-profile b,.telegram-channel b{display:block;font-size:12px;color:#27395e;}
+.telegram-profile small,.telegram-channel small{display:block;font-size:10px;color:#71809e;margin-top:4px;}
+.telegram-link{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:9px;}
+.telegram-channel{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding-top:12px;border-top:1px solid #dfe5f2;}
+.telegram-join{white-space:nowrap;min-height:40px;padding:9px 13px!important;}
+body.dark .nav{background:rgba(17,20,32,.96)!important;border-color:rgba(255,255,255,.12)!important;box-shadow:0 9px 30px rgba(0,0,0,.48)!important;}
+body.dark .nav button{color:#aeb9ce!important;background:transparent!important;}
+body.dark .nav button.active:not(.nav-create){color:#69baff!important;background:transparent!important;}
+body.dark .nav button.nav-create{background:linear-gradient(145deg,#269cff,#0878e5)!important;border-color:#171b2b!important;color:#fff!important;}
+body.dark .nav button.nav-create:after{color:#69baff!important;}
+body.dark .telegram-profile{background:linear-gradient(120deg,#20283c,#222c42);border-color:#36415a;}
+body.dark .telegram-profile b,body.dark .telegram-channel b{color:#eef2ff;}
+body.dark .telegram-profile small,body.dark .telegram-channel small{color:#aab7d0;}
+body.dark .telegram-channel{border-color:#39445a;}
+@media(max-width:360px){.nav{width:calc(100% - 18px)!important;grid-template-columns:1fr 1fr 68px 1fr 1fr!important;padding-left:5px!important;padding-right:5px!important}.nav button{font-size:9px!important}.nav button.nav-create{width:62px!important;height:62px!important;min-height:62px!important;top:-17px!important}}
+</style></head><body><div class="app">
+<header class="top"><div class="brand"><span>WEB2APK / STUDIO</span></div><div class="topActions"><span class="tag"><span class="liveDot"></span> V4.8 PRO AI STUDIO · LOCAL</span><button class="themeButton" id="themeButton" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode"><svg id="themeIcon" class="themeIcon" viewBox="0 0 24 24" aria-hidden="true"><g class="sunGlyph"><circle cx="12" cy="12" r="4"/><path d="M12 1.8v2.1m0 16.2v2.1M4.78 4.78l1.5 1.5m11.44 11.44 1.5 1.5M1.8 12h2.1m16.2 0h2.1M4.78 19.22l1.5-1.5M17.72 6.28l1.5-1.5"/></g><g class="moonGlyph"><path d="M20.4 15.2A8.7 8.7 0 0 1 8.8 3.6 8.9 8.9 0 1 0 20.4 15.2z"/><path d="m17.7 3.2.45 1.25 1.25.45-1.25.45-.45 1.25-.45-1.25-1.25-.45 1.25-.45zM21 9.1l.3.85.85.3-.85.3-.3.85-.3-.85-.85-.3.85-.3zM13.8 1.4l.25.7.7.25-.7.25-.25.7-.25-.7-.7-.25.7-.25z"/></g></svg><span id="themeLabel">Dark</span></button></div></header>
+<section id="home" class="page active">
+<div class="glass hero"><div class="eyebrow">PRIVATE ANDROID APP BUILDER</div><h1>Your website.<br>Your Android app.</h1><div class="sub">Build installable website APKs from HTML, ZIP files or live URLs — inside this app. No Termux. No cloud server.</div><div class="pills"><span class="pill">● IN-APP BUILD</span><span class="pill">NO TERMUX</span><span class="pill">LOCAL SIGNING</span><span class="pill">SMOOTH MOTION</span></div></div>
+<div class="glass"><div class="sectionTitle section-home-1"><span class="sectionNo">01</span><span>QUICK CREATE</span></div><div class="grid"><button class="tile" onclick="go('create')"><span class="ico tone-purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5z"/><path d="M12 8v8M8 12h8"/></svg></span><b>New project</b><small>HTML · ZIP · Website</small></button><button class="tile" onclick="go('projects')"><span class="ico tone-cyan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12a2 2 0 0 1 2 2v14H4V6a2 2 0 0 1 2-2z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><b>Build history</b><small>Open previous builds</small></button></div></div>
+<div class="glass"><div class="sectionTitle section-home-2"><span class="sectionNo">02</span><span>BUILDER STATUS</span></div><div class="status" id="homeStatus">Ready · Internal APK engine</div><div class="note">The website wrapper is packaged and signed locally inside WEB2APK. Only Live Website mode needs internet. Android controls the actual display refresh rate.</div></div>
+<div class="glass"><div class="sectionTitle section-home-3"><span class="sectionNo">03</span><span>V4.8 PRO FEATURES</span></div><div class="sub">Custom app name · Package ID · Icon picker · HTML / ZIP import · Code Studio · Gemini AI (OFF by default) · Startup loading presets · 3 animation speeds · Orientation · Fullscreen · Pull-to-refresh · Back navigation · External links · Cache controls · Downloads · Zoom · Desktop mode · Local signing · Build history · Dark Mode.</div></div></section>
+
+<section id="create" class="page">
+<div class="glass"><div class="sectionTitle section-source"><span class="sectionNo">01</span><span>WEBSITE SOURCE</span></div><div class="row"><button class="btn light" onclick="AppBridge.pickSource('html')"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M14 3v6h5M12 12v6M9 15h6"/></svg> Select HTML</button><button class="btn light" onclick="AppBridge.pickSource('zip')"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4zM4 7l2-3h12l2 3"/><path d="M9 11h6M9 15h6"/></svg> Select ZIP</button></div><div class="fileline" id="sourceLabel">No source selected</div><button class="btn light wide" style="margin-top:7px" onclick="AppBridge.clearSource()"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg> Clear selected file / Use URL</button><div class="field"><label>OR LIVE WEBSITE URL</label><input id="url" class="input" placeholder="https://example.com" inputmode="url"></div><button class="btn light wide" onclick="AppBridge.preview(document.getElementById('url').value)"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 10 6-10 6z"/></svg> Live Preview</button><div class="note">ZIP file must contain index.html plus its CSS, JavaScript and image folders.</div></div>
+<div class="glass"><div class="sectionTitle section-identity"><span class="sectionNo">02</span><span>APP IDENTITY</span></div><div class="field"><label>APP NAME</label><input id="appName" class="input" value="My Website App" maxlength="40"></div><div class="field"><label>PACKAGE ID</label><input id="packageId" class="input" value="com.example.mywebapp" autocapitalize="none"></div><div class="row"><div class="field"><label>VERSION NAME</label><input id="versionName" class="input" value="1.0.0"></div><div class="field"><label>VERSION CODE</label><input id="versionCode" class="input" value="1" type="number" min="1"></div></div><div class="sectionTitle section-icon" style="margin-top:8px"><span class="sectionNo">03</span><span>APP ICON PHOTO</span></div>
+<div class="iconPickerRow">
+  <div class="iconPreview" id="iconPreview"><img src="web2apk_logo.png" alt="WEB2APK default icon"/></div>
+  <div class="iconPickerActions">
+    <button class="pick wide" onclick="AppBridge.pickIcon()"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m5 18 5-5 3 3 2-2 4 4"/></svg> Choose photo from Gallery / Photos</button>
+    <button class="btn light wide iconReset" onclick="AppBridge.clearIcon()">Reset to default icon</button>
+  </div>
+</div>
+<div class="fileline" id="iconLabel">Default WEB2APK icon · 512 × 512 PNG on build</div></div>
+<div class="glass">
+  <div class="creatorCredit"><div><b>Made By Tg - @Hop3_1</b><small>You can hide this credit in Settings.</small></div><button class="themeSwitch on" id="creatorWatermarkSwitch" type="button" onclick="toggleCreatorWatermark()" aria-label="Toggle creator watermark" aria-pressed="true"><span></span></button></div>
+  <div class="sectionTitle section-permissions"><span class="sectionNo">05</span><span>ANDROID PERMISSIONS & APP OPTIONS</span></div>
+  <button class="permissionsToggle" id="permissionsToggle" type="button" onclick="togglePermissions()" aria-expanded="false" aria-controls="permissionExpand"><span class="permissionsToggleIcon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3 8-8 10-5-2-8-5-8-10V6z"/><path d="m8 12 2.5 2.5L16 9"/></svg></span><span class="permissionsToggleText"><b>Permissions you want</b><small id="permissionCount">Choose the features your website needs</small></span><span class="permissionsChevron"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+  <div id="permissionExpand" class="permissionExpand"><div class="permissionExpandInner"><div class="permissionIntro">Tap a setting to include the corresponding supported feature in the generated APK. Android will still ask the user for dangerous permissions when the website actually requests them.</div><div id="permissionGroups"></div><div class="note">Photos, videos, audio and website file uploads use Android's system document picker. Root access is unavailable to ordinary apps. Screenshot blocking uses Android FLAG_SECURE and can block screenshots and non-secure screen recording/casting, but not an external camera.</div></div></div>
+</div>
+<div class="glass appControlsCard">
+  <div class="sectionTitle section-build"><span class="sectionNo">06</span><span>GENERATED APP CONTROLS</span></div>
+  <div class="sub">ဒီ Setting တွေက တည်ဆောက်ပြီးသား Website APK ထဲမှာ အလုပ်လုပ်မယ့် Behavior တွေပါ။ Default တွေကို နေ့စဉ်အသုံးပြုရလွယ်အောင်ထားထားပါတယ်။</div>
+  <div class="appOptionGrid" style="margin-top:12px">
+    <div class="appOptionField"><label for="appOrientation">SCREEN ORIENTATION</label><select id="appOrientation" onchange="saveGeneratedAppOptions()"><option value="system">System / Auto</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></div>
+    <div class="appOptionField"><label for="appBackBehavior">ANDROID BACK BUTTON</label><select id="appBackBehavior" onchange="saveGeneratedAppOptions()"><option value="history">Go back in website</option><option value="confirm">Confirm before exit</option><option value="exit">Exit app immediately</option></select></div>
+    <div class="appOptionField"><label for="appCacheMode">WEBSITE CACHE</label><select id="appCacheMode" onchange="saveGeneratedAppOptions()"><option value="default">Normal / Smart</option><option value="cache_first">Cache first</option><option value="offline">Cache only (offline)</option><option value="no_cache">No cache / Privacy</option></select></div>
+  </div>
+  <div class="appOptionGrid" style="margin-top:9px">
+    <label class="appOptionToggle"><span>Full screen mode</span><input type="checkbox" id="appFullscreen" onchange="saveGeneratedAppOptions()"></label>
+    <label class="appOptionToggle"><span>Pull down to refresh</span><input type="checkbox" id="appPullRefresh" checked onchange="saveGeneratedAppOptions()"></label>
+    <label class="appOptionToggle"><span>Open external links in browser</span><input type="checkbox" id="appExternalLinks" onchange="saveGeneratedAppOptions()"></label>
+    <label class="appOptionToggle"><span>Allow file downloads</span><input type="checkbox" id="appDownloads" checked onchange="saveGeneratedAppOptions()"></label>
+    <label class="appOptionToggle"><span>Pinch to zoom</span><input type="checkbox" id="appZoom" checked onchange="saveGeneratedAppOptions()"></label>
+    <label class="appOptionToggle"><span>Desktop website mode</span><input type="checkbox" id="appDesktopMode" onchange="saveGeneratedAppOptions()"></label>
+  </div>
+  <div class="appOptionHint">မှတ်ချက် — Offline Cache သည် ယခင်က cache ထဲဝင်ထားသော page/resource များကိုသာ ပြန်သုံးနိုင်သည်။ ပထမဆုံးအကြိမ် Internet မရှိဘဲ Live Website ကို ဖွင့်ပေးနိုင်မည်ဟု အာမမခံပါ။ Desktop Mode ကို Website က Mobile UI ကိုသာ ပြသနေသည့်အခါ အသုံးပြုပါ။</div>
+</div>
+
+<div class="glass startupCard">
+  <div class="sectionTitle section-build"><span class="sectionNo">07</span><span>STARTUP LOADING</span></div>
+  <div class="sub">Choose how the generated app opens. The loading screen closes automatically when your website is ready.</div>
+  <div class="note" style="margin:10px 0 6px">PICK A LOADING STYLE</div>
+  <select class="hidden" id="startupStyle" aria-hidden="true"><option value="off">Off</option><option value="custom">Custom</option><option value="native">Native</option><option value="ios_zoom" selected>iOS Zoom</option><option value="slide">Slide Away</option><option value="pop">Pop</option></select>
+  <div class="startupOptions" role="radiogroup" aria-label="Startup loading style">
+    <button class="startupOption" type="button" data-style="off" onclick="setStartupStyle('off')"><span class="startupOptionIcon">⊘</span><span><b>Off</b><small>Open your website immediately</small></span><span class="startupOptionCheck">✓</span></button>
+    <button class="startupOption" type="button" data-style="custom" onclick="setStartupStyle('custom')"><span class="startupOptionIcon">▧</span><span><b>Custom</b><small>Play your own image or video</small></span><span class="startupOptionCheck">✓</span></button>
+    <button class="startupOption" type="button" data-style="native" onclick="setStartupStyle('native')"><span class="startupOptionIcon">▦</span><span><b>Native</b><small>App icon with a soft fade</small></span><span class="startupOptionCheck">✓</span></button>
+    <button class="startupOption active" type="button" data-style="ios_zoom" onclick="setStartupStyle('ios_zoom')"><span class="startupOptionIcon">⤢</span><span><b>iOS Zoom</b><small>Zoom into the app as it opens</small></span><span class="startupOptionCheck">✓</span></button>
+    <button class="startupOption" type="button" data-style="slide" onclick="setStartupStyle('slide')"><span class="startupOptionIcon">↟</span><span><b>Slide Away</b><small>Loading screen lifts up to reveal the app</small></span><span class="startupOptionCheck">✓</span></button>
+    <button class="startupOption" type="button" data-style="pop" onclick="setStartupStyle('pop')"><span class="startupOptionIcon">✦</span><span><b>Pop</b><small>App icon grows, then fades away</small></span><span class="startupOptionCheck">✓</span></button>
+  </div>
+  <div id="startupCustomControls" class="hidden"><button class="pick wide" type="button" onclick="AppBridge.pickSplashMedia()">Choose custom image / video</button><div class="fileline" id="splashMediaLabel">No custom media selected</div><button class="btn light wide" type="button" style="margin-top:6px" onclick="AppBridge.clearSplashMedia()">Clear custom media</button></div>
+  <div class="field"><label>ANIMATION SPEED</label><div class="startupSpeed"><button type="button" data-speed="slow" onclick="setStartupSpeed('slow')">Slow Smooth</button><button type="button" data-speed="normal" class="active" onclick="setStartupSpeed('normal')">Normal Smooth</button><button type="button" data-speed="fast" onclick="setStartupSpeed('fast')">Fast</button></div></div>
+  <div class="startupPreview" id="startupPreview"><span class="startupPreviewIcon">✦</span><span><b>Startup preview</b><br>iOS Zoom · Normal Smooth</span></div>
+  <div class="note">Custom video is muted and loops only while the loading screen is visible. Animation duration also follows the selected speed; Android system animation settings may shorten transitions.</div>
+</div>
+<div class="glass"><div class="sectionTitle section-build"><span class="sectionNo">08</span><span>BUILD</span></div><div class="status" id="buildStatus">Select HTML/ZIP or enter a website URL to start building.</div><div class="progress"><div class="bar" id="buildBar"></div></div><button class="btn wide" style="margin-top:14px" onclick="startBuild()"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg> BUILD SIGNED APK</button><div class="note">Live build progress is shown here. When the signed APK is ready, Android Installer opens automatically for your final confirmation.</div></div></section>
+
+
+<section id="codeEditor" class="page">
+ <div class="glass editorShell">
+  <div class="sectionTitle"><span class="sectionNo" style="background:linear-gradient(145deg,#7e70f0,#2bb8c5)">06</span><span>CODE EDITOR / WEB PROJECT</span></div>
+  <div class="editorHead"><div><div class="editorProjectName" id="editorProjectTitle">My Web Project</div><div class="note">HTML · CSS · JavaScript · Local project</div></div><button class="editorTool" onclick="toggleEditorMenu()" aria-label="Editor menu"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg> Tools</button></div>
+  <div class="row"><input id="editorProjectName" class="input" value="My Web Project" maxlength="50" aria-label="Project name"><button class="btn light" style="flex:0 0 auto" onclick="newEditorProject()">＋ New</button></div>
+  <div class="editorToolRow"><button class="editorTool" onclick="AppBridge.openEditorZip()">Open project ZIP</button><button class="editorTool" onclick="AppBridge.addEditorFile()">Add file</button><button class="editorTool" onclick="saveEditorDraft(true)">Save now</button><button class="editorTool" onclick="toggleEditorPreview()">Preview</button></div>
+  <div id="editorMenu" class="editorMenu">
+   <button onclick="editorAction('format')">✦ Format document</button>
+   <button onclick="editorAction('find')">⌕ Find & replace</button>
+   <button onclick="editorAction('line')">↳ Go to line</button>
+   <button onclick="editorAction('snippet')">＋ Insert snippet</button>
+   <button onclick="insertAiApiExample()">✦ AI API quick start</button>
+   <button onclick="editorAction('trim')">≡ Trim trailing spaces</button>
+   <button onclick="editorAction('search')">⌕ Search in project</button>
+   <button onclick="editorAction('wrap')">↔ Toggle word wrap</button>
+   <button onclick="editorAction('bigger')">A＋ Bigger text</button>
+   <button onclick="editorAction('smaller')">A－ Smaller text</button>
+   <button onclick="editorAction('check')">✓ Check code (no build)</button>
+   <button onclick="exportEditorProjectZip()">⇩ Save ZIP to Downloads</button>
+   <button onclick="AppBridge.openEditorZip()">▱ Open another ZIP</button>
+  </div>
+  <div class="editorFileTabs" role="tablist">
+   <button class="editorFileTab active" data-editor-tab="html" onclick="switchEditorTab('html',this)">HTML · index.html</button>
+   <button class="editorFileTab" data-editor-tab="css" onclick="switchEditorTab('css',this)">CSS · style.css</button>
+   <button class="editorFileTab" data-editor-tab="js" onclick="switchEditorTab('js',this)">JS · script.js</button>
+  </div>
+  <div class="editorCodeFrame"><div class="editorGutter" id="editorGutter">1</div><textarea id="editorTextarea" class="editorTextarea" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" wrap="off" aria-label="Code editor" oninput="editorChanged()" onkeydown="editorKeydown(event)" onkeyup="updateEditorCursorStatus()" onscroll="syncEditorGutter()"></textarea></div>
+  <div class="editorKeys"><button onclick="insertEditorText('&lt;')">&lt;</button><button onclick="insertEditorText('&gt;')">&gt;</button><button onclick="insertEditorText('/')">/</button><button onclick="insertEditorText('=')">=</button><button onclick="insertEditorText('&quot;')">&quot;</button><button onclick="insertEditorText('{')">{</button><button onclick="insertEditorText('}')">}</button><button onclick="insertEditorText(';')">;</button><button onclick="insertEditorText('  ')">Tab</button></div>
+  <div class="editorStatus"><span id="editorLineStatus">Ln 1, Col 1 · Saved</span><span id="editorTypeStatus">HTML · UTF-8</span></div>
+  <div id="editorFindPanel" class="editorFindPanel"><input id="editorFind" class="input" placeholder="Find text"><input id="editorReplace" class="input" placeholder="Replace with"><button class="btn light" onclick="findNextEditor()">Find next</button><button class="btn light" onclick="searchAllEditorFiles()">Search project</button><button class="btn" onclick="replaceAllEditor()">Replace all</button><button class="btn light wide" onclick="closeFindEditor()">Close</button></div>
+  <div id="editorLinePanel" class="editorFindPanel"><input id="editorLineNumber" class="input" type="number" min="1" placeholder="Line number"><button class="btn" onclick="goToEditorLine()">Go</button></div>
+  <iframe id="editorPreview" class="editorPreview" title="Code preview" sandbox="allow-scripts allow-forms allow-modals"></iframe>
+  <div class="editorBuildCard"><div><b>Build this web project</b><small>Uses your current App Name, Package ID, version, icon and permission settings from Create. Builds a signed Website APK inside WEB2APK.</small></div><button class="btn" onclick="buildFromEditor()"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg> Build APK</button></div>
+  <div class="status" id="editorBuildStatus">Editor ready · Save your code, then build.</div><div class="progress"><div class="bar" id="editorBuildBar"></div></div>
+  <div class="note">This editor builds HTML/CSS/JavaScript websites as Android WebView APKs. It does not compile arbitrary Kotlin/Java or Flutter projects.</div>
+ </div>
+</section>
+
+<section id="projects" class="page"><div class="glass"><div class="sectionTitle section-projects"><span class="sectionNo">01</span><span>PROJECTS / BUILD HISTORY</span></div><div class="sub">Your latest APK builds on this device.</div><div id="historyList" style="margin-top:12px"><div class="muted">No builds yet.</div></div></div></section>
+
+<section id="settings" class="page">
+<div class="glass telegram-card"><div class="sectionTitle section-settings-4"><span class="sectionNo">00</span><span>TELEGRAM / COMMUNITY</span></div>
+<div class="sub">WEB2APK updates, new feature announcements, release notes and usage tips are shared through the channel. Contact the creator for project-related questions and feedback.</div>
+<div class="telegram-profile"><span class="telegram-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.5-3.5 2.7-5.3 6.5-5.3s6 1.8 6.5 5.3"/></svg></span><div><b>Telegram User</b><small>@Hop3_1 · WEB2APK Creator</small></div></div>
+<button type="button" class="btn light wide telegram-link" onclick="AppBridge.openTelegram('https://t.me/Hop3_1')"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 3.8 10.2c-.8.3-.8 1.4 0 1.7l4.6 1.5 1.5 5.1c.2.7 1.1.9 1.6.3l2.6-3.1 4.8 3.4c.6.4 1.4.1 1.5-.7L22 4.2c.1-.8-.4-1.5-1-1.2ZM8.4 13.4 18.8 6l-8.1 9.1"/></svg> Message @Hop3_1</button>
+<div class="telegram-channel"><div><b>WEB2APK Channel</b><small>t.me/web2apkpro · Updates and announcements</small></div><button type="button" class="btn telegram-join" onclick="AppBridge.openTelegram('https://t.me/web2apkpro')">Join Channel</button></div>
+</div>
+<div class="glass"><div class="sectionTitle section-settings-1"><span class="sectionNo">01</span><span>APPEARANCE</span></div><div class="themeSetting"><div><b>Dark Mode</b><small>Use a deep black liquid-glass theme</small></div><button class="themeSwitch" id="themeSwitch" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode"><span></span></button></div></div>
+<div class="glass"><div class="sectionTitle section-settings-2"><span class="sectionNo">02</span><span>CREATOR CREDIT</span></div><div class="themeSetting"><div><b>Made By Tg - @Hop3_1</b><small>Show or hide this credit in generated apps</small></div><button class="themeSwitch on" id="settingsCreatorWatermarkSwitch" type="button" onclick="toggleCreatorWatermark()" aria-label="Show or hide creator credit" aria-pressed="true"><span></span></button></div></div>
+
+<div class="glass"><div class="sectionTitle section-settings-1"><span class="sectionNo">03</span><span>INTERNAL BUILD ENGINE</span></div><div class="status">WEB2APK V4.8 packages your website into a WebView Android app and signs the APK inside this app. Termux, RUN_COMMAND permission and shared-storage access are not used.</div><button class="btn light wide" style="margin-top:12px" onclick="AppBridge.openInstallSettings()"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg> Allow install unknown apps</button></div>
+<div class="glass"><div class="sectionTitle section-settings-2"><span class="sectionNo">04</span><span>HOW IT WORKS</span></div><div class="sub">1. Select an HTML file, website ZIP, or enter an HTTP/HTTPS URL.<br>2. Set the app name, package ID, version and optional icon.<br>3. Choose only the website permissions you need.<br>4. Tap BUILD SIGNED APK. WEB2APK prepares the wrapper, adds your website files and signs the APK on-device.<br>5. Android Installer opens for your final confirmation.</div></div>
+<div class="glass"><div class="sectionTitle section-settings-3"><span class="sectionNo">05</span><span>ANDROID PERMISSIONS</span></div><div class="sub">File and Photo access: Android system picker only; no broad storage permission.<br>Termux / RUN_COMMAND: not required and not declared.<br>Usage Access: not required and never requested.<br>Install unknown apps: allow WEB2APK to open Android's APK installer on Android 8+.<br>Notifications: optional build-completion alerts.<br>Camera, Microphone and GPS: included only in the generated website APK when selected, then requested from the user when the website uses them.</div><button class="btn light wide" style="margin-top:8px" onclick="AppBridge.requestNotifications()"><svg class="btnIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg> Enable build notifications (optional)</button></div>
+
+<div class="glass"><div class="sectionTitle section-settings-4"><span class="sectionNo">06</span><span>ABOUT WEB2APK V4.8</span></div><div class="sub">Internal WebView APK wrapper · Local package customization · Local APK signing · Android API 23+ output runtime · Orientation, fullscreen, cache and navigation controls.<br><br>Note: This builds website/WebView APKs from web content. It is not a general compiler for arbitrary Android Java/Kotlin projects. Live URL apps need internet to display the remote site.</div></div></section>
+</div>
+<nav class="nav" aria-label="Main navigation">
+<button type="button" class="active" data-page="home" onclick="go('home',this)" aria-label="Home"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span><span>Home</span></button>
+<button type="button" data-page="projects" onclick="go('projects',this)" aria-label="Projects"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A1.5 1.5 0 0 1 5.5 6H10l2 2h6.5A1.5 1.5 0 0 1 20 9.5v8a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><path d="M4 10h16"/></svg></span><span>Projects</span></button>
+<button type="button" class="nav-create" data-page="create" onclick="go('create',this)" aria-label="Create" title="Create new app"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span class="nav-create-label" aria-hidden="true">Create</span></button>
+<button type="button" data-page="codeEditor" onclick="go('codeEditor',this)" aria-label="Code Editor"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span>Code</span></button>
+<button type="button" data-page="settings" onclick="go('settings',this)" aria-label="Settings"><span class="ni"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.1h-2.6v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.5-1H6v-2h.5A1.7 1.7 0 0 0 8 11a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5V6h2.6v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.1v2h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span><span>Settings</span></button>
+</nav>
+<script>
+function applyTheme(dark,save){
+  document.body.classList.toggle('dark',!!dark);
+  const label=document.getElementById('themeLabel'); if(label) label.textContent=dark?'Day':'Night';
+  const button=document.getElementById('themeButton'); if(button) button.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');
+  const sw=document.getElementById('themeSwitch'); if(sw) sw.classList.toggle('on',!!dark);
+  if(save){try{localStorage.setItem('web2apk.theme',dark?'dark':'light')}catch(e){}}
+  try{if(window.AppBridge) AppBridge.setDarkMode(!!dark)}catch(e){}
+  const meta=document.querySelector('meta[name="theme-color"]'); if(meta) meta.content=dark?'#000000':'#e7eaff';
+}
+function toggleTheme(){applyTheme(!document.body.classList.contains('dark'),true)}
+let creatorWatermarkEnabled=true;
+function applyCreatorWatermark(enabled,save){creatorWatermarkEnabled=!!enabled;['creatorWatermarkSwitch','settingsCreatorWatermarkSwitch'].forEach(id=>{const sw=document.getElementById(id);if(sw){sw.classList.toggle('on',creatorWatermarkEnabled);sw.setAttribute('aria-pressed',creatorWatermarkEnabled?'true':'false');}});if(save){try{localStorage.setItem('web2apk.creatorWatermark',creatorWatermarkEnabled?'on':'off')}catch(e){}}}
+function toggleCreatorWatermark(){applyCreatorWatermark(!creatorWatermarkEnabled,true)}
+(function initCreatorWatermark(){let value='on';try{value=localStorage.getItem('web2apk.creatorWatermark')||'on'}catch(e){};applyCreatorWatermark(value!=='off',false)})();
+let startupSpeed='normal';
+let splashMediaName='';
+function updateStartupStyle(save){const style=document.getElementById('startupStyle')?.value||'ios_zoom';const custom=document.getElementById('startupCustomControls');if(custom)custom.classList.toggle('hidden',style!=='custom');document.querySelectorAll('.startupOption').forEach(b=>{const active=b.dataset.style===style;b.classList.toggle('active',active);b.setAttribute('aria-checked',active?'true':'false')});if(save){try{localStorage.setItem('web2apk.startupStyle',style)}catch(e){}}renderStartupPreview();}
+function setStartupStyle(style){const select=document.getElementById('startupStyle');if(select)select.value=style;updateStartupStyle(true);}
+function setStartupSpeed(speed){startupSpeed=['slow','normal','fast'].includes(speed)?speed:'normal';document.querySelectorAll('.startupSpeed button').forEach(b=>b.classList.toggle('active',b.dataset.speed===startupSpeed));try{localStorage.setItem('web2apk.startupSpeed',startupSpeed)}catch(e){}renderStartupPreview();}
+function renderStartupPreview(){const el=document.getElementById('startupPreview');if(!el)return;const names={off:'Off',custom:'Custom',native:'Native',ios_zoom:'iOS Zoom',slide:'Slide Away',pop:'Pop'};const speeds={slow:'Slow Smooth',normal:'Normal Smooth',fast:'Fast'};const style=document.getElementById('startupStyle')?.value||'ios_zoom';el.innerHTML='<span class="startupPreviewIcon">✦</span><span><b>Startup preview</b><br>'+names[style]+' · '+speeds[startupSpeed]+(style==='custom'&&splashMediaName?' · '+esc(splashMediaName):'')+'</span>';}
+function selectedSplashMedia(name){splashMediaName=name||'';const label=document.getElementById('splashMediaLabel');if(label)label.textContent=splashMediaName||'No custom media selected';updateStartupStyle(true);}
+function initStartupSettings(){try{const st=localStorage.getItem('web2apk.startupStyle');if(st&&document.getElementById('startupStyle'))document.getElementById('startupStyle').value=(st==='custom'?'ios_zoom':st);const sp=localStorage.getItem('web2apk.startupSpeed');if(sp)startupSpeed=sp}catch(e){};setStartupSpeed(startupSpeed);updateStartupStyle(false);}
+function startupStyleValue(){return document.getElementById('startupStyle')?.value||'ios_zoom'}
+
+const generatedAppOptionDefaults={orientation:'system',backBehavior:'history',cacheMode:'default',fullscreen:false,pullRefresh:true,externalLinks:false,downloads:true,allowZoom:true,desktopMode:false};
+function readGeneratedAppOptions(){const get=(id,fallback)=>{const el=document.getElementById(id);return el?el.value:fallback},on=(id,fallback)=>{const el=document.getElementById(id);return el?!!el.checked:fallback};return {orientation:get('appOrientation','system'),backBehavior:get('appBackBehavior','history'),cacheMode:get('appCacheMode','default'),fullscreen:on('appFullscreen',false),pullRefresh:on('appPullRefresh',true),externalLinks:on('appExternalLinks',false),downloads:on('appDownloads',true),allowZoom:on('appZoom',true),desktopMode:on('appDesktopMode',false)}}
+function saveGeneratedAppOptions(){const options=readGeneratedAppOptions();try{localStorage.setItem('web2apk.generatedAppOptions',JSON.stringify(options))}catch(e){}return options}
+function initGeneratedAppOptions(){let options={...generatedAppOptionDefaults};try{const saved=JSON.parse(localStorage.getItem('web2apk.generatedAppOptions')||'{}');options={...options,...saved}}catch(e){};const set=(id,value)=>{const el=document.getElementById(id);if(el)el.value=value};const check=(id,value)=>{const el=document.getElementById(id);if(el)el.checked=!!value};set('appOrientation',options.orientation);set('appBackBehavior',options.backBehavior);set('appCacheMode',options.cacheMode);check('appFullscreen',options.fullscreen);check('appPullRefresh',options.pullRefresh);check('appExternalLinks',options.externalLinks);check('appDownloads',options.downloads);check('appZoom',options.allowZoom);check('appDesktopMode',options.desktopMode);}
+function generatedAppOptionArgs(){const o=readGeneratedAppOptions();return [o.orientation,o.fullscreen,o.pullRefresh,o.backBehavior,o.externalLinks,o.cacheMode,o.allowZoom,o.desktopMode,o.downloads]}
+
+
+(function initTheme(){let dark=false;try{dark=localStorage.getItem('web2apk.theme')==='dark'}catch(e){};applyTheme(dark,false)})();
+function go(p,el){const target=document.getElementById(p),current=document.querySelector('.page.active');if(!target)return;if(current===target){document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===p));return;}if(current){current.classList.remove('active');current.classList.add('page-exit');setTimeout(()=>current.classList.remove('page-exit'),260);}target.classList.remove('page-exit','active');void target.offsetWidth;target.classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));const navButton=el||document.querySelector('[data-page="'+p+'"]');if(navButton)navButton.classList.add('active');if(p==='projects'&&window.AppBridge)AppBridge.refreshHistory();window.scrollTo({top:0,behavior:'smooth'});}
+function togglePermissions(){
+ const panel=document.getElementById('permissionExpand');
+ const button=document.getElementById('permissionsToggle');
+ if(!panel||!button)return;
+ const open=button.getAttribute('aria-expanded')!=='true';
+ button.setAttribute('aria-expanded',open?'true':'false');
+ panel.classList.toggle('open',open);
+ updatePermissionCount();
+ if(open){setTimeout(()=>{if(panel.classList.contains('open'))panel.scrollIntoView({block:'nearest',behavior:'smooth'})},150)}
+}
+function updatePermissionCount(){
+ const host=document.getElementById('permissionGroups');const label=document.getElementById('permissionCount');if(!host||!label)return;
+ const enabled=host.querySelectorAll('.permissionRow input[type="checkbox"]:checked:not(:disabled)').length;
+ label.textContent=enabled+' selected · Tap to '+(document.getElementById('permissionsToggle')?.getAttribute('aria-expanded')==='true'?'hide':'choose');
+}
+const permissionGroups=[
+ {title:"NETWORK & SYSTEM",color:"#6758d5",gradient:"linear-gradient(145deg,#9b85f5,#5b57d4)",items:[
+  {id:"permInternet",name:"Internet",desc:"Required to load online websites",icon:"globe",checked:true,locked:true,status:"Always included"},
+  {id:"permNetwork",name:"Network state",desc:"Check whether Wi-Fi or mobile data is connected",icon:"wifi",checked:true,locked:true,status:"Always included"},
+  {id:"notifications",name:"Notifications",desc:"Allow Android notifications for the generated app",icon:"bell",checked:true,status:"Supported"},
+  {id:"keepScreenAwake",name:"Keep screen awake",desc:"Prevent display sleep while the website app is open",icon:"sun",status:"Supported"},
+  {id:"permBackground",name:"Background tasks",desc:"Long-running background work needs a native service",icon:"layers",disabled:true,status:"Native integration needed",kind:"native"},
+  {id:"permBiometric",name:"Biometric unlock",desc:"Fingerprint / face unlock needs native authentication UI",icon:"fingerprint",disabled:true,status:"Native integration needed",kind:"native"}
+ ]},
+ {title:"MEDIA & CAMERA",color:"#cf4f9b",gradient:"linear-gradient(145deg,#f18bc6,#ce4398)",items:[
+  {id:"camera",name:"Camera",desc:"QR scanning, camera capture and video calls",icon:"camera",status:"Supported"},
+  {id:"microphone",name:"Microphone",desc:"Voice input, audio recording and calls",icon:"mic",status:"Supported"},
+  {id:"permPhotos",name:"Photos",desc:"Picked through Android Photo / Document Picker",icon:"image",checked:true,locked:true,status:"System picker",kind:"system"},
+  {id:"permVideos",name:"Videos",desc:"Picked through Android Document Picker",icon:"video",checked:true,locked:true,status:"System picker",kind:"system"},
+  {id:"permAudio",name:"Audio files",desc:"Picked through Android Document Picker",icon:"music",checked:true,locked:true,status:"System picker",kind:"system"}
+ ]},
+ {title:"LOCATION",color:"#278fbe",gradient:"linear-gradient(145deg,#6bc9e7,#347ed7)",items:[
+  {id:"locationApprox",name:"Approximate location",desc:"Coarse location for nearby places and maps",icon:"map-pin",status:"Supported"},
+  {id:"locationPrecise",name:"Precise location",desc:"Fine GPS position; also includes approximate location",icon:"crosshair",status:"Supported"},
+  {id:"permBackgroundLocation",name:"Background location",desc:"Location while the app is not visible needs extra native flow",icon:"navigation",disabled:true,status:"Native integration needed",kind:"native"}
+ ]},
+ {title:"STORAGE",color:"#b27b27",gradient:"linear-gradient(145deg,#f4bf65,#dc8731)",items:[
+  {id:"permLegacyStorage",name:"Files & media (legacy)",desc:"Legacy storage permission is not used; system picker is safer",icon:"folder",checked:true,locked:true,status:"System picker",kind:"system"}
+ ]},
+ {title:"CONTACTS & CALENDAR",color:"#228d83",gradient:"linear-gradient(145deg,#55c6a8,#198a86)",items:[
+  {id:"permReadContacts",name:"Pick a contact",desc:"Opens Android's contact picker; only the selected contact is shared",icon:"contact",status:"System picker",kind:"system"},
+  {id:"permEditContacts",name:"Add a contact",desc:"Opens the Contacts app with a prefilled contact form",icon:"user-edit",status:"User confirmation",kind:"system"},
+  {id:"permReadCalendar",name:"View calendar",desc:"Opens the Calendar app; no broad calendar access",icon:"calendar",status:"App intent",kind:"system"},
+  {id:"permEditCalendar",name:"Create calendar event",desc:"Opens the Calendar event form for the user to save",icon:"calendar-edit",status:"User confirmation",kind:"system"}
+ ]},
+ {title:"PHONE & SMS",color:"#c05a54",gradient:"linear-gradient(145deg,#ed9a83,#c25165)",items:[
+  {id:"permMakeCalls",name:"Phone dialer links",desc:"Opens the Android dialer for tel: links; no direct-call permission",icon:"phone",status:"Supported · Dialer only",kind:"system"},
+  {id:"permPhoneState",name:"Phone state",desc:"Sensitive device / telephony information",icon:"phone-info",disabled:true,status:"Not included",kind:"off"},
+  {id:"permCallLog",name:"Call log",desc:"Sensitive call history access",icon:"phone-log",disabled:true,status:"Not included",kind:"off"},
+  {id:"permReadSms",name:"Read SMS",desc:"Sensitive messages; not used by website wrapper",icon:"message",disabled:true,status:"Not included",kind:"off"},
+  {id:"permSendSms",name:"Send SMS",desc:"SMS sending requires native integration and policy review",icon:"send",disabled:true,status:"Not included",kind:"off"}
+ ]},
+ {title:"CONNECTIVITY & SENSORS",color:"#3882a9",gradient:"linear-gradient(145deg,#79c7df,#397eb1)",items:[
+  {id:"permBluetooth",name:"Bluetooth",desc:"Bluetooth device access needs native integration",icon:"bluetooth",disabled:true,status:"Native integration needed",kind:"native"},
+  {id:"permNearbyWifi",name:"Nearby Wi-Fi devices",desc:"Nearby device discovery needs native integration",icon:"wifi",disabled:true,status:"Native integration needed",kind:"native"},
+  {id:"permBodySensors",name:"Body sensors",desc:"Health sensor access is not used by a website wrapper",icon:"heart-pulse",disabled:true,status:"Not included",kind:"off"},
+  {id:"permPhysical",name:"Physical activity",desc:"Activity recognition needs native integration",icon:"activity",disabled:true,status:"Native integration needed",kind:"native"},
+  {id:"permVibrate",name:"Vibrate",desc:"Supports navigator.vibrate through the local Android bridge",icon:"vibrate",status:"Supported"}
+ ]},
+ {title:"ADVANCED & SECURITY",color:"#6657c9",gradient:"linear-gradient(145deg,#9c8af1,#5c57c8)",items:[
+  {id:"permAllFiles",name:"All files access",desc:"Not needed; broad storage access stays off",icon:"folder-lock",disabled:true,status:"Not requested",kind:"off"},
+  {id:"permInstallUnknown",name:"Install unknown apps",desc:"Builder-only Android setting; not a website permission",icon:"package-check",disabled:true,status:"Builder setting",kind:"native"},
+  {id:"permRoot",name:"Root access",desc:"Ordinary Android apps cannot grant root access",icon:"shield-alert",disabled:true,status:"Unavailable",kind:"off"},
+ ]},
+ {title:"SCREEN CAPTURE PROTECTION",color:"#b14e9a",gradient:"linear-gradient(145deg,#ed83c9,#9358d5)",items:[
+  {id:"blockScreenshots",name:"Block screenshots & screen recording",desc:"Use Android FLAG_SECURE to hide app content from screenshots, recordings and non-secure displays",icon:"shield",status:"Supported"}
+ ]}
+];
+const permissionIcons={
+ check:'<path d="m5 12 4 4L19 6"/>',
+ globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+ wifi:'<path d="M3 9a14 14 0 0 1 18 0M6.5 12.5a9 9 0 0 1 11 0M10 16a4 4 0 0 1 4 0"/><circle cx="12" cy="19" r=".8"/>',
+ bell:'<path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ layers:'<path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/>',
+ fingerprint:'<path d="M12 11a2 2 0 0 0-2 2c0 3-1 5-2 7m4-12a5 5 0 0 0-5 5c0 2-.3 4-1 5m6-13a8 8 0 0 0-8 8m8-3a5 5 0 0 1 5 5c0 2-.4 4-1.2 6M12 7a5 5 0 0 1 5 5c0 1.5.2 3 .7 4.2"/>',
+ camera:'<rect x="3" y="6" width="18" height="14" rx="3"/><path d="m8 6 1.5-2h5L16 6"/><circle cx="12" cy="13" r="4"/>',
+ mic:'<rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/>',
+ image:'<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m4 18 6-6 4 4 2-2 4 4"/>',
+ video:'<rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3z"/>',
+ music:'<path d="M10 18V5l10-2v13"/><circle cx="7" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
+ 'map-pin':'<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/>',
+ crosshair:'<circle cx="12" cy="12" r="7"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/>',
+ navigation:'<path d="m4 4 16 8-7 2-2 7z"/>',
+ folder:'<path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10H3z"/>',
+ contact:'<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0m2-11h4m-2-2v4"/>',
+ 'user-edit':'<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 10-4m4 0 4-4 2 2-4 4-3 1z"/>',
+ calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/>',
+ 'calendar-edit':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h12m1 7 4-4 2 2-4 4-3 1z"/>',
+ phone:'<path d="M7 3h3l2 5-2 2a15 15 0 0 0 4 4l2-2 5 2v3c0 2-2 4-4 4C9 20 4 15 3 8c0-3 2-5 4-5z"/>',
+ 'phone-info':'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 6h4m-3 4h2m-1 3v3"/>',
+ 'phone-log':'<path d="M7 3h3l2 5-2 2a15 15 0 0 0 4 4l2-2 5 2v3c0 2-2 4-4 4C9 20 4 15 3 8c0-3 2-5 4-5z"/>',
+ message:'<path d="M4 5h16v12H9l-5 4zM8 9h8m-8 4h6"/>',
+ send:'<path d="m3 11 18-8-8 18-2-8zM11 13l10-10"/>',
+ bluetooth:'<path d="m7 7 10 10-5 4V3l5 4L7 17"/>',
+ 'heart-pulse':'<path d="M3 12h4l2-5 4 10 2-5h6"/>',
+ activity:'<path d="M3 12h4l2-5 4 10 2-5h6"/>',
+ vibrate:'<rect x="7" y="4" width="10" height="16" rx="2"/><path d="M3 8v8m18-8v8M1 10v4m22-4v4"/>',
+ 'folder-lock':'<path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v4H3z"/><rect x="8" y="13" width="8" height="7" rx="1"/><path d="M10 13v-2a2 2 0 0 1 4 0v2"/>',
+ 'package-check':'<path d="m12 3 8 4v10l-8 4-8-4V7zM4 7l8 4 8-4m-8 4v10m-4-7 2 2 4-4"/>',
+ 'shield-alert':'<path d="M12 3 20 6v5c0 5-3 8-8 10-5-2-8-5-8-10V6zM12 8v5m0 3h.01"/>',
+ shield:'<path d="M12 3 20 6v5c0 5-3 8-8 10-5-2-8-5-8-10V6z"/><path d="m8 12 2.5 2.5L16 9"/>'
+};
+function iconSvg(name){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+(permissionIcons[name]||permissionIcons.shield)+'</svg>'}
+function builderAiPanelMarkup(){return '<div class="builderApiPanel">'+
+ '<div class="builderApiTitle"><span>✦ AI API SETTINGS</span><span class="builderApiBadge">GEMINI READY</span></div>'+
+ '<label class="toggle builderApiEnable"><span><b>Enable AI in generated app</b><small>OFF by default. Turn on only for builds that need the Gemini AI helper.</small></span><input id="enableAiApi" type="checkbox"></label>'+
+ '<div class="field"><label>API ENDPOINT (HTTPS)</label><input id="aiEndpoint" class="input" value="https://generativelanguage.googleapis.com/v1beta/interactions" autocapitalize="none" autocomplete="off" spellcheck="false"></div>'+
+ '<div class="field"><label>MODEL</label><input id="aiModel" class="input" value="gemini-3.8-flash" autocapitalize="none" autocomplete="off"></div>'+
+ '<div class="field"><label>GEMINI / OPENAI-COMPATIBLE API KEY</label><input id="aiApiKey" class="input" type="password" placeholder="Paste API key here · Leave blank to keep saved key" autocomplete="off" autocapitalize="none"></div>'+
+ '<div class="builderApiActions"><button type="button" class="btn light" onclick="saveBuilderApiSettings(true)">Save API</button><button type="button" class="btn light" onclick="testBuilderApiSettings()">Test API</button><button type="button" class="btn light" onclick="clearBuilderApiKey()">Clear key</button></div>'+
+ '<label class="toggle builderApiEmbed"><span><b>Embed API key in generated APK</b><small>OFF by default for safety. Keep it off to enter the key once inside the installed app. Turning it on embeds a recoverable secret in the APK; anyone receiving that APK may extract and use it.</small></span><input id="embedAiKey" type="checkbox"></label>'+
+ '<div class="builderApiStatus" id="aiApiStatus">Save your Gemini API settings here. AI remains OFF in new builds until you enable it above.</div>'+
+ '</div>'}
+function initBuilderAiSettings(){try{if(!window.AppBridge)return;const raw=AppBridge.loadBuilderAiSettings();const cfg=JSON.parse(raw||'{}');const endpoint=document.getElementById('aiEndpoint'),model=document.getElementById('aiModel'),embed=document.getElementById('embedAiKey'),enable=document.getElementById('enableAiApi');if(endpoint&&cfg.endpoint)endpoint.value=cfg.endpoint;if(model&&cfg.model)model.value=cfg.model;if(embed)embed.checked=cfg.embed===true;if(enable)enable.checked=false;const status=document.getElementById('aiApiStatus');if(status)status.textContent=cfg.hasKey?'Saved Gemini/API key found · encrypted on this device. Leave the key box blank to keep it. AI is still OFF by default.':'No API key saved yet · paste your Gemini API key and tap Save API. AI can remain OFF.';}catch(e){const status=document.getElementById('aiApiStatus');if(status)status.textContent='Could not load saved API settings: '+e.message}}
+function saveBuilderApiSettings(show){const enabled=!!document.getElementById('enableAiApi')?.checked;const endpoint=document.getElementById('aiEndpoint')?.value||'',model=document.getElementById('aiModel')?.value||'',key=document.getElementById('aiApiKey')?.value||'',embed=!!document.getElementById('embedAiKey')?.checked;try{const result=JSON.parse(AppBridge.saveBuilderAiSettings(endpoint,model,key,embed)||'{}');const status=document.getElementById('aiApiStatus');if(!result.ok){if(status)status.textContent='Save failed: '+(result.error||'Unknown error');return false;}const input=document.getElementById('aiApiKey');if(input)input.value='';if(status)status.textContent=result.hasKey?'API settings saved · key encrypted on this device. '+(embed?'Key will be embedded in generated APKs (not recommended for shared APKs).':'Key stays on this device; enter it once in the generated app after install.'):'Endpoint and model saved · no API key saved yet.';return !enabled||!embed||!!result.hasKey;}catch(e){const status=document.getElementById('aiApiStatus');if(status)status.textContent='Save failed: '+e.message;return false}}
+function testBuilderApiSettings(){if(!saveBuilderApiSettings(false))return;const status=document.getElementById('aiApiStatus');if(status)status.textContent='Testing Gemini/API connection…';AppBridge.testBuilderAiSettings()}
+function aiApiTestResult(ok,message){const status=document.getElementById('aiApiStatus');if(status)status.textContent=(ok?'✓ ':'✕ ')+message;}
+function clearBuilderApiKey(){try{const result=JSON.parse(AppBridge.clearBuilderAiKey()||'{}');const status=document.getElementById('aiApiStatus');if(status)status.textContent=result.ok?'Saved API key removed from this device.':'Could not clear saved API key.';const input=document.getElementById('aiApiKey');if(input)input.value='';}catch(e){alert('Could not clear API key: '+e.message)}}
+
+function renderPermissionGroups(){
+ const host=document.getElementById('permissionGroups');if(!host)return;
+ host.innerHTML=permissionGroups.map((g,i)=>'<div class="permissionGroup" style="--group-color:'+g.color+';--group-gradient:'+g.gradient+'"><div class="permissionGroupHead"><span class="permissionGroupNo">'+String(i+1).padStart(2,'0')+'</span><span class="permissionGroupTitle">'+g.title+'</span></div>'+g.items.map(item=>{
+  const disabled=!!(item.disabled||item.locked),checked=!!item.checked;
+  const statusClass=item.kind==='native'?'native':item.kind==='system'?'system':item.kind==='off'?'off':'';
+  const status=item.status||'Supported';
+  const row = '<label class="permissionRow'+(disabled?' is-disabled':'')+'"><span class="permissionIcon">'+iconSvg(item.icon)+'</span><span class="permissionText"><b>'+item.name+'</b><small>'+item.desc+'</small><span class="permissionStatus '+statusClass+'">'+status+'</span></span><span class="permissionControl"><input type="checkbox" id="'+item.id+'" '+(checked?'checked ':'')+(disabled?'disabled':'')+'><span class="permissionCheck">'+iconSvg('check')+'</span></span></label>';
+  return row + (item.id==='notifications' ? builderAiPanelMarkup() : '');
+ }).join('')+'</div>').join('');
+ host.addEventListener('change',updatePermissionCount);
+ updatePermissionCount();
+}
+function startBuild(){if(!saveBuilderApiSettings(false))return;if(startupStyleValue()==='custom'&&!splashMediaName){alert('Custom loading ကိုရွေးထားပါတယ်။ Image သို့မဟုတ် Video တစ်ခုရွေးပေးပါ။');return;}const v=id=>document.getElementById(id)?.value||'',c=id=>{const e=document.getElementById(id);return !!(e&&e.checked)};AppBridge.startBuild(v('appName'),v('packageId'),v('versionName'),(parseInt(v('versionCode'),10)||1),c('camera'),c('microphone'),c('locationApprox'),c('locationPrecise'),c('notifications'),c('keepScreenAwake'),c('blockScreenshots'),c('permMakeCalls'),c('permVibrate'),c('permReadContacts'),c('permEditContacts'),c('permReadCalendar'),c('permEditCalendar'),creatorWatermarkEnabled,c('enableAiApi'),v('url'),startupStyleValue(),startupSpeed,...generatedAppOptionArgs());}
+function selectedSource(s){const e=document.getElementById('sourceLabel');e.textContent=s;e.classList.remove('feedbackIn');void e.offsetWidth;e.classList.add('feedbackIn')}
+function selectedIcon(s,dataUri){const e=document.getElementById('iconLabel');e.textContent=s;e.classList.remove('feedbackIn');void e.offsetWidth;e.classList.add('feedbackIn');const box=document.getElementById('iconPreview');if(!box)return;box.innerHTML='';const img=document.createElement('img');img.alt=dataUri?'Selected app icon preview':'WEB2APK default icon';img.src=dataUri||'web2apk_logo.png';box.appendChild(img)}
+
+function setStatus(s,p){const a=document.getElementById('buildStatus'),b=document.getElementById('homeStatus'),bar=document.getElementById('buildBar'),ed=document.getElementById('editorBuildStatus'),eb=document.getElementById('editorBuildBar');if(a)a.textContent=s;if(b)b.textContent=s;if(bar)bar.style.width=Math.max(0,Math.min(100,p||0))+'%';if(ed)ed.textContent=s;if(eb)eb.style.width=Math.max(0,Math.min(100,p||0))+'%';}
+function setHistory(s){let a=[];try{a=JSON.parse(s)}catch(e){};let el=document.getElementById('historyList');if(!a.length){el.innerHTML='<div class="muted">No builds yet.</div>';return;}el.innerHTML=a.map(x=>'<div class="history"><b>'+esc(x.name)+'</b><div class="muted">'+esc(x.pkg)+' · v'+esc(x.version)+' · '+esc(x.date)+'</div><div style="margin-top:7px"><button class="btn light" onclick="AppBridge.installHistory(\''+esc(x.path).replace(/'/g,'')+'\')">Install</button> <button class="btn light" onclick="AppBridge.shareHistory(\''+esc(x.path).replace(/'/g,'')+'\')">Share APK</button> <button class="btn light" onclick="AppBridge.exportHistory(\''+esc(x.path).replace(/'/g,'')+'\')">Save APK</button></div></div>').join('')}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+
+/* WEB2APK Code Studio: local web-project editor, autosave, preview and internal APK build */
+const editorState={html:'',css:'',js:'',extra:'',extraPath:'',extraName:'',tab:'html',font:12,wrap:false,saveTimer:null};
+function editorDefaultFiles(){return {
+ html:'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>My Web App</title>\n  <link rel="stylesheet" href="style.css">\n</head>\n<body>\n  <main class="card">\n    <h1>Hello, WEB2APK!</h1>\n    <p>Edit this project, preview it, then build your APK.</p>\n    <button id="helloButton">Tap me</button>\n  </main>\n  <script src="script.js">'+'</scr'+'ipt>\n</body>\n</html>',
+ css:'* { box-sizing: border-box; }\nbody {\n  margin: 0;\n  min-height: 100vh;\n  display: grid;\n  place-items: center;\n  font-family: system-ui, sans-serif;\n  background: linear-gradient(135deg, #eef0ff, #e4fbff);\n}\n.card {\n  width: min(90%, 420px);\n  padding: 28px;\n  border-radius: 24px;\n  background: rgba(255,255,255,.78);\n  box-shadow: 0 16px 44px rgba(60,70,130,.16);\n  text-align: center;\n}\nbutton { border: 0; border-radius: 14px; padding: 12px 20px; background: #6b5ce7; color: white; font-weight: 700; }',
+ js:'document.getElementById("helloButton")?.addEventListener("click", () => {\n  alert("Your WEB2APK project is working!");\n});'
+}}
+function editorCurrentValue(){const e=document.getElementById('editorTextarea');if(e){if(editorState.tab==='extra')editorState.extra=e.value;else editorState[editorState.tab]=e.value}}
+function editorKeydown(event){const e=event.target;if(!e||e.id!=='editorTextarea')return;if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='s'){event.preventDefault();saveEditorDraft(true);return;}if(event.key==='Tab'){event.preventDefault();insertEditorText('  ');return;}if(event.key==='Enter'){const start=e.selectionStart,line=e.value.slice(0,start).split('\n').pop()||'',indent=(line.match(/^\s*/)||[''])[0];const extra=/[\{\[\(]\s*$/.test(line)?'  ':'';event.preventDefault();e.setRangeText('\n'+indent+extra,start,e.selectionEnd,'end');editorChanged();}}
+function editorEncode(s){return btoa(unescape(encodeURIComponent(String(s||''))))}
+function editorSetStatus(message){const e=document.getElementById('editorLineStatus');if(e)e.textContent=message||'Saved'}
+function updateEditorLines(){const e=document.getElementById('editorTextarea'),g=document.getElementById('editorGutter');if(!e||!g)return;const n=Math.max(1,e.value.split('\n').length);g.textContent=Array.from({length:n},(_,i)=>i+1).join('\n');syncEditorGutter();updateEditorCursorStatus()}
+function syncEditorGutter(){const e=document.getElementById('editorTextarea'),g=document.getElementById('editorGutter');if(e&&g)g.scrollTop=e.scrollTop}
+function updateEditorCursorStatus(){const e=document.getElementById('editorTextarea');if(!e)return;const before=e.value.slice(0,e.selectionStart),line=before.split('\n').length,col=before.length-(before.lastIndexOf('\n')+1)+1;const status=document.getElementById('editorLineStatus');if(status)status.textContent='Ln '+line+', Col '+col+' · '+(editorState._saved?'Saved':'Editing')}
+function switchEditorTab(tab,button,skipSave){if(!skipSave)editorCurrentValue();editorState.tab=tab;const e=document.getElementById('editorTextarea');if(e){e.value=editorState[tab]||'';e.style.fontSize=editorState.font+'px';e.style.whiteSpace=editorState.wrap?'pre-wrap':'pre';e.focus()}document.querySelectorAll('.editorFileTab').forEach(x=>x.classList.toggle('active',x.dataset.editorTab===tab));const label=document.getElementById('editorTypeStatus');if(label)label.textContent=tab==='extra'?(editorState.extraName+' · UTF-8'):({html:'HTML · UTF-8',css:'CSS · UTF-8',js:'JavaScript · UTF-8'})[tab];updateEditorLines();}
+function editorChanged(){editorCurrentValue();editorState._saved=false;updateEditorLines();if(editorState.saveTimer)clearTimeout(editorState.saveTimer);editorState.saveTimer=setTimeout(()=>saveEditorDraft(false),650);}
+function saveEditorDraft(show){editorCurrentValue();const name=document.getElementById('editorProjectName')?.value||'My Web Project';try{localStorage.setItem('web2apk.editor.backup',JSON.stringify({name,html:editorState.html,css:editorState.css,js:editorState.js,extra:editorState.extra,extraPath:editorState.extraPath,extraName:editorState.extraName,tab:editorState.tab}));}catch(err){editorSetStatus('Local browser backup is full; saving to app storage instead');}try{if(window.AppBridge){AppBridge.saveEditorProject(name,editorEncode(editorState.html),editorEncode(editorState.css),editorEncode(editorState.js));if(editorState.extraPath)AppBridge.saveEditorExtraFile(editorState.extraPath,editorEncode(editorState.extra||''));}editorState._saved=true;updateEditorCursorStatus();if(show)editorSetStatus('Saved to this device');}catch(err){editorSetStatus('Native project save failed');if(show)alert('Save failed: '+err.message)}}
+function loadEditorProject(name,h,c,j){editorState.html=decodeURIComponent(escape(atob(h||'')));editorState.css=decodeURIComponent(escape(atob(c||'')));editorState.js=decodeURIComponent(escape(atob(j||'')));editorState.extra='';editorState.extraPath='';editorState.extraName='';document.getElementById('editorExtraTab')?.remove();editorState.tab='html';const n=document.getElementById('editorProjectName'),t=document.getElementById('editorProjectTitle');if(n)n.value=name||'My Web Project';if(t)t.textContent=name||'My Web Project';editorState._saved=true;switchEditorTab('html');editorSetStatus('Project loaded · Saved')}
+function newEditorProject(){const name=(document.getElementById('editorProjectName')?.value||'').trim()||'My Web Project';if(window.AppBridge)AppBridge.createEditorProject(name);}
+function toggleEditorMenu(){document.getElementById('editorMenu')?.classList.toggle('open')}
+function editorAction(action){const menu=document.getElementById('editorMenu');if(menu)menu.classList.remove('open');editorCurrentValue();const panel=document.getElementById('editorFindPanel'),linePanel=document.getElementById('editorLinePanel');if(panel)panel.classList.remove('open');if(linePanel)linePanel.classList.remove('open');
+ if(action==='find'||action==='search'){panel?.classList.add('open');document.getElementById('editorFind')?.focus();editorSetStatus(action==='search'?'Search in project files':'Find in current file');return}
+ if(action==='line'){linePanel?.classList.add('open');document.getElementById('editorLineNumber')?.focus();return}
+ if(action==='trim'){editorState[editorState.tab]=editorState[editorState.tab].split('\n').map(x=>x.replace(/[ \t]+$/,'')).join('\n');}
+ else if(action==='wrap'){editorState.wrap=!editorState.wrap;const e=document.getElementById('editorTextarea');if(e)e.style.whiteSpace=editorState.wrap?'pre-wrap':'pre';}
+ else if(action==='bigger')editorState.font=Math.min(22,editorState.font+1);
+ else if(action==='smaller')editorState.font=Math.max(9,editorState.font-1);
+ else if(action==='format')editorState[editorState.tab]=editorState.tab==='extra'?editorState.extra.split('\n').map(x=>x.trimEnd()).join('\n').trim()+'\n':formatEditorText(editorState.tab,editorState[editorState.tab]);
+ else if(action==='snippet'){if(editorState.tab==='extra'){editorSetStatus('Snippets are available for HTML, CSS and JavaScript tabs');return;}const snippets={html:'<section class="section">\n  <h2>New section</h2>\n  <p>Write your content here.</p>\n</section>\n',css:'.section {\n  padding: 20px;\n  border-radius: 16px;\n}\n',js:'document.addEventListener("DOMContentLoaded", () => {\n  // Your code here\n});\n'};editorState[editorState.tab]+='\n'+snippets[editorState.tab];}
+ else if(action==='check'){checkEditorCode();return}
+ const e=document.getElementById('editorTextarea');if(e){e.value=editorState[editorState.tab];e.style.fontSize=editorState.font+'px'}updateEditorLines();saveEditorDraft(false);
+}
+function formatEditorText(type,text){if(type==='js')return text.split('\n').map(x=>x.trimEnd()).join('\n').trim()+'\n';if(type==='css'){return text.replace(/\s*\{\s*/g,' {\n  ').replace(/;\s*/g,';\n  ').replace(/\s*\}\s*/g,'\n}\n').replace(/\n\s*\n/g,'\n').trim()+'\n';}return text.replace(/>\s*</g,'>\n<').split('\n').map(x=>x.trim()).filter(Boolean).join('\n')+'\n'}
+function findNextEditor(){const e=document.getElementById('editorTextarea'),q=document.getElementById('editorFind')?.value||'';if(!e||!q)return;const all=['html','css','js'];const found=all.filter(k=>(editorState[k]||'').toLowerCase().includes(q.toLowerCase()));if(found.length>1||found.length===1&&found[0]!==editorState.tab){editorSetStatus('Found in project: '+found.join(', '));if(found.length){switchEditorTab(found[0]);const target=document.getElementById('editorTextarea');const at=target.value.toLowerCase().indexOf(q.toLowerCase());if(at>=0){target.focus();target.setSelectionRange(at,at+q.length)}}return}let at=e.value.toLowerCase().indexOf(q.toLowerCase(),e.selectionEnd);if(at<0)at=e.value.toLowerCase().indexOf(q.toLowerCase());if(at<0){editorSetStatus('Text not found');return}e.focus();e.setSelectionRange(at,at+q.length);updateEditorCursorStatus()}
+function searchAllEditorFiles(){const q=document.getElementById('editorFind')?.value||'';if(!q)return;const keys=['html','css','js'];if(editorState.extraPath)keys.push('extra');const found=keys.filter(k=>(editorState[k]||'').toLowerCase().includes(q.toLowerCase()));editorSetStatus(found.length?'Found in project files: '+found.join(', '):'No matches in project');if(found.length){switchEditorTab(found[0]);findNextEditor()}}
+function replaceAllEditor(){const e=document.getElementById('editorTextarea'),q=document.getElementById('editorFind')?.value||'',r=document.getElementById('editorReplace')?.value||'';if(!e||!q)return;editorState[editorState.tab]=e.value.split(q).join(r);e.value=editorState[editorState.tab];updateEditorLines();saveEditorDraft(false);}
+function closeFindEditor(){document.getElementById('editorFindPanel')?.classList.remove('open');document.getElementById('editorLinePanel')?.classList.remove('open')}
+function goToEditorLine(){const e=document.getElementById('editorTextarea'),n=Math.max(1,parseInt(document.getElementById('editorLineNumber')?.value||'1',10));if(!e)return;const lines=e.value.split('\n');let pos=0;for(let i=0;i<Math.min(n-1,lines.length);i++)pos+=lines[i].length+1;e.focus();e.setSelectionRange(pos,pos);e.scrollTop=(n-1)*parseFloat(getComputedStyle(e).lineHeight||'20');closeFindEditor();updateEditorCursorStatus()}
+function insertEditorText(text){const e=document.getElementById('editorTextarea');if(!e)return;const start=e.selectionStart,end=e.selectionEnd;e.setRangeText(text,start,end,'end');editorChanged();e.focus()}
+function checkEditorCode(){editorCurrentValue();const errors=[];if(!/<html[\s>]/i.test(editorState.html))errors.push('HTML: <html> element not found');if(!/<body[\s>]/i.test(editorState.html))errors.push('HTML: <body> element not found');let b=0;for(const c of editorState.css){if(c==='{')b++;if(c==='}')b--;if(b<0)break}if(b!==0)errors.push('CSS: unmatched braces');try{new Function(editorState.js)}catch(e){errors.push('JavaScript: '+e.message)};editorSetStatus(errors.length?errors.join(' · '):'Basic HTML/CSS/JS checks passed · ready for WebView APK build');}
+function toggleEditorPreview(){editorCurrentValue();const frame=document.getElementById('editorPreview');if(!frame)return;const open=frame.classList.toggle('open');if(!open)return;let html=editorState.html||'';const style='<style>'+editorState.css+'</style>';const closeTag='</scr'+'ipt>';const safeJs=editorState.js.replace(new RegExp('<'+'/script','gi'),'<\\'+'/script');const script='<scr'+'ipt>'+safeJs+closeTag;if(/<\/head>/i.test(html))html=html.replace(/<\/head>/i,style+'</head>');else html=style+html;if(/<\/body>/i.test(html))html=html.replace(/<\/body>/i,script+'</body>');else html+=script;frame.srcdoc=html;}
+function exportEditorProjectZip(){saveEditorDraft(false);editorCurrentValue();AppBridge.exportEditorZip(editorState.extraPath||'',editorState.extraPath?editorEncode(editorState.extra||''):'')}
+function buildFromEditor(){if(!saveBuilderApiSettings(false))return;if(startupStyleValue()==='custom'&&!splashMediaName){alert('Custom loading ကိုရွေးထားပါတယ်။ Image သို့မဟုတ် Video တစ်ခုရွေးပေးပါ။');return;}saveEditorDraft(false);editorCurrentValue();const value=id=>document.getElementById(id)?.value||'',checked=id=>!!document.getElementById(id)?.checked;const appName=value('appName')||value('editorProjectName')||'My Web App',pkg=value('packageId')||'com.example.mywebapp',version=value('versionName')||'1.0.0',versionCode=parseInt(value('versionCode')||'1',10)||1;AppBridge.buildEditorProject(value('editorProjectName')||'My Web Project',editorEncode(editorState.html),editorEncode(editorState.css),editorEncode(editorState.js),appName,pkg,version,versionCode,checked('camera'),checked('microphone'),checked('locationApprox'),checked('locationPrecise'),checked('notifications'),checked('keepScreenAwake'),checked('blockScreenshots'),checked('permMakeCalls'),checked('permVibrate'),checked('permReadContacts'),checked('permEditContacts'),checked('permReadCalendar'),checked('permEditCalendar'),creatorWatermarkEnabled,checked('enableAiApi'),startupStyleValue(),startupSpeed,editorState.extraPath||'',editorState.extraPath?editorEncode(editorState.extra||''):'',...generatedAppOptionArgs());}
+function editorAssetAdded(path){editorSetStatus('Added asset: '+path);}
+function editorFileLoaded(type,name,path,encoded){editorCurrentValue();const content=decodeURIComponent(escape(atob(encoded||'')));if(type==='html'||type==='css'||type==='js'){editorState[type]=content;}else{editorState.extra=content;editorState.extraPath=path;editorState.extraName=name;let tab=document.getElementById('editorExtraTab');if(!tab){tab=document.createElement('button');tab.id='editorExtraTab';tab.className='editorFileTab';tab.dataset.editorTab='extra';tab.onclick=()=>switchEditorTab('extra',tab);document.querySelector('.editorFileTabs')?.appendChild(tab);}tab.textContent=name;tab.title=path;}editorState._saved=true;switchEditorTab(type==='extra'?'extra':type,null,true);editorSetStatus('File opened in editor · '+name);saveEditorDraft(false);}
+function insertAiApiExample(){editorCurrentValue();const htmlSample='\n<section class="aiDemo">\n  <h2>Ask AI</h2>\n  <textarea id="aiPrompt" placeholder="Ask a question..."></textarea>\n  <button type="button" onclick="sendToAI()">Send</button>\n  <pre id="aiOutput" aria-live="polite">AI response will appear here.</pre>\n</section>\n';if(!editorState.html.includes('id="aiPrompt"')){if(/<\/body\s*>/i.test(editorState.html))editorState.html=editorState.html.replace(/<\/body\s*>/i,htmlSample+'</body>');else editorState.html+=htmlSample;}const cssSample='\n.aiDemo{max-width:640px;margin:24px auto;padding:20px;border-radius:20px;background:rgba(120,130,180,.10)}\n.aiDemo textarea{display:block;width:100%;min-height:100px;padding:12px;border-radius:12px;border:1px solid #aaa;font:inherit}\n.aiDemo button{margin-top:10px;padding:11px 18px;border:0;border-radius:12px;background:#6758d5;color:#fff;font-weight:700}\n.aiDemo pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:14px;border-radius:12px;background:rgba(0,0,0,.06)}\n';editorState.css=(editorState.css||'')+cssSample;const sample='\n// Configure endpoint, model and API key from the AI API button in the installed APK.\nasync function askAI(question) {\n  const result = await window.Web2APKAI.chat([\n    { role: "user", content: question }\n  ]);\n  return result.content;\n}\n\nasync function sendToAI() {\n  const output = document.querySelector("#aiOutput");\n  const prompt = document.querySelector("#aiPrompt");\n  if (output) output.textContent = "Thinking...";\n  try {\n    const answer = await askAI(prompt ? prompt.value : "Hello!");\n    if (output) output.textContent = answer;\n  } catch (error) {\n    if (output) output.textContent = error.message;\n  }\n}\n';if(!editorState.js.includes('async function askAI(question)'))editorState.js=(editorState.js||'')+sample;saveEditorDraft(false);switchEditorTab('js');editorSetStatus('AI demo added to HTML/CSS/JS. Enable AI API before building and enter your key in the installed app.');}
+
+function initialiseEditorFallback(){if(editorState.html)return;try{const data=JSON.parse(localStorage.getItem('web2apk.editor.backup')||'null');if(data&&data.html){editorState.html=data.html;editorState.css=data.css||'';editorState.js=data.js||'';editorState.extra=data.extra||'';editorState.extraPath=data.extraPath||'';editorState.extraName=data.extraName||'';editorState.tab=data.tab||'html';if(editorState.extraPath){let tab=document.getElementById('editorExtraTab');if(!tab){tab=document.createElement('button');tab.id='editorExtraTab';tab.className='editorFileTab';tab.dataset.editorTab='extra';tab.onclick=()=>switchEditorTab('extra',tab);document.querySelector('.editorFileTabs')?.appendChild(tab);}tab.textContent=editorState.extraName||'Extra file';tab.title=editorState.extraPath;}const n=document.getElementById('editorProjectName');if(n)n.value=data.name||'My Web Project';switchEditorTab(editorState.tab);}}catch(e){}}
+setTimeout(initialiseEditorFallback,80);
+
+renderPermissionGroups();
+initStartupSettings();
+initGeneratedAppOptions();
+initBuilderAiSettings();
+</script></body></html>
