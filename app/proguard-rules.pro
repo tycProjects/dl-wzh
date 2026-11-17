@@ -1,0 +1,2 @@
+-keep class com.sharingun.xyz.** { *; }
+-keepattributes *Annotation*
