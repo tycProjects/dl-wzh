@@ -1,0 +1,40 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DANZZ Panel</title><style>
+:root{--bg:#090b10;--panel:#121722;--line:#273142;--text:#edf2fa;--muted:#8e9bad;--accent:#6d8cff;--green:#42d392}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,Arial}
+header{padding:22px 18px;background:#101620;border-bottom:1px solid var(--line)}.brand{font-size:23px;font-weight:800;letter-spacing:1px}.sub{color:var(--muted);font-size:12px;margin-top:4px}
+main{padding:16px;max-width:720px;margin:auto}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px;margin:12px 0}
+h2{font-size:16px;margin:0 0 12px}.muted{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{padding:14px;background:#0c111a;border:1px solid var(--line);border-radius:12px}.value{font-weight:700;margin-top:7px}
+input,button{width:100%;padding:13px;border-radius:10px;border:1px solid var(--line);background:#0b111a;color:var(--text);margin:6px 0;font-size:14px}
+button{background:var(--accent);border:0;font-weight:700;color:white}button.secondary{background:#202a39}.hidden{display:none}.ok{color:var(--green)}.row{display:flex;justify-content:space-between;gap:10px}
+</style></head><body>
+<header><div class="brand">DANZZ PANEL</div><div class="sub">ORIGINAL EDITION • ANDROID + NODE API</div></header>
+<main>
+<section id="login" class="card"><h2>Masuk Panel</h2><p class="muted">Masukkan akun backend kamu.</p>
+<input id="user" placeholder="Username" value="admin"><input id="pass" type="password" placeholder="Password">
+<input id="url" placeholder="URL API" value="http://127.0.0.1:3000">
+<button onclick="login()">LOGIN</button><div id="loginMsg" class="muted"></div></section>
+<section id="dash" class="hidden">
+<div class="card"><div class="row"><div><h2>Dashboard</h2><div class="muted" id="welcome">Panel aktif</div></div><button class="secondary" style="width:auto" onclick="logout()">Keluar</button></div></div>
+<div class="grid">
+<div class="stat"><div class="muted">API SERVER</div><div class="value ok" id="apiStatus">ONLINE</div></div>
+<div class="stat"><div class="muted">WHATSAPP</div><div class="value" id="waStatus">Belum dikonfigurasi</div></div>
+<div class="stat"><div class="muted">TELEGRAM</div><div class="value" id="tgStatus">Belum dikonfigurasi</div></div>
+<div class="stat"><div class="muted">VPS</div><div class="value" id="vpsStatus">Belum dikonfigurasi</div></div>
+</div>
+<div class="card"><h2>Pengujian API</h2><p class="muted">Tes kesehatan API milik sendiri, tanpa mengirim trafik ke nomor atau layanan pihak lain.</p><button onclick="apiTest()">JALANKAN TES API</button><div id="testResult" class="muted"></div></div>
+<div class="card"><h2>Modul</h2><p class="muted">Manajemen akun • WhatsApp pribadi • Telegram • VPS • Riwayat tes</p></div>
+<div class="card"><h2>Pengaturan API</h2><input id="apiUrl" placeholder="https://domain-api-kamu"><button class="secondary" onclick="saveUrl()">SIMPAN URL API</button><div class="muted">Gunakan HTTPS untuk server publik.</div></div>
+</section></main>
+<script>
+let token='',api=localStorage.getItem('danzz_api')||'http://127.0.0.1:3000';
+document.getElementById('url').value=api;
+const headers=()=>({'Content-Type':'application/json','Authorization':'Bearer '+token});
+async function login(){api=(document.getElementById('url').value||api).replace(/\/$/,'');localStorage.setItem('danzz_api',api);
+try{let r=await fetch(api+'/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:user.value,password:pass.value})});let d=await r.json();if(!r.ok)throw Error(d.message||'Login gagal');token=d.token;login.classList.add('hidden');dash.classList.remove('hidden');welcome.textContent='Login sebagai '+d.user.username;await refresh()}catch(e){loginMsg.textContent=e.message}}
+async function refresh(){try{let r=await fetch(api+'/api/dashboard',{headers:headers()});if(!r.ok)throw Error();let d=await r.json();apiStatus.textContent='ONLINE';waStatus.textContent=d.stats.whatsapp;tgStatus.textContent=d.stats.telegram;vpsStatus.textContent=d.stats.vps}catch(e){apiStatus.textContent='OFFLINE'}}
+async function apiTest(){testResult.textContent='Menguji...';try{let r=await fetch(api+'/api/tools/api-test',{method:'POST',headers:headers()});let d=await r.json();testResult.textContent=d.message+' • '+d.latencyMs+' ms'}catch(e){testResult.textContent='Gagal menghubungi API'}}
+function saveUrl(){api=apiUrl.value.replace(/\/$/,'');localStorage.setItem('danzz_api',api);alert('URL API disimpan')}
+async function logout(){try{await fetch(api+'/api/auth/logout',{method:'POST',headers:headers()})}catch(e){}token='';dash.classList.add('hidden');login.classList.remove('hidden')}
+</script></body></html>
