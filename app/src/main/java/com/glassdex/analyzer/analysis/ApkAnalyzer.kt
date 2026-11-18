@@ -7,6 +7,7 @@ import java.security.cert.X509Certificate
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.zip.ZipFile
+import com.glassdex.analyzer.analysis.AxmlParser
 
 class ApkResult(
     val info: AppInfo,
