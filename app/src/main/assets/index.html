@@ -1,0 +1,1349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#130f22">
+<title>VEXORA Studio</title>
+<style>
+:root{
+  --bg:#130f22;
+  --panel:#1b1530;
+  --panel2:#231b3d;
+  --line:#322854;
+  --muted:#a196c4;
+  --text:#f5f2ff;
+  --accent:#9b72f3;
+  --accent2:#6e46c7;
+  --accent-soft:#b798fa;
+  --teal:#55e0d0;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;background:var(--bg);color:var(--text);font:13px Inter,system-ui,-apple-system,sans-serif;overflow:hidden}
+
+/* Smoother Splash Screen */
+.splash{
+  position:fixed;inset:0;z-index:99;
+  background:radial-gradient(ellipse at 50% 42%,#2e2056 0%,#130f22 72%);
+  display:grid;place-items:center;
+  opacity:1;transform:scale(1);
+  transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1),visibility .75s;
+}
+.splash.hide{opacity:0;transform:scale(1.06);visibility:hidden;pointer-events:none}
+.splash-inner{text-align:center;animation:logoReveal 1s cubic-bezier(.22,1,.36,1) both}
+.splash-logo{
+  font-size:clamp(38px,10vw,56px);font-weight:900;letter-spacing:.24em;
+  background:linear-gradient(110deg,#ffffff 10%,#cbb2ff 50%,#8e64eb 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 26px rgba(155,114,243,.45));
+}
+.splash-sub{color:#b4a4de;letter-spacing:.32em;font-size:10px;margin-top:10px}
+.loader{width:140px;height:3px;background:#261d42;border-radius:9px;margin:24px auto 0;overflow:hidden}
+.loader:after{content:"";display:block;height:100%;width:45%;background:linear-gradient(90deg,var(--accent),#d2bdff);animation:load 1.15s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes logoReveal{
+  0%{opacity:0;transform:translateY(18px) scale(.92);filter:blur(8px)}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@keyframes load{from{transform:translateX(-110%)}to{transform:translateX(340%)}}
+
+/* Home Shell (Portrait Hub) */
+.hub{
+  height:100dvh;display:flex;flex-direction:column;background:var(--bg);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);
+}
+.hub.ready{opacity:1;transform:none}
+.hub.hidden{display:none}
+.hub-top{height:60px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.hamburger{width:36px;height:36px;border:0;background:transparent;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:6px;cursor:pointer}
+.hamburger span{display:block;height:2px;width:22px;background:#ece6ff;border-radius:2px}
+.avatar{width:34px;height:34px;border-radius:50%;background:#3c2a6b;color:#e6dcff;font-weight:700;font-size:13px;display:grid;place-items:center;border:1px solid #5c429e;cursor:pointer}
+
+.hub-body{flex:1;overflow-y:auto;padding:8px 18px 96px}
+.mural-card{
+  background:linear-gradient(135deg,#9b72f3 0%,#633eb8 58%,#422685 100%);
+  border-radius:24px;
+  padding:26px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  box-shadow:0 14px 34px rgba(68,38,138,.42);
+  cursor:pointer;
+  transition:transform .2s cubic-bezier(.22,1,.36,1);
+}
+.mural-card:active{transform:scale(.98)}
+.mural-title{font-size:28px;font-weight:800;color:#140c29;letter-spacing:-.4px;margin:0 0 6px}
+.mural-sub{font-size:13px;font-weight:500;color:#1f133d;margin:0;line-height:1.35}
+.mural-icon{width:46px;height:46px;flex-shrink:0;color:#140c29}
+
+.sec-title{font-size:19px;font-weight:700;color:#f5f2ff;margin:24px 0 14px;display:flex;align-items:center;justify-content:space-between}
+.sec-sub{font-size:11px;color:var(--muted);font-weight:500}
+
+.feed-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:border-color .18s,transform .18s}
+.card:active{transform:scale(.98)}
+.card-thumb{height:132px;background:linear-gradient(145deg,#261d42,#161126);display:grid;place-items:center;position:relative;padding:12px;text-align:center}
+.card-badge{position:absolute;top:8px;right:8px;background:#130f22cc;color:#cbb2ff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:99px;border:1px solid #443573}
+.card-meta{padding:10px 12px}
+.card-title{font-size:13px;font-weight:700;color:#f3efff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-info{font-size:11px;color:var(--muted);margin-top:3px}
+
+.empty-state{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--muted);gap:12px}
+.spinner{width:28px;height:28px;border:3px solid #2b214a;border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Bottom Navigation Bar */
+.bnav{
+  position:fixed;left:0;right:0;bottom:0;height:74px;
+  background:#19142b;border-top:1px solid #2c234a;
+  display:grid;grid-template-columns:1fr 1fr 72px 1fr 1fr;
+  align-items:center;padding:0 6px 6px;z-index:30;
+}
+.nav-btn{background:transparent;border:0;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px;font-weight:600;cursor:pointer;padding:6px 2px;transition:color .2s}
+.nav-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9}
+.nav-btn.active{color:#ffffff}
+.nav-btn.active .nav-pill{background:#2c224d;border-radius:10px;padding:3px 10px}
+.fab-wrap{display:flex;justify-content:center;align-items:center}
+.fab{
+  width:54px;height:54px;border-radius:50%;border:0;
+  background:linear-gradient(135deg,#ad88ff,#7d52e0);color:#120b24;
+  display:grid;place-items:center;cursor:pointer;
+  box-shadow:0 6px 22px rgba(155,114,243,.45);
+  transition:transform .2s cubic-bezier(.22,1,.36,1);
+}
+.fab:active{transform:scale(.92)}
+
+/* New Project Bottom Sheet Modal (Matching Screenshot 2) */
+.sheet-backdrop{
+  position:fixed;inset:0;z-index:65;background:rgba(9,6,18,.78);
+  display:none;align-items:flex-end;justify-content:center;
+  opacity:0;transition:opacity .28s ease;
+}
+.sheet-backdrop.show{display:flex;opacity:1}
+.create-sheet{
+  width:100%;max-width:500px;
+  background:#1a152e;
+  border-top-left-radius:28px;border-top-right-radius:28px;
+  border-top:1px solid #382c61;
+  padding:22px 20px 26px;
+  transform:translateY(28px);
+  transition:transform .32s cubic-bezier(.22,1,.36,1);
+  box-shadow:0 -16px 48px rgba(0,0,0,.55);
+}
+.sheet-backdrop.show .create-sheet{transform:translateY(0)}
+.seg-control{
+  display:grid;grid-template-columns:1fr 1fr;
+  background:#231c3d;border-radius:14px;padding:4px;margin-bottom:8px;
+}
+.seg-btn{
+  border:0;background:transparent;color:var(--muted);
+  padding:11px 8px;border-radius:11px;font-weight:700;font-size:13px;cursor:pointer;
+  transition:all .2s ease;
+}
+.seg-btn.active{background:linear-gradient(135deg,#8d62eb,#683ec4);color:#fff;box-shadow:0 4px 12px rgba(104,62,196,.4)}
+.seg-desc{text-align:center;font-size:11px;color:var(--muted);margin-bottom:14px}
+.proj-input{
+  width:100%;background:#231c3d;border:1px solid #382c61;
+  color:#fff;padding:13px 14px;border-radius:13px;font-size:14px;font-weight:600;
+  margin-bottom:16px;outline:none;
+}
+.proj-input:focus{border-color:var(--accent)}
+.ratio-row{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px;text-align:center}
+.ratio-item{cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:11px;font-weight:600}
+.ratio-box{border:1.6px solid #7d70a6;border-radius:4px;transition:all .18s}
+.ratio-item.active{color:#fff}
+.ratio-item.active .ratio-box{background:var(--accent);border-color:#cbb2ff;box-shadow:0 0 12px rgba(155,114,243,.45)}
+
+.setting-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.setting-label{font-size:14px;font-weight:700;color:#f3efff}
+.setting-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.setting-select{
+  width:155px;background:#231c3d;border:1px solid #382c61;color:#fff;
+  padding:10px 12px;border-radius:12px;font-size:13px;font-weight:600;outline:none;
+}
+.sheet-footer{display:flex;align-items:center;justify-content:space-between;margin-top:18px}
+.close-x{
+  width:40px;height:40px;border-radius:50%;border:1px solid #382c61;background:#231c3d;
+  color:#fff;font-size:18px;display:grid;place-items:center;cursor:pointer;
+}
+.create-cta{
+  background:transparent;border:0;color:var(--accent-soft);font-size:16px;font-weight:800;
+  cursor:pointer;padding:8px 12px;letter-spacing:.3px;
+}
+.create-cta:active{opacity:.75}
+
+/* Drawer Menu */
+.drawer-backdrop{position:fixed;inset:0;background:#0009;z-index:60;display:none}
+.drawer-backdrop.show{display:block}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:270px;background:#19142b;border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;gap:10px}
+.drawer h3{margin:0 0 6px;font-size:17px;letter-spacing:2px;color:#fff}
+.drawer button{text-align:left;background:#231c3d;border:1px solid #382c61;color:#f2edff;padding:11px 12px;border-radius:11px;font-weight:600;font-size:12px;cursor:pointer}
+
+/* Vertical Studio Editor Workspace */
+.app{
+  height:100dvh;display:none;flex-direction:column;background:#110d1f;
+  opacity:0;transform:scale(.98);
+  transition:opacity .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1);
+}
+.app.active{display:flex;opacity:1;transform:scale(1)}
+.top{height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;border-bottom:1px solid #2b2247;background:#171229;flex-shrink:0;gap:6px}
+.brand{font-weight:900;letter-spacing:1.5px;font-size:14px;display:flex;align-items:center;gap:6px}
+.brand span{color:var(--accent-soft)}
+.top-actions{display:flex;gap:5px;align-items:center}
+button.ed-btn{cursor:pointer;background:#231c3d;border:1px solid #3a2f63;color:var(--text);padding:7px 9px;border-radius:8px;font-weight:700;font-size:10px;white-space:nowrap;transition:transform .14s}
+button.ed-btn.primary{background:linear-gradient(120deg,#a782f7,#764bd4);border-color:#c6adff;color:#120b24}
+button.ed-btn:active{transform:scale(.94)}
+
+/* Portrait stacked editor grid */
+.editor-main{flex:1;min-height:0;display:flex;flex-direction:column;gap:7px;padding:7px;overflow:hidden}
+.preview-wrap{
+  height:35dvh;min-height:175px;background:#0c0917;border:1px solid #2d234a;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;flex-shrink:0;padding:8px;
+}
+/* Canvas stage with selectable backdrop (Black, Green, Transparent, White) */
+.canvas-stage{
+  width:100%;height:100%;max-width:100%;max-height:100%;
+  background:#000000;
+  border-radius:8px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  perspective:900px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08);
+  transition:background .25s ease,aspect-ratio .25s ease;
+}
+.canvas-stage.bg-black{background:#000000}
+.canvas-stage.bg-green{background:#00b140}
+.canvas-stage.bg-white{background:#ffffff}
+.canvas-stage.bg-transparent{
+  background-color:#1a162b;
+  background-image:
+    linear-gradient(45deg,#2a2345 25%,transparent 25%),
+    linear-gradient(-45deg,#2a2345 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#2a2345 75%),
+    linear-gradient(-45deg,transparent 75%,#2a2345 75%);
+  background-size:20px 20px;
+  background-position:0 0,0 10px,10px -10px,-10px 0;
+}
+
+/* Composite Layers inside Canvas */
+.stage-layer{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  pointer-events:none;background:transparent !important;
+}
+.stage-layer video,.stage-layer img{max-width:100%;max-height:100%;object-fit:contain;background:transparent}
+.stage-text{
+  font-size:44px;font-weight:900;color:#ffffff;text-align:center;padding:10px;
+  background:transparent !important;
+  text-shadow:0 3px 16px rgba(0,0,0,.55);
+  max-width:94%;overflow-wrap:anywhere;
+}
+.placeholder{text-align:center;color:var(--muted);font-size:11px;background:transparent}
+.placeholder b{display:block;color:#ede7ff;font-size:19px;letter-spacing:5px;margin-bottom:4px}
+
+.transport{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 4px;flex-shrink:0;gap:6px}
+.transport-left{display:flex;align-items:center;gap:5px}
+.status{font-size:10px;color:var(--teal);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Timeline with Drag-to-Reorder Layers */
+.timeline{height:152px;flex-shrink:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden}
+.ph{padding:7px 10px;border-bottom:1px solid var(--line);font-size:10px;color:#c2b7e6;font-weight:800;letter-spacing:1.1px;display:flex;justify-content:space-between;align-items:center}
+.ruler{height:20px;border-bottom:1px solid var(--line);color:var(--muted);font-size:9px;display:flex;justify-content:space-around;align-items:center;flex-shrink:0}
+#tracks{flex:1;overflow-y:auto;position:relative}
+.track{
+  height:37px;border-bottom:1px solid #261e42;display:flex;align-items:center;gap:6px;padding:3px 8px;
+  transition:background .15s,transform .15s;user-select:none;
+}
+.track.selected{background:#9b72f322}
+.track.drag-over{border-top:2px solid #55e0d0;background:#55e0d018}
+.track.dragging{opacity:.5;background:#2e2352}
+.drag-handle{color:var(--muted);font-size:13px;cursor:grab;padding:0 3px;touch-action:none}
+.trackname{width:28px;color:#b7abd9;font-size:9px;font-weight:700}
+.clip{
+  height:25px;flex:1;background:linear-gradient(90deg,#5b3ca8,#8761e0);border:1px solid #bca1ff;
+  border-radius:6px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 8px;font-size:10px;overflow:hidden;white-space:nowrap;cursor:pointer;
+}
+.clip.audio{background:linear-gradient(90deg,#126e72,#269d98);border-color:#53d7d0}
+.clip.text{background:linear-gradient(90deg,#883b74,#c45ca8);border-color:#f5a6df}
+.clip.shape{background:linear-gradient(90deg,#3b579c,#5d82de);border-color:#9bb8ff}
+.clip.three{background:linear-gradient(90deg,#47388a,#735ec9);border-color:#b6a3ff}
+.clip.external{background:linear-gradient(90deg,#7a4f26,#b8793d);border-color:#f2be85}
+.kf-dots{display:flex;gap:3px;align-items:center}
+.kf-diamond{width:6px;height:6px;background:#ffd166;transform:rotate(45deg);display:inline-block}
+
+/* Bottom Inspector Drawer in Editor */
+.inspector{flex:1;min-height:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden}
+.tabs{display:flex;gap:4px;padding:6px 8px;border-bottom:1px solid var(--line);overflow-x:auto;flex-shrink:0}
+.tab{padding:6px 9px;font-size:10px;background:#231c3d;border:1px solid #372b5e;color:#c7bce8;border-radius:7px;font-weight:700;cursor:pointer;white-space:nowrap}
+.tab.active{background:#473382;border-color:#a782f7;color:#fff}
+.tab-body{flex:1;overflow-y:auto;padding:10px}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.field{margin:8px 0}
+.field label{display:flex;justify-content:space-between;color:#beb2e0;font-size:10px;margin-bottom:4px}
+.field input[type=range]{width:100%;accent-color:var(--accent)}
+.field select,.field input[type=text],.field input[type=color]{width:100%;background:#130f22;color:var(--text);border:1px solid #372b5e;padding:8px;border-radius:8px;font-size:11px}
+.asset{padding:8px 10px;background:#231c3d;border:1px solid #372b5e;border-radius:8px;margin-bottom:5px;font-size:11px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.asset.active{border-color:var(--accent);background:#332759}
+.hint{color:var(--muted);font-size:10px;line-height:1.45}
+.pill{display:inline-block;padding:3px 7px;border-radius:20px;background:#2e2352;color:#d2bdff;font-size:9px}
+
+/* Keyframe & Custom Graph Editor */
+.graph-box{background:#130f22;border:1px solid #372b5e;border-radius:10px;padding:8px;margin-top:6px}
+.graph-canvas{width:100%;height:125px;background:#0e0b1a;border-radius:8px;touch-action:none;display:block;cursor:crosshair}
+.preset-pills{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+.preset-pills button{font-size:9px;padding:5px 7px;background:#231c3d;border:1px solid #3a2f63;color:#e3d9ff;border-radius:6px;cursor:pointer}
+
+/* Text Animation Picker Cards */
+.anim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:6px}
+.anim-card{
+  background:#231c3d;border:1px solid #382c61;border-radius:9px;padding:8px;cursor:pointer;text-align:left;
+  transition:border-color .15s,background .15s;
+}
+.anim-card.active{border-color:#b798fa;background:#372963}
+.anim-card b{display:block;font-size:11px;color:#fff;margin-bottom:2px}
+.anim-card span{font-size:9px;color:var(--muted)}
+
+/* Modals */
+.modal{position:fixed;inset:0;z-index:70;background:#090612cc;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.show{display:flex}
+.dialog{width:min(460px,100%);max-height:86dvh;overflow:auto;background:#1b1530;border:1px solid #3f316b;border-radius:18px;padding:16px}
+.dialog h2{font-size:16px;margin:0 0 10px}
+.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+
+.shape3d{width:96px;height:96px;display:grid;place-items:center;transform-style:preserve-3d;animation:turn3d 9s linear infinite}
+.shape3d .cube{width:66px;height:66px;background:linear-gradient(135deg,#b798fa,#683ec4);border:1px solid #e6daff;box-shadow:0 0 28px #9b72f377;transform:rotateX(55deg) rotateY(45deg);border-radius:10px}
+.shape3d.sphere .cube{border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff,#9b72f3 38%,#47288f)}
+.shape3d.pyramid .cube{clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:0}
+.shape3d.paused{animation-play-state:paused}
+
+@keyframes turn3d{to{transform:rotateY(360deg) rotateX(360deg)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:scale(.35)}to{opacity:1;transform:scale(1)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(42px)}to{opacity:1;transform:translateY(0)}}
+@keyframes smoothUp{0%{opacity:0;transform:translateY(34px) scale(.96);filter:blur(4px)}100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes glitch{0%,100%{transform:translate(0)}20%{transform:translate(-5px,2px);text-shadow:3px 0 #f08acb,-3px 0 #55e0d0}40%{transform:translate(4px,-2px)}60%{transform:skew(8deg)}}
+@keyframes typeIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes bounceIn{0%{opacity:0;transform:translateY(-60px)}60%{opacity:1;transform:translateY(12px)}80%{transform:translateY(-5px)}100%{transform:translateY(0)}}
+@keyframes zoomIn{from{opacity:0;transform:scale(2.1);filter:blur(10px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes waveText{0%,100%{transform:skewX(0deg) translateY(0)}25%{transform:skewX(-8deg) translateY(-5px)}75%{transform:skewX(8deg) translateY(5px)}}
+@keyframes blurReveal{0%{opacity:0;letter-spacing:.4em;filter:blur(12px)}100%{opacity:1;letter-spacing:normal;filter:blur(0)}}
+</style>
+</head>
+<body>
+
+<div class="splash" id="splash">
+  <div class="splash-inner">
+    <div class="splash-logo">VEXORA</div>
+    <div class="splash-sub">CREATIVE STUDIO</div>
+    <div class="loader"></div>
+  </div>
+</div>
+
+<!-- PORTRAIT HOME HUB -->
+<div class="hub" id="hub">
+  <header class="hub-top">
+    <button class="hamburger" aria-label="Menu" onclick="toggleDrawer(true)">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="avatar" onclick="openPerformance()">I</div>
+  </header>
+
+  <main class="hub-body">
+    <section class="mural-card" onclick="switchHubTab('community')">
+      <div>
+        <h1 class="mural-title">Mural</h1>
+        <p class="mural-sub">Watch the community's edits and show yours</p>
+      </div>
+      <svg class="mural-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="8" width="18" height="13" rx="3"></rect>
+        <path d="M6 5h12"></path>
+        <path d="M8 2h8"></path>
+      </svg>
+    </section>
+
+    <div id="hubContent"></div>
+  </main>
+
+  <nav class="bnav">
+    <button class="nav-btn" id="nav-home" onclick="switchHubTab('home')">
+      <span class="nav-pill">
+        <svg viewBox="0 0 24 24"><path d="M7 17c0-5 3.5-9 8.5-9 2.2 0 3.5 1.3 3.5 3.2 0 2.6-2.4 4.3-5.5 4.3H9.5"></path><circle cx="16.5" cy="17.5" r="1.5" fill="currentColor"></circle></svg>
+      </span>
+      <span>Home</span>
+    </button>
+
+    <button class="nav-btn active" id="nav-community" onclick="switchHubTab('community')">
+      <span class="nav-pill">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><circle cx="16" cy="9" r="2.5"></circle><path d="M3.5 19c.6-3.2 3-5 5.5-5s4.9 1.8 5.5 5"></path><path d="M14.5 14.5c2 0 4 1.3 4.5 4.5"></path></svg>
+      </span>
+      <span>Community</span>
+    </button>
+
+    <div class="fab-wrap">
+      <button class="fab" aria-label="Create Project" onclick="openCreateSheet()">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+          <path d="M12 5v14M5 12h14"></path>
+        </svg>
+      </button>
+    </div>
+
+    <button class="nav-btn" id="nav-projects" onclick="switchHubTab('projects')">
+      <span class="nav-pill">
+        <svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="3"></rect><path d="M6 5h12M8 2h8"></path></svg>
+      </span>
+      <span>Projects</span>
+    </button>
+
+    <button class="nav-btn" id="nav-presets" onclick="switchHubTab('presets')">
+      <span class="nav-pill">
+        <svg viewBox="0 0 24 24"><path d="M15 4l5 5L8 21l-5-5L15 4z"></path><path d="M12 7l5 5"></path><path d="M5 3v3M3.5 4.5h3M19 14v3M17.5 15.5h3"></path></svg>
+      </span>
+      <span>Presets</span>
+    </button>
+  </nav>
+</div>
+
+<!-- CREATE PROJECT BOTTOM SHEET (Ratio, Resolution, FPS, Backdrop) -->
+<div class="sheet-backdrop" id="createSheetBackdrop" onclick="closeCreateSheet()">
+  <div class="create-sheet" onclick="event.stopPropagation()">
+    <div class="seg-control">
+      <button class="seg-btn active" id="modeComp" onclick="setProjectMode('Composition')">Composition</button>
+      <button class="seg-btn" id="modeEdit" onclick="setProjectMode('Editing')">Editing</button>
+    </div>
+    <div class="seg-desc" id="modeDesc">Layers, keyframes and custom graphs</div>
+
+    <input id="newProjName" class="proj-input" type="text" value="Project 1" placeholder="Project name">
+
+    <div class="ratio-row" id="ratioRow">
+      <div class="ratio-item" data-ratio="16:9" onclick="selectRatio(this,'16:9')">
+        <div class="ratio-box" style="width:30px;height:18px"></div><span>16:9</span>
+      </div>
+      <div class="ratio-item active" data-ratio="9:16" onclick="selectRatio(this,'9:16')">
+        <div class="ratio-box" style="width:18px;height:30px"></div><span>9:16</span>
+      </div>
+      <div class="ratio-item" data-ratio="4:5" onclick="selectRatio(this,'4:5')">
+        <div class="ratio-box" style="width:22px;height:27px"></div><span>4:5</span>
+      </div>
+      <div class="ratio-item" data-ratio="1:1" onclick="selectRatio(this,'1:1')">
+        <div class="ratio-box" style="width:25px;height:25px"></div><span>1:1</span>
+      </div>
+      <div class="ratio-item" data-ratio="4:3" onclick="selectRatio(this,'4:3')">
+        <div class="ratio-box" style="width:27px;height:21px"></div><span>4:3</span>
+      </div>
+      <div class="ratio-item" data-ratio="Free" onclick="selectRatio(this,'Free')">
+        <div class="ratio-box" style="width:25px;height:25px;border-style:dashed"></div><span>Free</span>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Resolution</div>
+        <div class="setting-sub" id="resDimensions">Frame size 1080 × 1920</div>
+      </div>
+      <select class="setting-select" id="newProjRes" onchange="updateResLabel()">
+        <option value="720p">720p</option>
+        <option value="1080p" selected>1080p</option>
+        <option value="2K">2K</option>
+        <option value="4K">4K</option>
+      </select>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-label">Frames per second</div>
+      <select class="setting-select" id="newProjFps">
+        <option value="24">24 fps</option>
+        <option value="30" selected>30 fps</option>
+        <option value="60">60 fps</option>
+        <option value="120">120 fps</option>
+      </select>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-label">Backdrop</div>
+      <select class="setting-select" id="newProjBg">
+        <option value="black" selected>⬛ Black</option>
+        <option value="green">🟩 Green Screen</option>
+        <option value="transparent">🏁 Transparent</option>
+        <option value="white">⬜ White</option>
+      </select>
+    </div>
+
+    <div class="sheet-footer">
+      <button class="close-x" onclick="closeCreateSheet()">✕</button>
+      <button class="create-cta" onclick="confirmCreateProject()">Create project</button>
+    </div>
+  </div>
+</div>
+
+<!-- Side Drawer -->
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleDrawer(false)">
+  <div class="drawer" onclick="event.stopPropagation()">
+    <h3>VEXORA</h3>
+    <p class="hint">Dark Purple Studio v0.3.2</p>
+    <button onclick="toggleDrawer(false);openCreateSheet()">＋ New Project</button>
+    <button onclick="toggleDrawer(false);$('importProjectFile').click()">📂 Import AE / AM XML / Node / Media</button>
+    <button onclick="toggleDrawer(false);openPerformance()">⚡ Performance &amp; Recovery</button>
+    <input id="importProjectFile" type="file" accept="*/*" multiple hidden onchange="handleHubImport(this.files)">
+  </div>
+</div>
+
+<!-- VERTICAL TIMELINE EDITOR -->
+<div class="app" id="app">
+  <header class="top">
+    <div class="brand">
+      <button class="ed-btn" onclick="closeEditor()">← HOME</button>
+      <div>VEX<span>O</span>RA</div>
+    </div>
+    <div class="top-actions">
+      <button class="ed-btn" onclick="openPerformance()">PERF</button>
+      <button class="ed-btn" onclick="saveProject()">SAVE</button>
+      <button class="ed-btn primary" onclick="openExport()">EXPORT</button>
+    </div>
+  </header>
+
+  <main class="editor-main">
+    <div class="preview-wrap">
+      <div class="canvas-stage bg-black" id="canvasStage" style="aspect-ratio:9/16">
+        <div class="placeholder" id="placeholder"><b>VEXORA</b>Tap + Media or + Text below</div>
+      </div>
+    </div>
+
+    <div class="transport">
+      <div class="transport-left">
+        <button class="ed-btn" onclick="togglePlay()" id="play">▶ PLAY</button>
+        <button class="ed-btn" onclick="stepFrame(-1)">◂</button>
+        <button class="ed-btn" onclick="stepFrame(1)">▸</button>
+        <span id="time" class="hint">00:00 / 00:00</span>
+      </div>
+      <span id="renderStatus" class="status">9:16 · 30 FPS</span>
+    </div>
+
+    <section class="timeline">
+      <div class="ph">
+        <span>TIMELINE · <span id="layerCount">0 LAYERS</span> <span style="font-weight:400;color:var(--muted)">(Hold &amp; drag ☰)</span></span>
+        <span>
+          <button class="ed-btn" onclick="groupSelected()">▣ Group</button>
+          <button class="ed-btn" onclick="preRenderGroup()">⚡ Cache</button>
+        </span>
+      </div>
+      <div class="ruler"><span>00:00</span><span>00:05</span><span>00:10</span><span>00:15</span><span>00:20</span></div>
+      <div id="tracks"><div class="track"><span class="trackname">V1</span><span class="hint">Import media or add a layer</span></div></div>
+    </section>
+
+    <section class="inspector">
+      <div class="tabs">
+        <button class="tab active" onclick="showTab('media',this)">MEDIA</button>
+        <button class="tab" onclick="showTab('keyframes',this)">KEYFRAMES &amp; GRAPH</button>
+        <button class="tab" onclick="showTab('effects',this)">FX</button>
+        <button class="tab" onclick="showTab('text',this)">TEXT</button>
+        <button class="tab" onclick="showTab('three',this)">3D</button>
+        <button class="tab" onclick="showTab('project',this)">PROJECT</button>
+      </div>
+
+      <!-- Media & External Software Import Tab -->
+      <div class="tab-body" id="mediaTab">
+        <div class="tools" style="margin-bottom:8px">
+          <button class="ed-btn primary" onclick="$('media').click()">＋ Import File</button>
+          <button class="ed-btn" onclick="addText()">＋ Text</button>
+          <button class="ed-btn" onclick="addShape()">◻ Shape</button>
+          <button class="ed-btn" onclick="add3D()">◇ 3D</button>
+          <button class="ed-btn" onclick="addLayer('Video')">＋ Video</button>
+          <button class="ed-btn" onclick="addLayer('Audio')">＋ Audio</button>
+        </div>
+        <p class="hint" style="margin:4px 0 8px">Supports Video, Image, Audio, After Effects (`.aep`, `.ffx`), Alight Motion (`.xml`), Node Video (`.nv`, `.json`), and 3D (`.glb`, `.obj`).</p>
+        <input id="media" type="file" accept="*/*" multiple hidden onchange="importFiles(this.files)">
+        <div id="assets"><div class="hint">Imported media, XMLs, and project files appear here.</div></div>
+      </div>
+
+      <!-- Keyframes & Custom Graph Tab -->
+      <div class="tab-body" id="keyframesTab" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span class="hint">Layer: <b id="kfLayerName" style="color:#fff">None selected</b></span>
+          <button class="ed-btn primary" onclick="addKeyframe()">◆ + KEYFRAME</button>
+        </div>
+        <div class="tools" style="grid-template-columns:1fr 1fr">
+          <div class="field" style="margin:2px 0"><label>Property</label>
+            <select id="kfProp">
+              <option value="scale">Scale (%)</option>
+              <option value="posY">Position Y (px)</option>
+              <option value="posX">Position X (px)</option>
+              <option value="rotate">Rotation (°)</option>
+              <option value="opacity">Opacity (%)</option>
+            </select>
+          </div>
+          <div class="field" style="margin:2px 0"><label>Value <span id="kfValDisplay">100</span></label>
+            <input id="kfVal" type="range" min="-200" max="300" value="100" oninput="$('kfValDisplay').textContent=this.value;previewKeyframeTransform()">
+          </div>
+        </div>
+        <div id="kfList" class="hint" style="margin:6px 0">No keyframes yet. Tap + KEYFRAME to add points.</div>
+
+        <div class="graph-box">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <span style="font-size:10px;font-weight:700;color:#d2bdff">CUSTOM EASING GRAPH (Drag handles)</span>
+            <span id="bezierReadout" class="hint">0.25, 0.10, 0.25, 1.00</span>
+          </div>
+          <canvas id="graphCanvas" class="graph-canvas" width="320" height="125"></canvas>
+          <div class="preset-pills">
+            <button onclick="setBezierPreset(0.25,0.1,0.25,1)">Smooth</button>
+            <button onclick="setBezierPreset(0.16,1,0.3,1)">Ease Out</button>
+            <button onclick="setBezierPreset(0.7,0,0.84,0)">Ease In</button>
+            <button onclick="setBezierPreset(0.34,1.56,0.64,1)">Overshoot</button>
+            <button onclick="applyGraphToLayer()">Apply Curve</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FX Tab -->
+      <div class="tab-body" id="effectsTab" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="hint">Selected layer FX</span>
+          <span class="pill" id="selectedType">NONE</span>
+        </div>
+        <div class="field"><label>Brightness <span id="brightVal">100%</span></label><input id="bright" type="range" min="0" max="200" value="100" oninput="updateFX()"></div>
+        <div class="field"><label>Contrast <span id="contrastVal">100%</span></label><input id="contrast" type="range" min="0" max="200" value="100" oninput="updateFX()"></div>
+        <div class="field"><label>Saturation <span id="satVal">100%</span></label><input id="sat" type="range" min="0" max="200" value="100" oninput="updateFX()"></div>
+        <div class="field"><label>Blur <span id="blurVal">0px</span></label><input id="blur" type="range" min="0" max="20" value="0" oninput="updateFX()"></div>
+        <div class="field"><label>Hue <span id="hueVal">0°</span></label><input id="hue" type="range" min="0" max="360" value="0" oninput="updateFX()"></div>
+        <button class="ed-btn" style="width:100%" onclick="resetFX()">RESET EFFECTS</button>
+      </div>
+
+      <!-- Text Tab with Visual Animation Options -->
+      <div class="tab-body" id="textTab" style="display:none">
+        <div class="field"><label>Text content</label><input id="textValue" type="text" value="VEXORA" oninput="updateText()"></div>
+        <div class="tools" style="grid-template-columns:2fr 1fr">
+          <div class="field"><label>Font size <span id="textSizeVal">44px</span></label><input id="textSize" type="range" min="14" max="110" value="44" oninput="$('textSizeVal').textContent=this.value+'px';updateText()"></div>
+          <div class="field"><label>Color</label><input id="textColor" type="color" value="#ffffff" oninput="updateText()" style="height:34px;padding:2px"></div>
+        </div>
+        <div class="field">
+          <label>Text Animations (Tap to preview)</label>
+          <div class="anim-grid" id="textAnimGrid">
+            <div class="anim-card active" data-anim="smoothUp" onclick="selectTextAnim(this,'smoothUp')"><b>Smooth Up Text</b><span>Silky rise + blur settle</span></div>
+            <div class="anim-card" data-anim="fade" onclick="selectTextAnim(this,'fade')"><b>Fade In</b><span>Clean opacity dissolve</span></div>
+            <div class="anim-card" data-anim="pop" onclick="selectTextAnim(this,'pop')"><b>Pop Bounce</b><span>Punchy elastic scale</span></div>
+            <div class="anim-card" data-anim="glitch" onclick="selectTextAnim(this,'glitch')"><b>RGB Glitch</b><span>Cyber chromatic jitter</span></div>
+            <div class="anim-card" data-anim="type" onclick="selectTextAnim(this,'type')"><b>Typewriter</b><span>Character step reveal</span></div>
+            <div class="anim-card" data-anim="zoom" onclick="selectTextAnim(this,'zoom')"><b>Cinematic Zoom</b><span>Dramatic lens pull-in</span></div>
+            <div class="anim-card" data-anim="wave" onclick="selectTextAnim(this,'wave')"><b>Kinetic Wave</b><span>Skew &amp; rhythm sway</span></div>
+            <div class="anim-card" data-anim="blurReveal" onclick="selectTextAnim(this,'blurReveal')"><b>Tracking Blur</b><span>Wide spacing focus</span></div>
+          </div>
+        </div>
+        <button class="ed-btn primary" style="width:100%;margin-top:6px" onclick="addText()">＋ ADD TRANSPARENT TEXT LAYER</button>
+      </div>
+
+      <!-- 3D Tab -->
+      <div class="tab-body" id="threeTab" style="display:none">
+        <div class="field"><label>Primitive</label><select id="primitive" onchange="changePrimitive()"><option value="cube">Cube</option><option value="sphere">Sphere</option><option value="pyramid">Pyramid</option></select></div>
+        <div class="field"><label>Rotation speed</label><input id="rotSpeed" type="range" min="0" max="20" value="9" oninput="setRotSpeed()"></div>
+        <div class="tools">
+          <button class="ed-btn" onclick="add3D()">＋ Add 3D</button>
+          <button class="ed-btn" onclick="toggle3D()">Pause/Play</button>
+          <button class="ed-btn" onclick="turn3D()">Rotate 45°</button>
+        </div>
+      </div>
+
+      <!-- Project Settings Tab -->
+      <div class="tab-body" id="projectTab" style="display:none">
+        <div class="field"><label>Project name</label><input id="projectName" type="text" value="Project 1"></div>
+        <div class="field"><label>Aspect Ratio</label>
+          <select id="editorRatio" onchange="applyStageSettings()">
+            <option value="9:16" selected>9:16 (Vertical)</option>
+            <option value="16:9">16:9 (Widescreen)</option>
+            <option value="4:5">4:5 (Social Portrait)</option>
+            <option value="1:1">1:1 (Square)</option>
+            <option value="4:3">4:3 (Classic)</option>
+            <option value="Free">Free</option>
+          </select>
+        </div>
+        <div class="field"><label>Backdrop Color</label>
+          <select id="editorBackdrop" onchange="applyStageSettings()">
+            <option value="black" selected>Black</option>
+            <option value="green">Green Screen</option>
+            <option value="transparent">Transparent</option>
+            <option value="white">White</option>
+          </select>
+        </div>
+        <div class="field"><label>Frame rate</label>
+          <select id="fps" onchange="applyStageSettings()"><option>24</option><option selected>30</option><option>60</option><option>120</option></select>
+        </div>
+        <button class="ed-btn" style="width:100%" onclick="newProject()">CLEAR PROJECT</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Modals -->
+<div class="modal" id="performanceModal"><div class="dialog">
+  <h2>Performance &amp; Stability</h2>
+  <div class="field"><label>Preview quality <span id="previewQualityLabel">Balanced</span></label>
+    <select id="previewQuality" onchange="setPreviewQuality(this.value)">
+      <option value="low">Performance (low)</option><option value="balanced" selected>Balanced</option><option value="high">High quality</option>
+    </select>
+  </div>
+  <div class="field"><label>Preview frame rate <span id="previewFpsLabel">30 FPS</span></label>
+    <select id="previewFps" onchange="setPreviewFps(this.value)">
+      <option>15</option><option selected>30</option><option>60</option><option>120</option>
+    </select>
+  </div>
+  <div class="field"><button class="ed-btn" style="width:100%" onclick="clearPreviewCache()">CLEAR PREVIEW CACHE</button></div>
+  <div class="hint" id="performanceStatus">Renderer: browser composite preview · Transparent layer blending enabled</div>
+  <div class="dialog-actions"><button class="ed-btn primary" onclick="closePerformance()">CLOSE</button></div>
+</div></div>
+
+<div class="modal" id="exportModal"><div class="dialog">
+  <h2>Export composition</h2>
+  <div class="field"><label>Output format</label><select id="exportFormat"><option value="project">VEXORA Project (.vxproj)</option><option value="png">Composite frame (PNG)</option><option value="json">Project data (JSON)</option></select></div>
+  <div class="field"><label>Resolution</label><select id="exportResolution"><option selected>1080 × 1920 (9:16)</option><option>1080 × 1080</option><option>1920 × 1080</option><option>3840 × 2160 (4K)</option></select></div>
+  <div class="status" id="exportMessage"></div>
+  <div class="dialog-actions"><button class="ed-btn" onclick="closeExport()">CANCEL</button><button class="ed-btn primary" onclick="doExport()">EXPORT</button></div>
+</div></div>
+
+<div class="modal" id="textModal"><div class="dialog">
+  <h2>Add transparent text layer</h2>
+  <div class="field"><label>Text</label><input id="newTextValue" type="text" value="Your title"></div>
+  <div class="field"><label>Animation Style</label>
+    <select id="newTextAnim">
+      <option value="smoothUp" selected>Smooth Up Text (Silky rise &amp; focus)</option>
+      <option value="fade">Fade In (Clean opacity dissolve)</option>
+      <option value="pop">Pop Bounce (Elastic beat punch)</option>
+      <option value="slide">Slide Up (Fast vertical entrance)</option>
+      <option value="glitch">RGB Glitch (Chromatic split)</option>
+      <option value="type">Typewriter (Step reveal)</option>
+      <option value="bounce">Bounce Drop (Gravity bounce)</option>
+      <option value="zoom">Cinematic Zoom (Lens pull-in)</option>
+      <option value="wave">Kinetic Wave (Rhythm sway)</option>
+      <option value="blurReveal">Tracking Blur (Wide letter focus)</option>
+    </select>
+  </div>
+  <div class="dialog-actions"><button class="ed-btn" onclick="closeText()">CANCEL</button><button class="ed-btn primary" onclick="confirmText()">ADD TEXT</button></div>
+</div></div>
+
+<script>
+let items=[],current=null,selectedIds=new Set(),groupCache={},threeRotation=0;
+let activeHubTab='community';
+let selectedRatio='9:16';
+let selectedTextAnim='smoothUp';
+let bezierPts={p1x:0.25,p1y:0.1,p2x:0.25,p2y:1.0};
+let draggingHandle=null;
+
+let savedProjects=[
+  {id:'demo_1',name:'Velocity Edit 9:16',layers:4,updated:'Today'},
+  {id:'demo_2',name:'Glitch Intro Loop',layers:3,updated:'Yesterday'}
+];
+const presetsCatalog=[
+  {name:'Smooth Up Text',anim:'smoothUp',desc:'Silky vertical rise with blur settle'},
+  {name:'RGB Glitch',anim:'glitch',desc:'Chromatic split kinetic text'},
+  {name:'Cinematic Zoom',anim:'zoom',desc:'Smooth scale & blur pull-in'},
+  {name:'3D Floating Cube',type:'3D',desc:'Perspective rotating stage'}
+];
+const $=id=>document.getElementById(id);
+
+window.addEventListener('load',()=>{
+  switchHubTab('community');
+  initGraphEditor();
+  setTimeout(()=>{
+    $('splash').classList.add('hide');
+    $('hub').classList.add('ready');
+  },1050);
+});
+
+function toggleDrawer(open){$('drawerBackdrop').classList.toggle('show',open)}
+
+/* Hub Navigation */
+function switchHubTab(tab){
+  activeHubTab=tab;
+  ['home','community','projects','presets'].forEach(t=>{
+    const el=$('nav-'+t);
+    if(el) el.classList.toggle('active',t===tab);
+  });
+  const container=$('hubContent');
+  if(tab==='community'){
+    container.innerHTML=`
+      <div class="sec-title"><span>Community</span><span class="sec-sub">Mural feed</span></div>
+      <div class="empty-state">
+        <div class="spinner"></div>
+        <div style="font-size:12px">Loading community edits...</div>
+        <button class="ed-btn primary" onclick="openCreateSheet()">＋ Create &amp; Share Yours</button>
+      </div>`;
+  } else if(tab==='home'){
+    container.innerHTML=`
+      <div class="sec-title"><span>Quick Start</span><span class="sec-sub">Dark Purple Studio</span></div>
+      <div class="feed-grid">
+        <div class="card" onclick="openCreateSheet()">
+          <div class="card-thumb" style="background:linear-gradient(135deg,#3e2a73,#1d1438)"><span style="font-size:26px">＋</span></div>
+          <div class="card-meta"><div class="card-title">New Composition</div><div class="card-info">Custom Ratio, FPS &amp; Backdrop</div></div>
+        </div>
+        <div class="card" onclick="openEditor(true);add3D()">
+          <div class="card-thumb"><span class="card-badge">3D</span><span style="font-size:24px">◇</span></div>
+          <div class="card-meta"><div class="card-title">3D Stage Template</div><div class="card-info">Cube / Sphere / Pyramid</div></div>
+        </div>
+      </div>
+      <div class="sec-title"><span>Recent Projects</span></div>
+      <div class="feed-grid">
+        ${savedProjects.map(p=>`
+          <div class="card" onclick="openProjectFromHub('${escapeHtml(p.name)}')">
+            <div class="card-thumb"><span class="card-badge">${p.layers} LAYERS</span><b style="letter-spacing:2px;color:#cbb2ff">VEXORA</b></div>
+            <div class="card-meta"><div class="card-title">${escapeHtml(p.name)}</div><div class="card-info">${escapeHtml(p.updated)}</div></div>
+          </div>`).join('')}
+      </div>`;
+  } else if(tab==='projects'){
+    container.innerHTML=`
+      <div class="sec-title"><span>Projects</span><button class="ed-btn primary" onclick="openCreateSheet()">＋ New</button></div>
+      <div class="feed-grid">
+        ${savedProjects.map(p=>`
+          <div class="card" onclick="openProjectFromHub('${escapeHtml(p.name)}')">
+            <div class="card-thumb"><span class="card-badge">PROJECT</span><b style="letter-spacing:2px;color:#d6c4ff">VEXORA</b></div>
+            <div class="card-meta"><div class="card-title">${escapeHtml(p.name)}</div><div class="card-info">${p.layers} layers · ${escapeHtml(p.updated)}</div></div>
+          </div>`).join('')}
+      </div>`;
+  } else if(tab==='presets'){
+    container.innerHTML=`
+      <div class="sec-title"><span>Presets</span><span class="sec-sub">Tap to apply</span></div>
+      <div class="feed-grid">
+        ${presetsCatalog.map(pr=>`
+          <div class="card" onclick="applyHubPreset('${pr.anim||''}','${pr.type||''}','${escapeHtml(pr.name)}')">
+            <div class="card-thumb"><span class="card-badge">PRESET</span><b style="color:#cbb2ff">${escapeHtml(pr.name)}</b></div>
+            <div class="card-meta"><div class="card-title">${escapeHtml(pr.name)}</div><div class="card-info">${escapeHtml(pr.desc)}</div></div>
+          </div>`).join('')}
+      </div>`;
+  }
+}
+
+/* Create Project Sheet Logic */
+function openCreateSheet(){
+  $('newProjName').value='Project '+(savedProjects.length+1);
+  $('createSheetBackdrop').classList.add('show');
+}
+function closeCreateSheet(){
+  $('createSheetBackdrop').classList.remove('show');
+}
+function setProjectMode(mode){
+  $('modeComp').classList.toggle('active',mode==='Composition');
+  $('modeEdit').classList.toggle('active',mode==='Editing');
+  $('modeDesc').textContent=mode==='Composition'?'Layers, keyframes and custom graphs':'Fast multi-clip timeline cutting';
+}
+function selectRatio(el,ratio){
+  selectedRatio=ratio;
+  document.querySelectorAll('.ratio-item').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  updateResLabel();
+}
+function updateResLabel(){
+  const res=$('newProjRes').value;
+  const dims={
+    '9:16':{'720p':'720 × 1280','1080p':'1080 × 1920','2K':'1440 × 2560','4K':'2160 × 3840'},
+    '16:9':{'720p':'1280 × 720','1080p':'1920 × 1080','2K':'2560 × 1440','4K':'3840 × 2160'},
+    '4:5':{'720p':'720 × 900','1080p':'1080 × 1350','2K':'1440 × 1800','4K':'2160 × 2700'},
+    '1:1':{'720p':'720 × 720','1080p':'1080 × 1080','2K':'1440 × 1440','4K':'2160 × 2160'},
+    '4:3':{'720p':'960 × 720','1080p':'1440 × 1080','2K':'1920 × 1440','4K':'2880 × 2160'},
+    'Free':{'720p':'Custom 720p','1080p':'Custom 1080p','2K':'Custom 2K','4K':'Custom 4K'}
+  };
+  $('resDimensions').textContent='Frame size '+(dims[selectedRatio]?.[res]||'1080 × 1920');
+}
+function confirmCreateProject(){
+  const name=$('newProjName').value.trim()||'Untitled Project';
+  const fps=$('newProjFps').value;
+  const bg=$('newProjBg').value;
+  closeCreateSheet();
+  newProject(true);
+  $('projectName').value=name;
+  $('editorRatio').value=selectedRatio;
+  $('editorBackdrop').value=bg;
+  $('fps').value=fps;
+  applyStageSettings();
+  openEditor(false);
+}
+
+function applyStageSettings(){
+  const ratio=$('editorRatio').value;
+  const bg=$('editorBackdrop').value;
+  const fps=$('fps').value;
+  const stage=$('canvasStage');
+  stage.className='canvas-stage bg-'+bg;
+  const ratioMap={'16:9':'16/9','9:16':'9/16','4:5':'4/5','1:1':'1/1','4:3':'4/3','Free':'auto'};
+  stage.style.aspectRatio=ratioMap[ratio]||'9/16';
+  if(ratio==='Free'){stage.style.width='100%';stage.style.height='100%';}
+  else{stage.style.width='auto';stage.style.height='100%';}
+  $('renderStatus').textContent=`${ratio} · ${fps} FPS · ${bg.toUpperCase()}`;
+}
+
+function openEditor(reset=false){
+  if(reset && items.length===0){
+    $('projectName').value='Project '+(savedProjects.length+1);
+  }
+  $('hub').classList.add('hidden');
+  $('app').classList.add('active');
+  renderStage();
+}
+
+function closeEditor(){
+  if(items.length>0){
+    const name=$('projectName').value||'Untitled Edit';
+    const existing=savedProjects.find(p=>p.name===name);
+    if(existing){existing.layers=items.length;existing.updated='Just now';}
+    else{savedProjects.unshift({id:uid(),name,layers:items.length,updated:'Just now'});}
+  }
+  $('app').classList.remove('active');
+  $('hub').classList.remove('hidden');
+  switchHubTab(activeHubTab);
+}
+
+function openProjectFromHub(name){
+  $('projectName').value=name;
+  openEditor(false);
+}
+
+function applyHubPreset(anim,type,name){
+  openEditor(false);
+  if(type==='3D'){add3D();}
+  else{
+    let it={id:uid(),name:name,type:'Text',text:name.toUpperCase(),animation:anim||'smoothUp',color:'#ffffff',size:42,keyframes:[],bezier:'cubic-bezier(0.25,0.1,0.25,1)'};
+    items.push(it);
+    selectItem(it);
+  }
+}
+
+function handleHubImport(files){
+  if(!files||!files.length) return;
+  openEditor(false);
+  importFiles(files);
+}
+
+function uid(){return 'vx_'+Math.random().toString(36).slice(2,9)}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+/* Multi-software File Import (AE, AM XML, Node Video, Media, 3D) */
+function importFiles(files){
+  [...files].forEach(f=>{
+    let url=URL.createObjectURL(f),ext=f.name.split('.').pop().toLowerCase();
+    let type='Asset',badge='FILE';
+    if(f.type.startsWith('video')){type='Video';badge='VID';}
+    else if(f.type.startsWith('image')){type='Image';badge='IMG';}
+    else if(f.type.startsWith('audio')){type='Audio';badge='AUD';}
+    else if(['glb','gltf','obj','fbx'].includes(ext)){type='3D Asset';badge='3D';}
+    else if(['aep','aet','ffx'].includes(ext)){type='After Effects';badge='AE';}
+    else if(ext==='xml'){type='Alight Motion XML';badge='AM XML';}
+    else if(['nv','node','json'].includes(ext)){type='Node Video';badge='NODE';}
+
+    let item={id:uid(),name:f.name,type,badge,ext,url,size:f.size,keyframes:[],bezier:'cubic-bezier(0.25,0.1,0.25,1)',transform:{scale:100,posX:0,posY:0,rotate:0,opacity:100}};
+    items.push(item);
+
+    if(ext==='xml' || ext==='json'){
+      const reader=new FileReader();
+      reader.onload=ev=>{
+        item.rawSnippet=String(ev.target.result||'').slice(0,220);
+        $('renderStatus').textContent=`Loaded ${badge}: ${f.name}`;
+      };
+      reader.readAsText(f);
+    } else {
+      $('renderStatus').textContent=`Imported ${badge}: ${f.name}`;
+    }
+
+    selectItem(item);
+  });
+  renderAssetsList();
+  renderTracks();
+  renderStage();
+}
+
+function renderAssetsList(){
+  const box=$('assets');
+  if(!items.length){
+    box.innerHTML='<div class="hint">Imported media, XMLs, and project files appear here.</div>';
+    return;
+  }
+  box.innerHTML='';
+  items.forEach(it=>{
+    let el=document.createElement('div');
+    el.className='asset'+(current&&current.id===it.id?' active':'');
+    el.innerHTML=`<span>${escapeHtml(it.name)}</span><span class="pill">${escapeHtml(it.badge||it.type)}</span>`;
+    el.onclick=()=>selectItem(it);
+    box.appendChild(el);
+  });
+}
+
+function selectItem(item){
+  current=item;
+  selectedIds=new Set([item.id]);
+  $('selectedType').textContent=item.type.toUpperCase();
+  $('kfLayerName').textContent=item.name;
+  if(item.type==='Text'){
+    $('textValue').value=item.text||'VEXORA';
+    $('textSize').value=item.size||44;
+    $('textSizeVal').textContent=(item.size||44)+'px';
+    $('textColor').value=item.color||'#ffffff';
+  }
+  renderAssetsList();
+  renderTracks();
+  renderKeyframeList();
+  renderStage();
+}
+
+/* Composite Canvas Rendering (Fixes black background behind text!) */
+function renderStage(){
+  const stage=$('canvasStage');
+  stage.innerHTML='';
+  if(!items.length){
+    stage.innerHTML='<div class="placeholder" id="placeholder"><b>VEXORA</b>Tap + Media or + Text below</div>';
+    return;
+  }
+  // Render bottom-to-top so top track in timeline sits ABOVE lower layers
+  [...items].reverse().forEach((it,idx)=>{
+    const layer=document.createElement('div');
+    layer.className='stage-layer';
+    layer.style.zIndex=idx+1;
+    const t=it.transform||{scale:100,posX:0,posY:0,rotate:0,opacity:100};
+    layer.style.transform=`translate(${t.posX}px, ${t.posY}px) scale(${t.scale/100}) rotate(${t.rotate}deg)`;
+    layer.style.opacity=(t.opacity??100)/100;
+
+    if(it.type==='Video'){
+      let v=document.createElement('video');
+      v.src=it.url;v.playsInline=true;v.muted=false;
+      if(current&&current.id===it.id) v.id='activeVideo';
+      v.onloadedmetadata=()=>{$('time').textContent='00:00 / '+fmt(v.duration)};
+      v.ontimeupdate=()=>{$('time').textContent=fmt(v.currentTime)+' / '+fmt(v.duration)};
+      layer.appendChild(v);
+    } else if(it.type==='Image'){
+      let im=document.createElement('img');
+      im.src=it.url;
+      if(current&&current.id===it.id) im.id='activeImage';
+      layer.appendChild(im);
+    } else if(it.type==='Text'){
+      let txt=document.createElement('div');
+      txt.className='stage-text';
+      if(current&&current.id===it.id) txt.id='textPreview';
+      txt.textContent=it.text||'VEXORA';
+      txt.style.fontSize=(it.size||44)+'px';
+      txt.style.color=it.color||'#ffffff';
+      txt.style.background='transparent';
+      txt.style.animation=getAnimCss(it.animation||'smoothUp',it.bezier);
+      layer.appendChild(txt);
+    } else if(it.type==='Shape'){
+      let sh=document.createElement('div');
+      sh.style.cssText='width:110px;height:110px;border-radius:18px;background:linear-gradient(135deg,#a782f7,#683ec4);box-shadow:0 8px 24px rgba(0,0,0,.35)';
+      layer.appendChild(sh);
+    } else if(it.type==='3D'){
+      let wrap=document.createElement('div');wrap.className='shape3d';
+      if(current&&current.id===it.id) wrap.id='shape3d';
+      let cube=document.createElement('div');cube.className='cube '+(it.primitive||'cube');
+      wrap.appendChild(cube);
+      layer.appendChild(wrap);
+    } else {
+      let badgeBox=document.createElement('div');
+      badgeBox.style.cssText='padding:10px 14px;border-radius:12px;background:rgba(27,21,48,.82);border:1px solid #6e46c7;color:#e6dcff;font-size:11px;text-align:center';
+      badgeBox.innerHTML=`<b>${escapeHtml(it.badge||it.type)}</b><br>${escapeHtml(it.name)}`;
+      layer.appendChild(badgeBox);
+    }
+    stage.appendChild(layer);
+  });
+  updateFX();
+}
+
+/* Drag-and-Drop Timeline Layer Reordering (Mouse + Touch Hold) */
+let dragSrcIndex=null;
+function renderTracks(){
+  let t=$('tracks');t.innerHTML='';
+  if(!items.length){
+    t.innerHTML='<div class="track"><span class="trackname">V1</span><span class="hint">Import media or add a layer</span></div>';
+    $('layerCount').textContent='0 LAYERS';
+    return;
+  }
+  items.forEach((it,i)=>{
+    let r=document.createElement('div');
+    r.className='track'+(current&&current.id===it.id?' selected':'');
+    r.draggable=true;
+    r.dataset.index=i;
+
+    r.addEventListener('dragstart',e=>{
+      dragSrcIndex=i;
+      r.classList.add('dragging');
+      e.dataTransfer.effectAllowed='move';
+    });
+    r.addEventListener('dragend',()=>{
+      r.classList.remove('dragging');
+      document.querySelectorAll('.track').forEach(tr=>tr.classList.remove('drag-over'));
+    });
+    r.addEventListener('dragover',e=>{
+      e.preventDefault();
+      r.classList.add('drag-over');
+    });
+    r.addEventListener('dragleave',()=>r.classList.remove('drag-over'));
+    r.addEventListener('drop',e=>{
+      e.preventDefault();
+      r.classList.remove('drag-over');
+      if(dragSrcIndex!==null && dragSrcIndex!==i){
+        const moved=items.splice(dragSrcIndex,1)[0];
+        items.splice(i,0,moved);
+        dragSrcIndex=null;
+        renderTracks();
+        renderStage();
+        $('renderStatus').textContent='Layer order updated';
+      }
+    });
+
+    // Mobile Touch Hold & Drag support
+    let handle=document.createElement('span');
+    handle.className='drag-handle';
+    handle.textContent='☰';
+    handle.addEventListener('touchstart',()=>{
+      dragSrcIndex=i;
+      r.classList.add('dragging');
+    },{passive:true});
+    handle.addEventListener('touchmove',e=>{
+      if(dragSrcIndex===null) return;
+      const touch=e.touches[0];
+      const targetEl=document.elementFromPoint(touch.clientX,touch.clientY)?.closest('.track');
+      document.querySelectorAll('.track').forEach(tr=>tr.classList.remove('drag-over'));
+      if(targetEl && Number(targetEl.dataset.index)!==dragSrcIndex){
+        targetEl.classList.add('drag-over');
+      }
+    },{passive:true});
+    handle.addEventListener('touchend',e=>{
+      r.classList.remove('dragging');
+      const touch=e.changedTouches[0];
+      const targetEl=document.elementFromPoint(touch.clientX,touch.clientY)?.closest('.track');
+      document.querySelectorAll('.track').forEach(tr=>tr.classList.remove('drag-over'));
+      if(targetEl && dragSrcIndex!==null){
+        const dropIdx=Number(targetEl.dataset.index);
+        if(!isNaN(dropIdx) && dropIdx!==dragSrcIndex){
+          const moved=items.splice(dragSrcIndex,1)[0];
+          items.splice(dropIdx,0,moved);
+          renderTracks();
+          renderStage();
+          $('renderStatus').textContent='Layer moved';
+        }
+      }
+      dragSrcIndex=null;
+    });
+
+    let n=document.createElement('span');
+    n.className='trackname';
+    n.textContent=(it.type==='Audio'?'A':it.type==='Text'?'T':it.type==='3D'?'3D':it.type==='Shape'?'S':'V')+(items.length-i);
+
+    let c=document.createElement('div');
+    let cls=it.type==='Audio'?' audio':it.type==='Text'?' text':it.type==='Shape'?' shape':it.type==='3D'?' three':['After Effects','Alight Motion XML','Node Video'].includes(it.type)?' external':'';
+    c.className='clip'+cls;
+    const kfDots=(it.keyframes||[]).map(()=>'<span class="kf-diamond"></span>').join('');
+    c.innerHTML=`<span>${escapeHtml(it.name)}</span><span class="kf-dots">${kfDots}</span>`;
+    c.onclick=()=>selectItem(it);
+
+    r.append(handle,n,c);
+    t.appendChild(r);
+  });
+  $('layerCount').textContent=items.length+' LAYERS';
+}
+
+/* Layer Creation */
+function addLayer(type){
+  let it={id:uid(),name:type+' '+(items.length+1),type,badge:type.toUpperCase(),keyframes:[],bezier:'cubic-bezier(0.25,0.1,0.25,1)',transform:{scale:100,posX:0,posY:0,rotate:0,opacity:100}};
+  items.unshift(it);
+  selectItem(it);
+}
+function addShape(){
+  let it={id:uid(),name:'Shape '+(items.length+1),type:'Shape',badge:'SHAPE',keyframes:[],bezier:'cubic-bezier(0.25,0.1,0.25,1)',transform:{scale:100,posX:0,posY:0,rotate:0,opacity:100}};
+  items.unshift(it);
+  selectItem(it);
+}
+function addText(){$('textModal').classList.add('show')}
+function closeText(){$('textModal').classList.remove('show')}
+function confirmText(){
+  let val=$('newTextValue').value||'Your title';
+  let anim=$('newTextAnim').value;
+  let it={id:uid(),name:val,type:'Text',badge:'TEXT',text:val,animation:anim,color:'#ffffff',size:44,keyframes:[],bezier:'cubic-bezier(0.25,0.1,0.25,1)',transform:{scale:100,posX:0,posY:0,rotate:0,opacity:100}};
+  items.unshift(it);
+  closeText();
+  selectItem(it);
+  showTab('text',document.querySelectorAll('.tab')[3]);
+}
+function selectTextAnim(el,anim){
+  selectedTextAnim=anim;
+  document.querySelectorAll('.anim-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  if(current&&current.type==='Text'){
+    current.animation=anim;
+    renderStage();
+  }
+}
+function updateText(){
+  if(current&&current.type==='Text'){
+    current.text=$('textValue').value;
+    current.size=Number($('textSize').value)||44;
+    current.color=$('textColor').value;
+    renderTracks();
+    renderStage();
+  }
+}
+function getAnimCss(preset,bezier='cubic-bezier(0.22,1,0.36,1)'){
+  const map={
+    smoothUp:`smoothUp .85s ${bezier} both`,
+    fade:`fadeIn .85s ${bezier} both`,
+    pop:`popIn .65s cubic-bezier(.2,1.5,.5,1) both`,
+    slide:`slideUp .75s ${bezier} both`,
+    glitch:`glitch .75s steps(2,end) 2`,
+    type:`typeIn 1.6s steps(24,end) both`,
+    bounce:`bounceIn .95s ease both`,
+    zoom:`zoomIn 1s ${bezier} both`,
+    wave:`waveText 2.4s ease-in-out infinite`,
+    blurReveal:`blurReveal .9s ${bezier} both`,
+    float:`floaty 2.6s ease-in-out infinite`
+  };
+  return map[preset]||map.smoothUp;
+}
+
+/* Keyframes & Custom Cubic-Bezier Graph */
+function addKeyframe(){
+  if(!current){$('renderStatus').textContent='Select a layer first';return;}
+  const prop=$('kfProp').value;
+  const val=Number($('kfVal').value);
+  current.keyframes=current.keyframes||[];
+  current.keyframes.push({id:uid(),prop,val,curve:`cubic-bezier(${bezierPts.p1x.toFixed(2)},${bezierPts.p1y.toFixed(2)},${bezierPts.p2x.toFixed(2)},${bezierPts.p2y.toFixed(2)})`});
+  previewKeyframeTransform();
+  renderKeyframeList();
+  renderTracks();
+  $('renderStatus').textContent=`Added ${prop} keyframe (${val})`;
+}
+function previewKeyframeTransform(){
+  if(!current) return;
+  const prop=$('kfProp').value;
+  const val=Number($('kfVal').value);
+  current.transform=current.transform||{scale:100,posX:0,posY:0,rotate:0,opacity:100};
+  current.transform[prop]=val;
+  renderStage();
+}
+function renderKeyframeList(){
+  const box=$('kfList');
+  if(!current||!current.keyframes||!current.keyframes.length){
+    box.innerHTML='No keyframes yet. Tap + KEYFRAME to add points.';
+    return;
+  }
+  box.innerHTML=current.keyframes.map((k,idx)=>`<span class="pill" style="margin:2px">◆ #${idx+1} ${k.prop}: ${k.val}</span>`).join('');
+}
+function initGraphEditor(){
+  const canvas=$('graphCanvas');
+  if(!canvas) return;
+  drawGraph();
+  const getCoords=e=>{
+    const rect=canvas.getBoundingClientRect();
+    const clientX=e.touches?e.touches[0].clientX:e.clientX;
+    const clientY=e.touches?e.touches[0].clientY:e.clientY;
+    const x=Math.max(0,Math.min(1,(clientX-rect.left)/rect.width));
+    const y=Math.max(0,Math.min(1,1-(clientY-rect.top)/rect.height));
+    return {x,y};
+  };
+  const startDrag=e=>{
+    const {x,y}=getCoords(e);
+    const d1=Math.hypot(x-bezierPts.p1x,y-bezierPts.p1y);
+    const d2=Math.hypot(x-bezierPts.p2x,y-bezierPts.p2y);
+    draggingHandle=d1<d2?'p1':'p2';
+  };
+  const moveDrag=e=>{
+    if(!draggingHandle) return;
+    if(e.cancelable) e.preventDefault();
+    const {x,y}=getCoords(e);
+    if(draggingHandle==='p1'){bezierPts.p1x=x;bezierPts.p1y=y;}
+    else{bezierPts.p2x=x;bezierPts.p2y=y;}
+    drawGraph();
+  };
+  const endDrag=()=>{draggingHandle=null;};
+  canvas.addEventListener('mousedown',startDrag);
+  window.addEventListener('mousemove',moveDrag);
+  window.addEventListener('mouseup',endDrag);
+  canvas.addEventListener('touchstart',startDrag,{passive:true});
+  canvas.addEventListener('touchmove',moveDrag,{passive:false});
+  window.addEventListener('touchend',endDrag);
+}
+function setBezierPreset(x1,y1,x2,y2){
+  bezierPts={p1x:x1,p1y:y1,p2x:x2,p2y:y2};
+  drawGraph();
+}
+function drawGraph(){
+  const canvas=$('graphCanvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  const w=canvas.width,h=canvas.height,pad=14;
+  ctx.clearRect(0,0,w,h);
+  // Grid
+  ctx.strokeStyle='#231c3d';ctx.lineWidth=1;
+  for(let i=1;i<4;i++){
+    ctx.beginPath();ctx.moveTo(0,(h/4)*i);ctx.lineTo(w,(h/4)*i);ctx.stroke();
+    ctx.beginPath();ctx.moveTo((w/4)*i,0);ctx.lineTo((w/4)*i,h);ctx.stroke();
+  }
+  const toX=v=>pad+v*(w-pad*2);
+  const toY=v=>h-pad-v*(h-pad*2);
+  const x0=toX(0),y0=toY(0),x3=toX(1),y3=toY(1);
+  const x1=toX(bezierPts.p1x),y1=toY(bezierPts.p1y);
+  const x2=toX(bezierPts.p2x),y2=toY(bezierPts.p2y);
+
+  // Tangent lines
+  ctx.strokeStyle='#6e46c7';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x3,y3);ctx.lineTo(x2,y2);ctx.stroke();
+
+  // Bezier Curve
+  ctx.strokeStyle='#55e0d0';ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(x0,y0);ctx.bezierCurveTo(x1,y1,x2,y2,x3,y3);ctx.stroke();
+
+  // Handles
+  [[x1,y1],[x2,y2]].forEach(([hx,hy])=>{
+    ctx.fillStyle='#cbb2ff';ctx.beginPath();ctx.arc(hx,hy,6,0,Math.PI*2);ctx.fill();
+  });
+  $('bezierReadout').textContent=`${bezierPts.p1x.toFixed(2)}, ${bezierPts.p1y.toFixed(2)}, ${bezierPts.p2x.toFixed(2)}, ${bezierPts.p2y.toFixed(2)}`;
+}
+function applyGraphToLayer(){
+  if(!current){$('renderStatus').textContent='Select a layer first';return;}
+  current.bezier=`cubic-bezier(${bezierPts.p1x.toFixed(2)},${bezierPts.p1y.toFixed(2)},${bezierPts.p2x.toFixed(2)},${bezierPts.p2y.toFixed(2)})`;
+  renderStage();
+  $('renderStatus').textContent='Custom graph applied to '+current.name;
+}
+
+/* 3D Controls */
+function add3D(){
+  let it={id:uid(),name:'3D '+$('primitive').value+' '+(items.length+1),type:'3D',badge:'3D',primitive:$('primitive').value,keyframes:[],transform:{scale:100,posX:0,posY:0,rotate:0,opacity:100}};
+  items.unshift(it);
+  selectItem(it);
+  showTab('three',document.querySelectorAll('.tab')[4]);
+}
+function changePrimitive(){if(current&&current.type==='3D'){current.primitive=$('primitive').value;renderStage()}else{let sh=$('shape3d');if(sh)sh.firstChild.className='cube '+$('primitive').value}}
+function setRotSpeed(){let sh=$('shape3d');if(sh)sh.style.animationDuration=(21-+$('rotSpeed').value)+'s'}
+function toggle3D(){let sh=$('shape3d');if(sh)sh.classList.toggle('paused')}
+function turn3D(){let sh=$('shape3d');if(sh){threeRotation+=45;sh.style.transform='rotateY('+threeRotation+'deg) rotateX(35deg)'}}
+
+function groupSelected(){
+  if(items.length<2){$('renderStatus').textContent='Need 2+ layers to group';return;}
+  let g={id:uid(),name:'Group ('+items.length+' layers)',type:'Group',badge:'GRP',children:items.map(x=>x.id),preRendered:false,transform:{scale:100,posX:0,posY:0,rotate:0,opacity:100}};
+  groupCache[g.id]=g;
+  items=[g];
+  selectItem(g);
+  $('renderStatus').textContent='Grouped layers';
+}
+function preRenderGroup(){
+  let g=current&&current.type==='Group'?current:items.find(x=>x.type==='Group');
+  if(!g){$('renderStatus').textContent='Select or create a group first';return;}
+  $('renderStatus').textContent='Preview cached · '+g.name;
+}
+
+function togglePlay(){let v=$('activeVideo');if(!v)return;if(v.paused){v.play();$('play').textContent='Ⅱ PAUSE'}else{v.pause();$('play').textContent='▶ PLAY'}}
+function stepFrame(dir){let v=$('activeVideo');if(v&&v.duration){v.currentTime=Math.max(0,Math.min(v.duration,v.currentTime+dir/(+$('fps').value||30)))}}
+function fmt(s){if(!isFinite(s))return '00:00';return String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0')}
+function updateFX(){let b=+$('bright').value,c=+$('contrast').value,s=+$('sat').value,bl=+$('blur').value,h=+$('hue').value;$('brightVal').textContent=b+'%';$('contrastVal').textContent=c+'%';$('satVal').textContent=s+'%';$('blurVal').textContent=bl+'px';$('hueVal').textContent=h+'°';let target=$('activeVideo')||$('activeImage');if(target)target.style.filter=`brightness(${b}%) contrast(${c}%) saturate(${s}%) blur(${bl}px) hue-rotate(${h}deg)`}
+function resetFX(){['bright','contrast','sat'].forEach(x=>$(x).value=100);['blur','hue'].forEach(x=>$(x).value=0);updateFX()}
+function showTab(name,btn){['media','keyframes','effects','text','three','project'].forEach(x=>$(x+'Tab').style.display=x===name?'block':'none');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');if(name==='keyframes')drawGraph();}
+function newProject(silent=false){items=[];current=null;selectedIds.clear();groupCache={};renderAssetsList();renderTracks();renderStage();resetFX();if(!silent)$('renderStatus').textContent='Cleared'}
+
+function projectData(){return {app:'VEXORA Studio',version:'0.3.2-purple',name:$('projectName').value,fps:$('fps').value,ratio:$('editorRatio').value,backdrop:$('editorBackdrop').value,layers:items}}
+function downloadBlob(blob,name){let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2500)}
+function saveProject(){downloadBlob(new Blob([JSON.stringify(projectData(),null,2)],{type:'application/json'}),($('projectName').value||'VEXORA-project')+'.vxproj');$('renderStatus').textContent='Saved .vxproj'}
+function openExport(){$('exportModal').classList.add('show')}
+function closeExport(){$('exportModal').classList.remove('show')}
+function doExport(){let f=$('exportFormat').value;if(f==='project'||f==='json'){downloadBlob(new Blob([JSON.stringify(projectData(),null,2)],{type:'application/json'}),($('projectName').value||'VEXORA')+(f==='project'?'.vxproj':'.json'));$('exportMessage').textContent='Project exported.'}else{$('exportMessage').textContent='Use Project export (.vxproj) to preserve all transparent layers & keyframes.'}}
+
+let vexoraPreviewQuality=localStorage.getItem('vexora.previewQuality')||'balanced';
+let vexoraPreviewFps=Number(localStorage.getItem('vexora.previewFps')||30);
+function openPerformance(){$('performanceModal').classList.add('show');$('previewQuality').value=vexoraPreviewQuality;$('previewFps').value=String(vexoraPreviewFps)}
+function closePerformance(){$('performanceModal').classList.remove('show')}
+function setPreviewQuality(v){vexoraPreviewQuality=v;localStorage.setItem('vexora.previewQuality',v);$('previewQualityLabel').textContent=v}
+function setPreviewFps(v){vexoraPreviewFps=Number(v)||30;localStorage.setItem('vexora.previewFps',String(vexoraPreviewFps));$('previewFpsLabel').textContent=vexoraPreviewFps+' FPS'}
+function clearPreviewCache(){groupCache={};$('performanceStatus').textContent='Preview cache cleared.'}
+</script>
+</body>
+</html>
