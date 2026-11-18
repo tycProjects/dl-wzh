@@ -1,0 +1,23 @@
+LIVE VOZ v2 - projeto-fonte Android
+
+Esta versão remove o botão flutuante. O controle fica somente na tela do aplicativo:
+- botão redondo ATIVAR/DESLIGAR;
+- escolha de voz feminina ou masculina (depende das vozes instaladas no Android);
+- campo opcional para @ do perfil.
+
+SEGURANÇA
+Não existe login oficial do TikTok nesta versão. Não digite nem compartilhe senha do TikTok.
+O campo @ é apenas um identificador local; não autentica nem confirma a conta.
+
+TESTE
+1. Importe esta pasta como projeto Gradle no editor Android.
+2. Compile e instale no seu aparelho.
+3. Abra LIVE VOZ e ative a Acessibilidade uma vez nas configurações do Android.
+4. Volte ao LIVE VOZ, escolha a voz e toque em ATIVAR.
+5. Abra o TikTok e entre em uma LIVE.
+6. Para parar, volte ao LIVE VOZ e toque em DESLIGAR.
+
+LIMITAÇÕES
+- O Android/TikTok pode não expor todos os comentários à Acessibilidade.
+- A opção de voz depende das vozes instaladas no aparelho; alguns celulares não têm vozes separadas por gênero.
+- O app tenta parar a fala ao sair do TikTok e ao desligar. A detecção de troca de LIVE dentro do próprio TikTok pode variar conforme a versão.
