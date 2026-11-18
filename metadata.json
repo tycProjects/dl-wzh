@@ -1,0 +1,6 @@
+{
+  "name": "NEXORA POS",
+  "description": "Smart Business Management & Point of Sale untuk berbagai jenis usaha, lengkap dengan kasir, scanner barcode/QR, inventaris, multi-outlet, restoran, toko digital, laporan, serta sinkronisasi offline-online.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

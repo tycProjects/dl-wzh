@@ -1,0 +1,384 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated business owner profile",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "businessName": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "businessName", "createdAt", "updatedAt"]
+    },
+    "Outlet": {
+      "title": "Outlet",
+      "description": "Business branch/outlet",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "active": { "type": "boolean" },
+        "mainOutlet": { "type": "boolean" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "address", "phone", "active", "mainOutlet", "demoData", "createdAt", "updatedAt"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Product category",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "colorHex": { "type": "string" },
+        "iconName": { "type": "string" },
+        "businessType": { "type": "string" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "colorHex", "iconName", "businessType", "demoData", "createdAt", "updatedAt"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "POS product item",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "outletId": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "name": { "type": "string" },
+        "sku": { "type": "string" },
+        "barcode": { "type": "string" },
+        "buyPrice": { "type": "number" },
+        "sellPrice": { "type": "number" },
+        "stock": { "type": "integer" },
+        "minStock": { "type": "integer" },
+        "unit": { "type": "string" },
+        "description": { "type": "string" },
+        "productType": { "type": "string", "enum": ["PHYSICAL", "FOOD", "DIGITAL"] },
+        "variantsSummary": { "type": "string" },
+        "active": { "type": "boolean" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "outletId", "categoryId", "name", "sku", "barcode", "buyPrice", "sellPrice", "stock", "minStock", "unit", "productType", "active", "demoData", "createdAt", "updatedAt"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Store customer",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "points": { "type": "integer" },
+        "totalSpent": { "type": "number" },
+        "transactionCount": { "type": "integer" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "phone", "address", "points", "totalSpent", "transactionCount", "demoData", "createdAt", "updatedAt"]
+    },
+    "Supplier": {
+      "title": "Supplier",
+      "description": "Inventory supplier",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "notes": { "type": "string" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "phone", "address", "demoData", "createdAt", "updatedAt"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Completed or voided POS sale transaction",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "outletId": { "type": "string" },
+        "transactionNumber": { "type": "string" },
+        "cashierName": { "type": "string" },
+        "cashierRole": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "subtotal": { "type": "number" },
+        "itemDiscountTotal": { "type": "number" },
+        "orderDiscount": { "type": "number" },
+        "taxAmount": { "type": "number" },
+        "extraFee": { "type": "number" },
+        "total": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "paidAmount": { "type": "number" },
+        "changeAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["COMPLETED", "VOIDED", "RETURNED"] },
+        "notes": { "type": "string" },
+        "itemsSummary": { "type": "string" },
+        "itemCount": { "type": "integer" },
+        "grossProfit": { "type": "number" },
+        "createdAtEpochMs": { "type": "integer" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "outletId", "transactionNumber", "cashierName", "cashierRole", "subtotal", "total", "paymentMethod", "paidAmount", "changeAmount", "status", "itemCount", "grossProfit", "createdAtEpochMs", "demoData", "createdAt", "updatedAt"]
+    },
+    "StockMovement": {
+      "title": "StockMovement",
+      "description": "Inventory stock movement audit record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "outletId": { "type": "string" },
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "type": { "type": "string" },
+        "quantityDelta": { "type": "integer" },
+        "previousStock": { "type": "integer" },
+        "newStock": { "type": "integer" },
+        "note": { "type": "string" },
+        "actorName": { "type": "string" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "outletId", "productId", "productName", "type", "quantityDelta", "previousStock", "newStock", "actorName", "demoData", "createdAt", "updatedAt"]
+    },
+    "Purchase": {
+      "title": "Purchase",
+      "description": "Supplier purchase order",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "outletId": { "type": "string" },
+        "supplierId": { "type": "string" },
+        "supplierName": { "type": "string" },
+        "invoiceNumber": { "type": "string" },
+        "totalAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["RECEIVED", "RETURNED"] },
+        "notes": { "type": "string" },
+        "actorName": { "type": "string" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "outletId", "supplierId", "supplierName", "invoiceNumber", "totalAmount", "status", "actorName", "demoData", "createdAt", "updatedAt"]
+    },
+    "SaleReturn": {
+      "title": "SaleReturn",
+      "description": "Sales return record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "outletId": { "type": "string" },
+        "saleId": { "type": "string" },
+        "transactionNumber": { "type": "string" },
+        "reason": { "type": "string" },
+        "refundAmount": { "type": "number" },
+        "actorName": { "type": "string" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "outletId", "saleId", "transactionNumber", "reason", "refundAmount", "actorName", "demoData", "createdAt", "updatedAt"]
+    },
+    "RestaurantTable": {
+      "title": "RestaurantTable",
+      "description": "Restaurant dining table",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "outletId": { "type": "string" },
+        "tableName": { "type": "string" },
+        "capacity": { "type": "integer" },
+        "status": { "type": "string", "enum": ["AVAILABLE", "OCCUPIED", "RESERVED"] },
+        "activeOrderNumber": { "type": "string" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "outletId", "tableName", "capacity", "status", "demoData", "createdAt", "updatedAt"]
+    },
+    "RestaurantOrder": {
+      "title": "RestaurantOrder",
+      "description": "Kitchen / restaurant order",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "outletId": { "type": "string" },
+        "queueNumber": { "type": "string" },
+        "orderType": { "type": "string", "enum": ["DINE_IN", "TAKEAWAY"] },
+        "tableId": { "type": "string" },
+        "tableName": { "type": "string" },
+        "itemsSummary": { "type": "string" },
+        "notes": { "type": "string" },
+        "status": { "type": "string", "enum": ["QUEUED", "PREPARING", "READY", "SERVED"] },
+        "totalAmount": { "type": "number" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "outletId", "queueNumber", "orderType", "itemsSummary", "status", "totalAmount", "demoData", "createdAt", "updatedAt"]
+    },
+    "DigitalOrder": {
+      "title": "DigitalOrder",
+      "description": "Digital product / service manual fulfillment order",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "outletId": { "type": "string" },
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "categoryName": { "type": "string" },
+        "variantLabel": { "type": "string" },
+        "recipientInfo": { "type": "string" },
+        "notes": { "type": "string" },
+        "price": { "type": "number" },
+        "deliveryStatus": { "type": "string", "enum": ["PENDING", "DELIVERED", "FAILED"] },
+        "deliveredAtEpochMs": { "type": "integer" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "outletId", "productId", "productName", "categoryName", "variantLabel", "recipientInfo", "price", "deliveryStatus", "demoData", "createdAt", "updatedAt"]
+    },
+    "StaffMember": {
+      "title": "StaffMember",
+      "description": "Outlet staff member with RBAC role",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["OWNER", "ADMIN", "MANAJER", "KASIR"] },
+        "outletId": { "type": "string" },
+        "pinCode": { "type": "string" },
+        "active": { "type": "boolean" },
+        "demoData": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "role", "outletId", "pinCode", "active", "demoData", "createdAt", "updatedAt"]
+    },
+    "ActivityLog": {
+      "title": "ActivityLog",
+      "description": "Security and operational audit log",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "actorName": { "type": "string" },
+        "actorRole": { "type": "string" },
+        "action": { "type": "string" },
+        "details": { "type": "string" },
+        "createdAtEpochMs": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "actorName", "actorRole", "action", "details", "createdAtEpochMs", "createdAt", "updatedAt"]
+    },
+    "BusinessSettings": {
+      "title": "BusinessSettings",
+      "description": "POS business profile and preferences",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "businessName": { "type": "string" },
+        "businessType": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "taxPercent": { "type": "number" },
+        "currencyCode": { "type": "string" },
+        "receiptFooter": { "type": "string" },
+        "receiptWidthMm": { "type": "integer" },
+        "taxEnabled": { "type": "boolean" },
+        "loyaltyEnabled": { "type": "boolean" },
+        "scannerSoundEnabled": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "businessName", "businessType", "address", "phone", "taxPercent", "currencyCode", "receiptFooter", "receiptWidthMm", "taxEnabled", "loyaltyEnabled", "scannerSoundEnabled", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Authenticated user root profile"
+    },
+    "/users/{userId}/outlets/{outletId}": {
+      "schema": { "$ref": "#/entities/Outlet" },
+      "description": "Outlets owned by user"
+    },
+    "/users/{userId}/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/Category" },
+      "description": "Product categories"
+    },
+    "/users/{userId}/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Catalog products"
+    },
+    "/users/{userId}/customers/{customerId}": {
+      "schema": { "$ref": "#/entities/Customer" },
+      "description": "Registered customers"
+    },
+    "/users/{userId}/suppliers/{supplierId}": {
+      "schema": { "$ref": "#/entities/Supplier" },
+      "description": "Suppliers"
+    },
+    "/users/{userId}/sales/{saleId}": {
+      "schema": { "$ref": "#/entities/Sale" },
+      "description": "Sales transactions"
+    },
+    "/users/{userId}/stock_movements/{movementId}": {
+      "schema": { "$ref": "#/entities/StockMovement" },
+      "description": "Inventory stock movement logs"
+    },
+    "/users/{userId}/purchases/{purchaseId}": {
+      "schema": { "$ref": "#/entities/Purchase" },
+      "description": "Supplier purchase orders"
+    },
+    "/users/{userId}/returns/{returnId}": {
+      "schema": { "$ref": "#/entities/SaleReturn" },
+      "description": "Sales returns"
+    },
+    "/users/{userId}/tables/{tableId}": {
+      "schema": { "$ref": "#/entities/RestaurantTable" },
+      "description": "Restaurant tables"
+    },
+    "/users/{userId}/restaurant_orders/{orderId}": {
+      "schema": { "$ref": "#/entities/RestaurantOrder" },
+      "description": "Restaurant kitchen orders"
+    },
+    "/users/{userId}/digital_orders/{orderId}": {
+      "schema": { "$ref": "#/entities/DigitalOrder" },
+      "description": "Digital product manual delivery orders"
+    },
+    "/users/{userId}/staff_members/{memberId}": {
+      "schema": { "$ref": "#/entities/StaffMember" },
+      "description": "Staff accounts and roles"
+    },
+    "/users/{userId}/activity_logs/{logId}": {
+      "schema": { "$ref": "#/entities/ActivityLog" },
+      "description": "User activity audit logs"
+    },
+    "/users/{userId}/business_settings/{settingId}": {
+      "schema": { "$ref": "#/entities/BusinessSettings" },
+      "description": "Business settings document"
+    }
+  }
+}
