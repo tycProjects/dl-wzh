@@ -1,0 +1,22 @@
+LIVE VOZ - projeto-fonte Android
+
+ESTRUTURA
+- app/src/main/java/com/example/oi/MainActivity.java
+- app/src/main/java/com/example/oi/LiveReaderService.java
+- app/src/main/res/xml/live_accessibility.xml
+- app/src/main/res/values/strings.xml
+- app/src/main/res/values/styles.xml
+- app/src/main/AndroidManifest.xml
+
+IMPORTANTE
+1. Este ZIP contém o código-fonte do projeto, não um APK instalado.
+2. Abra/import o projeto em um editor Android que aceite projetos Gradle.
+3. O pacote configurado é com.example.oi.
+4. Depois de instalar, abra LIVE VOZ e toque em ATIVAR ACESSIBILIDADE.
+5. Ative manualmente o serviço LIVE VOZ nas configurações de Acessibilidade.
+6. O botão flutuante liga/desliga a leitura.
+
+LIMITAÇÕES DO TESTE
+O TikTok pode não disponibilizar todos os comentários ao serviço de acessibilidade.
+Por isso, este protótipo não garante leitura de todos os comentários nem funcionamento
+em todas as versões do TikTok. A leitura depende do texto que o Android/TikTok expõe.
