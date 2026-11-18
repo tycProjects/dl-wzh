@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+
+    
+    <style name="Theme.TermuxApp.Light.DarkActionBar" parent="Theme.BaseActivity.Light.DarkActionBar"/>
+    
+    <style name="Theme.TermuxApp.Light.NoActionBar" parent="Theme.BaseActivity.Light.NoActionBar"/>
+
+    
+    <style name="Theme.TermuxApp.DayNight.DarkActionBar" parent="Theme.BaseActivity.DayNight.DarkActionBar"/>
+    
+    <style name="Theme.TermuxApp.DayNight.NoActionBar" parent="Theme.BaseActivity.DayNight.NoActionBar"/>
+
+
+    
+    <style name="Theme.TermuxActivity.DayNight.NoActionBar" parent="Theme.TermuxApp.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+
+        <item name="android:windowBackground">@color/black</item>
+
+        
+        <item name="android:windowActionModeOverlay">true</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+        
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+
+        
+        <item name="buttonBarButtonStyle">@style/TermuxActivity.Drawer.ButtonBarStyle.Light</item>
+        <item name="termuxActivityDrawerBackground">@color/white</item>
+        <item name="termuxActivityDrawerImageTint">@color/black</item>
+
+        
+        <item name="extraKeysButtonTextColor">@color/white</item>
+        <item name="extraKeysButtonActiveTextColor">@color/red_400</item>
+        <item name="extraKeysButtonBackgroundColor">@color/black</item>
+        <item name="extraKeysButtonActiveBackgroundColor">@color/grey_500</item>
+    </style>
+
+
+    
+    <style name="Theme.HZ" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">#4ADE80</item>
+        <item name="colorPrimaryVariant">#22C55E</item>
+        <item name="colorOnPrimary">#06210F</item>
+        <item name="colorSecondary">#8B7BFF</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorSurface">#161A21</item>
+        <item name="colorOnSurface">#E6E9EF</item>
+        <item name="android:colorBackground">#0E1014</item>
+        <item name="android:windowBackground">#0E1014</item>
+        <item name="android:statusBarColor">#0E1014</item>
+        <item name="android:navigationBarColor">#161A21</item>
+        <item name="android:textColorPrimary">#E6E9EF</item>
+        <item name="android:textColorSecondary">#8A93A5</item>
+        <item name="colorControlNormal">#C3CAD8</item>
+        <item name="colorControlActivated">#4ADE80</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.HZ.Dialog</item>
+    </style>
+    <style name="ThemeOverlay.HZ.Dialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorSurface">#1E232D</item>
+        <item name="colorOnSurface">#E6E9EF</item>
+        <item name="colorPrimary">#4ADE80</item>
+        <item name="android:textColorPrimary">#E6E9EF</item>
+        <item name="android:textColorSecondary">#A8B0C0</item>
+    </style>
+
+</resources>

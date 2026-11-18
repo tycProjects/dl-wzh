@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_project" android:icon="@drawable/hz_ic_folder" android:title="Project" />
+    <item android:id="@+id/nav_editor" android:icon="@drawable/hz_ic_edit" android:title="Editor" />
+    <item android:id="@+id/nav_agent" android:icon="@drawable/hz_ic_agent" android:title="Agent" />
+    <item android:id="@+id/nav_console" android:icon="@drawable/hz_ic_terminal" android:title="Console" />
+</menu>
