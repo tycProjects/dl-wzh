@@ -126,9 +126,9 @@ public class FileUtils {
         if (fileName == null) return null;
 
         if (sanitizeWhitespaces)
-            fileName = fileName.replaceAll("[\\\/:*?\"<>| \t\n]", "_");
+            fileName = fileName.replaceAll("[\\/:*?\"<>| \t\n]", "_");
         else
-            fileName = fileName.replaceAll("[\\\/:*?\"<>|]", "_");
+            fileName = fileName.replaceAll("[\\/:*?\"<>|]", "_");
 
         if (toLower)
             return fileName.toLowerCase();
