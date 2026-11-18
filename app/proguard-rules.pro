@@ -1,0 +1,6 @@
+-keepattributes JavascriptInterface
+-keepclassmembers class * { @android.webkit.JavascriptInterface <methods>; }
+-repackageclasses ''
+-allowaccessmodification
+-keep class rikka.shizuku.** { *; }
+-dontwarn rikka.shizuku.**
