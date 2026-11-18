@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -22,7 +24,7 @@ android {
 
         // Put your Web client ID (from Firebase > Auth > Google) in local.properties
         // as GOOGLE_WEB_CLIENT_ID=xxxx.apps.googleusercontent.com
-        val props = java.util.Properties()
+        val props = Properties()
         val lp = rootProject.file("local.properties")
         if (lp.exists()) lp.inputStream().use { props.load(it) }
         buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"${props.getProperty("GOOGLE_WEB_CLIENT_ID", "")}\"")
