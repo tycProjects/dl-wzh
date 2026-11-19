@@ -1,0 +1,45 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    
+    <PreferenceCategory app:title="IDE Features">
+        <Preference
+            app:key="ide_info"
+            app:title="Termux IDE Mode"
+            app:summary="Top bar + Project Explorer + Build button đã được thêm. Dùng nút File để mở project."
+            app:selectable="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Giao diện &amp; Nền">
+        <ListPreference
+            app:key="terminal_bg_color"
+            app:title="Màu nền Terminal"
+            app:summary="Chọn màu nền nhanh"
+            app:entries="@array/bg_color_entries"
+            app:entryValues="@array/bg_color_values"
+            app:defaultValue="#000000"/>
+        <Preference
+            app:key="terminal_bg_image_info"
+            app:title="Nền bằng ảnh"
+            app:summary="Tính năng đổi nền bằng ảnh sẽ được bổ sung ở bản tiếp theo (cần sửa TerminalView)."
+            app:selectable="false"/>
+    </PreferenceCategory>
+
+
+
+    <Preference
+        app:title="@string/termux_debugging_preferences_title"
+        app:summary="@string/termux_debugging_preferences_summary"
+        app:fragment="com.termux.app.fragments.settings.termux.DebuggingPreferencesFragment"/>
+
+    <Preference
+        app:title="@string/termux_terminal_io_preferences_title"
+        app:summary="@string/termux_terminal_io_preferences_summary"
+        app:fragment="com.termux.app.fragments.settings.termux.TerminalIOPreferencesFragment"/>
+
+    <Preference
+        app:title="@string/termux_terminal_view_preferences_title"
+        app:summary="@string/termux_terminal_view_preferences_summary"
+        app:fragment="com.termux.app.fragments.settings.termux.TerminalViewPreferencesFragment"/>
+
+</PreferenceScreen>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bg_color_entries">
+        <item>Đen (mặc định)</item>
+        <item>Xám đậm</item>
+        <item>Xanh đậm</item>
+        <item>Tím đậm</item>
+        <item>Nâu đậm</item>
+        <item>Xanh rêu</item>
+    </string-array>
+    <string-array name="bg_color_values">
+        <item>#000000</item>
+        <item>#1A1A1A</item>
+        <item>#0D1B2A</item>
+        <item>#1A0A2E</item>
+        <item>#1C1410</item>
+        <item>#0A1F1A</item>
+    </string-array>
+</resources>
