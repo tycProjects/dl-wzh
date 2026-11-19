@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>X Keyboard v2 – Interactive Preview</title>
+<style>
+:root{--bg:#16181d;--key:#2a2d35;--sp:#20232a;--pr:#454a57;--tx:#edeff4;--hi:rgba(237,239,244,.55);--ac:#7c5cff;--on:#fff;--sh:#0d0e11;--page:#0e0f13;--bd:transparent}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+body{margin:0;background:var(--page);color:var(--tx);font-family:system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.top{flex:1;width:100%;max-width:520px;padding:16px;display:flex;flex-direction:column;gap:10px}
+h1{margin:0;font-size:22px;color:var(--ac)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{background:var(--key);color:var(--tx);border:1px solid var(--bd);border-radius:99px;padding:6px 12px;font-size:12px;cursor:pointer}
+.chips button.on{background:var(--ac);color:var(--on)}
+.about{padding:12px 14px;border-radius:14px;background:var(--key);border:1px solid var(--ac);display:flex;flex-direction:column;gap:4px}
+.glow-play{margin-top:6px;padding:8px 14px;border-radius:999px;background:var(--ac);color:var(--on);font-weight:700;text-align:center;box-shadow:0 0 18px var(--ac);animation:pulse 1.6s infinite alternate}
+@keyframes pulse{from{opacity:.78;transform:scale(.99)}to{opacity:1;transform:scale(1.01)}}
+textarea{flex:1;min-height:110px;background:var(--key);color:var(--tx);border:0;border-radius:14px;padding:12px;font-size:17px;outline:none}
+#kb{width:100%;max-width:520px;background:var(--bg);padding:0 3px 8px;backdrop-filter:blur(14px)}
+#bar{display:flex;height:44px;align-items:center}
+#bar b{width:44px;text-align:center;color:var(--ac);font-size:20px;cursor:pointer}
+#bar span{flex:1;text-align:center;font-size:16px}
+.row{display:flex;height:var(--rh,52px);padding:3px 0}
+.k{position:relative;margin:0 3px;border-radius:10px;background:var(--key);border:1px solid var(--bd);box-shadow:0 1.5px 0 var(--sh);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer}
+.k.s{background:var(--sp);font-size:14px;font-weight:700}
+.k.e{background:var(--ac);color:var(--on)}
+</style></head>
+<body>
+<div class="top">
+  <h1>X Keyboard v2</h1>
+  <div class="chips" id="chips"></div>
+  <label style="font-size:12px">Real-Time Height: <input type="range" min="38" max="72" value="52" oninput="document.documentElement.style.setProperty('--rh',this.value+'px')"></label>
+  <textarea id="out" placeholder="Tap keys below…"></textarea>
+  <div class="about">
+    <strong>App by Abdur Rahman Nihal (NicarX)</strong>
+    <span style="opacity:.75;font-size:13px">Build by : an AI</span>
+    <div class="glow-play">▶ PLAY HIGHLIGHT</div>
+  </div>
+</div>
+<div id="kb"><div id="bar"><b>X</b><span>I</span><span>The</span><span>Hello</span></div><div id="rows"></div></div>
+<script>
+const THEMES={
+ Midnight:{bg:'#16181d',key:'#2a2d35',sp:'#20232a',tx:'#edeff4',ac:'#7c5cff',on:'#fff',sh:'#0d0e11',page:'#0e0f13',bd:'transparent'},
+ 'Liquid Glass':{bg:'rgba(15,20,38,.82)',key:'rgba(255,255,255,.22)',sp:'rgba(129,140,248,.18)',tx:'#f8fafc',ac:'#38bdf8',on:'#04131c',sh:'rgba(0,0,0,.3)',page:'#090d1a',bd:'rgba(255,255,255,.45)'},
+ 'Lightweight Liquid Glass':{bg:'rgba(19,23,34,.9)',key:'rgba(255,255,255,.15)',sp:'rgba(255,255,255,.1)',tx:'#f1f5f9',ac:'#a78bfa',on:'#140b2e',sh:'transparent',page:'#0b0e16',bd:'rgba(255,255,255,.28)'},
+ AMOLED:{bg:'#000',key:'#1a1a1a',sp:'#0f0f0f',tx:'#fff',ac:'#00e676',on:'#000',sh:'#000',page:'#000',bd:'transparent'}
+};
+function setTheme(n){const t=THEMES[n],r=document.documentElement.style;for(const k in t)r.setProperty('--'+k,t[k])}
+const ch=document.getElementById('chips');
+Object.keys(THEMES).forEach((n,i)=>{const b=document.createElement('button');b.textContent=n;if(!i)b.className='on';b.onclick=()=>{setTheme(n);[...ch.children].forEach(x=>x.classList.toggle('on',x===b))};ch.appendChild(b)});
+const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l'],['⇧','z','x','c','v','b','n','m','⌫'],['?123','☺','বাং','X Keyboard','.', '↵']];
+const R=document.getElementById('rows'),out=document.getElementById('out');
+rows.forEach(r=>{const d=document.createElement('div');d.className='row';r.forEach(k=>{const e=document.createElement('div');e.className='k'+(k.length>1&&k!=='X Keyboard'?' s':'')+(k==='↵'?' e':'');e.style.flex=k==='X Keyboard'?4:1;e.textContent=k;e.onclick=()=>{if(k==='⌫')out.value=out.value.slice(0,-1);else if(k==='X Keyboard')out.value+=' ';else if(k==='↵')out.value+='\n';else if(k.length===1)out.value+=k};d.appendChild(e)});R.appendChild(d)});
+</script>
+</body></html>
