@@ -326,12 +326,12 @@ class XKeyboardService : InputMethodService(), XKeyboardView.Listener {
     override fun onText(text: String) {
         val ic = currentInputConnection ?: return
         val ch = text[0]
-        if (text.length == 1 && suggestOn && (ch.isLetter() || (ch == ''' && composing.isNotEmpty()))) {
+        if (text.length == 1 && suggestOn && (ch.isLetter() || (ch == '\'' && composing.isNotEmpty()))) {
             composing.append(text)
             ic.setComposingText(composing, 1)
         } else {
             commitWord(ic)
-            if (suggestOn && text.length == 1 && ".,!?;:।".indexOf(ch) >= 0) {
+            if (suggestOn && text.length == 1 && ",.!?;:।".indexOf(ch) >= 0) {
                 val before = ic.getTextBeforeCursor(2, 0)
                 if (before != null && before.length == 2 && before[1] == ' ' && !before[0].isWhitespace()) {
                     ic.deleteSurroundingText(1, 0)

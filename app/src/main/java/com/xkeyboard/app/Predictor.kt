@@ -4,8 +4,8 @@ import android.content.Context
 
 class Predictor(ctx: Context) {
     private val p = ctx.getSharedPreferences("xkb_learn", Context.MODE_PRIVATE)
-    private val baseEn = BASE_EN.trim().split(Regex("\s+"))
-    private val baseBn = BASE_BN.trim().split(Regex("\s+"))
+    private val baseEn = BASE_EN.trim().split(Regex("\\s+"))
+    private val baseBn = BASE_BN.trim().split(Regex("\\s+"))
 
     fun complete(prefix: String, lang: String = "en"): List<String> {
         if (prefix.isEmpty()) return emptyList()
@@ -73,9 +73,9 @@ message call send happy should where why very much more here there been being be
 beautiful awesome amazing cool nice best better last long little big small old young next early late
 """
         private const val BASE_BN = """
-আমি তুমি আপনি সে আমরা তারা এই সেই কি কী কেন কিভাবে কোথায় কখন আজ কাল এখন
+আমি তুমি আপনি সে আমরা তারা এই সেই কি কী কেন কিভাবে কোথায় কখন আজ কাল এখন
 ভালো খারাপ সুন্দর ধন্যবাদ স্বাগতম দুঃখিত হ্যাঁ না ঠিক আছে কেমন আছেন আছি ভালোবাসি
-বাংলা বাংলাদেশ ঢাকা সিলেট চট্টগ্রাম পরিবার বন্ধু বাড়ি স্কুল কলেজ কাজ সময় ফোন মেসেজ
+বাংলা বাংলাদেশ ঢাকা সিলেট চট্টগ্রাম পরিবার বন্ধু বাড়ি স্কুল কলেজ কাজ সময় ফোন মেসেজ
 """
     }
 }

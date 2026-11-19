@@ -196,7 +196,7 @@ class XKeyboardView(ctx: Context) : View(ctx) {
                 if (numRow) out.add(chars("1234567890"))
                 out.add(chars("qwertyuiop", if (numRow) "" else "1234567890"))
                 out.add(listOf(Key("", C_SPACER, 0.5f)) + chars("asdfghjkl", "@#\$%&-+()") + Key("", C_SPACER, 0.5f))
-                out.add(listOf(Key("", C_SHIFT, 1.5f)) + chars("zxcvbnm", "*"':/!?") + Key("", C_DEL, 1.5f))
+                out.add(listOf(Key("", C_SHIFT, 1.5f)) + chars("zxcvbnm", """*':/!?""") + Key("", C_DEL, 1.5f))
                 out.add(bottom("?123", C_SYM))
             }
             MODE_BANGLA_1 -> {
@@ -208,7 +208,7 @@ class XKeyboardView(ctx: Context) : View(ctx) {
             }
             MODE_BANGLA_2 -> {
                 if (numRow) out.add(chars("১২৩৪৫৬৭৮৯০"))
-                out.add(chars("সসহড়ঢ়য়ৎংঃঁ", "ঔ্৳॥!?;:-/"))
+                out.add(chars("সসহড়ঢ়য়ৎংঃঁ", "ঔ্৳॥!?;:-/"))
                 out.add(chars("অআইঈউঊঋএঐও", "ািীুূৃেৈোৌ"))
                 out.add(listOf(Key("কখগ", C_BN_MORE, 1.45f)) + chars("ািীুূৃেৈোৌ", "ক্ষজ্ঞশ্রত্র") + Key("", C_DEL, 1.45f))
                 out.add(bottom("?১২৩", C_SYM))
@@ -216,12 +216,12 @@ class XKeyboardView(ctx: Context) : View(ctx) {
             MODE_SYM1 -> {
                 out.add(chars("1234567890"))
                 out.add(chars("@#\$%&-+()/"))
-                out.add(listOf(Key("=\<", C_SYM2, 1.5f)) + chars("*"':;!?") + Key("", C_DEL, 1.5f))
+                out.add(listOf(Key("""=\<""", C_SYM2, 1.5f)) + chars("""*':;!?""") + Key("", C_DEL, 1.5f))
                 out.add(bottom("ABC", C_ABC))
             }
             else -> {
                 out.add(chars("~`|•√π÷×¶∆"))
-                out.add(chars("£¢€¥^°={}\"))
+                out.add(chars("£¢€¥^°={}\""))
                 out.add(listOf(Key("?123", C_SYM1, 1.5f)) + chars("%©®™✓[]") + Key("", C_DEL, 1.5f))
                 out.add(bottom("ABC", C_ABC))
             }
