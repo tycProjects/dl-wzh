@@ -29,3 +29,8 @@ android {
         jvmTarget = "17"
     }
 }
+
+repositories {
+    google()
+    mavenCentral()
+}
