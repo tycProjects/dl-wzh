@@ -1,0 +1,70 @@
+name: Build APK from zip
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Find and unzip the project (any file name works)
+        run: |
+          ZIP=""
+          for f in *; do
+            if [ -f "$f" ] && unzip -tq "$f" >/dev/null 2>&1; then ZIP="$f"; break; fi
+          done
+          if [ -z "$ZIP" ]; then echo "No zip file found in the repository root"; ls -la; exit 1; fi
+          echo "Using $ZIP"
+          unzip -q "$ZIP" -d _x
+          d=$(dirname "$(find _x -maxdepth 3 -name settings.gradle.kts | head -1)")
+          mv "$d" proj
+          ls proj
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install SDK packages
+        run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Create the debug key (it also signs the release APK so it installs)
+        run: |
+          mkdir -p ~/.android
+          if [ ! -f ~/.android/debug.keystore ]; then
+            keytool -genkeypair -v -keystore ~/.android/debug.keystore \
+              -storepass android -alias androiddebugkey -keypass android \
+              -keyalg RSA -keysize 2048 -validity 10000 \
+              -dname "CN=Android Debug,O=Android,C=US"
+          fi
+
+      - name: Build release + debug APK
+        working-directory: proj
+        run: gradle assembleRelease assembleDebug --stacktrace
+
+      - name: Upload release APK (use this one, it is the fast one)
+        uses: actions/upload-artifact@v4
+        with:
+          name: NomanGo-APK
+          path: proj/app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
+
+      - name: Upload debug APK (only if release has a problem)
+        uses: actions/upload-artifact@v4
+        with:
+          name: NomanGo-debug-APK
+          path: proj/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
