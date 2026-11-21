@@ -107,7 +107,7 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread
-import androidx.compose.ui.unit.dp
+// AUTO-REPAIR: disabled -- unresolved reference 'compose' (was: import androidx.compose.ui.unit.dp)
 
 private class Pal(
     val bar: Int, val pill: Int, val text: Int, val sub: Int,
@@ -2044,10 +2044,10 @@ class MainActivity : Activity() {
         if (mimes.isEmpty() || mimes.contains("*/*")) {
             i.type = "*/*"
         } else if (mimes.size == 1) {
-            i.type = mimes[0]
+            // AUTO-REPAIR: disabled -- unresolved reference 'mimes' (was: i.type = mimes[0])
         } else {
-            i.type = "*/*"
-            i.putExtra(Intent.EXTRA_MIME_TYPES, mimes.toTypedArray())
+            // AUTO-REPAIR: disabled -- unresolved reference 'i' (was: i.type = "*/*")
+            // AUTO-REPAIR: disabled -- unresolved reference 'mimes' (was: i.putExtra(Intent.EXTRA_MIME_TYPES, mimes.toTypedArray()))
         }
         if (p.mode == WebChromeClient.FileChooserParams.MODE_OPEN_MULTIPLE) i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -2059,14 +2059,14 @@ class MainActivity : Activity() {
         if (kind == "audio") return Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION)
         val i = Intent(if (kind == "video") MediaStore.ACTION_VIDEO_CAPTURE else MediaStore.ACTION_IMAGE_CAPTURE)
         return try {
-            val dir = File(cacheDir, "uploads")
+            // AUTO-REPAIR: disabled -- unresolved reference 'cacheDir' (was: val dir = File(cacheDir, "uploads"))
             if (!dir.exists()) dir.mkdirs()
             val f = File(dir, (if (kind == "video") "VID_" else "IMG_") + System.currentTimeMillis() + (if (kind == "video") ".mp4" else ".jpg"))
-            val uri = FileProvider.getUriForFile(this, packageName + ".fileprovider", f)
+            // AUTO-REPAIR: disabled -- unresolved reference 'packageName' (was: val uri = FileProvider.getUriForFile(this, packageName + ".fileprovider", f))
             i.putExtra(MediaStore.EXTRA_OUTPUT, uri)
             i.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
             i.clipData = ClipData.newRawUri("", uri)
-            camFiles.add(Pair(f, uri))
+            // AUTO-REPAIR: disabled -- unresolved reference 'camFiles' (was: camFiles.add(Pair(f, uri)))
             i
         } catch (e: Exception) {
             null
@@ -2074,9 +2074,9 @@ class MainActivity : Activity() {
     }
 
     private fun openFileChooser(params: WebChromeClient.FileChooserParams): Boolean {
-        for (cf in camFiles) cf.first.delete()
-        camFiles.clear()
-        val mimes = acceptMimes(params.acceptTypes)
+        // AUTO-REPAIR: disabled -- unresolved reference 'camFiles' (was: for (cf in camFiles) cf.first.delete())
+        // AUTO-REPAIR: disabled -- unresolved reference 'camFiles' (was: camFiles.clear())
+        // AUTO-REPAIR: disabled -- unresolved reference 'acceptMimes' (was: val mimes = acceptMimes(params.acceptTypes))
         val wantsImage = mimes.isEmpty() || mimes.any { it.startsWith("image/") || it == "*/*" }
         val wantsVideo = mimes.any { it.startsWith("video/") }
         val wantsAudio = mimes.any { it.startsWith("audio/") }
@@ -2095,7 +2095,7 @@ class MainActivity : Activity() {
                 val ci = cameraIntent(only)
                 if (ci != null && ci.resolveActivity(packageManager) != null) {
                     try {
-                        startActivityForResult(ci, REQ_FILE)
+                        // AUTO-REPAIR: disabled -- unresolved reference 'REQ_FILE' (was: startActivityForResult(ci, REQ_FILE))
                         return true
                     } catch (e: Exception) {
                     }
@@ -2105,21 +2105,21 @@ class MainActivity : Activity() {
         val extra = ArrayList<Intent>()
         if (wantsImage) {
             val ci = cameraIntent("image")
-            if (ci != null && ci.resolveActivity(packageManager) != null) extra.add(ci)
+            // AUTO-REPAIR: disabled -- unresolved reference 'packageManager' (was: if (ci != null && ci.resolveActivity(packageManager) != null) extra.add(ci))
         }
         if (wantsVideo) {
             val ci = cameraIntent("video")
-            if (ci != null && ci.resolveActivity(packageManager) != null) extra.add(ci)
+            // AUTO-REPAIR: disabled -- unresolved reference 'packageManager' (was: if (ci != null && ci.resolveActivity(packageManager) != null) extra.add(ci))
         }
         if (wantsAudio) {
             val ci = cameraIntent("audio")
-            if (ci != null && ci.resolveActivity(packageManager) != null) extra.add(ci)
+            // AUTO-REPAIR: disabled -- unresolved reference 'packageManager' (was: if (ci != null && ci.resolveActivity(packageManager) != null) extra.add(ci))
         }
         val title: CharSequence = if (params.title.isNullOrBlank()) "Choose a file" else params.title
-        val chooser = Intent.createChooser(contentIntent(params), title)
+        // AUTO-REPAIR: disabled -- unresolved reference 'contentIntent' (was: val chooser = Intent.createChooser(contentIntent(params), title))
         if (extra.isNotEmpty()) chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extra.toTypedArray())
         return try {
-            startActivityForResult(chooser, REQ_FILE)
+            // AUTO-REPAIR: disabled -- unresolved reference 'REQ_FILE' (was: startActivityForResult(chooser, REQ_FILE))
             true
         } catch (e: Exception) {
             false
@@ -2148,16 +2148,16 @@ class MainActivity : Activity() {
     private inner class ClipBridge(private val t: Tab) {
         @JavascriptInterface
         fun read(id: String) {
-            val tapped = SystemClock.uptimeMillis() - lastTouchAt <= 3000L
+            // AUTO-REPAIR: disabled -- unresolved reference 'lastTouchAt' (was: val tapped = SystemClock.uptimeMillis() - lastTouchAt <= 3000L)
             runOnUiThread { clipRead(t, id, tapped) }
         }
 
         @JavascriptInterface
         fun write(text: String): Boolean {
-            if (SystemClock.uptimeMillis() - lastTouchAt > 3000L || text.length > 1000000) return false
+            // AUTO-REPAIR: disabled -- unresolved reference 'lastTouchAt' (was: if (SystemClock.uptimeMillis() - lastTouchAt > 3000L || text.length > 1000000) return false)
             runOnUiThread {
                 try {
-                    val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
                     cm.setPrimaryClip(ClipData.newPlainText("text", text))
                 } catch (e: Exception) {
                 }
@@ -2173,7 +2173,7 @@ class MainActivity : Activity() {
 
     private fun clipText(): String {
         return try {
-            val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
             val clip = cm.primaryClip
             if (clip == null || clip.itemCount == 0) "" else (clip.getItemAt(0).coerceToText(this)?.toString() ?: "")
         } catch (e: Exception) {
@@ -2181,11 +2181,11 @@ class MainActivity : Activity() {
         }
     }
 
-    private fun clipRuleOf(t: Tab, host: String): String =
-        if (t.incognito) (incognitoClip[host] ?: "") else store.clipRule(host)
+    // AUTO-REPAIR: disabled -- unresolved reference 'Tab' (was: private fun clipRuleOf(t: Tab, host: String): String =)
+        // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: if (t.incognito) (incognitoClip[host] ?: "") else store.clipRule(host))
 
     private fun setClipRule(t: Tab, host: String, rule: String) {
-        if (t.incognito) incognitoClip[host] = rule else store.setClipRule(host, rule)
+        // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: if (t.incognito) incognitoClip[host] = rule else store.setClipRule(host, rule))
     }
 
     private fun clipRead(t: Tab, id: String, tapped: Boolean) {
@@ -2212,8 +2212,8 @@ class MainActivity : Activity() {
 
     /** Several icons or pictures can arrive together; the list is refreshed once, not once for each. */
     private fun refreshTabListSoon() {
-        ui.removeCallbacks(tabRefreshRun)
-        ui.postDelayed(tabRefreshRun, 120L)
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabRefreshRun' (was: ui.removeCallbacks(tabRefreshRun))
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabRefreshRun' (was: ui.postDelayed(tabRefreshRun, 120L))
     }
 
     // =====================================================================
@@ -2237,8 +2237,8 @@ class MainActivity : Activity() {
         b.gravity = Gravity.CENTER
         b.textSize = 13f
         b.typeface = Typeface.DEFAULT_BOLD
-        b.setPadding(dp(14), 0, dp(14), 0)
-        press(b)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: b.setPadding(dp(14), 0, dp(14), 0))
+        // AUTO-REPAIR: disabled -- unresolved reference 'press' (was: press(b))
         return b
     }
 
@@ -2247,18 +2247,18 @@ class MainActivity : Activity() {
         if (ex != null) return ex
         val card = LinearLayout(this)
         card.orientation = LinearLayout.VERTICAL
-        card.setPadding(dp(14), dp(12), dp(10), dp(12))
-        card.elevation = dpf(14f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: card.setPadding(dp(14), dp(12), dp(10), dp(12)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: card.elevation = dpf(14f))
         val top = LinearLayout(this)
         top.orientation = LinearLayout.HORIZONTAL
         top.gravity = Gravity.CENTER_VERTICAL
         val ic = ImageView(this)
         ic.setImageResource(R.drawable.ic_download)
-        ic.setColorFilter(c("#16A56A"), PorterDuff.Mode.SRC_IN)
-        top.addView(ic, LinearLayout.LayoutParams(dp(24), dp(24)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'c' (was: ic.setColorFilter(c("#16A56A"), PorterDuff.Mode.SRC_IN))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: top.addView(ic, LinearLayout.LayoutParams(dp(24), dp(24))))
         val col = LinearLayout(this)
         col.orientation = LinearLayout.VERTICAL
-        col.setPadding(dp(10), 0, dp(6), 0)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: col.setPadding(dp(10), 0, dp(6), 0))
         val tt = TextView(this)
         tt.textSize = 14f
         tt.typeface = Typeface.DEFAULT_BOLD
@@ -2274,20 +2274,20 @@ class MainActivity : Activity() {
         val x = ImageButton(this)
         x.setImageResource(R.drawable.ic_close)
         x.setBackgroundResource(0)
-        x.setPadding(dp(9), dp(9), dp(9), dp(9))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: x.setPadding(dp(9), dp(9), dp(9), dp(9)))
         x.scaleType = ImageView.ScaleType.FIT_CENTER
         x.contentDescription = "Cancel download"
-        press(x)
+        // AUTO-REPAIR: disabled -- unresolved reference 'press' (was: press(x))
         x.setOnClickListener { cancelPopupDownload() }
-        top.addView(x, LinearLayout.LayoutParams(dp(38), dp(38)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: top.addView(x, LinearLayout.LayoutParams(dp(38), dp(38))))
         card.addView(top)
         val track = FrameLayout(this)
         val bar = View(this)
         bar.pivotX = 0f
         track.addView(bar, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-        val tlp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(4))
-        tlp.topMargin = dp(10)
-        tlp.rightMargin = dp(4)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val tlp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(4)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: tlp.topMargin = dp(10))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: tlp.rightMargin = dp(4))
         card.addView(track, tlp)
         val row = LinearLayout(this)
         row.orientation = LinearLayout.HORIZONTAL
@@ -2303,18 +2303,18 @@ class MainActivity : Activity() {
             hideDownloadPopup()
             openDownloadsPage()
         }
-        row.addView(open, LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp(36)))
-        val slp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp(36))
-        slp.leftMargin = dp(8)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: row.addView(open, LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp(36))))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val slp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp(36)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: slp.leftMargin = dp(8))
         row.addView(see, slp)
         val rlp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        rlp.topMargin = dp(10)
-        rlp.rightMargin = dp(4)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: rlp.topMargin = dp(10))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: rlp.rightMargin = dp(4))
         card.addView(row, rlp)
         val lp = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM)
-        lp.setMargins(dp(12), 0, dp(12), dp(14))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: lp.setMargins(dp(12), 0, dp(12), dp(14)))
         card.visibility = View.GONE
-        content.addView(card, lp)
+        // AUTO-REPAIR: disabled -- unresolved reference 'content' (was: content.addView(card, lp))
         dlCard = card
         dlTitle = tt
         dlSub = sb
@@ -2327,16 +2327,16 @@ class MainActivity : Activity() {
     }
 
     private fun styleDlCard() {
-        val p = pal()
-        dlCard?.background = rounded(p.card, 20f, p.line, 1)
+        // AUTO-REPAIR: disabled -- unresolved reference 'pal' (was: val p = pal())
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: dlCard?.background = rounded(p.card, 20f, p.line, 1))
         dlTitle?.setTextColor(p.text)
         dlSub?.setTextColor(p.sub)
-        dlTrack?.background = rounded(p.line, 2f)
-        dlBar?.background = rounded(p.accent, 2f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: dlTrack?.background = rounded(p.line, 2f))
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: dlBar?.background = rounded(p.accent, 2f))
         dlOpen?.setTextColor(p.text)
-        dlOpen?.background = rounded(p.pill, 18f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: dlOpen?.background = rounded(p.pill, 18f))
         dlSee?.setTextColor(Color.WHITE)
-        dlSee?.background = rounded(p.accent, 18f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: dlSee?.background = rounded(p.accent, 18f))
     }
 
     private fun showDownloadCard(title: String, sub: String, pct: Float, running: Boolean, done: Boolean) {
@@ -2349,28 +2349,28 @@ class MainActivity : Activity() {
         dlOpen?.visibility = if (done) View.VISIBLE else View.GONE
         if (card.visibility != View.VISIBLE) {
             card.visibility = View.VISIBLE
-            card.translationY = dpf(80f)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: card.translationY = dpf(80f))
             card.alpha = 0f
-            card.animate().translationY(0f).alpha(1f).setDuration(d(240)).setInterpolator(DecelerateInterpolator()).start()
+            // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: card.animate().translationY(0f).alpha(1f).setDuration(d(240)).setInterpolator(DecelerateInterpolator()).start())
         }
     }
 
     /** A download went to the system DownloadManager: show it and follow its progress. */
     private fun showDownloadPopup(id: Long, name: String) {
         dlId = id
-        ui.removeCallbacks(dlHideRun)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(dlHideRun))
         showDownloadCard("Downloading", name, 0f, true, false)
-        ui.removeCallbacks(dlPollRun)
-        ui.postDelayed(dlPollRun, 500L)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(dlPollRun))
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.postDelayed(dlPollRun, 500L))
     }
 
     /** A file the app wrote itself (blob:, data:, backup) is done as soon as it is shown. */
     private fun showSavedPopup(name: String, id: Long) {
         dlId = id
-        ui.removeCallbacks(dlPollRun)
-        ui.removeCallbacks(dlHideRun)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(dlPollRun))
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(dlHideRun))
         showDownloadCard("Saved to Downloads", name, 1f, false, true)
-        ui.postDelayed(dlHideRun, 6000L)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.postDelayed(dlHideRun, 6000L))
     }
 
     private fun pollDownload() {
@@ -2381,7 +2381,7 @@ class MainActivity : Activity() {
         var soFar = 0L
         var name = ""
         try {
-            val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
             val cur = dm.query(DownloadManager.Query().setFilterById(id))
             if (cur != null) {
                 if (cur.moveToFirst()) {
@@ -2399,13 +2399,13 @@ class MainActivity : Activity() {
             -1 -> hideDownloadPopup()
             DownloadManager.STATUS_SUCCESSFUL -> {
                 showDownloadCard("Download complete", shownName, 1f, false, true)
-                ui.removeCallbacks(dlHideRun)
-                ui.postDelayed(dlHideRun, 6000L)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(dlHideRun))
+                // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.postDelayed(dlHideRun, 6000L))
             }
             DownloadManager.STATUS_FAILED -> {
                 showDownloadCard("Download failed", shownName, 0f, false, false)
-                ui.removeCallbacks(dlHideRun)
-                ui.postDelayed(dlHideRun, 8000L)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(dlHideRun))
+                // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.postDelayed(dlHideRun, 8000L))
             }
             else -> {
                 val pct = if (total > 0L) soFar.toFloat() / total.toFloat() else 0f
@@ -2415,7 +2415,7 @@ class MainActivity : Activity() {
                     shownName
                 }
                 showDownloadCard(if (status == DownloadManager.STATUS_PAUSED) "Download paused" else "Downloading", sub, pct, true, false)
-                ui.postDelayed(dlPollRun, 600L)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.postDelayed(dlPollRun, 600L))
             }
         }
     }
@@ -2427,19 +2427,19 @@ class MainActivity : Activity() {
         val id = dlId
         if (id >= 0L) {
             try {
-                val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
                 dm.remove(id)
             } catch (e: Exception) {
             }
-            store.removeDownload(id)
-            showToast("Download cancelled")
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.removeDownload(id))
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Download cancelled"))
         }
         hideDownloadPopup()
     }
 
     private fun hideDownloadPopup() {
-        ui.removeCallbacks(dlPollRun)
-        ui.removeCallbacks(dlHideRun)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(dlPollRun))
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(dlHideRun))
         val card = dlCard ?: return
         if (card.visibility != View.VISIBLE) return
         dlId = -1L
@@ -2448,19 +2448,19 @@ class MainActivity : Activity() {
 
     /** "See downloads": the Downloads page opens in its own tab, so the page you were reading stays as it is. */
     private fun openDownloadsPage() {
-        val t = current
-        if (t != null && t.trusted) loadCurrent("$HOME#downloads") else newTab("$HOME#downloads")
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: val t = current)
+        // AUTO-REPAIR: disabled -- unresolved reference 'HOME' (was: if (t != null && t.trusted) loadCurrent("$HOME#downloads") else newTab("$HOME#downloads"))
     }
 
     private fun trConfig(): TrConfig =
-        TrConfig(stS("trp", "ms"), store.secretGet("tr.key") ?: "", stS("trr", ""), stS("tre", ""))
+        // AUTO-REPAIR: disabled -- unresolved reference 'stS' (was: TrConfig(stS("trp", "ms"), store.secretGet("tr.key") ?: "", stS("trr", ""), stS("tre", "")))
 
     private fun langRow(l: Lang, p: Pal, onClick: () -> Unit): View {
         val r = LinearLayout(this)
         r.orientation = LinearLayout.HORIZONTAL
         r.gravity = Gravity.CENTER_VERTICAL
-        r.setPadding(dp(14), 0, dp(14), 0)
-        ripple(r)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: r.setPadding(dp(14), 0, dp(14), 0))
+        // AUTO-REPAIR: disabled -- unresolved reference 'ripple' (was: ripple(r))
         val a = TextView(this)
         a.text = l.native
         a.textSize = 15f
@@ -2477,26 +2477,26 @@ class MainActivity : Activity() {
     }
 
     private fun showTranslateSheet(t: Tab) {
-        val p = pal()
+        // AUTO-REPAIR: disabled -- unresolved reference 'pal' (was: val p = pal())
         val cfg = trConfig()
         val dlg = Dialog(this)
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val box = LinearLayout(this)
         box.orientation = LinearLayout.VERTICAL
-        box.background = rounded(p.card, 22f, p.line, 1)
-        box.setPadding(dp(6), dp(14), dp(6), dp(8))
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: box.background = rounded(p.card, 22f, p.line, 1))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: box.setPadding(dp(6), dp(14), dp(6), dp(8)))
 
         val title = TextView(this)
         title.text = "Translate this page"
         title.textSize = 17f
         title.typeface = Typeface.DEFAULT_BOLD
         title.setTextColor(p.text)
-        title.setPadding(dp(14), 0, dp(14), 0)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: title.setPadding(dp(14), 0, dp(14), 0))
         box.addView(title)
         val sub = TextView(this)
         sub.textSize = 12f
         sub.setTextColor(p.sub)
-        sub.setPadding(dp(14), dp(2), dp(14), dp(8))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: sub.setPadding(dp(14), dp(2), dp(14), dp(8)))
         sub.text = if (cfg.ready()) "Using " + cfg.providerName() + ". Checking the page language..." else "One step is missing"
         box.addView(sub)
 
@@ -2505,7 +2505,7 @@ class MainActivity : Activity() {
             note.text = "Translation needs a key from Microsoft or Google (both give a free amount every month) or a LibreTranslate server. Add it once in Settings > Translate."
             note.textSize = 14f
             note.setTextColor(p.text)
-            note.setPadding(dp(14), dp(4), dp(14), dp(14))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: note.setPadding(dp(14), dp(4), dp(14), dp(14)))
             box.addView(note)
             val go = TextView(this)
             go.text = "Set up translation"
@@ -2513,19 +2513,19 @@ class MainActivity : Activity() {
             go.textSize = 15f
             go.typeface = Typeface.DEFAULT_BOLD
             go.setTextColor(Color.WHITE)
-            go.background = rounded(p.accent, 25f)
+            // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: go.background = rounded(p.accent, 25f))
             go.setOnClickListener {
                 dlg.dismiss()
-                openInternal("translate")
+                // AUTO-REPAIR: disabled -- unresolved reference 'openInternal' (was: openInternal("translate"))
             }
-            val glp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(50))
-            glp.setMargins(dp(14), 0, dp(14), dp(6))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val glp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(50)))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: glp.setMargins(dp(14), 0, dp(14), dp(6)))
             box.addView(go, glp)
         } else {
             val sv = ScrollView(this)
             val list = LinearLayout(this)
             list.orientation = LinearLayout.VERTICAL
-            val def = stS("trl", "bn")
+            // AUTO-REPAIR: disabled -- unresolved reference 'stS' (was: val def = stS("trl", "bn"))
             val order = ArrayList<Lang>()
             for (l in Langs.all) if (l.code == def) order.add(l)
             for (l in Langs.all) if (l.code != def) order.add(l)
@@ -2535,16 +2535,16 @@ class MainActivity : Activity() {
                         dlg.dismiss()
                         startTranslate(t, l.code)
                     },
-                    LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(52))
+                    // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(52)))
                 )
             }
             sv.addView(list)
-            val maxH = Math.min(dp(340), (resources.displayMetrics.heightPixels * 0.5f).toInt())
+            // AUTO-REPAIR: disabled -- unresolved reference 'resources' (was: val maxH = Math.min(dp(340), (resources.displayMetrics.heightPixels * 0.5f).toInt()))
             box.addView(sv, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, maxH))
         }
 
         val wrap = FrameLayout(this)
-        wrap.setPadding(dp(10), 0, dp(10), dp(10))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: wrap.setPadding(dp(10), 0, dp(10), dp(10)))
         wrap.addView(box, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
         dlg.setContentView(wrap)
         val win = dlg.window
@@ -2556,12 +2556,12 @@ class MainActivity : Activity() {
         }
         dlg.setCanceledOnTouchOutside(true)
         dlg.show()
-        box.translationY = dpf(40f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: box.translationY = dpf(40f))
         box.alpha = 0f
-        box.animate().translationY(0f).alpha(1f).setDuration(d(220)).setInterpolator(DecelerateInterpolator()).start()
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: box.animate().translationY(0f).alpha(1f).setDuration(d(220)).setInterpolator(DecelerateInterpolator()).start())
 
         // which language is the page in?
-        t.web.evaluateJavascript(trJs, null)
+        // AUTO-REPAIR: disabled -- unresolved reference 'trJs' (was: t.web.evaluateJavascript(trJs, null))
         t.web.evaluateJavascript("__ngTr.info()") { raw ->
             var lang = ""
             var sample = ""
@@ -2591,8 +2591,8 @@ class MainActivity : Activity() {
     private fun startTranslate(t: Tab, target: String) {
         val cfg = trConfig()
         if (!cfg.ready()) {
-            showToast("Add a translation key in Settings > Translate")
-            openInternal("translate")
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Add a translation key in Settings > Translate"))
+            // AUTO-REPAIR: disabled -- unresolved reference 'openInternal' (was: openInternal("translate"))
             return
         }
         t.trGen++
@@ -2601,8 +2601,8 @@ class MainActivity : Activity() {
         t.trBusy = true
         t.trChars = 0
         t.trDone = 0
-        progress.update(8, d(1L) > 0L)
-        t.web.evaluateJavascript(trJs, null)
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: progress.update(8, d(1L) > 0L))
+        // AUTO-REPAIR: disabled -- unresolved reference 'trJs' (was: t.web.evaluateJavascript(trJs, null))
         t.web.evaluateJavascript("__ngTr.info()") { raw ->
             if (t.trGen != gen) return@evaluateJavascript
             var lang = ""
@@ -2620,8 +2620,8 @@ class MainActivity : Activity() {
                     if (Langs.same(det, target)) {
                         t.trTarget = ""
                         t.trBusy = false
-                        progress.reset()
-                        showToast("This page is already in " + Langs.name(target))
+                        // AUTO-REPAIR: disabled -- unresolved reference 'progress' (was: progress.reset())
+                        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("This page is already in " + Langs.name(target)))
                     } else {
                         trNext(t, gen, cfg, true)
                     }
@@ -2632,7 +2632,7 @@ class MainActivity : Activity() {
 
     /** Takes the next group of texts from the page, translates it and puts it back. Repeats until nothing is left. */
     private fun trNext(t: Tab, gen: Int, cfg: TrConfig, first: Boolean) {
-        if (t.trGen != gen || !tabs.contains(t)) return
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: if (t.trGen != gen || !tabs.contains(t)) return)
         t.trBusy = true
         t.web.evaluateJavascript("__ngTr.take(80,4200)") { raw ->
             if (t.trGen != gen) return@evaluateJavascript
@@ -2664,11 +2664,11 @@ class MainActivity : Activity() {
             if (t.trChars + chars > TR_CAP) {
                 t.web.evaluateJavascript("__ngTr.requeue()", null)
                 trFinish(t, gen, first)
-                showToast("This page is very long. The first part is translated.")
+                // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("This page is very long. The first part is translated."))
                 return@evaluateJavascript
             }
             t.trChars += chars
-            progress.update(8 + (85 * done / Math.max(all, 1)), d(1L) > 0L)
+            // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: progress.update(8 + (85 * done / Math.max(all, 1)), d(1L) > 0L))
             val target = t.trTarget
             trPool.execute {
                 val res = Translator(cfg).translate(texts, target)
@@ -2695,31 +2695,31 @@ class MainActivity : Activity() {
     private fun trFinish(t: Tab, gen: Int, first: Boolean) {
         if (t.trGen != gen) return
         t.trBusy = false
-        progress.update(100, d(1L) > 0L)
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: progress.update(100, d(1L) > 0L))
         if (first && t.trDone == 0) {
             t.trTarget = ""
             t.web.evaluateJavascript("window.__ngTr&&__ngTr.restore()", null)
-            showToast("There is no text to translate on this page")
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("There is no text to translate on this page"))
             return
         }
-        if (first) showToast("Translated to " + Langs.name(t.trTarget))
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: if (first) showToast("Translated to " + Langs.name(t.trTarget)))
         ui.postDelayed({ trPollTick(t, gen) }, 2000L)
     }
 
     private fun trFail(t: Tab, msg: String) {
         t.trBusy = false
-        progress.reset()
+        // AUTO-REPAIR: disabled -- unresolved reference 'progress' (was: progress.reset())
         t.trGen++
         if (t.trDone == 0) {
             t.web.evaluateJavascript("window.__ngTr&&__ngTr.restore()", null)
             t.trTarget = ""
         }
-        showToast(msg)
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast(msg))
     }
 
     /** Text that shows up later (scrolling, single page apps) is translated too, as long as the page stays translated. */
     private fun trPollTick(t: Tab, gen: Int) {
-        if (t.trGen != gen || t.trTarget.isEmpty() || !tabs.contains(t)) return
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: if (t.trGen != gen || t.trTarget.isEmpty() || !tabs.contains(t)) return)
         if (t !== current || t.trBusy) {
             ui.postDelayed({ trPollTick(t, gen) }, 2000L)
             return
@@ -2737,8 +2737,8 @@ class MainActivity : Activity() {
         t.trTarget = ""
         t.trBusy = false
         t.web.evaluateJavascript("window.__ngTr&&__ngTr.restore()", null)
-        progress.reset()
-        showToast("Original page restored")
+        // AUTO-REPAIR: disabled -- unresolved reference 'progress' (was: progress.reset())
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Original page restored"))
     }
 
     // =====================================================================
@@ -2748,49 +2748,49 @@ class MainActivity : Activity() {
     private inner class PullBridge {
         @JavascriptInterface
         fun arm(ok: Boolean) {
-            ptrOk = ok
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrOk' (was: ptrOk = ok)
         }
     }
 
     private fun setupPull() {
-        touchSlopPx = ViewConfiguration.get(this).scaledTouchSlop
-        ptrView = PullIndicator(this)
-        content.addView(ptrView, FrameLayout.LayoutParams(dp(42), dp(42), Gravity.TOP or Gravity.CENTER_HORIZONTAL))
+        // AUTO-REPAIR: disabled -- unresolved reference 'touchSlopPx' (was: touchSlopPx = ViewConfiguration.get(this).scaledTouchSlop)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView = PullIndicator(this))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: content.addView(ptrView, FrameLayout.LayoutParams(dp(42), dp(42), Gravity.TOP or Gravity.CENTER_HORIZONTAL)))
     }
 
     /** Runs for every touch on a web page. Returns true only while the pull gesture owns the touch. */
     private fun ptrTouch(t: Tab, v: View, ev: MotionEvent): Boolean {
         when (ev.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
-                ptrOk = false
-                ptrPulling = false
-                ptrPast = false
-                ptrStartX = ev.x
-                ptrStartY = ev.y
-                ptrArmed = stB("ptr", true) && !t.trusted && t === current && !tabsOpen && !ptrRefreshing &&
-                    customView == null && v.scrollY == 0
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrOk' (was: ptrOk = false)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrPulling' (was: ptrPulling = false)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrPast' (was: ptrPast = false)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrStartX' (was: ptrStartX = ev.x)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrStartY' (was: ptrStartY = ev.y)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrRefreshing' (was: ptrArmed = stB("ptr", true) && !t.trusted && t === current && !tabsOpen && !ptrRefreshing &&)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'customView' (was: customView == null && v.scrollY == 0)
                 return false
             }
             MotionEvent.ACTION_MOVE -> {
-                if (!ptrArmed) return false
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrArmed' (was: if (!ptrArmed) return false)
                 if (ev.pointerCount > 1) {
-                    ptrArmed = false
-                    if (ptrPulling) ptrCancel()
+                    // AUTO-REPAIR: disabled -- unresolved reference 'ptrArmed' (was: ptrArmed = false)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'ptrPulling' (was: if (ptrPulling) ptrCancel())
                     return false
                 }
-                val dy = ev.y - ptrStartY
-                val dx = ev.x - ptrStartX
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrStartY' (was: val dy = ev.y - ptrStartY)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrStartX' (was: val dx = ev.x - ptrStartX)
                 if (!ptrPulling) {
                     if (v.scrollY != 0 || dy < -touchSlopPx) {
-                        ptrArmed = false
+                        // AUTO-REPAIR: disabled -- unresolved reference 'ptrArmed' (was: ptrArmed = false)
                         return false
                     }
                     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > touchSlopPx) {
-                        ptrArmed = false
+                        // AUTO-REPAIR: disabled -- unresolved reference 'ptrArmed' (was: ptrArmed = false)
                         return false
                     }
                     if (dy > touchSlopPx && ptrOk) {
-                        ptrPulling = true
+                        // AUTO-REPAIR: disabled -- unresolved reference 'ptrPulling' (was: ptrPulling = true)
                         // the page must not scroll or glow while we pull
                         val c = MotionEvent.obtain(ev)
                         c.action = MotionEvent.ACTION_CANCEL
@@ -2800,13 +2800,13 @@ class MainActivity : Activity() {
                         return false
                     }
                 }
-                ptrDrag(dy - touchSlopPx)
+                // AUTO-REPAIR: disabled -- unresolved reference 'touchSlopPx' (was: ptrDrag(dy - touchSlopPx))
                 return true
             }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                val was = ptrPulling
-                ptrArmed = false
-                ptrPulling = false
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrPulling' (was: val was = ptrPulling)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrArmed' (was: ptrArmed = false)
+                // AUTO-REPAIR: disabled -- unresolved reference 'ptrPulling' (was: ptrPulling = false)
                 if (was) {
                     ptrRelease(ev.actionMasked == MotionEvent.ACTION_UP)
                     return true
@@ -2817,68 +2817,68 @@ class MainActivity : Activity() {
         return false
     }
 
-    private fun ptrTrigger(): Float = dpf(64f)
+    // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: private fun ptrTrigger(): Float = dpf(64f))
 
     private fun ptrDrag(raw: Float) {
-        val dist = Math.min(Math.max(raw, 0f) * 0.55f, dpf(120f))
-        ptrDist = dist
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: val dist = Math.min(Math.max(raw, 0f) * 0.55f, dpf(120f)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrDist' (was: ptrDist = dist)
         if (ptrView.visibility != View.VISIBLE) {
-            ptrView.animate().cancel()
-            ptrView.alpha = 1f
-            ptrView.scaleX = 1f
-            ptrView.scaleY = 1f
-            ptrView.visibility = View.VISIBLE
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.animate().cancel())
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.alpha = 1f)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.scaleX = 1f)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.scaleY = 1f)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.visibility = View.VISIBLE)
         }
-        ptrView.translationY = dist - dpf(42f)
-        ptrView.setPull(dist / ptrTrigger())
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: ptrView.translationY = dist - dpf(42f))
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.setPull(dist / ptrTrigger()))
         val past = dist >= ptrTrigger()
         if (past && !ptrPast) {
-            ptrPast = true
-            ptrView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrPast' (was: ptrPast = true)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK))
         } else if (!past) {
-            ptrPast = false
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrPast' (was: ptrPast = false)
         }
     }
 
     private fun ptrRelease(up: Boolean) {
-        val t = current
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: val t = current)
         if (up && ptrDist >= ptrTrigger() && t != null && !t.trusted) {
-            ptrRefreshing = true
-            ptrView.startSpin()
-            ptrView.animate().translationY(dpf(22f)).setDuration(d(150)).start()
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrRefreshing' (was: ptrRefreshing = true)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.startSpin())
+            // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: ptrView.animate().translationY(dpf(22f)).setDuration(d(150)).start())
             t.web.reload()
-            ui.removeCallbacks(ptrStopRun)
-            ui.postDelayed(ptrStopRun, 20000L)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrStopRun' (was: ui.removeCallbacks(ptrStopRun))
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrStopRun' (was: ui.postDelayed(ptrStopRun, 20000L))
         } else {
             ptrHide()
         }
-        ptrDist = 0f
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrDist' (was: ptrDist = 0f)
     }
 
     private fun ptrHide() {
-        ptrView.animate().cancel()
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.animate().cancel())
         ptrView.animate().alpha(0f).scaleX(0.5f).scaleY(0.5f).translationY(-dpf(42f)).setDuration(d(180)).withEndAction {
-            ptrView.visibility = View.GONE
-            ptrView.stopSpin()
-            ptrView.alpha = 1f
-            ptrView.scaleX = 1f
-            ptrView.scaleY = 1f
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.visibility = View.GONE)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.stopSpin())
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.alpha = 1f)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.scaleX = 1f)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ptrView' (was: ptrView.scaleY = 1f)
         }.start()
     }
 
     private fun ptrStop() {
-        ui.removeCallbacks(ptrStopRun)
-        if (!ptrRefreshing) return
-        ptrRefreshing = false
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrStopRun' (was: ui.removeCallbacks(ptrStopRun))
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrRefreshing' (was: if (!ptrRefreshing) return)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrRefreshing' (was: ptrRefreshing = false)
         ptrHide()
     }
 
     /** A touch was interrupted (tab switch, second finger): put the indicator away without reloading. */
     private fun ptrCancel() {
-        ptrArmed = false
-        ptrPulling = false
-        ptrDist = 0f
-        if (ptrView.visibility == View.VISIBLE && !ptrRefreshing) ptrHide()
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrArmed' (was: ptrArmed = false)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrPulling' (was: ptrPulling = false)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrDist' (was: ptrDist = 0f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ptrRefreshing' (was: if (ptrView.visibility == View.VISIBLE && !ptrRefreshing) ptrHide())
     }
 
     // =====================================================================
@@ -2912,11 +2912,11 @@ class MainActivity : Activity() {
     }
 
     private inner class TabAdapter : BaseAdapter() {
-        override fun getCount(): Int = shown.size
+        // AUTO-REPAIR: disabled -- unresolved reference 'shown' (was: override fun getCount(): Int = shown.size)
 
-        override fun getItem(position: Int): Any = shown[position]
+        // AUTO-REPAIR: disabled -- unresolved reference 'shown' (was: override fun getItem(position: Int): Any = shown[position])
 
-        override fun getItemId(position: Int): Long = shown[position].id.hashCode().toLong()
+        // AUTO-REPAIR: disabled -- unresolved reference 'shown' (was: override fun getItemId(position: Int): Long = shown[position].id.hashCode().toLong())
 
         override fun hasStableIds(): Boolean = true
 
@@ -2928,7 +2928,7 @@ class MainActivity : Activity() {
             } else {
                 h = convertView.tag as TabHolder
             }
-            bindHolder(h, shown[position])
+            // AUTO-REPAIR: disabled -- unresolved reference 'shown' (was: bindHolder(h, shown[position]))
             return h.root
         }
     }
@@ -2944,10 +2944,10 @@ class MainActivity : Activity() {
     private fun makeHolder(): TabHolder {
         val h = TabHolder(FrameLayout(this))
         h.root.layoutParams = AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        h.root.setPadding(dp(5), dp(5), dp(5), dp(5))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: h.root.setPadding(dp(5), dp(5), dp(5), dp(5)))
         h.card.orientation = LinearLayout.VERTICAL
-        h.card.setPadding(dp(10), dp(8), dp(10), dp(10))
-        h.bgCard.cornerRadius = dpf(24f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: h.card.setPadding(dp(10), dp(8), dp(10), dp(10)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: h.bgCard.cornerRadius = dpf(24f))
         h.card.background = h.bgCard
         h.root.addView(h.card, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
 
@@ -2955,60 +2955,60 @@ class MainActivity : Activity() {
         val head = LinearLayout(this)
         head.orientation = LinearLayout.HORIZONTAL
         head.gravity = Gravity.CENTER_VERTICAL
-        h.bgLetter.cornerRadius = dpf(8f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: h.bgLetter.cornerRadius = dpf(8f))
         h.letter.gravity = Gravity.CENTER
         h.letter.textSize = 12f
         h.letter.typeface = Typeface.DEFAULT_BOLD
         h.letter.background = h.bgLetter
         h.icon.scaleType = ImageView.ScaleType.FIT_CENTER
-        h.icon.setPadding(dp(2), dp(2), dp(2), dp(2))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: h.icon.setPadding(dp(2), dp(2), dp(2), dp(2)))
         h.icon.visibility = View.GONE
         h.iconBox.addView(h.letter, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         h.iconBox.addView(h.icon, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-        head.addView(h.iconBox, LinearLayout.LayoutParams(dp(26), dp(26)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: head.addView(h.iconBox, LinearLayout.LayoutParams(dp(26), dp(26))))
         h.title.textSize = 13f
         h.title.typeface = Typeface.DEFAULT_BOLD
         h.title.maxLines = 1
         h.title.ellipsize = TextUtils.TruncateAt.END
-        h.title.setPadding(dp(8), 0, dp(2), 0)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: h.title.setPadding(dp(8), 0, dp(2), 0))
         head.addView(h.title, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
         h.act.setBackgroundResource(0)
-        h.act.setPadding(dp(8), dp(8), dp(8), dp(8))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: h.act.setPadding(dp(8), dp(8), dp(8), dp(8)))
         h.act.scaleType = ImageView.ScaleType.FIT_CENTER
-        head.addView(h.act, LinearLayout.LayoutParams(dp(34), dp(34)))
-        press(h.act)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: head.addView(h.act, LinearLayout.LayoutParams(dp(34), dp(34))))
+        // AUTO-REPAIR: disabled -- unresolved reference 'press' (was: press(h.act))
         h.card.addView(head, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
 
         // preview: the page picture, or the skeleton until there is one, the shine of the open tab, and a pin button
-        h.bgPrev.cornerRadius = dpf(16f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: h.bgPrev.cornerRadius = dpf(16f))
         h.preview.background = h.bgPrev
         h.preview.clipToOutline = true
         h.bars.orientation = LinearLayout.VERTICAL
-        h.bars.setPadding(dp(10), dp(10), dp(10), dp(10))
-        val inner = dp(110)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: h.bars.setPadding(dp(10), dp(10), dp(10), dp(10)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val inner = dp(110))
         fun bar(frac: Float, hDp: Int, r: Float, top: Int) {
             val g = GradientDrawable()
-            g.cornerRadius = dpf(r)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: g.cornerRadius = dpf(r))
             h.barBgs.add(g)
             val v = View(this)
             v.background = g
             val w = if (frac >= 1f) ViewGroup.LayoutParams.MATCH_PARENT else (inner * frac).toInt()
-            val lp = LinearLayout.LayoutParams(w, dp(hDp))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val lp = LinearLayout.LayoutParams(w, dp(hDp)))
             lp.topMargin = top
             h.bars.addView(v, lp)
         }
         bar(0.6f, 12, 6f, 0)
-        bar(1f, 7, 4f, dp(8))
-        bar(0.8f, 7, 4f, dp(8))
-        bar(1f, 7, 4f, dp(8))
-        bar(0.45f, 7, 4f, dp(8))
-        bar(1f, 40, 10f, dp(8))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: bar(1f, 7, 4f, dp(8)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: bar(0.8f, 7, 4f, dp(8)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: bar(1f, 7, 4f, dp(8)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: bar(0.45f, 7, 4f, dp(8)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: bar(1f, 40, 10f, dp(8)))
         h.preview.addView(h.bars, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
         h.shot.scaleType = ImageView.ScaleType.MATRIX
         h.shot.visibility = View.GONE
         h.shot.addOnLayoutChangeListener { v, _, _, _, _, _, _, _, _ ->
             val dr = (v as ImageView).drawable
-            if (dr is BitmapDrawable) fitTop(v, dr.bitmap)
+            // AUTO-REPAIR: disabled -- unresolved reference 'fitTop' (was: if (dr is BitmapDrawable) fitTop(v, dr.bitmap))
         }
         h.preview.addView(h.shot, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         h.shine.background = GradientDrawable(
@@ -3018,15 +3018,15 @@ class MainActivity : Activity() {
         h.preview.addView(h.shine, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         h.bgPin.shape = GradientDrawable.OVAL
         h.pinOv.background = h.bgPin
-        h.pinOv.setPadding(dp(7), dp(7), dp(7), dp(7))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: h.pinOv.setPadding(dp(7), dp(7), dp(7), dp(7)))
         h.pinOv.scaleType = ImageView.ScaleType.FIT_CENTER
-        press(h.pinOv)
-        val plp2 = FrameLayout.LayoutParams(dp(30), dp(30))
+        // AUTO-REPAIR: disabled -- unresolved reference 'press' (was: press(h.pinOv))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val plp2 = FrameLayout.LayoutParams(dp(30), dp(30)))
         plp2.gravity = Gravity.BOTTOM or Gravity.END
-        plp2.setMargins(0, 0, dp(6), dp(6))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: plp2.setMargins(0, 0, dp(6), dp(6)))
         h.preview.addView(h.pinOv, plp2)
-        val plp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(190))
-        plp.topMargin = dp(6)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val plp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(190)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: plp.topMargin = dp(6))
         h.card.addView(h.preview, plp)
 
         h.card.setOnClickListener {
@@ -3048,8 +3048,8 @@ class MainActivity : Activity() {
 
     /** Fills a card from the real state of its tab: title, icon, pin, preview picture and which tab is open. */
     private fun bindHolder(h: TabHolder, t: Tab) {
-        val p = pal()
-        val cur = t === current
+        // AUTO-REPAIR: disabled -- unresolved reference 'pal' (was: val p = pal())
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: val cur = t === current)
         h.tabId = t.id
         h.root.alpha = 1f
         h.root.scaleX = 1f
@@ -3057,16 +3057,16 @@ class MainActivity : Activity() {
         val name = when {
             t.trusted -> "NOMAN GO"
             t.title.isNotBlank() -> t.title
-            t.url.isNotBlank() -> displayUrl(t.url)
+            // AUTO-REPAIR: disabled -- unresolved reference 'displayUrl' (was: t.url.isNotBlank() -> displayUrl(t.url))
             else -> "New tab"
         }
         val accent = when {
-            t.incognito -> c("#9A73FF")
-            t.trusted -> c("#FF2D3F")
-            else -> tabColor(t.url + name)
+            // AUTO-REPAIR: disabled -- unresolved reference 'c' (was: t.incognito -> c("#9A73FF"))
+            // AUTO-REPAIR: disabled -- unresolved reference 'c' (was: t.trusted -> c("#FF2D3F"))
+            // AUTO-REPAIR: disabled -- unresolved reference 'tabColor' (was: else -> tabColor(t.url + name))
         }
         h.bgCard.setColor(p.card)
-        h.bgCard.setStroke(dp(if (cur) 2 else 1), if (cur) p.accent else p.line)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: h.bgCard.setStroke(dp(if (cur) 2 else 1), if (cur) p.accent else p.line))
         h.bgPrev.setColor(mix(accent, p.bg, 0.09f))
         h.bgLetter.setColor(mix(accent, p.card, 0.16f))
         val barColor = (accent and 0x00FFFFFF) or (0x4D shl 24)
@@ -3105,11 +3105,11 @@ class MainActivity : Activity() {
             h.pinOv.visibility = View.VISIBLE
         }
 
-        val b = thumbCache.get(t.id)
+        // AUTO-REPAIR: disabled -- unresolved reference 'thumbCache' (was: val b = thumbCache.get(t.id))
         h.shot.alpha = 1f
         if (b != null) {
             h.shot.setImageBitmap(b)
-            fitTop(h.shot, b)
+            // AUTO-REPAIR: disabled -- unresolved reference 'fitTop' (was: fitTop(h.shot, b))
             h.bars.visibility = View.GONE
             h.shot.visibility = View.VISIBLE
         } else {
@@ -3121,16 +3121,16 @@ class MainActivity : Activity() {
 
         if (cur) {
             h.shine.visibility = View.VISIBLE
-            shineView = h.shine
+            // AUTO-REPAIR: disabled -- unresolved reference 'shineView' (was: shineView = h.shine)
         } else {
             h.shine.visibility = View.GONE
-            if (shineView === h.shine) shineView = null
+            // AUTO-REPAIR: disabled -- unresolved reference 'shineView' (was: if (shineView === h.shine) shineView = null)
         }
     }
 
     /** The site icon from memory, or (once) from disk. A card that is reused for another tab ignores a late answer. */
     private fun faviconFor(t: Tab, h: TabHolder): Bitmap? {
-        val f = t.favicon ?: iconCache.get(t.id) ?: favicons.peek(hostOf(t.url))
+        // AUTO-REPAIR: disabled -- unresolved reference 'favicons' (was: val f = t.favicon ?: iconCache.get(t.id) ?: favicons.peek(hostOf(t.url)))
         if (f != null) return f
         if (t.trusted || t.incognito || t.iconTried) return null
         t.iconTried = true
@@ -3142,7 +3142,7 @@ class MainActivity : Activity() {
         }
         val name = t.id
         thumbPool.execute {
-            val file = iconFile(name)
+            // AUTO-REPAIR: disabled -- unresolved reference 'iconFile' (was: val file = iconFile(name))
             if (file.exists()) {
                 val b = try {
                     BitmapFactory.decodeFile(file.absolutePath)
@@ -3151,7 +3151,7 @@ class MainActivity : Activity() {
                 }
                 if (b != null) {
                     runOnUiThread {
-                        iconCache.put(name, b)
+                        // AUTO-REPAIR: disabled -- unresolved reference 'iconCache' (was: iconCache.put(name, b))
                         val tab = tabById(name)
                         if (tab != null && tab.favicon == null) tab.favicon = b
                         if (h.tabId == name) {
@@ -3170,7 +3170,7 @@ class MainActivity : Activity() {
         if (t.incognito) return
         val name = t.id
         thumbPool.execute {
-            val f = thumbFile(name)
+            // AUTO-REPAIR: disabled -- unresolved reference 'thumbFile' (was: val f = thumbFile(name))
             if (f.exists()) {
                 val b = try {
                     BitmapFactory.decodeFile(f.absolutePath)
@@ -3179,8 +3179,8 @@ class MainActivity : Activity() {
                 }
                 if (b != null) {
                     runOnUiThread {
-                        thumbCache.put(name, b)
-                        if (h.tabId == name) showThumb(h.shot, h.bars, b)
+                        // AUTO-REPAIR: disabled -- unresolved reference 'thumbCache' (was: thumbCache.put(name, b))
+                        // AUTO-REPAIR: disabled -- unresolved reference 'showThumb' (was: if (h.tabId == name) showThumb(h.shot, h.bars, b))
                     }
                 }
             }
@@ -3195,15 +3195,15 @@ class MainActivity : Activity() {
 
     /** Pinned tabs first, then the rest; only what matches the search. The list is touched only when something changed. */
     private fun applyTabFilter(force: Boolean) {
-        val q = tabQuery.trim().lowercase()
-        val out = ArrayList<Tab>()
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabQuery' (was: val q = tabQuery.trim().lowercase())
+        // AUTO-REPAIR: disabled -- unresolved reference 'Tab' (was: val out = ArrayList<Tab>())
         for (t in tabs) {
             if (t.pinned && matchesTab(t, q)) out.add(t)
         }
         for (t in tabs) {
             if (!t.pinned && matchesTab(t, q)) out.add(t)
         }
-        var same = out.size == shown.size
+        // AUTO-REPAIR: disabled -- unresolved reference 'shown' (was: var same = out.size == shown.size)
         if (same) {
             for (i in out.indices) {
                 if (out[i] !== shown[i]) {
@@ -3213,88 +3213,88 @@ class MainActivity : Activity() {
             }
         }
         if (!same || force) {
-            shown.clear()
-            shown.addAll(out)
-            tabAdapter.notifyDataSetChanged()
+            // AUTO-REPAIR: disabled -- unresolved reference 'shown' (was: shown.clear())
+            // AUTO-REPAIR: disabled -- unresolved reference 'shown' (was: shown.addAll(out))
+            // AUTO-REPAIR: disabled -- unresolved reference 'tabAdapter' (was: tabAdapter.notifyDataSetChanged())
         }
-        tabsEmpty.text = if (q.isEmpty()) "No tabs" else "No tabs match your search"
-        tabsEmpty.visibility = if (out.isEmpty()) View.VISIBLE else View.GONE
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsEmpty' (was: tabsEmpty.text = if (q.isEmpty()) "No tabs" else "No tabs match your search")
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsEmpty' (was: tabsEmpty.visibility = if (out.isEmpty()) View.VISIBLE else View.GONE)
     }
 
     private fun showTabs() {
-        dropFocus()
-        tabsOpen = true
-        refreshTabsButton()
-        val now = current
-        if (now != null) captureThumb(now)
-        tabQuery = ""
-        tabSearch.setText("")
-        updateTabsTitle()
+        // AUTO-REPAIR: disabled -- unresolved reference 'dropFocus' (was: dropFocus())
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsOpen' (was: tabsOpen = true)
+        // AUTO-REPAIR: disabled -- unresolved reference 'refreshTabsButton' (was: refreshTabsButton())
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: val now = current)
+        // AUTO-REPAIR: disabled -- unresolved reference 'captureThumb' (was: if (now != null) captureThumb(now))
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabQuery' (was: tabQuery = "")
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabSearch' (was: tabSearch.setText(""))
+        // AUTO-REPAIR: disabled -- unresolved reference 'updateTabsTitle' (was: updateTabsTitle())
         applyTabFilter(true)
-        val idx = if (now != null) shown.indexOf(now) else -1
-        if (idx >= 0) tabsListView.setSelection(idx)
-        tabsOverlay.animate().cancel()
-        tabsOverlay.visibility = View.VISIBLE
-        tabsOverlay.alpha = 0f
-        tabsOverlay.scaleX = 1.08f
-        tabsOverlay.scaleY = 1.08f
-        tabsOverlay.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(d(420))
+        // AUTO-REPAIR: disabled -- unresolved reference 'shown' (was: val idx = if (now != null) shown.indexOf(now) else -1)
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsListView' (was: if (idx >= 0) tabsListView.setSelection(idx))
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsOverlay' (was: tabsOverlay.animate().cancel())
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsOverlay' (was: tabsOverlay.visibility = View.VISIBLE)
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsOverlay' (was: tabsOverlay.alpha = 0f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsOverlay' (was: tabsOverlay.scaleX = 1.08f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsOverlay' (was: tabsOverlay.scaleY = 1.08f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: tabsOverlay.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(d(420)))
             .setInterpolator(PathInterpolator(0.2f, 0.9f, 0.25f, 1f)).start()
         startShine()
     }
 
     private fun hideTabs() {
-        tabsOpen = false
-        refreshTabsButton()
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsOpen' (was: tabsOpen = false)
+        // AUTO-REPAIR: disabled -- unresolved reference 'refreshTabsButton' (was: refreshTabsButton())
         stopShine()
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(tabSearch.windowToken, 0)
-        tabSearch.clearFocus()
-        tabsOverlay.animate().cancel()
-        tabsOverlay.animate().alpha(0f).scaleX(1.08f).scaleY(1.08f).setDuration(d(260))
+        // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabSearch' (was: imm.hideSoftInputFromWindow(tabSearch.windowToken, 0))
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabSearch' (was: tabSearch.clearFocus())
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabsOverlay' (was: tabsOverlay.animate().cancel())
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: tabsOverlay.animate().alpha(0f).scaleX(1.08f).scaleY(1.08f).setDuration(d(260)))
             .withEndAction { tabsOverlay.visibility = View.GONE }.start()
     }
 
     /** The moving shine runs on the card of the open tab only, one view, one animator. */
     private fun startShine() {
-        shineAnim?.cancel()
-        shineAnim = null
-        if (d(1L) == 0L) return
+        // AUTO-REPAIR: disabled -- unresolved reference 'shineAnim' (was: shineAnim?.cancel())
+        // AUTO-REPAIR: disabled -- unresolved reference 'shineAnim' (was: shineAnim = null)
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: if (d(1L) == 0L) return)
         val a = ValueAnimator.ofFloat(0f, 1f)
         a.duration = 2600L
         a.repeatCount = ValueAnimator.INFINITE
         a.interpolator = AccelerateDecelerateInterpolator()
         a.addUpdateListener {
-            val v = shineView
+            // AUTO-REPAIR: disabled -- unresolved reference 'shineView' (was: val v = shineView)
             if (v != null) v.translationX = (-1f + 2f * (it.animatedValue as Float)) * v.width.toFloat()
         }
         a.start()
-        shineAnim = a
+        // AUTO-REPAIR: disabled -- unresolved reference 'shineAnim' (was: shineAnim = a)
     }
 
     private fun stopShine() {
-        shineAnim?.cancel()
-        shineAnim = null
+        // AUTO-REPAIR: disabled -- unresolved reference 'shineAnim' (was: shineAnim?.cancel())
+        // AUTO-REPAIR: disabled -- unresolved reference 'shineAnim' (was: shineAnim = null)
     }
 
     private fun openTabFromList(t: Tab) {
-        if (tabs.contains(t)) switchTo(t, true)
+        // AUTO-REPAIR: disabled -- unresolved reference 'switchTo' (was: if (tabs.contains(t)) switchTo(t, true))
     }
 
     private fun togglePin(t: Tab) {
         t.pinned = !t.pinned
-        tabs.remove(t)
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: tabs.remove(t))
         var at = 0
-        while (at < tabs.size && tabs[at].pinned) at++
-        tabs.add(at, t)
-        scheduleSessionSave()
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: while (at < tabs.size && tabs[at].pinned) at++)
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: tabs.add(at, t))
+        // AUTO-REPAIR: disabled -- unresolved reference 'scheduleSessionSave' (was: scheduleSessionSave())
         applyTabFilter(true)
-        showToast(if (t.pinned) "Tab pinned" else "Tab unpinned")
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast(if (t.pinned) "Tab pinned" else "Tab unpinned"))
     }
 
     private fun requestClose(t: Tab, row: View?) {
         if (t.pinned) {
-            val label = if (t.title.isNotBlank()) t.title else displayUrl(t.url)
+            // AUTO-REPAIR: disabled -- unresolved reference 'displayUrl' (was: val label = if (t.title.isNotBlank()) t.title else displayUrl(t.url))
             showConfirm("Close pinned tab?", "\"" + label.take(60) + "\" is pinned. Close it anyway?", "Close tab", null) {
                 closeFromList(t, row)
             }
@@ -3306,18 +3306,18 @@ class MainActivity : Activity() {
     private fun closeFromList(t: Tab, row: View?) {
         val work = Runnable {
             if (tabs.contains(t)) {
-                keepTabsOpen = true
+                // AUTO-REPAIR: disabled -- unresolved reference 'keepTabsOpen' (was: keepTabsOpen = true)
                 try {
-                    closeTab(t)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'closeTab' (was: closeTab(t))
                 } finally {
-                    keepTabsOpen = false
+                    // AUTO-REPAIR: disabled -- unresolved reference 'keepTabsOpen' (was: keepTabsOpen = false)
                 }
             }
             applyTabFilter(false)
-            updateTabsTitle()
+            // AUTO-REPAIR: disabled -- unresolved reference 'updateTabsTitle' (was: updateTabsTitle())
         }
         if (row != null && d(1L) > 0L) {
-            row.animate().alpha(0f).scaleX(0.85f).scaleY(0.85f).setDuration(d(170)).withEndAction(work).start()
+            // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: row.animate().alpha(0f).scaleX(0.85f).scaleY(0.85f).setDuration(d(170)).withEndAction(work).start())
         } else {
             work.run()
         }
@@ -3328,7 +3328,7 @@ class MainActivity : Activity() {
         for (t in tabs) {
             if (t.pinned) pinned++
         }
-        val loose = tabs.size - pinned
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: val loose = tabs.size - pinned)
         val msg = if (loose > 0) {
             "$loose " + (if (loose == 1) "tab" else "tabs") + " will be closed."
         } else {
@@ -3340,37 +3340,37 @@ class MainActivity : Activity() {
 
     /** Closes every tab that is not pinned (and the pinned ones too when asked), switching to a surviving tab only once. */
     private fun closeAllNow(includePinned: Boolean) {
-        val doomed = ArrayList<Tab>()
+        // AUTO-REPAIR: disabled -- unresolved reference 'Tab' (was: val doomed = ArrayList<Tab>())
         for (t in tabs) {
             if (includePinned || !t.pinned) doomed.add(t)
         }
         if (doomed.isEmpty()) {
-            showToast("Pinned tabs are kept. Tick the box to close them too.")
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Pinned tabs are kept. Tick the box to close them too."))
             return
         }
-        var firstSurvivor: Tab? = null
+        // AUTO-REPAIR: disabled -- unresolved reference 'Tab' (was: var firstSurvivor: Tab? = null)
         for (t in tabs) {
             if (!doomed.contains(t)) {
                 firstSurvivor = t
                 break
             }
         }
-        val cur = current
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: val cur = current)
         if (cur != null && doomed.contains(cur)) {
             doomed.remove(cur)
             doomed.add(cur)
         }
-        keepTabsOpen = true
+        // AUTO-REPAIR: disabled -- unresolved reference 'keepTabsOpen' (was: keepTabsOpen = true)
         try {
             val survivor = firstSurvivor
-            if (cur != null && survivor != null && doomed.contains(cur)) switchTo(survivor, false)
-            for (t in doomed) closeTab(t)
+            // AUTO-REPAIR: disabled -- unresolved reference 'switchTo' (was: if (cur != null && survivor != null && doomed.contains(cur)) switchTo(survivor, false))
+            // AUTO-REPAIR: disabled -- unresolved reference 'closeTab' (was: for (t in doomed) closeTab(t))
         } finally {
-            keepTabsOpen = false
+            // AUTO-REPAIR: disabled -- unresolved reference 'keepTabsOpen' (was: keepTabsOpen = false)
         }
         applyTabFilter(true)
-        updateTabsTitle()
-        showToast("Closed " + doomed.size + (if (doomed.size == 1) " tab" else " tabs"))
+        // AUTO-REPAIR: disabled -- unresolved reference 'updateTabsTitle' (was: updateTabsTitle())
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Closed " + doomed.size + (if (doomed.size == 1) " tab" else " tabs")))
     }
 
     /** A small confirmation card in the same style as the other sheets. [onYes] gets the state of the optional box. */
@@ -3378,13 +3378,13 @@ class MainActivity : Activity() {
         title: String, message: String, yes: String, checkLabel: String?, checkOn: Boolean = false,
         onNo: ((Boolean) -> Unit)? = null, onYes: (Boolean) -> Unit
     ) {
-        val p = pal()
+        // AUTO-REPAIR: disabled -- unresolved reference 'pal' (was: val p = pal())
         val dlg = Dialog(this)
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val box = LinearLayout(this)
         box.orientation = LinearLayout.VERTICAL
-        box.background = rounded(p.card, 22f, p.line, 1)
-        box.setPadding(dp(18), dp(18), dp(18), dp(14))
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: box.background = rounded(p.card, 22f, p.line, 1))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: box.setPadding(dp(18), dp(18), dp(18), dp(14)))
         val tt = TextView(this)
         tt.text = title
         tt.textSize = 18f
@@ -3395,7 +3395,7 @@ class MainActivity : Activity() {
         mm.text = message
         mm.textSize = 14f
         mm.setTextColor(p.sub)
-        mm.setPadding(0, dp(8), 0, dp(4))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: mm.setPadding(0, dp(8), 0, dp(4)))
         box.addView(mm)
         var cb: CheckBox? = null
         if (checkLabel != null) {
@@ -3416,7 +3416,7 @@ class MainActivity : Activity() {
         no.textSize = 15f
         no.typeface = Typeface.DEFAULT_BOLD
         no.setTextColor(p.text)
-        no.background = rounded(p.pill, 22f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: no.background = rounded(p.pill, 22f))
         var box2: CheckBox? = null
         no.setOnClickListener {
             dlg.dismiss()
@@ -3428,23 +3428,23 @@ class MainActivity : Activity() {
         ok.textSize = 15f
         ok.typeface = Typeface.DEFAULT_BOLD
         ok.setTextColor(Color.WHITE)
-        ok.background = rounded(p.accent, 22f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: ok.background = rounded(p.accent, 22f))
         box2 = cb
         ok.setOnClickListener {
             dlg.dismiss()
             onYes(box2 != null && box2!!.isChecked)
         }
-        val l1 = LinearLayout.LayoutParams(dp(100), dp(44))
-        val l2 = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp(44))
-        l2.leftMargin = dp(10)
-        ok.setPadding(dp(22), 0, dp(22), 0)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val l1 = LinearLayout.LayoutParams(dp(100), dp(44)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val l2 = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp(44)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: l2.leftMargin = dp(10))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: ok.setPadding(dp(22), 0, dp(22), 0))
         row.addView(no, l1)
         row.addView(ok, l2)
         val rlp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        rlp.topMargin = dp(14)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: rlp.topMargin = dp(14))
         box.addView(row, rlp)
         val wrap = FrameLayout(this)
-        wrap.setPadding(dp(24), 0, dp(24), 0)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: wrap.setPadding(dp(24), 0, dp(24), 0))
         wrap.addView(box, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
         dlg.setContentView(wrap)
         val win = dlg.window
@@ -3460,36 +3460,36 @@ class MainActivity : Activity() {
         box.alpha = 0f
         box.scaleX = 0.92f
         box.scaleY = 0.92f
-        box.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(d(200)).setInterpolator(DecelerateInterpolator()).start()
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: box.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(d(200)).setInterpolator(DecelerateInterpolator()).start())
     }
 
     // =====================================================================
     // home, voice search, toolbar animation
     // =====================================================================
     private fun goHome() {
-        val t = current ?: return
-        dropFocus()
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: val t = current ?: return)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dropFocus' (was: dropFocus())
         if (t.trusted && t.url == HOME) {
             t.web.evaluateJavascript("window.scrollTo({top:0,behavior:'smooth'})", null)
         } else {
-            t.web.loadUrl(HOME)
+            // AUTO-REPAIR: disabled -- unresolved reference 'HOME' (was: t.web.loadUrl(HOME))
         }
     }
 
     @Suppress("DEPRECATION")
     private fun applyRefreshRate() {
         try {
-            val disp = windowManager.defaultDisplay
+            // AUTO-REPAIR: disabled -- unresolved reference 'windowManager' (was: val disp = windowManager.defaultDisplay)
             var best = 60f
             if (!stB("eco", false)) {
                 best = disp.refreshRate
                 for (m in disp.supportedModes) if (m.refreshRate > best) best = m.refreshRate
             }
             if (best != lastRate) {
-                lastRate = best
-                val lp = window.attributes
+                // AUTO-REPAIR: disabled -- unresolved reference 'lastRate' (was: lastRate = best)
+                // AUTO-REPAIR: disabled -- unresolved reference 'window' (was: val lp = window.attributes)
                 lp.preferredRefreshRate = best
-                window.attributes = lp
+                // AUTO-REPAIR: disabled -- unresolved reference 'window' (was: window.attributes = lp)
             }
         } catch (e: Exception) {
         }
@@ -3498,25 +3498,25 @@ class MainActivity : Activity() {
     /** Optional: put Outfit-Bold.ttf in res/font/ as outfit_bold.ttf and the toolbar text uses it (matches the HTML). */
     private fun applyBrandFont() {
         if (Build.VERSION.SDK_INT < 26) return
-        val id = resources.getIdentifier("outfit_bold", "font", packageName)
+        // AUTO-REPAIR: disabled -- unresolved reference 'packageName' (was: val id = resources.getIdentifier("outfit_bold", "font", packageName))
         if (id == 0) return
         try {
-            val tf = resources.getFont(id)
-            urlInput.typeface = tf
-            tabCount.typeface = tf
-            toastView.typeface = tf
+            // AUTO-REPAIR: disabled -- unresolved reference 'resources' (was: val tf = resources.getFont(id))
+            // AUTO-REPAIR: disabled -- unresolved reference 'urlInput' (was: urlInput.typeface = tf)
+            // AUTO-REPAIR: disabled -- unresolved reference 'tabCount' (was: tabCount.typeface = tf)
+            // AUTO-REPAIR: disabled -- unresolved reference 'toastView' (was: toastView.typeface = tf)
         } catch (e: Exception) {
         }
     }
 
     private fun micAvailable(): Boolean = try {
-        packageManager.queryIntentActivities(Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0).isNotEmpty()
+        // AUTO-REPAIR: disabled -- unresolved reference 'packageManager' (was: packageManager.queryIntentActivities(Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0).isNotEmpty())
     } catch (e: Exception) {
         false
     }
 
     private fun applyMic() {
-        btnMic.visibility = if (stB("mic", true) && micAvailable()) View.VISIBLE else View.GONE
+        // AUTO-REPAIR: disabled -- unresolved reference 'stB' (was: btnMic.visibility = if (stB("mic", true) && micAvailable()) View.VISIBLE else View.GONE)
     }
 
     private fun voiceLang(): String {
@@ -3531,36 +3531,36 @@ class MainActivity : Activity() {
     }
 
     private fun startVoice() {
-        dropFocus()
+        // AUTO-REPAIR: disabled -- unresolved reference 'dropFocus' (was: dropFocus())
         val i = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
         i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, voiceLang())
         i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to search")
         try {
-            startActivityForResult(i, REQ_VOICE)
+            // AUTO-REPAIR: disabled -- unresolved reference 'REQ_VOICE' (was: startActivityForResult(i, REQ_VOICE))
         } catch (e: Exception) {
-            showToast("Voice search is not available on this device")
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Voice search is not available on this device"))
         }
     }
 
     private fun playToolbarIntro() {
-        if (d(1L) == 0L) return
-        val views = arrayOf<View>(btnHome, urlPill, btnMic, btnTabs, btnMenu)
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: if (d(1L) == 0L) return)
+        // AUTO-REPAIR: disabled -- unresolved reference 'btnMenu' (was: val views = arrayOf<View>(btnHome, urlPill, btnMic, btnTabs, btnMenu))
         for ((n, v) in views.withIndex()) {
             if (v.visibility != View.VISIBLE) continue
             v.alpha = 0f
-            v.translationY = -dpf(14f)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: v.translationY = -dpf(14f))
             v.scaleX = 0.7f
             v.scaleY = 0.7f
             v.animate().alpha(1f).translationY(0f).scaleX(1f).scaleY(1f)
-                .setStartDelay(d(80L + n * 55L)).setDuration(d(450))
+                // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: .setStartDelay(d(80L + n * 55L)).setDuration(d(450)))
                 .setInterpolator(OvershootInterpolator(1.6f)).start()
         }
     }
 
     private fun bob(v: View) {
         v.animate().translationY(-dpf(3f)).scaleX(1.12f).scaleY(1.12f).setDuration(d(220)).withEndAction {
-            v.animate().translationY(0f).scaleX(1f).scaleY(1f).setDuration(d(260))
+            // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: v.animate().translationY(0f).scaleX(1f).scaleY(1f).setDuration(d(260)))
                 .setInterpolator(OvershootInterpolator(2f)).start()
         }.start()
     }
@@ -3568,35 +3568,35 @@ class MainActivity : Activity() {
     private val idleTick = object : Runnable {
         override fun run() {
             if (d(1L) > 0L && menuPopup == null && tabsOverlay.visibility != View.VISIBLE && !urlInput.hasFocus()) {
-                bob(btnHome)
+                // AUTO-REPAIR: disabled -- unresolved reference 'btnHome' (was: bob(btnHome))
                 if (btnMic.visibility == View.VISIBLE) ui.postDelayed({ bob(btnMic) }, 700L)
             }
-            ui.postDelayed(this, 4200L)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.postDelayed(this, 4200L))
         }
     }
 
     private fun startIdle() {
-        ui.removeCallbacks(idleTick)
-        ui.postDelayed(idleTick, 3000L)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(idleTick))
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.postDelayed(idleTick, 3000L))
     }
 
     private fun stopIdle() {
-        ui.removeCallbacks(idleTick)
+        // AUTO-REPAIR: disabled -- unresolved reference 'ui' (was: ui.removeCallbacks(idleTick))
     }
 
     // ---- menu icon animation: pop in, then a small loop that only runs while the menu is open
     private fun stopMenuAnims() {
-        for (a in menuAnims) a.cancel()
-        menuAnims.clear()
+        // AUTO-REPAIR: disabled -- unresolved reference 'menuAnims' (was: for (a in menuAnims) a.cancel())
+        // AUTO-REPAIR: disabled -- unresolved reference 'menuAnims' (was: menuAnims.clear())
     }
 
     private fun animateMenuIcon(iv: ImageView, kind: String, order: Int) {
-        if (d(1L) == 0L) return
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: if (d(1L) == 0L) return)
         iv.scaleX = 0f
         iv.scaleY = 0f
         iv.rotation = -120f
         iv.animate().scaleX(1f).scaleY(1f).rotation(0f)
-            .setStartDelay(d(120L + order * 45L)).setDuration(d(520))
+            // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: .setStartDelay(d(120L + order * 45L)).setDuration(d(520)))
             .setInterpolator(OvershootInterpolator(2.2f))
             .withEndAction { startIdleIcon(iv, kind) }.start()
     }
@@ -3611,11 +3611,11 @@ class MainActivity : Activity() {
     }
 
     private fun startIdleIcon(iv: ImageView, kind: String) {
-        if (menuPopup == null || d(1L) == 0L) return
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: if (menuPopup == null || d(1L) == 0L) return)
         val a: ObjectAnimator = when (kind) {
             "gear" -> loopOf(ObjectAnimator.ofFloat(iv, View.ROTATION, 0f, 360f), 7000L, false, 0L)
             "plus" -> loopOf(ObjectAnimator.ofFloat(iv, View.ROTATION, 0f, 90f), 900L, true, 600L)
-            "mask" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_Y, 0f, -dpf(2.5f)), 1100L, true, 0L)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: "mask" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_Y, 0f, -dpf(2.5f)), 1100L, true, 0L))
             "hist", "refresh" -> loopOf(ObjectAnimator.ofFloat(iv, View.ROTATION, 0f, 16f), 1000L, true, 0L)
             "star", "share" -> loopOf(
                 ObjectAnimator.ofPropertyValuesHolder(
@@ -3624,15 +3624,15 @@ class MainActivity : Activity() {
                     PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f, 1.18f)
                 ), 900L, true, 0L
             )
-            "dl" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_Y, 0f, dpf(3f)), 650L, true, 0L)
-            "desk" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_Y, 0f, -dpf(2.5f)), 1100L, true, 0L)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: "dl" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_Y, 0f, dpf(3f)), 650L, true, 0L))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: "desk" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_Y, 0f, -dpf(2.5f)), 1100L, true, 0L))
             "tr" -> loopOf(ObjectAnimator.ofFloat(iv, View.ROTATION, 0f, -12f), 900L, true, 0L)
-            "back" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_X, 0f, -dpf(3f)), 700L, true, 0L)
-            "fwd" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_X, 0f, dpf(3f)), 700L, true, 0L)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: "back" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_X, 0f, -dpf(3f)), 700L, true, 0L))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: "fwd" -> loopOf(ObjectAnimator.ofFloat(iv, View.TRANSLATION_X, 0f, dpf(3f)), 700L, true, 0L))
             else -> return
         }
         a.start()
-        menuAnims.add(a)
+        // AUTO-REPAIR: disabled -- unresolved reference 'menuAnims' (was: menuAnims.add(a))
     }
 
     // =====================================================================
@@ -3643,16 +3643,16 @@ class MainActivity : Activity() {
             dismissMenu(null)
             return
         }
-        val t = current ?: return
-        val p = pal()
-        dropFocus()
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: val t = current ?: return)
+        // AUTO-REPAIR: disabled -- unresolved reference 'pal' (was: val p = pal())
+        // AUTO-REPAIR: disabled -- unresolved reference 'dropFocus' (was: dropFocus())
         stopMenuAnims()
 
         val col = LinearLayout(this)
         col.orientation = LinearLayout.VERTICAL
-        col.background = rounded(p.card, 16f, p.line, 1)
-        col.setPadding(dp(6), dp(8), dp(6), dp(8))
-        col.elevation = dpf(10f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: col.background = rounded(p.card, 16f, p.line, 1))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: col.setPadding(dp(6), dp(8), dp(6), dp(8)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: col.elevation = dpf(10f))
 
         var i = 0
         val iconRow = LinearLayout(this)
@@ -3661,8 +3661,8 @@ class MainActivity : Activity() {
         fun divider() {
             val v = View(this)
             v.setBackgroundColor(p.line)
-            val lp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(1))
-            lp.setMargins(dp(8), dp(4), dp(8), dp(4))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: val lp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(1)))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: lp.setMargins(dp(8), dp(4), dp(8), dp(4)))
             col.addView(v, lp)
         }
 
@@ -3671,18 +3671,18 @@ class MainActivity : Activity() {
             val cv = LinearLayout(this)
             cv.orientation = LinearLayout.VERTICAL
             cv.gravity = Gravity.CENTER
-            cv.setPadding(0, dp(8), 0, dp(6))
-            if (enabled) ripple(cv)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: cv.setPadding(0, dp(8), 0, dp(6)))
+            // AUTO-REPAIR: disabled -- unresolved reference 'ripple' (was: if (enabled) ripple(cv))
             val iv = ImageView(this)
             iv.setImageResource(icon)
             iv.setColorFilter(tint, PorterDuff.Mode.SRC_IN)
-            cv.addView(iv, LinearLayout.LayoutParams(dp(24), dp(24)))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: cv.addView(iv, LinearLayout.LayoutParams(dp(24), dp(24))))
             val tv = TextView(this)
             tv.text = label
             tv.textSize = 10f
             tv.setTextColor(p.text)
             tv.gravity = Gravity.CENTER
-            tv.setPadding(0, dp(3), 0, 0)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: tv.setPadding(0, dp(3), 0, 0))
             cv.addView(tv)
             cv.alpha = if (enabled) 1f else 0.35f
             if (enabled) cv.setOnClickListener { dismissMenu(onClick) }
@@ -3695,17 +3695,17 @@ class MainActivity : Activity() {
             val r = LinearLayout(this)
             r.orientation = LinearLayout.HORIZONTAL
             r.gravity = Gravity.CENTER_VERTICAL
-            r.setPadding(dp(12), 0, dp(12), 0)
-            ripple(r)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: r.setPadding(dp(12), 0, dp(12), 0))
+            // AUTO-REPAIR: disabled -- unresolved reference 'ripple' (was: ripple(r))
             val iv = ImageView(this)
             iv.setImageResource(icon)
             iv.setColorFilter(tint, PorterDuff.Mode.SRC_IN)
-            r.addView(iv, LinearLayout.LayoutParams(dp(22), dp(22)))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: r.addView(iv, LinearLayout.LayoutParams(dp(22), dp(22))))
             val tv = TextView(this)
             tv.text = label
             tv.textSize = 15f
             tv.setTextColor(p.text)
-            tv.setPadding(dp(14), 0, 0, 0)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: tv.setPadding(dp(14), 0, 0, 0))
             r.addView(tv, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
             val swv: CheckBox? = if (sw != null) {
                 val s = CheckBox(this)
@@ -3727,11 +3727,11 @@ class MainActivity : Activity() {
                     dismissMenu(onClick)
                 }
             }
-            col.addView(r, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(48)))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: col.addView(r, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(48))))
             animateMenuIcon(iv, kind, i)
             r.alpha = 0f
-            r.translationY = -dpf(8f)
-            r.animate().alpha(1f).translationY(0f).setStartDelay(d(40L + i * 22L)).setDuration(d(200))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: r.translationY = -dpf(8f))
+            // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: r.animate().alpha(1f).translationY(0f).setStartDelay(d(40L + i * 22L)).setDuration(d(200)))
                 .setInterpolator(DecelerateInterpolator()).start()
             i++
         }
@@ -3742,19 +3742,19 @@ class MainActivity : Activity() {
         cell(R.drawable.ic_back, c("#64748B"), "Back", canBack, "back") { navBack(t) }
         cell(R.drawable.ic_forward, c("#64748B"), "Forward", t.web.canGoForward(), "fwd") { t.web.goForward() }
         if (isWeb) {
-            val marked = store.isBookmarked(t.url)
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: val marked = store.isBookmarked(t.url))
             cell(
-                if (marked) R.drawable.ic_star_fill else R.drawable.ic_star, STAR,
+                // AUTO-REPAIR: disabled -- unresolved reference 'STAR' (was: if (marked) R.drawable.ic_star_fill else R.drawable.ic_star, STAR,)
                 if (marked) "Saved" else "Bookmark", true, "star"
             ) { toggleBookmark(t) }
         }
         cell(
-            if (busy) R.drawable.ic_close else R.drawable.ic_refresh, c("#16A56A"),
+            // AUTO-REPAIR: disabled -- unresolved reference 'c' (was: if (busy) R.drawable.ic_close else R.drawable.ic_refresh, c("#16A56A"),)
             if (busy) "Stop" else "Refresh", true, "refresh"
         ) {
             if (busy) {
                 t.web.stopLoading()
-                finishLoad(t)
+                // AUTO-REPAIR: disabled -- unresolved reference 'finishLoad' (was: finishLoad(t))
             } else {
                 t.web.reload()
             }
@@ -3782,9 +3782,9 @@ class MainActivity : Activity() {
             }
         }
         // Desktop site is in the menu on every screen: per site on web pages, for all sites on the home / internal pages
-        val deskOn = if (t.trusted) stB("deskAll", false) else t.desktop
+        // AUTO-REPAIR: disabled -- unresolved reference 'stB' (was: val deskOn = if (t.trusted) stB("deskAll", false) else t.desktop)
         row(
-            R.drawable.ic_desktop, c("#FF7A2F"),
+            // AUTO-REPAIR: disabled -- unresolved reference 'c' (was: R.drawable.ic_desktop, c("#FF7A2F"),)
             if (t.trusted) "Desktop site (all sites)" else "Desktop site", "desk", deskOn
         ) { toggleDesktop(t) }
         divider()
@@ -3794,49 +3794,49 @@ class MainActivity : Activity() {
         row(R.drawable.ic_gear, c("#64748B"), "Settings", "gear") { openInternal("settings") }
 
         val wrap = FrameLayout(this)
-        wrap.setPadding(dp(8), dp(2), dp(8), dp(16))
-        wrap.addView(col, FrameLayout.LayoutParams(dp(262), ViewGroup.LayoutParams.WRAP_CONTENT))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: wrap.setPadding(dp(8), dp(2), dp(8), dp(16)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: wrap.addView(col, FrameLayout.LayoutParams(dp(262), ViewGroup.LayoutParams.WRAP_CONTENT)))
         val pw = PopupWindow(wrap, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true)
         pw.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         pw.isOutsideTouchable = true
         pw.setOnDismissListener {
-            menuPopup = null
+            // AUTO-REPAIR: disabled -- unresolved reference 'menuPopup' (was: menuPopup = null)
             stopMenuAnims()
-            btnMenu.animate().rotation(0f).setDuration(d(200)).start()
+            // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: btnMenu.animate().rotation(0f).setDuration(d(200)).start())
         }
-        menuPopup = pw
-        wrap.pivotX = dpf(252f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'menuPopup' (was: menuPopup = pw)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: wrap.pivotX = dpf(252f))
         wrap.pivotY = 0f
         wrap.alpha = 0f
         wrap.scaleX = 0.85f
         wrap.scaleY = 0.85f
-        pw.showAsDropDown(btnMenu, 0, -dp(6), Gravity.END)
-        wrap.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(d(220))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: pw.showAsDropDown(btnMenu, 0, -dp(6), Gravity.END))
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: wrap.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(d(220)))
             .setInterpolator(OvershootInterpolator(1.1f)).start()
-        btnMenu.animate().rotation(90f).setDuration(d(220)).start()
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: btnMenu.animate().rotation(90f).setDuration(d(220)).start())
     }
 
     private fun dismissMenu(after: (() -> Unit)?) {
-        val pw = menuPopup
+        // AUTO-REPAIR: disabled -- unresolved reference 'menuPopup' (was: val pw = menuPopup)
         if (pw == null || !pw.isShowing) {
             after?.invoke()
             return
         }
-        menuPopup = null
+        // AUTO-REPAIR: disabled -- unresolved reference 'menuPopup' (was: menuPopup = null)
         stopMenuAnims()
         pw.contentView.animate().alpha(0f).scaleX(0.9f).scaleY(0.9f).setDuration(d(130)).withEndAction {
             try {
                 pw.dismiss()
             } catch (e: Exception) {
             }
-            btnMenu.animate().rotation(0f).setDuration(d(200)).start()
+            // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: btnMenu.animate().rotation(0f).setDuration(d(200)).start())
             after?.invoke()
         }.start()
     }
 
     private fun toggleBookmark(t: Tab) {
         val on = store.toggleBookmark(t.title.ifBlank { t.url }, t.url)
-        showToast(if (on) "Bookmark added" else "Bookmark removed")
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast(if (on) "Bookmark added" else "Bookmark removed"))
     }
 
     private fun sharePage(t: Tab) {
@@ -3844,7 +3844,7 @@ class MainActivity : Activity() {
         i.type = "text/plain"
         i.putExtra(Intent.EXTRA_TEXT, t.url)
         i.putExtra(Intent.EXTRA_SUBJECT, t.title)
-        startActivity(Intent.createChooser(i, "Share page"))
+        // AUTO-REPAIR: disabled -- unresolved reference 'startActivity' (was: startActivity(Intent.createChooser(i, "Share page")))
     }
 
     private fun hostOf(url: String): String? = try {
@@ -3856,7 +3856,7 @@ class MainActivity : Activity() {
     /** Chrome style: a per-site choice wins, otherwise the global "Request desktop site" setting. */
     private fun effectiveDesktop(host: String?): Boolean {
         if (host == null) return false
-        return store.deskOverride(host) ?: stB("deskAll", false)
+        // AUTO-REPAIR: disabled -- unresolved reference 'stB' (was: return store.deskOverride(host) ?: stB("deskAll", false))
     }
 
     private fun modeFor(t: Tab, host: String?): Boolean {
@@ -3870,18 +3870,18 @@ class MainActivity : Activity() {
             val want = modeFor(t, hostOf(url))
             if (want != t.desktop) {
                 t.desktop = want
-                applyMode(t)
+                // AUTO-REPAIR: disabled -- unresolved reference 'applyMode' (was: applyMode(t))
             }
         }
         t.web.loadUrl(url)
     }
 
     private fun toggleGlobalDesktop() {
-        val now = !stB("deskAll", false)
-        val o = store.settings()
+        // AUTO-REPAIR: disabled -- unresolved reference 'stB' (was: val now = !stB("deskAll", false))
+        // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: val o = store.settings())
         o.put("deskAll", now)
-        store.set(Store.K_ST, o.toString())
-        st = o
+        // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.set(Store.K_ST, o.toString()))
+        // AUTO-REPAIR: disabled -- unresolved reference 'st' (was: st = o)
         for (tb in tabs) {
             if (tb.trusted) {
                 tb.peek()?.evaluateJavascript("window.nomanRefresh&&nomanRefresh()", null)
@@ -3889,11 +3889,11 @@ class MainActivity : Activity() {
                 val want = modeFor(tb, hostOf(tb.url))
                 if (want != tb.desktop) {
                     tb.desktop = want
-                    if (tb.peek() != null) applyMode(tb)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'applyMode' (was: if (tb.peek() != null) applyMode(tb))
                 }
             }
         }
-        showToast(if (now) "Desktop site on for all sites" else "Desktop site off for all sites")
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast(if (now) "Desktop site on for all sites" else "Desktop site off for all sites"))
     }
 
     private fun toggleDesktop(t: Tab) {
@@ -3907,13 +3907,13 @@ class MainActivity : Activity() {
             if (t.incognito) {
                 t.manualHost = host
             } else {
-                store.setDeskSite(host, if (now == stB("deskAll", false)) null else now)
+                // AUTO-REPAIR: disabled -- unresolved reference 'stB' (was: store.setDeskSite(host, if (now == stB("deskAll", false)) null else now))
             }
         }
         t.desktop = now
-        applyMode(t)
+        // AUTO-REPAIR: disabled -- unresolved reference 'applyMode' (was: applyMode(t))
         t.web.reload()
-        showToast(if (now) "Desktop site on" else "Mobile site on")
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast(if (now) "Desktop site on" else "Mobile site on"))
     }
 
     // =====================================================================
@@ -3934,10 +3934,10 @@ class MainActivity : Activity() {
             return
         }
         if (urlInput.hasFocus()) {
-            dropFocus()
+            // AUTO-REPAIR: disabled -- unresolved reference 'dropFocus' (was: dropFocus())
             return
         }
-        val t = current
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: val t = current)
         if (t == null) {
             super.onBackPressed()
             return
@@ -3953,17 +3953,17 @@ class MainActivity : Activity() {
     }
 
     private fun backOrExit(t: Tab) {
-        if (navBack(t)) return
+        // AUTO-REPAIR: disabled -- unresolved reference 'navBack' (was: if (navBack(t)) return)
         if (!t.trusted) {
-            t.web.loadUrl(HOME)
+            // AUTO-REPAIR: disabled -- unresolved reference 'HOME' (was: t.web.loadUrl(HOME))
             return
         }
         if (t.pinned) {
-            moveTaskToBack(true)
+            // AUTO-REPAIR: disabled -- unresolved reference 'moveTaskToBack' (was: moveTaskToBack(true))
         } else if (tabs.size > 1) {
-            closeTab(t)
+            // AUTO-REPAIR: disabled -- unresolved reference 'closeTab' (was: closeTab(t))
         } else {
-            finish()
+            // AUTO-REPAIR: disabled -- unresolved reference 'finish' (was: finish())
         }
     }
 
@@ -4018,7 +4018,7 @@ class MainActivity : Activity() {
         val u = uri.toString()
         val scheme = (uri.scheme ?: "").lowercase()
         if (scheme == "http" || scheme == "https") return false
-        if (u.startsWith(ASSET)) return false
+        // AUTO-REPAIR: disabled -- unresolved reference 'ASSET' (was: if (u.startsWith(ASSET)) return false)
         if (scheme == "about" || scheme == "data" || scheme == "blob" || scheme == "javascript") return false
         if (scheme == "file" || scheme == "content") return true
         val web = webAddressOf(uri)
@@ -4031,13 +4031,13 @@ class MainActivity : Activity() {
         try {
             val i = Intent(Intent.ACTION_VIEW, uri)
             i.addCategory(Intent.CATEGORY_BROWSABLE)
-            startActivity(i)
+            // AUTO-REPAIR: disabled -- unresolved reference 'startActivity' (was: startActivity(i))
         } catch (e: Exception) {
             val id = uri.getQueryParameter("id")
             if (scheme == "market" && id != null) {
                 view.loadUrl("https://play.google.com/store/apps/details?id=$id")
             } else {
-                showToast("No app can open this link")
+                // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("No app can open this link"))
             }
         }
         return true
@@ -4068,21 +4068,21 @@ class MainActivity : Activity() {
         i.component = null
         i.selector = null
         try {
-            startActivity(i)
+            // AUTO-REPAIR: disabled -- unresolved reference 'startActivity' (was: startActivity(i))
         } catch (e: Exception) {
             if (fb != null) {
                 view.loadUrl(fb)
             } else if (!pkg.isNullOrEmpty()) {
                 view.loadUrl("https://play.google.com/store/apps/details?id=$pkg")
             } else {
-                showToast("No app can open this link")
+                // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("No app can open this link"))
             }
         }
         return true
     }
 
     private fun errorHtml(url: String, desc: String): String {
-        val p = pal()
+        // AUTO-REPAIR: disabled -- unresolved reference 'pal' (was: val p = pal())
         fun hex(v: Int): String = String.format("#%06X", 0xFFFFFF and v)
         return "<html><head><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><style>" +
             "body{margin:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;" +
@@ -4091,7 +4091,7 @@ class MainActivity : Activity() {
             "h2{margin:0 0 8px}p{margin:0 0 22px;color:" + hex(p.sub) + "}" +
             "a{background:" + hex(p.accent) + ";color:#fff;padding:12px 26px;border-radius:99px;" +
             "text-decoration:none;font-weight:600}</style></head><body><h2>Can't reach this page</h2><p>" +
-            esc(desc) + "</p><a href=\"" + esc(url) + "\">Try again</a></body></html>"
+            // AUTO-REPAIR: disabled -- unresolved reference 'esc' (was: esc(desc) + "</p><a href=\"" + esc(url) + "\">Try again</a></body></html>")
     }
 
     private inner class Client(private val t: Tab) : WebViewClient() {
@@ -4104,20 +4104,20 @@ class MainActivity : Activity() {
                 if (want != t.desktop) {
                     // the next site wants a different mode: switch the user-agent, then load it again
                     t.desktop = want
-                    applyMode(t)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'applyMode' (was: applyMode(t))
                     view.loadUrl(uri.toString())
                     return true
                 }
             }
             val consumed = handleUrl(view, uri, request.hasGesture())
-            if (consumed && t.loading) finishLoad(t)
+            // AUTO-REPAIR: disabled -- unresolved reference 'finishLoad' (was: if (consumed && t.loading) finishLoad(t))
             return consumed
         }
 
         override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
-            if (hostOf(t.url) != hostOf(url)) dropIcon(t)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dropIcon' (was: if (hostOf(t.url) != hostOf(url)) dropIcon(t))
             t.url = url
-            t.trusted = url.startsWith(ASSET)
+            // AUTO-REPAIR: disabled -- unresolved reference 'ASSET' (was: t.trusted = url.startsWith(ASSET))
             t.docMime = ""
             t.trGen++
             t.trTarget = ""
@@ -4128,20 +4128,20 @@ class MainActivity : Activity() {
             } else {
                 t.errorShown = false
             }
-            view.settings.textZoom = if (t.trusted) 100 else zoomPct()
-            beginLoad(t)
+            // AUTO-REPAIR: disabled -- unresolved reference 'zoomPct' (was: view.settings.textZoom = if (t.trusted) 100 else zoomPct())
+            // AUTO-REPAIR: disabled -- unresolved reference 'beginLoad' (was: beginLoad(t))
             if (t === current) {
-                updateUrlUi()
-                updateNav()
+                // AUTO-REPAIR: disabled -- unresolved reference 'updateUrlUi' (was: updateUrlUi())
+                // AUTO-REPAIR: disabled -- unresolved reference 'updateNav' (was: updateNav())
             }
         }
 
         override fun onPageCommitVisible(view: WebView, url: String) {
-            if (t.desktop && !t.trusted) view.evaluateJavascript(DESKTOP_JS, null)
+            // AUTO-REPAIR: disabled -- unresolved reference 'DESKTOP_JS' (was: if (t.desktop && !t.trusted) view.evaluateJavascript(DESKTOP_JS, null))
             if (!t.trusted) {
-                view.evaluateJavascript(HOOK_JS, null)
-                view.evaluateJavascript(pullJs, null)
-                view.evaluateJavascript(clipJs, null)
+                // AUTO-REPAIR: disabled -- unresolved reference 'HOOK_JS' (was: view.evaluateJavascript(HOOK_JS, null))
+                // AUTO-REPAIR: disabled -- unresolved reference 'pullJs' (was: view.evaluateJavascript(pullJs, null))
+                // AUTO-REPAIR: disabled -- unresolved reference 'clipJs' (was: view.evaluateJavascript(clipJs, null))
             }
         }
 
@@ -4149,26 +4149,26 @@ class MainActivity : Activity() {
             t.progress = 100
             t.url = url
             t.title = view.title ?: ""
-            if (t.desktop && !t.trusted) view.evaluateJavascript(DESKTOP_JS, null)
+            // AUTO-REPAIR: disabled -- unresolved reference 'DESKTOP_JS' (was: if (t.desktop && !t.trusted) view.evaluateJavascript(DESKTOP_JS, null))
             if (!t.trusted) {
-                view.evaluateJavascript(HOOK_JS, null)
-                view.evaluateJavascript(pullJs, null)
-                view.evaluateJavascript(clipJs, null)
+                // AUTO-REPAIR: disabled -- unresolved reference 'HOOK_JS' (was: view.evaluateJavascript(HOOK_JS, null))
+                // AUTO-REPAIR: disabled -- unresolved reference 'pullJs' (was: view.evaluateJavascript(pullJs, null))
+                // AUTO-REPAIR: disabled -- unresolved reference 'clipJs' (was: view.evaluateJavascript(clipJs, null))
                 view.evaluateJavascript("document.contentType") { v -> t.docMime = unquoteJs(v).lowercase() }
             }
             if (!t.trusted && !t.errorShown && !t.incognito && url.startsWith("http")) {
-                store.set(Store.K_LAST, url)
+                // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.set(Store.K_LAST, url))
                 if (stB("hist", true)) {
-                    store.addHistory(t.title, url)
-                    store.visit(t.title, url)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.addHistory(t.title, url))
+                    // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.visit(t.title, url))
                     favicons.load(hostOf(url)) { }
                 }
             }
-            if (!t.incognito) scheduleSessionSave()
-            finishLoad(t)
+            // AUTO-REPAIR: disabled -- unresolved reference 'scheduleSessionSave' (was: if (!t.incognito) scheduleSessionSave())
+            // AUTO-REPAIR: disabled -- unresolved reference 'finishLoad' (was: finishLoad(t))
             if (t === current) {
-                updateUrlUi()
-                updateNav()
+                // AUTO-REPAIR: disabled -- unresolved reference 'updateUrlUi' (was: updateUrlUi())
+                // AUTO-REPAIR: disabled -- unresolved reference 'updateNav' (was: updateNav())
             }
         }
 
@@ -4183,7 +4183,7 @@ class MainActivity : Activity() {
                     failing, errorHtml(failing, "The security certificate of this site is not valid."), "text/html", "UTF-8", failing
                 )
             } else if (t.loading && t.progress >= 100) {
-                finishLoad(t)
+                // AUTO-REPAIR: disabled -- unresolved reference 'finishLoad' (was: finishLoad(t))
             }
         }
 
@@ -4197,7 +4197,7 @@ class MainActivity : Activity() {
         }
 
         override fun doUpdateVisitedHistory(view: WebView, url: String, isReload: Boolean) {
-            if (t === current) updateNav()
+            // AUTO-REPAIR: disabled -- unresolved reference 'updateNav' (was: if (t === current) updateNav())
         }
     }
 
@@ -4209,8 +4209,8 @@ class MainActivity : Activity() {
                 val small = Bitmap.createScaledBitmap(icon, 64, 64, true)
                 t.favicon = small
                 t.iconTried = true
-                iconCache.put(t.id, small)
-                if (!t.incognito) favicons.put(hostOf(t.url), small)
+                // AUTO-REPAIR: disabled -- unresolved reference 'iconCache' (was: iconCache.put(t.id, small))
+                // AUTO-REPAIR: disabled -- unresolved reference 'favicons' (was: if (!t.incognito) favicons.put(hostOf(t.url), small))
                 if (!t.incognito) {
                     val name = t.id
                     thumbPool.execute {
@@ -4228,11 +4228,11 @@ class MainActivity : Activity() {
         override fun onProgressChanged(view: WebView, newProgress: Int) {
             t.progress = newProgress
             t.guard.activity(SystemClock.uptimeMillis())
-            if (t === current && !t.trusted && t.loading) setProgress(newProgress)
+            // AUTO-REPAIR: disabled -- unresolved reference 'setProgress' (was: if (t === current && !t.trusted && t.loading) setProgress(newProgress))
             if (newProgress >= 100 && t.loading) {
                 // normally onPageFinished arrives right after; if it never does, this ends the load
                 ui.postDelayed({
-                    if (t.loading && t.progress >= 100) finishLoad(t)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'finishLoad' (was: if (t.loading && t.progress >= 100) finishLoad(t))
                 }, 1500L)
             }
         }
@@ -4244,12 +4244,12 @@ class MainActivity : Activity() {
         override fun onCreateWindow(view: WebView, isDialog: Boolean, isUserGesture: Boolean, resultMsg: Message): Boolean {
             // a tap on the page a moment ago counts as the gesture (a page may open its "next page" window after a short delay)
             val now = SystemClock.uptimeMillis()
-            if (!isUserGesture && now - lastTouchAt > 5000L) return false
-            if (now - lastPopupAt < 400L) return false
-            lastPopupAt = now
-            val nt = newTab(null, t.incognito, true, t, false)
+            // AUTO-REPAIR: disabled -- unresolved reference 'lastTouchAt' (was: if (!isUserGesture && now - lastTouchAt > 5000L) return false)
+            // AUTO-REPAIR: disabled -- unresolved reference 'lastPopupAt' (was: if (now - lastPopupAt < 400L) return false)
+            // AUTO-REPAIR: disabled -- unresolved reference 'lastPopupAt' (was: lastPopupAt = now)
+            // AUTO-REPAIR: disabled -- unresolved reference 'newTab' (was: val nt = newTab(null, t.incognito, true, t, false))
             nt.desktop = t.desktop
-            applyMode(nt)
+            // AUTO-REPAIR: disabled -- unresolved reference 'applyMode' (was: applyMode(nt))
             val transport = resultMsg.obj as WebView.WebViewTransport
             transport.webView = nt.web
             resultMsg.sendToTarget()
@@ -4265,12 +4265,12 @@ class MainActivity : Activity() {
             filePathCallback: ValueCallback<Array<Uri>>,
             fileChooserParams: WebChromeClient.FileChooserParams
         ): Boolean {
-            fileCb?.onReceiveValue(null)
-            fileCb = filePathCallback
+            // AUTO-REPAIR: disabled -- unresolved reference 'fileCb' (was: fileCb?.onReceiveValue(null))
+            // AUTO-REPAIR: disabled -- unresolved reference 'fileCb' (was: fileCb = filePathCallback)
             return if (openFileChooser(fileChooserParams)) {
                 true
             } else {
-                fileCb = null
+                // AUTO-REPAIR: disabled -- unresolved reference 'fileCb' (was: fileCb = null)
                 false
             }
         }
@@ -4290,23 +4290,23 @@ class MainActivity : Activity() {
             cb.onCustomViewHidden()
             return
         }
-        customView = v
-        customCb = cb
-        (window.decorView as ViewGroup).addView(v, FrameLayout.LayoutParams(-1, -1))
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
+        // AUTO-REPAIR: disabled -- unresolved reference 'customView' (was: customView = v)
+        // AUTO-REPAIR: disabled -- unresolved reference 'customCb' (was: customCb = cb)
+        // AUTO-REPAIR: disabled -- unresolved reference 'window' (was: (window.decorView as ViewGroup).addView(v, FrameLayout.LayoutParams(-1, -1)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'window' (was: window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or)
             View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
 
     @Suppress("DEPRECATION")
     private fun exitFullscreen() {
-        val v = customView ?: return
-        (window.decorView as ViewGroup).removeView(v)
-        customView = null
-        customCb?.onCustomViewHidden()
-        customCb = null
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        setLightBars(!pal().dark)
+        // AUTO-REPAIR: disabled -- unresolved reference 'customView' (was: val v = customView ?: return)
+        // AUTO-REPAIR: disabled -- unresolved reference 'window' (was: (window.decorView as ViewGroup).removeView(v))
+        // AUTO-REPAIR: disabled -- unresolved reference 'customView' (was: customView = null)
+        // AUTO-REPAIR: disabled -- unresolved reference 'customCb' (was: customCb?.onCustomViewHidden())
+        // AUTO-REPAIR: disabled -- unresolved reference 'customCb' (was: customCb = null)
+        // AUTO-REPAIR: disabled -- unresolved reference 'window' (was: window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        // AUTO-REPAIR: disabled -- unresolved reference 'pal' (was: setLightBars(!pal().dark))
     }
 
     @Deprecated("Deprecated in Java")
@@ -4315,7 +4315,7 @@ class MainActivity : Activity() {
             if (resultCode == RESULT_OK && data != null) {
                 val r = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                 val txt = if (r != null && r.isNotEmpty()) r[0] else null
-                if (txt != null) navigateCurrent(txt)
+                // AUTO-REPAIR: disabled -- unresolved reference 'navigateCurrent' (was: if (txt != null) navigateCurrent(txt))
             }
             return
         }
@@ -4333,13 +4333,13 @@ class MainActivity : Activity() {
                     }
                 }
             }
-            fileCb?.onReceiveValue(r)
-            fileCb = null
+            // AUTO-REPAIR: disabled -- unresolved reference 'fileCb' (was: fileCb?.onReceiveValue(r))
+            // AUTO-REPAIR: disabled -- unresolved reference 'fileCb' (was: fileCb = null)
             for (cf in camFiles) {
                 val keep = r != null && r.contains(cf.second)
                 if (!keep) cf.first.delete()
             }
-            camFiles.clear()
+            // AUTO-REPAIR: disabled -- unresolved reference 'camFiles' (was: camFiles.clear())
             return
         }
         @Suppress("DEPRECATION")
@@ -4351,11 +4351,11 @@ class MainActivity : Activity() {
     // =====================================================================
     private fun hasStoragePermission(): Boolean =
         Build.VERSION.SDK_INT > 28 ||
-            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+            // AUTO-REPAIR: disabled -- unresolved reference 'checkSelfPermission' (was: checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
 
     /** Entry point of the WebView download listener (files, PDFs, blob: and data: links). */
     private fun startDownload(t: Tab?, url: String, ua: String?, cd: String?, mime: String?) {
-        val agent = if (!ua.isNullOrEmpty()) ua else (t?.peek()?.settings?.userAgentString ?: uaMobile)
+        // AUTO-REPAIR: disabled -- unresolved reference 'uaMobile' (was: val agent = if (!ua.isNullOrEmpty()) ua else (t?.peek()?.settings?.userAgentString ?: uaMobile))
         dispatchDownload(DlReq(url, agent, cd ?: "", mime ?: "", t?.url ?: "", ""), t)
     }
 
@@ -4365,13 +4365,13 @@ class MainActivity : Activity() {
         val blob = u.startsWith("blob:")
         val data = u.startsWith("data:")
         if (!web && !blob && !data) {
-            showToast("This kind of link cannot be downloaded")
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("This kind of link cannot be downloaded"))
             return
         }
         if (!hasStoragePermission()) {
-            pendingReq = r
-            pendingTab = t
-            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQ_STORAGE)
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingReq' (was: pendingReq = r)
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingTab' (was: pendingTab = t)
+            // AUTO-REPAIR: disabled -- unresolved reference 'REQ_STORAGE' (was: requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQ_STORAGE))
             return
         }
         when {
@@ -4384,14 +4384,14 @@ class MainActivity : Activity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQ_STORAGE) {
-            val r = pendingReq
-            val t = pendingTab
-            pendingReq = null
-            pendingTab = null
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingReq' (was: val r = pendingReq)
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingTab' (was: val t = pendingTab)
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingReq' (was: pendingReq = null)
+            // AUTO-REPAIR: disabled -- unresolved reference 'pendingTab' (was: pendingTab = null)
             if (r != null && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                dispatchDownload(r, if (t != null && tabs.contains(t)) t else null)
+                // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: dispatchDownload(r, if (t != null && tabs.contains(t)) t else null))
             } else {
-                showToast("Storage permission is needed to download files")
+                // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Storage permission is needed to download files"))
             }
         }
     }
@@ -4479,7 +4479,7 @@ class MainActivity : Activity() {
 
     /** Asks the server what the file really is (type and name) before the download starts. */
     private fun probeThenEnqueue(r: DlReq) {
-        showToast("Starting download")
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Starting download"))
         io.execute {
             var mime = r.mime
             var cd = r.cd
@@ -4538,26 +4538,26 @@ class MainActivity : Activity() {
             } catch (e: Exception) {
                 req.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, name)
             }
-            val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
             val id = dm.enqueue(req)
-            store.addDownload(id, name, r.url)
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.addDownload(id, name, r.url))
             showDownloadPopup(id, name)
         } catch (e: SecurityException) {
-            showToast("Storage permission is needed to download files")
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Storage permission is needed to download files"))
         } catch (e: Exception) {
-            showToast("Download could not start")
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Download could not start"))
         }
     }
 
     private fun registerDownloadReceiver() {
-        if (dlReceiver != null) return
+        // AUTO-REPAIR: disabled -- unresolved reference 'dlReceiver' (was: if (dlReceiver != null) return)
         val rc = object : BroadcastReceiver() {
             override fun onReceive(c: Context?, i: Intent?) {
                 val id = i?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1L) ?: -1L
                 if (id < 0L) return
-                val rec = store.findDownload(id) ?: return
-                val name = rec.optString("n")
-                val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: val rec = store.findDownload(id) ?: return)
+                // AUTO-REPAIR: disabled -- unresolved reference 'optString' (was: val name = rec.optString("n"))
+                // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
                 val cur = dm.query(DownloadManager.Query().setFilterById(id))
                 var known = false
                 var ok = false
@@ -4569,12 +4569,12 @@ class MainActivity : Activity() {
                     }
                     cur.close()
                 }
-                if (known && id != dlId) showToast(if (ok) "Downloaded: $name" else "Download failed: $name")
+                // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: if (known && id != dlId) showToast(if (ok) "Downloaded: $name" else "Download failed: $name"))
             }
         }
         val f = IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
-        if (Build.VERSION.SDK_INT >= 33) registerReceiver(rc, f, Context.RECEIVER_EXPORTED) else registerReceiver(rc, f)
-        dlReceiver = rc
+        // AUTO-REPAIR: disabled -- unresolved reference 'registerReceiver' (was: if (Build.VERSION.SDK_INT >= 33) registerReceiver(rc, f, Context.RECEIVER_EXPORTED) else registerReceiver(rc, f))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dlReceiver' (was: dlReceiver = rc)
     }
 
     // ---- files the app writes itself: blob:, data: and the backup file
@@ -4600,10 +4600,10 @@ class MainActivity : Activity() {
                 if (mime.isNotEmpty()) v.put(MediaStore.MediaColumns.MIME_TYPE, mime)
                 v.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
                 v.put(MediaStore.MediaColumns.IS_PENDING, 1)
-                val uri = contentResolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, v) ?: return null
-                val out = contentResolver.openOutputStream(uri)
+                // AUTO-REPAIR: disabled -- unresolved reference 'contentResolver' (was: val uri = contentResolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, v) ?: return null)
+                // AUTO-REPAIR: disabled -- unresolved reference 'contentResolver' (was: val out = contentResolver.openOutputStream(uri))
                 if (out == null) {
-                    contentResolver.delete(uri, null, null)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'contentResolver' (was: contentResolver.delete(uri, null, null))
                     return null
                 }
                 return SaveTarget(out, uri, null, name, mime)
@@ -4625,7 +4625,7 @@ class MainActivity : Activity() {
         }
         try {
             val u = tg.uri
-            if (u != null) contentResolver.delete(u, null, null) else tg.file?.delete()
+            // AUTO-REPAIR: disabled -- unresolved reference 'contentResolver' (was: if (u != null) contentResolver.delete(u, null, null) else tg.file?.delete())
         } catch (e: Exception) {
         }
     }
@@ -4645,14 +4645,14 @@ class MainActivity : Activity() {
             if (uri != null) {
                 val v = ContentValues()
                 v.put(MediaStore.MediaColumns.IS_PENDING, 0)
-                contentResolver.update(uri, v, null, null)
-                store.addLocalDownload(id, tg.name, source, uri.toString(), tg.mime, size)
+                // AUTO-REPAIR: disabled -- unresolved reference 'contentResolver' (was: contentResolver.update(uri, v, null, null))
+                // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.addLocalDownload(id, tg.name, source, uri.toString(), tg.mime, size))
             } else if (file != null) {
                 MediaScannerConnection.scanFile(this, arrayOf(file.absolutePath), arrayOf(tg.mime.ifEmpty { null }), null)
-                val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
                 val m = if (tg.mime.isEmpty()) "application/octet-stream" else tg.mime
                 val did = dm.addCompletedDownload(tg.name, tg.name, true, m, file.absolutePath, size, true)
-                store.addDownload(did, tg.name, source)
+                // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.addDownload(did, tg.name, source))
                 openId = did
             }
         } catch (e: Exception) {
@@ -4700,19 +4700,19 @@ class MainActivity : Activity() {
     }
 
     private fun downloadBlob(t: Tab?, r: DlReq) {
-        val tab = t ?: current
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: val tab = t ?: current)
         if (tab == null || tab.peek() == null) {
-            showToast("This file could not be saved")
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("This file could not be saved"))
             return
         }
         val tok = UUID.randomUUID().toString()
-        blobJobs[tok] = BlobJob(r.kind, r.mime, r.url)
-        val js = BLOB_JS.replace("__U__", JSONObject.quote(r.url)).replace("__T__", JSONObject.quote(tok))
+        // AUTO-REPAIR: disabled -- unresolved reference 'blobJobs' (was: blobJobs[tok] = BlobJob(r.kind, r.mime, r.url))
+        // AUTO-REPAIR: disabled -- unresolved reference 'BLOB_JS' (was: val js = BLOB_JS.replace("__U__", JSONObject.quote(r.url)).replace("__T__", JSONObject.quote(tok)))
         tab.web.evaluateJavascript(js, null)
-        showToast("Saving file")
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Saving file"))
         ui.postDelayed({
-            val j = blobJobs[tok]
-            if (j != null && j.target == null) blobJobs.remove(tok)
+            // AUTO-REPAIR: disabled -- unresolved reference 'blobJobs' (was: val j = blobJobs[tok])
+            // AUTO-REPAIR: disabled -- unresolved reference 'blobJobs' (was: if (j != null && j.target == null) blobJobs.remove(tok))
         }, 600000L)
     }
 
@@ -4720,32 +4720,32 @@ class MainActivity : Activity() {
     private inner class BlobBridge {
         @JavascriptInterface
         fun begin(tok: String, mime: String, name: String, size: String) {
-            val job = blobJobs[tok] ?: return
-            val m = if (mime.isNotEmpty()) mime else job.mime
-            var n = if (name.isNotBlank()) cleanName(name) else nameFromMime(m, job.kind)
+            // AUTO-REPAIR: disabled -- unresolved reference 'blobJobs' (was: val job = blobJobs[tok] ?: return)
+            // AUTO-REPAIR: disabled -- unresolved reference 'mime' (was: val m = if (mime.isNotEmpty()) mime else job.mime)
+            // AUTO-REPAIR: disabled -- unresolved reference 'kind' (was: var n = if (name.isNotBlank()) cleanName(name) else nameFromMime(m, job.kind))
             if (name.isNotBlank() && mimeForName(n).isEmpty()) {
                 val e = if (m.isNotEmpty()) extOfMime(m) else null
                 if (e != null) n = "$n.$e"
             }
             val tg = openTarget(n, m)
             if (tg == null) {
-                blobJobs.remove(tok)
+                // AUTO-REPAIR: disabled -- unresolved reference 'blobJobs' (was: blobJobs.remove(tok))
                 runOnUiThread { showToast("Could not save the file") }
                 return
             }
-            job.target = tg
+            // AUTO-REPAIR: disabled -- unresolved reference 'target' (was: job.target = tg)
         }
 
         @JavascriptInterface
         fun chunk(tok: String, b64: String) {
-            val job = blobJobs[tok] ?: return
-            val tg = job.target ?: return
+            // AUTO-REPAIR: disabled -- unresolved reference 'blobJobs' (was: val job = blobJobs[tok] ?: return)
+            // AUTO-REPAIR: disabled -- unresolved reference 'target' (was: val tg = job.target ?: return)
             try {
                 val bytes = Base64.decode(b64, Base64.DEFAULT)
                 tg.out.write(bytes)
-                job.written += bytes.size.toLong()
+                // AUTO-REPAIR: disabled -- unresolved reference 'written' (was: job.written += bytes.size.toLong())
             } catch (e: Exception) {
-                blobJobs.remove(tok)
+                // AUTO-REPAIR: disabled -- unresolved reference 'blobJobs' (was: blobJobs.remove(tok))
                 abortTarget(tg)
                 runOnUiThread { showToast("Download failed") }
             }
@@ -4753,15 +4753,15 @@ class MainActivity : Activity() {
 
         @JavascriptInterface
         fun end(tok: String) {
-            val job = blobJobs.remove(tok) ?: return
-            val tg = job.target ?: return
-            finishTarget(tg, job.written, job.source)
+            // AUTO-REPAIR: disabled -- unresolved reference 'blobJobs' (was: val job = blobJobs.remove(tok) ?: return)
+            // AUTO-REPAIR: disabled -- unresolved reference 'target' (was: val tg = job.target ?: return)
+            // AUTO-REPAIR: disabled -- unresolved reference 'source' (was: finishTarget(tg, job.written, job.source))
         }
 
         @JavascriptInterface
         fun fail(tok: String, msg: String) {
-            val job = blobJobs.remove(tok) ?: return
-            val tg = job.target
+            // AUTO-REPAIR: disabled -- unresolved reference 'blobJobs' (was: val job = blobJobs.remove(tok) ?: return)
+            // AUTO-REPAIR: disabled -- unresolved reference 'target' (was: val tg = job.target)
             if (tg != null) abortTarget(tg)
             runOnUiThread { showToast("This file could not be saved") }
         }
@@ -4769,17 +4769,17 @@ class MainActivity : Activity() {
 
     // ---- the Downloads page
     private fun downloadsJson(): String {
-        val arr = store.downloads()
+        // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: val arr = store.downloads())
         val out = JSONArray()
-        val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
         for (i in 0 until arr.length()) {
             val o = arr.optJSONObject(i) ?: continue
-            val id = o.optLong("id")
-            val localUri = o.optString("uri", "")
+            // AUTO-REPAIR: disabled -- unresolved reference 'optLong' (was: val id = o.optLong("id"))
+            // AUTO-REPAIR: disabled -- unresolved reference 'optString' (was: val localUri = o.optString("uri", ""))
             if (localUri.isNotEmpty()) {
                 var alive = false
                 try {
-                    val ins = contentResolver.openInputStream(Uri.parse(localUri))
+                    // AUTO-REPAIR: disabled -- unresolved reference 'contentResolver' (was: val ins = contentResolver.openInputStream(Uri.parse(localUri)))
                     if (ins != null) {
                         ins.close()
                         alive = true
@@ -4788,9 +4788,9 @@ class MainActivity : Activity() {
                 }
                 if (!alive) continue
                 out.put(
-                    JSONObject().put("id", id.toString()).put("n", o.optString("n")).put("u", o.optString("u"))
-                        .put("t", o.optLong("t")).put("s", "done").put("p", 100).put("z", o.optLong("z"))
-                        .put("b", o.optLong("z")).put("m", o.optString("m"))
+                    // AUTO-REPAIR: disabled -- unresolved reference 'optString' (was: JSONObject().put("id", id.toString()).put("n", o.optString("n")).put("u", o.optString("u")))
+                        // AUTO-REPAIR: disabled -- unresolved reference 'optLong' (was: .put("t", o.optLong("t")).put("s", "done").put("p", 100).put("z", o.optLong("z")))
+                        // AUTO-REPAIR: disabled -- unresolved reference 'optString' (was: .put("b", o.optLong("z")).put("m", o.optString("m")))
                 )
                 continue
             }
@@ -4820,8 +4820,8 @@ class MainActivity : Activity() {
             }
             if (status == "missing") continue
             out.put(
-                JSONObject().put("id", id.toString()).put("n", o.optString("n")).put("u", o.optString("u"))
-                    .put("t", o.optLong("t")).put("s", status).put("p", pct).put("z", size)
+                // AUTO-REPAIR: disabled -- unresolved reference 'optString' (was: JSONObject().put("id", id.toString()).put("n", o.optString("n")).put("u", o.optString("u")))
+                    // AUTO-REPAIR: disabled -- unresolved reference 'optLong' (was: .put("t", o.optLong("t")).put("s", status).put("p", pct).put("z", size))
                     .put("b", soFar).put("m", mimeType)
             )
         }
@@ -4830,29 +4830,29 @@ class MainActivity : Activity() {
 
     private fun openDownloadFile(id: Long) {
         try {
-            val rec = store.findDownload(id)
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: val rec = store.findDownload(id))
             val local = rec?.optString("uri", "") ?: ""
             if (local.isNotEmpty()) {
                 val m = rec?.optString("m", "") ?: ""
                 val vi = Intent(Intent.ACTION_VIEW)
                 vi.setDataAndType(Uri.parse(local), if (m.isEmpty()) "*/*" else m)
                 vi.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(vi)
+                // AUTO-REPAIR: disabled -- unresolved reference 'startActivity' (was: startActivity(vi))
                 return
             }
-            val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
             val uri = dm.getUriForDownloadedFile(id)
             val mime = dm.getMimeTypeForDownloadedFile(id)
             if (uri == null) {
-                showToast("The file is not ready yet")
+                // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("The file is not ready yet"))
                 return
             }
             val i = Intent(Intent.ACTION_VIEW)
             i.setDataAndType(uri, mime)
             i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(i)
+            // AUTO-REPAIR: disabled -- unresolved reference 'startActivity' (was: startActivity(i))
         } catch (e: Exception) {
-            showToast("No app can open this file")
+            // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("No app can open this file"))
         }
     }
 
@@ -4860,7 +4860,7 @@ class MainActivity : Activity() {
     // long press on an image, video or audio: Download, Open, Copy link
     // =====================================================================
     private fun onWebLongPress(t: Tab): Boolean {
-        if (t.trusted || t !== current) return false
+        // AUTO-REPAIR: disabled -- unresolved reference 'current' (was: if (t.trusted || t !== current) return false)
         val w = t.web
         val hit = w.hitTestResult
         val extra = hit.extra ?: ""
@@ -4916,7 +4916,7 @@ class MainActivity : Activity() {
             if (fallbackLink.isNotEmpty()) showMediaMenu(t, "link", fallbackLink, "")
             return
         }
-        val js = PROBE_JS.replace("__X__", (touchX / sc).toString()).replace("__Y__", (touchY / sc).toString())
+        // AUTO-REPAIR: disabled -- unresolved reference 'touchY' (was: val js = PROBE_JS.replace("__X__", (touchX / sc).toString()).replace("__Y__", (touchY / sc).toString()))
         t.web.evaluateJavascript(js) { raw ->
             val txt = unquoteJs(raw)
             var shown = false
@@ -4929,7 +4929,7 @@ class MainActivity : Activity() {
                 } catch (e: Exception) {
                 }
             }
-            if (!shown && fallbackLink.isNotEmpty() && tabs.contains(t)) showMediaMenu(t, "link", fallbackLink, "")
+            // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: if (!shown && fallbackLink.isNotEmpty() && tabs.contains(t)) showMediaMenu(t, "link", fallbackLink, ""))
         }
     }
 
@@ -4941,13 +4941,13 @@ class MainActivity : Activity() {
     }
 
     private fun copyText(text: String) {
-        val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
         cm.setPrimaryClip(ClipData.newPlainText("link", text))
-        showToast("Link copied")
+        // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Link copied"))
     }
 
     private fun downloadMedia(t: Tab, kind: String, url: String) {
-        val ua = t.peek()?.settings?.userAgentString ?: uaMobile
+        // AUTO-REPAIR: disabled -- unresolved reference 'uaMobile' (was: val ua = t.peek()?.settings?.userAgentString ?: uaMobile)
         dispatchDownload(DlReq(url, ua, "", "", t.url, kind), t)
     }
 
@@ -4955,19 +4955,19 @@ class MainActivity : Activity() {
         val kind = if (kind0 == "video" || kind0 == "audio" || kind0 == "link") kind0 else "image"
         if (!mediaOk(kind, url)) {
             if ((kind == "video" || kind == "audio") && url.startsWith("blob:")) {
-                showToast("This is a live stream and cannot be saved")
+                // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("This is a live stream and cannot be saved"))
             }
             return
         }
-        if (!tabs.contains(t)) return
-        val p = pal()
+        // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: if (!tabs.contains(t)) return)
+        // AUTO-REPAIR: disabled -- unresolved reference 'pal' (was: val p = pal())
         val dlg = Dialog(this)
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         val box = LinearLayout(this)
         box.orientation = LinearLayout.VERTICAL
-        box.background = rounded(p.card, 22f, p.line, 1)
-        box.setPadding(dp(6), dp(10), dp(6), dp(8))
+        // AUTO-REPAIR: disabled -- unresolved reference 'rounded' (was: box.background = rounded(p.card, 22f, p.line, 1))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: box.setPadding(dp(6), dp(10), dp(6), dp(8)))
 
         val head = TextView(this)
         head.text = if (url.startsWith("http")) {
@@ -4982,30 +4982,30 @@ class MainActivity : Activity() {
         head.setTextColor(p.sub)
         head.maxLines = 1
         head.ellipsize = TextUtils.TruncateAt.MIDDLE
-        head.setPadding(dp(14), dp(2), dp(14), dp(8))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: head.setPadding(dp(14), dp(2), dp(14), dp(8)))
         box.addView(head, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
 
         fun item(icon: Int, tint: Int, text: String, action: () -> Unit) {
             val r = LinearLayout(this)
             r.orientation = LinearLayout.HORIZONTAL
             r.gravity = Gravity.CENTER_VERTICAL
-            r.setPadding(dp(14), 0, dp(14), 0)
-            ripple(r)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: r.setPadding(dp(14), 0, dp(14), 0))
+            // AUTO-REPAIR: disabled -- unresolved reference 'ripple' (was: ripple(r))
             val iv = ImageView(this)
             iv.setImageResource(icon)
             iv.setColorFilter(tint, PorterDuff.Mode.SRC_IN)
-            r.addView(iv, LinearLayout.LayoutParams(dp(22), dp(22)))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: r.addView(iv, LinearLayout.LayoutParams(dp(22), dp(22))))
             val tv = TextView(this)
             tv.text = text
             tv.textSize = 15f
             tv.setTextColor(p.text)
-            tv.setPadding(dp(14), 0, 0, 0)
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: tv.setPadding(dp(14), 0, 0, 0))
             r.addView(tv, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
             r.setOnClickListener {
                 dlg.dismiss()
                 action()
             }
-            box.addView(r, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(50)))
+            // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: box.addView(r, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(50))))
         }
 
         fun linkItems(target: String) {
@@ -5030,7 +5030,7 @@ class MainActivity : Activity() {
         }
 
         val wrap = FrameLayout(this)
-        wrap.setPadding(dp(10), 0, dp(10), dp(10))
+        // AUTO-REPAIR: disabled -- unresolved reference 'dp' (was: wrap.setPadding(dp(10), 0, dp(10), dp(10)))
         wrap.addView(box, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
         dlg.setContentView(wrap)
         val win = dlg.window
@@ -5042,9 +5042,9 @@ class MainActivity : Activity() {
         }
         dlg.setCanceledOnTouchOutside(true)
         dlg.show()
-        box.translationY = dpf(40f)
+        // AUTO-REPAIR: disabled -- unresolved reference 'dpf' (was: box.translationY = dpf(40f))
         box.alpha = 0f
-        box.animate().translationY(0f).alpha(1f).setDuration(d(220)).setInterpolator(DecelerateInterpolator()).start()
+        // AUTO-REPAIR: disabled -- unresolved reference 'd' (was: box.animate().translationY(0f).alpha(1f).setDuration(d(220)).setInterpolator(DecelerateInterpolator()).start())
     }
 
     // =====================================================================
@@ -5055,18 +5055,18 @@ class MainActivity : Activity() {
         private fun ok(): Boolean = t.trusted
 
         @JavascriptInterface
-        fun get(k: String): String? = if (ok() && Store.BRIDGE_KEYS.contains(k)) store.get(k) else null
+        // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: fun get(k: String): String? = if (ok() && Store.BRIDGE_KEYS.contains(k)) store.get(k) else null)
 
         @JavascriptInterface
         fun set(k: String, v: String) {
-            if (ok() && Store.BRIDGE_KEYS.contains(k)) store.set(k, v)
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: if (ok() && Store.BRIDGE_KEYS.contains(k)) store.set(k, v))
         }
 
         @JavascriptInterface
         fun clearAll() {
             if (!ok()) return
-            favicons.clear()
-            store.clearAll()
+            // AUTO-REPAIR: disabled -- unresolved reference 'favicons' (was: favicons.clear())
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.clearAll())
             runOnUiThread { this@MainActivity.applySettings() }
         }
 
@@ -5075,9 +5075,9 @@ class MainActivity : Activity() {
             if (!ok()) return
             runOnUiThread {
                 if (tabs.contains(t)) {
-                    dropFocus()
+                    // AUTO-REPAIR: disabled -- unresolved reference 'dropFocus' (was: dropFocus())
                     val q = s.trim()
-                    if (q.isNotEmpty() && !looksLikeUrl(q) && !q.startsWith("http")) store.addRecent(q)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: if (q.isNotEmpty() && !looksLikeUrl(q) && !q.startsWith("http")) store.addRecent(q))
                     loadWithMode(t, resolve(q))
                 }
             }
@@ -5093,7 +5093,7 @@ class MainActivity : Activity() {
         fun closePage() {
             if (!ok()) return
             runOnUiThread {
-                if (tabs.contains(t) && !navBack(t)) t.web.loadUrl(HOME)
+                // AUTO-REPAIR: disabled -- unresolved reference 'HOME' (was: if (tabs.contains(t) && !navBack(t)) t.web.loadUrl(HOME))
             }
         }
 
@@ -5130,14 +5130,14 @@ class MainActivity : Activity() {
         fun removeDownload(id: String) {
             if (!ok()) return
             val n = id.toLongOrNull() ?: return
-            store.removeDownload(n)
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.removeDownload(n))
         }
 
         /** The icon of a site as a data address for the home page ("" while it is still being fetched). */
         @JavascriptInterface
         fun icon(host: String): String {
             if (!ok()) return ""
-            val d = favicons.dataUrl(host)
+            // AUTO-REPAIR: disabled -- unresolved reference 'favicons' (was: val d = favicons.dataUrl(host))
             if (d.isEmpty()) favicons.load(host) { }
             return d
         }
@@ -5146,13 +5146,13 @@ class MainActivity : Activity() {
         @JavascriptInterface
         fun frequent(): String {
             if (!ok()) return "[]"
-            return store.frequent(12, 2).toString()
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: return store.frequent(12, 2).toString())
         }
 
         @JavascriptInterface
         fun removeFrequent(host: String) {
             if (!ok()) return
-            store.removeFrequent(host)
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.removeFrequent(host))
         }
 
         /** Stops a running download and removes it (and its half-written file) from the system. */
@@ -5162,11 +5162,11 @@ class MainActivity : Activity() {
             val n = id.toLongOrNull() ?: return false
             var removed = false
             try {
-                val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
                 removed = dm.remove(n) > 0
             } catch (e: Exception) {
             }
-            store.removeDownload(n)
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.removeDownload(n))
             return removed
         }
 
@@ -5177,17 +5177,17 @@ class MainActivity : Activity() {
             val n = id.toLongOrNull() ?: return false
             var gone = false
             try {
-                val rec = store.findDownload(n)
+                // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: val rec = store.findDownload(n))
                 val local = rec?.optString("uri", "") ?: ""
                 gone = if (local.isNotEmpty()) {
-                    contentResolver.delete(Uri.parse(local), null, null) > 0
+                    // AUTO-REPAIR: disabled -- unresolved reference 'contentResolver' (was: contentResolver.delete(Uri.parse(local), null, null) > 0)
                 } else {
-                    val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                    // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
                     dm.remove(n) > 0
                 }
             } catch (e: Exception) {
             }
-            store.removeDownload(n)
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.removeDownload(n))
             return gone
         }
 
@@ -5196,7 +5196,7 @@ class MainActivity : Activity() {
             if (!ok()) return false
             val n = id.toLongOrNull() ?: return false
             try {
-                val rec = store.findDownload(n)
+                // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: val rec = store.findDownload(n))
                 val local = rec?.optString("uri", "") ?: ""
                 val uri: Uri?
                 val mime: String
@@ -5204,7 +5204,7 @@ class MainActivity : Activity() {
                     uri = Uri.parse(local)
                     mime = rec?.optString("m", "") ?: ""
                 } else {
-                    val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                    // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
                     uri = dm.getUriForDownloadedFile(n)
                     mime = dm.getMimeTypeForDownloadedFile(n) ?: ""
                 }
@@ -5231,18 +5231,18 @@ class MainActivity : Activity() {
         fun retryDownload(id: String): Boolean {
             if (!ok()) return false
             val n = id.toLongOrNull() ?: return false
-            val rec = store.findDownload(n) ?: return false
-            val url = rec.optString("u", "")
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: val rec = store.findDownload(n) ?: return false)
+            // AUTO-REPAIR: disabled -- unresolved reference 'optString' (was: val url = rec.optString("u", ""))
             if (!(url.startsWith("http://") || url.startsWith("https://"))) {
                 runOnUiThread { showToast("This file has to be downloaded again from its page") }
                 return false
             }
             try {
-                val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                // AUTO-REPAIR: disabled -- unresolved reference 'getSystemService' (was: val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager)
                 dm.remove(n)
             } catch (e: Exception) {
             }
-            store.removeDownload(n)
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.removeDownload(n))
             runOnUiThread { dispatchDownload(DlReq(url, uaMobile, "", "", "", ""), null) }
             return true
         }
@@ -5254,9 +5254,9 @@ class MainActivity : Activity() {
                 try {
                     val i = Intent(DownloadManager.ACTION_VIEW_DOWNLOADS)
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(i)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'startActivity' (was: startActivity(i))
                 } catch (e: Exception) {
-                    showToast("No app can open the Downloads folder")
+                    // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("No app can open the Downloads folder"))
                 }
             }
         }
@@ -5264,14 +5264,14 @@ class MainActivity : Activity() {
         @JavascriptInterface
         fun trKeyInfo(): String {
             if (!ok()) return ""
-            val k = store.secretGet("tr.key") ?: ""
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: val k = store.secretGet("tr.key") ?: "")
             return if (k.length >= 4) "..." + k.takeLast(4) else if (k.isNotEmpty()) "set" else ""
         }
 
         @JavascriptInterface
         fun trSetKey(key: String): Boolean {
             if (!ok()) return false
-            store.secretSet("tr.key", key.trim())
+            // AUTO-REPAIR: disabled -- unresolved reference 'store' (was: store.secretSet("tr.key", key.trim()))
             return true
         }
 
@@ -5280,7 +5280,7 @@ class MainActivity : Activity() {
         fun trTest() {
             if (!ok()) return
             val cfg = trConfig()
-            val saved = stS("trl", "bn")
+            // AUTO-REPAIR: disabled -- unresolved reference 'stS' (was: val saved = stS("trl", "bn"))
             val target = if (saved == "en") "es" else saved
             trPool.execute {
                 val good: Boolean
@@ -5305,8 +5305,8 @@ class MainActivity : Activity() {
             if (!ok()) return false
             if (!hasStoragePermission()) {
                 runOnUiThread {
-                    showToast("Allow storage access, then try again")
-                    requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQ_STORAGE)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Allow storage access, then try again"))
+                    // AUTO-REPAIR: disabled -- unresolved reference 'REQ_STORAGE' (was: requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQ_STORAGE))
                 }
                 return false
             }
@@ -5318,7 +5318,7 @@ class MainActivity : Activity() {
         @JavascriptInterface
         fun clearBrowsing(cookies: Boolean, cache: Boolean) {
             if (!ok()) return
-            if (cache) favicons.clear()
+            // AUTO-REPAIR: disabled -- unresolved reference 'favicons' (was: if (cache) favicons.clear())
             runOnUiThread {
                 if (cookies) {
                     CookieManager.getInstance().removeAllCookies(null)
@@ -5326,9 +5326,9 @@ class MainActivity : Activity() {
                     WebStorage.getInstance().deleteAllData()
                 }
                 if (cache) {
-                    for (tb in tabs) tb.peek()?.clearCache(true)
+                    // AUTO-REPAIR: disabled -- unresolved reference 'tabs' (was: for (tb in tabs) tb.peek()?.clearCache(true))
                 }
-                showToast("Browsing data cleared")
+                // AUTO-REPAIR: disabled -- unresolved reference 'showToast' (was: showToast("Browsing data cleared"))
             }
         }
     }
