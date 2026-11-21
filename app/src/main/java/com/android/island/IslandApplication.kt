@@ -1,0 +1,107 @@
+package com.android.island
+
+import android.app.Application
+import com.android.island.data.SettingsRepository
+import com.android.island.core.IslandBus
+import com.android.island.system.ShizukuState
+import com.android.island.system.StatusBarIconController
+import com.android.island.util.IslandDiagnostics
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
+
+class IslandApplication : Application() {
+    lateinit var settingsRepository: SettingsRepository
+        private set
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        // Background / memory-pressure levels only. UI_HIDDEN (20) fires every time the settings screen
+        // closes, and the island must keep its current artwork ready for the next expand.
+        if (level >= android.content.ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW) {
+            com.android.island.island.trimArtCaches()
+            com.android.island.service.WhatsAppNotificationListener.onTrimMemory()
+        }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        // Event-driven recovery, no polling: this callback runs only when another app starts or stops
+        // audio. If the notification listener dropped while the screen stayed on, a new playback
+        // starts the reconnect (ensureConnected is single-flight and stops once it is bound).
+        getSystemService(android.media.AudioManager::class.java)?.registerAudioPlaybackCallback(
+            object : android.media.AudioManager.AudioPlaybackCallback() {
+                override fun onPlaybackConfigChanged(
+                    configs: MutableList<android.media.AudioPlaybackConfiguration>?
+                ) {
+                    // Audio started/stopped in another app: reconnect the listener if it is down, otherwise
+                    // re-read the media sessions once when the island shows nothing playing.
+                    if (com.android.island.core.ScreenState.interactive.value) {
+                        com.android.island.service.WhatsAppNotificationListener.onAudioActivity(this@IslandApplication)
+                    }
+                }
+            },
+            null
+        )
+        IslandDiagnostics.init(this)
+        val previousHandler = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler { thread, error ->
+            // The recorder itself enforces the Diagnostics setting; when disabled this is inert.
+            IslandDiagnostics.recordError("PROCESS", "uncaught_exception", error, "thread=${thread.name}")
+            previousHandler?.uncaughtException(thread, error)
+        }
+        com.android.island.core.DeviceProfile.init(this)
+        // Track screen on/off so repeating animation loops can pause while the screen is off.
+        com.android.island.core.ScreenState.set(
+            (getSystemService(android.content.Context.POWER_SERVICE) as android.os.PowerManager).isInteractive
+        )
+        com.android.island.core.ScreenState.refreshLocked(this)
+        com.android.island.core.ScreenState.refreshPowerSave(this)
+        val lockHandler = android.os.Handler(android.os.Looper.getMainLooper())
+        androidx.core.content.ContextCompat.registerReceiver(this, object : android.content.BroadcastReceiver() {
+            override fun onReceive(ctx: android.content.Context, intent: android.content.Intent) {
+                when (intent.action) {
+                    android.content.Intent.ACTION_SCREEN_ON -> {
+                        com.android.island.core.ScreenState.set(true)
+                        com.android.island.service.WhatsAppNotificationListener.onScreenOn(ctx)
+                    }
+                    android.content.Intent.ACTION_SCREEN_OFF -> {
+                        com.android.island.core.ScreenState.set(false)
+                        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({ com.android.island.util.NativeTrim.trimWhenIdle("screen_off") }, 3_000L)
+                    }
+                    android.os.PowerManager.ACTION_POWER_SAVE_MODE_CHANGED -> com.android.island.core.ScreenState.refreshPowerSave(ctx)
+                }
+                // Keyguard state settles a moment after screen on/off, so check now and again shortly after.
+                com.android.island.core.ScreenState.refreshLocked(ctx)
+                lockHandler.removeCallbacksAndMessages(null)
+                for (d in longArrayOf(250L, 800L, 2000L)) {
+                    lockHandler.postDelayed({ com.android.island.core.ScreenState.refreshLocked(ctx) }, d)
+                }
+            }
+        }, android.content.IntentFilter().apply {
+            addAction(android.content.Intent.ACTION_SCREEN_ON)
+            addAction(android.content.Intent.ACTION_SCREEN_OFF)
+            addAction(android.content.Intent.ACTION_USER_PRESENT)
+            addAction(android.os.PowerManager.ACTION_POWER_SAVE_MODE_CHANGED)
+        }, androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED)
+        com.android.island.island.LikedTracks.init(this)
+        settingsRepository = SettingsRepository(this)
+        IslandBus.init(this)
+        ShizukuState.start(this)
+        val processScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+        processScope.launch {
+            combine(settingsRepository.settings, ShizukuState.status) { settings, status ->
+                Triple(settings.hideStatusIcons, settings.diagnosticsEnabled, status)
+            }.collect { (hideIcons, diagnosticsEnabled, status) ->
+                IslandDiagnostics.setEnabled(diagnosticsEnabled)
+                if (status == com.android.island.system.ShizukuStatus.READY) {
+                    StatusBarIconController.apply(hideIcons, packageName)
+                } else {
+                    StatusBarIconController.onShizukuUnavailable()
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+ANDROID ISLAND 1.4.2 — OVERLAY ANCHOR & WHATSAPP COMPANION
+
+- COMPACT and BANNER now use the same WindowManager horizontal anchor; only EXPANDED is recentered.
+- WhatsApp banner entrance uses the configured shared motion profile.
+- Added a 20dp external WhatsApp companion bubble with a handset mark, aligned beside the capsule.
+- Pending WhatsApp notifications no longer expire after 12 seconds; they remain queued until reply, explicit dismissal, or Android notification removal.
+- Added the missing Offset X settings slider so the persisted horizontal-position setting is adjustable in the UI.
+- Preserved the existing multi-chat stack and per-contact reply actions.
+
+Build verification status: source-level checks only; Android Gradle build must be run with JDK 17 and Android SDK 35.
+- Wired all saved Liquid Glass properties to their render effects and exposed matching settings sliders.
+- Auto waterdrop silhouette now consults detected cutout type when automatic detection is enabled.
+- Added reference notes for the reviewed public GitHub projects.

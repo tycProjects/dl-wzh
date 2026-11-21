@@ -1,0 +1,10 @@
+Android Island 1.4.26
+
+- Lyric glyphs remain pure OLED black.
+- White lyric glow is rendered as a white text shadow around glyphs.
+- Lyric shine is a separate text-only overlay using a transparent brush; removed the Offscreen + SrcAtop rectangular compositing path.
+- One-shot glass sweep is now drawn inside the rounded clipped glass surface rather than across the full transparent host.
+- WhatsApp banner swipe layer explicitly uses zero shadow elevation and ModulateAlpha compositing to avoid an opaque rectangular layer artifact.
+- Capsule anchor and geometry were not modified.
+
+Build status: ZIP integrity checked. Gradle compilation not verified in this environment because services.gradle.org is unreachable.

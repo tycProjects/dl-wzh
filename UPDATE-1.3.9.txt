@@ -1,0 +1,8 @@
+Android Island 1.3.9 - Root cause fixes
+
+- WindowManager horizontal calibration is reset to screen center for BANNER as well as EXPANDED state. This prevents the wider notification banner from reusing compact X offset and shifting the media capsule.
+- Quick reply no longer uses AnimatedVisibility expand/shrink spring layout transitions. It uses a short animateContentSize tween to reduce nested layout churn while the IME opens.
+- Notch morph now receives expandedCornerRadius and interpolates its top/bottom radii continuously, so the setting works in notch mode too.
+- Lyric shine text is rendered with offscreen compositing before SrcAtop blending; lyric-only glow remains applied to the lyric TextStyle, not track title.
+
+Build status: source archive only. A successful Gradle build has not been verified in this environment.

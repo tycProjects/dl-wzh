@@ -1,0 +1,10 @@
+
+## 1.4.8 build fix
+- Fixed Kotlin unresolved reference `UserHandle.myUserId()` by deriving the user ID from `Process.myUid() / 100000`.
+- Version: 1.4.8 (versionCode 19).
+
+## 1.4.9 animation/layout update
+- Reduced animation and rendering workload when Low Power Mode and Ultra Mode are both enabled.
+- Removed coroutine creation for every horizontal swipe motion event.
+- Kept WhatsApp overlay host width stable across banner and compact states to prevent capsule re-centering jumps.
+- Banner width slider now follows the device's actual screen width and supports an 8 dp total edge margin.

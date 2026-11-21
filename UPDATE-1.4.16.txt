@@ -1,0 +1,17 @@
+Android Island 1.4.16 — Shizuku + Overlay Touch Fix
+
+- Replaced the incorrect status-bar disable bit (1 shl 1) with the framework's
+  DISABLE_NOTIFICATION_ICONS value (0x00020000), following the supplied
+  Expressive Cutout 0.3.1-beta StatusBarIconController implementation.
+- Removed icon_blacklist writes and the broad system-slot list. Android Island
+  no longer requests hiding clock, battery, Wi-Fi, signal, or other system slots.
+- Uses the framework disable/disableForUser overload with a persistent Binder token.
+- Narrowed the compact overlay host to the capsule's actual scene width. The wide
+  host is used only while expanded content or a WhatsApp banner is visible, so
+  blank status-bar space is no longer covered by a screen-width touch window.
+- Existing single-owner progress animation is retained; capsule anchor stays centered
+  and the panel offset remains independent.
+
+Build note: Gradle compilation could not run in this environment because the
+Gradle 8.9 distribution host was unreachable (DNS/network restriction). Static
+source checks were performed; device behavior still requires testing on Samsung.

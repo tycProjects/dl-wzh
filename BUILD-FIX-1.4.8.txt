@@ -1,0 +1,8 @@
+Android Island 1.4.8 — Kotlin compile fix
+
+Fixed compileReleaseKotlin failure in StatusBarIconController.kt:
+- Replaced the hidden, non-SDK-callable UserHandle.myUserId() invocation with the Android multi-user UID calculation Process.myUid() / 100000.
+- Kept the disableForUser reflection fallback and Shizuku behavior intact.
+- Incremented versionCode to 19 and versionName to 1.4.8.
+
+Validation: see the accompanying build verification result. The Android user ID is derived from the standard Android per-user UID range; app UID values below 100000 resolve to user 0.

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<voice-interaction-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:sessionService="com.android.island.ai.voice.AiAssistSessionService"
+    android:recognitionService="com.android.island.ai.voice.AiRecognitionService"
+    android:settingsActivity="com.android.island.ui.MainActivity"
+    android:supportsAssist="true" />
