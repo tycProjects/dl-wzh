@@ -1,4 +1,4 @@
-plugins { id 'com.android.application'; id 'org.jetbrains.kotlin.android' }
+plugins { id 'com.android.application'; id 'org.jetbrains.kotlin.android' version '1.8.10' }
 android {
     namespace 'com.example.musicplayer'
     compileSdk 34
