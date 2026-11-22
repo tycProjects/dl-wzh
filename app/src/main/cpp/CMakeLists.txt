@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.22.1)
+project(promptdrop_demo)
+add_library(promptdrop_demo SHARED native-lib.cpp)
+find_library(log-lib log)
+target_link_libraries(promptdrop_demo ${log-lib})
