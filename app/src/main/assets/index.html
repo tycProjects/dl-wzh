@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0d">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Музыка</title>
+<link rel="icon" id="ico" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+:root{--accent:#5fa4b8;--btn:#8b919c;--text:#fff;--bg1:#0a0a0d;--bg2:#2a2a38;--isl:28,29,38;--alpha:.85;--blur:12px;--radius:28px;--amp:6;--speed:6s;--sh:60px;--cs:48px;--ps:76px;--hs:62px;--cbr:50%;--hbr:30%;--ico:#fff;--pico:#fff;--play:#8b919c;--cbg:transparent}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{background:linear-gradient(160deg,var(--bg1) 40%,var(--bg2));color:var(--text);font-family:"Marker Felt","Trebuchet MS",system-ui,sans-serif;font-weight:800;font-variant:small-caps;letter-spacing:.03em;overflow:hidden;-webkit-user-select:none;user-select:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#fx,#fog{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+#fx{z-index:0}#fog{z-index:1;display:none}
+#bgimg{position:fixed;inset:-24px;z-index:0;background-size:cover;background-position:center;display:none}
+#app{position:relative;z-index:2;height:100dvh;display:flex;flex-direction:column;gap:14px;padding:calc(env(safe-area-inset-top) + 16px) 16px calc(var(--sh) + 14px);transition:padding .3s}
+.isl{background:rgba(var(--isl),var(--alpha));border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));box-shadow:0 12px 28px rgba(0,0,0,.4)}
+.btnbg{background:linear-gradient(135deg,color-mix(in srgb,var(--btn) 55%,#000),var(--btn))}
+.fl{animation:bob var(--speed) ease-in-out infinite;animation-delay:var(--d,0s)}
+body.nofloat .fl{animation:none}
+@keyframes bob{50%{translate:0 calc(var(--amp)*-1px)}}
+@media(prefers-reduced-motion:reduce){.fl{animation:none}}
+header{display:flex;gap:10px;align-items:center}
+.sbar{flex:1;min-width:0;display:flex;align-items:center;height:var(--hs);padding:0 6px 0 16px;border-radius:var(--radius)}
+.sbar input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--text);font:inherit;font-size:1rem}
+.sbar input::placeholder{color:var(--accent);opacity:.8}
+.sbar button{font-size:1.2rem;width:40px;height:40px}
+input{-webkit-user-select:text;user-select:text}
+.chip{background:rgba(255,255,255,.08);padding:8px 12px;border-radius:16px;font-size:.85rem;color:inherit}
+.chip.on{background:var(--accent);color:#000}
+.sh span{display:flex;gap:12px;align-items:center}
+.tx{background:#23242e;border:1px solid #33343f;border-radius:12px;color:#fff;padding:10px;font:inherit;width:55%}
+.plr{border-bottom:1px solid #26272f}
+.pick2{flex:1;text-align:left;display:block;padding:8px 0}
+.pick2 small,.res small{display:block;color:var(--accent);font-weight:400}
+.nm2{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.res{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #26272f}
+.res.sub{padding-left:14px;background:rgba(255,255,255,.03)}
+#sd{position:fixed;left:16px;right:16px;top:calc(env(safe-area-inset-top) + 16px + var(--hs) + 10px);max-height:50vh;overflow:auto;z-index:8;display:none;padding:4px 14px 12px;background:rgba(var(--isl),calc(var(--alpha) + .1));font-variant:normal;font-weight:600}
+#sd.open{display:block}
+.prog,.ctl{transition:opacity .25s,visibility .25s}
+body.searching .prog,body.searching .ctl{opacity:0;visibility:hidden;pointer-events:none}
+#sd p{color:#aab;margin:8px 0;font-weight:400}
+.sd-h{color:var(--accent);font-size:.85rem;margin:12px 0 2px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sd-h span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sq{width:var(--hs);height:var(--hs);border-radius:var(--hbr);font-size:1.6rem;flex:none;display:inline-grid;place-items:center}
+.stage{flex:1;min-height:0;display:grid;place-items:center}
+#cover{width:min(72vw,40vh);aspect-ratio:1;border-radius:calc(var(--radius)*1.2);display:grid;place-items:center;font-size:5rem;background-size:cover;background-position:center;box-shadow:0 20px 50px rgba(0,0,0,.55)}
+#cover.art span{display:none}
+#cover span{color:var(--accent);opacity:.8}
+.info{text-align:center;padding:18px 14px}
+#ttl{display:block;font-size:1.4rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#art{display:block;color:var(--accent);margin-top:4px;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog{padding:14px 18px 10px}
+.times{display:flex;justify-content:space-between;color:var(--accent);font-size:.85rem;font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:linear-gradient(90deg,color-mix(in srgb,var(--btn) 40%,#000) var(--p,0%),rgba(255,255,255,.12) var(--p,0%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--btn);margin-top:-6px}
+input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:rgba(255,255,255,.12)}
+input[type=range]::-moz-range-progress{height:8px;border-radius:4px;background:var(--btn)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border:0;border-radius:50%;background:var(--btn)}
+.ctl{align-self:center;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 18px;border-radius:999px;max-width:100%;box-sizing:border-box}
+.ctl button{flex:0 1 auto;min-width:0;width:var(--cs);height:var(--cs);border-radius:var(--cbr);display:grid;place-items:center;position:relative;color:var(--ico);background:var(--cbg)}
+.ctl svg{width:calc(var(--cs)*.54);height:calc(var(--cs)*.54);fill:currentColor}
+.ctl .on{color:var(--accent)}
+#repeat[data-m="2"]::after{content:"1";position:absolute;font-size:.65rem;right:10px;top:8px}
+#play{width:var(--ps);height:var(--ps);margin:0 8px;color:var(--pico);background:linear-gradient(135deg,color-mix(in srgb,var(--play) 55%,#000),var(--play));box-shadow:0 0 24px rgba(140,90,220,.45)}
+#play svg{width:calc(var(--ps)*.47);height:calc(var(--ps)*.47)}
+/* плейлист */
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:5;border-radius:var(--radius) var(--radius) 0 0;transition:transform .3s;padding-bottom:env(safe-area-inset-bottom);background:rgba(var(--isl),calc(var(--alpha) + .1))}
+#sheet.closed{transform:translateY(calc(100% - 60px - env(safe-area-inset-bottom)))}
+.sh{display:flex;justify-content:space-between;align-items:center;height:60px;padding:0 20px;color:var(--pl,var(--accent))}
+#tog{font-size:.9rem}
+#list{list-style:none;margin:0;padding:0;max-height:32vh;overflow-y:auto}
+#list li{display:flex;align-items:center;padding:0 8px 0 20px;min-height:64px}
+#list li.act{background:linear-gradient(90deg,color-mix(in srgb,var(--pl,var(--accent)) 35%,transparent),transparent)}
+#list .pick{flex:1;min-width:0;text-align:left;display:flex;align-items:center;gap:16px;padding:10px 0}
+#list .ic{width:18px;font-size:.8rem}
+#list .nm{min-width:0}
+#list .nm b,#list .nm i{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#list .nm i{font-style:normal;color:var(--accent);font-size:.9rem}
+#list .d{color:var(--accent);margin:0 8px}
+#list .x{width:44px;height:44px;font-size:1.6rem;opacity:.8}
+.none{justify-content:center;color:var(--accent);padding:20px}
+/* окна */
+.modal{position:fixed;inset:0;z-index:10;background:rgba(0,0,0,.6);display:none;align-items:flex-end}
+.modal.open{display:flex}
+.panel{width:100%;max-height:88dvh;overflow:auto;background:#15161c;border-radius:28px 28px 0 0;padding:20px 20px calc(env(safe-area-inset-bottom) + 20px);font-variant:normal;font-weight:600}
+#first{align-items:center;padding:20px}#first .panel{border-radius:28px;text-align:center}
+.panel h2{margin:0 0 6px;font-size:1.2rem}
+.panel h3{margin:18px 0 6px;color:var(--accent);font-size:.95rem}
+.panel p{color:#aab;margin:6px 0 16px;line-height:1.4}
+.row{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:42px}
+.row input[type=range]{width:55%}
+.row input[type=color]{width:48px;height:34px;border:0;background:none;padding:0}
+.row input[type=checkbox]{width:44px;height:24px;accent-color:var(--accent);transform:scale(1.3)}
+.big{display:block;width:100%;padding:14px;border-radius:16px;margin-top:10px;color:#fff;font-weight:700;background:#2b2d3a}
+.big.main{background:linear-gradient(135deg,#6a5acd,#8a6fe0)}
+#toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 12px);translate:-50% 0;z-index:30;background:#000c;padding:10px 18px;border-radius:20px;font-size:.9rem;display:none}
+/* строки результатов в виде списка треков */
+.res.tr{gap:8px}.res.tr .pl{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;color:var(--pico);font-size:.95rem;background:linear-gradient(135deg,color-mix(in srgb,var(--play) 55%,#000),var(--play)) center/cover;text-shadow:0 1px 4px #000}
+.res.tr .nm2 b{display:block;overflow:hidden;text-overflow:ellipsis}.res.tr .du{color:var(--accent);font-size:.8rem;font-variant-numeric:tabular-nums;flex:none}
+.res.tr .chip{padding:8px 10px}
+#glow{grid-area:1/1;width:min(72vw,40vh);aspect-ratio:1;border-radius:calc(var(--radius)*1.2);display:none;pointer-events:none;transform:scale(1.04);filter:blur(calc(var(--gs)*.7 + 6px));opacity:var(--gi);
+  background:conic-gradient(from var(--ga,0deg),var(--g1,#5fa4b8),var(--g2,#c06bff),var(--g1,#5fa4b8));animation:gspin var(--gsp,8s) linear infinite}
+#cover{grid-area:1/1}
+@property --ga{syntax:'<angle>';initial-value:0deg;inherits:false}
+body.glow #glow{display:block;box-shadow:0 0 var(--gs) calc(var(--gs)*.25) color-mix(in srgb,var(--g1) 60%,transparent)}
+body.glowrb #glow{background:conic-gradient(from var(--ga,0deg),#f33,#fa0,#ee3,#3d6,#3cf,#76f,#f3c,#f33)}
+body.gpulse #glow{animation:gspin var(--gsp,8s) linear infinite,gpulse 1.6s ease-in-out infinite}
+@keyframes gspin{to{--ga:360deg}}@keyframes gpulse{50%{scale:1.08;opacity:calc(var(--gi)*.55)}}
+.info{cursor:pointer}
+/* горизонтальный формат: слева обложка, справа управление */
+@media (orientation:landscape) and (min-aspect-ratio:13/10){
+  #app{--cs:42px;--ps:62px;--hs:50px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);grid-template-rows:auto minmax(0,1fr) auto auto;gap:8px 20px;padding:calc(env(safe-area-inset-top) + 8px) 16px calc(var(--sh) + 8px);overflow:hidden}
+  #app>header{grid-column:1/-1}
+  .stage{grid-column:1;grid-row:2/5;min-height:0}
+  .info{grid-column:2;grid-row:2;align-self:end;padding:8px 12px}
+  .prog{grid-column:2;grid-row:3;padding:6px 16px 2px}
+  .ctl{grid-column:2;grid-row:4;justify-self:stretch;padding:6px 10px;gap:2px}
+  #play{margin:0 4px}
+  #cover,#glow{width:min(36vw,max(110px,calc(100dvh - 160px)))}
+}
+.sel{display:none;width:22px;height:22px;flex:none;accent-color:var(--play)}body.selmode .sel{display:inline-block}
+#list .mv{flex:none;width:46px;height:46px;display:grid;place-items:center;font-size:1.5rem;line-height:1;color:var(--accent);touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+#list li{transition:transform .15s}#list li.drag{transition:none;position:relative;z-index:5;background:color-mix(in srgb,var(--pl,var(--accent)) 28%,#1b1c24);box-shadow:0 6px 18px rgba(0,0,0,.45)}
+</style>
+</head>
+<body>
+<div id="bgimg"></div><canvas id="fx"></canvas><div id="fog"></div>
+
+<main id="app">
+  <header>
+    <button class="isl btnbg fl sq" id="add" aria-label="Добавить треки">+</button>
+    <form id="sf" class="isl fl sbar"><input id="q" type="search" placeholder="Поиск по плееру" enterkeyhint="search" aria-label="Поиск"><button aria-label="Искать">🔍</button></form>
+    <button class="isl fl sq" id="gear" aria-label="Настройки">⚙️</button>
+  </header>
+  <div class="stage"><div id="glow"></div><div id="cover" class="fl btnbg"><span>🎵</span></div></div>
+  <div class="isl fl info"><b id="ttl">Нет треков</b><span id="art">Нажмите +</span></div>
+  <div class="isl fl prog"><input type="range" id="seek" min="0" max="100" step="0.1" value="0" aria-label="Перемотка"><div class="times"><span id="cur">0:00</span><span id="dur">0:00</span></div></div>
+  <div class="isl fl ctl">
+    <button id="shuffle" aria-label="Перемешать"><svg viewBox="0 0 24 24"><path d="M10.6 9.2 5.4 4 4 5.4l5.2 5.2zM14.5 4l2 2L4 18.6 5.4 20 18 7.5l2 2V4zm.4 10.8-1.4 1.4 3.3 3.3-2 2H20v-5.5l-2 2z"/></svg></button>
+    <button id="prev" aria-label="Назад"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
+    <button id="play" aria-label="Играть"><svg viewBox="0 0 24 24" id="pi"><path d="M8 5v14l11-7z"/></svg></button>
+    <button id="next" aria-label="Вперёд"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6zM16 6v12h2V6z"/></svg></button>
+    <button id="repeat" data-m="0" aria-label="Повтор"><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2z"/></svg></button>
+  </div>
+</main>
+
+<div id="sd" class="isl"></div>
+
+<section id="sheet" class="isl">
+  <div class="sh"><b id="shT">Все треки (0)</b><span><button id="plBtn" class="chip">🎶 Плейлисты</button><button id="tog">▼ тап</button></span></div>
+  <ul id="list"></ul>
+</section>
+
+<div class="modal" id="pl"><div class="panel" id="plBody"></div></div>
+<div class="modal" id="set"><div class="panel" id="setBody"></div></div>
+
+<div class="modal" id="first"><div class="panel">
+  <h2>Добро пожаловать 🎵</h2>
+  <p>Загрузить треки с телефона в плеер? Они сохранятся внутри приложения и останутся после перезапуска.</p>
+  <button class="big main" id="fFiles">Выбрать треки</button>
+  <button class="big" id="fDir" style="display:none">Выбрать папку целиком</button>
+  <button class="big" id="fNo">Не сейчас</button>
+</div></div>
+
+<div id="toast"></div>
+<input type="file" id="file" accept="audio/*" multiple hidden>
+
+<script>
+(() => {
+const $ = id => document.getElementById(id);
+const audio = new Audio(); audio.preload = 'metadata';
+let LS; try { LS = localStorage; LS.getItem('S'); } catch (e) { const m = {}; LS = { getItem: k => m[k] ?? null, setItem: (k, v) => { m[k] = v; } }; }
+const AUDIO_RE = /\.(mp3|m4a|aac|wav|ogg|opus|flac)$/i;
+
+/* ================= Хранилище (IndexedDB) ================= */
+const dbp = new Promise((ok, no) => {
+  const r = indexedDB.open('player', 3);
+  r.onupgradeneeded = () => { const d = r.result;
+    if (!d.objectStoreNames.contains('tracks')) d.createObjectStore('tracks', { keyPath: 'id', autoIncrement: true });
+    if (!d.objectStoreNames.contains('meta')) d.createObjectStore('meta');
+    if (!d.objectStoreNames.contains('playlists')) d.createObjectStore('playlists', { keyPath: 'id', autoIncrement: true }); };
+  r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error);
+});
+const tx = (mode, fn, store = 'tracks') => dbp.then(d => new Promise((ok, no) => {
+  const t = d.transaction(store, mode), q = fn(t.objectStore(store));
+  t.oncomplete = () => ok(q && q.result); t.onerror = () => no(t.error);
+}));
+
+/* ================= Настройки ================= */
+const DEF = { accent:'#5fa4b8', btn:'#8b919c', text:'#ffffff', bg1:'#0a0a0d', bg2:'#2a2a38', isl:'#1c1d26',
+  alpha:.85, blur:12, radius:28, float:true, amp:6, speed:6,
+  ico:'#ffffff', pico:'#ffffff', play:'#8b919c', cbg:'#ffffff', cbgA:0, cs:48, ps:76, hs:62, cbr:50, hbr:30, bgDim:.4, bgBlur:0,
+  snow:false, snowN:50, rain:false, rainN:50, sun:false, sunN:50, fog:false, fogN:50,
+  aurora:false, auroraN:50, stars:false, starsN:50, fly:false, flyN:50, bub:false, bubN:50, fxC:'#9fd8ff', fxSp:1,
+  xf:true, xfT:4, glow:false, glowRb:false, glowC1:'#5fa4b8', glowC2:'#c06bff', glowI:80, glowS:30, glowSp:8, glowPulse:true };
+let bgUrl = '';
+let S = { ...DEF, ...JSON.parse(LS.getItem('S') || '{}') };
+let P = JSON.parse(LS.getItem('P') || '{}');
+const saveS = () => LS.setItem('S', JSON.stringify(S));
+const saveP = () => LS.setItem('P', JSON.stringify(P));
+
+function applyS() {
+  const r = document.documentElement.style, h = S.isl;
+  r.setProperty('--accent', S.accent); r.setProperty('--btn', S.btn); r.setProperty('--text', S.text);
+  r.setProperty('--bg1', S.bg1); r.setProperty('--bg2', S.bg2);
+  r.setProperty('--isl', [1,3,5].map(i => parseInt(h.slice(i, i + 2), 16)).join(','));
+  r.setProperty('--alpha', S.alpha); r.setProperty('--blur', S.blur + 'px'); r.setProperty('--radius', S.radius + 'px');
+  r.setProperty('--amp', S.amp); r.setProperty('--speed', S.speed + 's');
+  document.body.classList.toggle('nofloat', !S.float);
+  const f = $('fog');
+  f.style.display = S.fog ? 'block' : 'none';
+  f.style.backdropFilter = f.style.webkitBackdropFilter = `blur(${2 + S.fogN * .14}px)`;
+  f.style.background = `radial-gradient(circle at 30% 20%,rgba(255,255,255,${S.fogN / 600}),transparent 60%),rgba(220,230,240,${S.fogN / 900})`;
+  r.setProperty('--ico', S.ico); r.setProperty('--pico', S.pico); r.setProperty('--play', S.play);
+  r.setProperty('--cs', S.cs + 'px'); r.setProperty('--ps', S.ps + 'px'); r.setProperty('--hs', S.hs + 'px');
+  r.setProperty('--cbr', S.cbr + '%'); r.setProperty('--hbr', S.hbr + '%');
+  r.setProperty('--cbg', [1,3,5].map(i => parseInt(S.cbg.slice(i, i + 2), 16)).reduce((a, v) => a + v + ',', 'rgba(') + S.cbgA + ')');
+  const bi = $('bgimg'); bi.style.display = bgUrl ? 'block' : 'none';
+  if (bgUrl) { bi.style.backgroundImage = `linear-gradient(rgba(0,0,0,${S.bgDim}),rgba(0,0,0,${S.bgDim})),url(${bgUrl})`; bi.style.filter = `blur(${S.bgBlur}px)`; }
+  const b = document.body.classList, g = r.setProperty.bind(r);
+  b.toggle('glow', !!S.glow); b.toggle('glowrb', !!S.glowRb); b.toggle('gpulse', !!S.glowPulse);
+  g('--g1', S.glowC1); g('--g2', S.glowC2); g('--gi', S.glowI / 100); g('--gs', S.glowS + 'px'); g('--gsp', S.glowSp + 's');
+  fxCheck(); pushTheme();
+}
+/* цвета плеера -> виджет на главном экране (в приложении) */
+function pushTheme() {
+  if (!(window.AndroidMedia && AndroidMedia.setTheme)) return;
+  try {
+    const cs = getComputedStyle(document.documentElement), hex = c => { const e = document.createElement('i'); e.style.color = c.trim(); document.body.append(e); const m = getComputedStyle(e).color.match(/\d+/g); e.remove(); return '#' + m.slice(0, 3).map(x => (+x).toString(16).padStart(2, '0')).join(''); };
+    AndroidMedia.setTheme(hex(cs.getPropertyValue('--play') || '#5fa4b8'));
+  } catch (e) {}
+}
+function setBg(b) { if (bgUrl) URL.revokeObjectURL(bgUrl); bgUrl = b ? URL.createObjectURL(b) : ''; applyS(); }
+function pickBg() {
+  const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*';
+  i.onchange = async () => { const f = i.files[0]; if (!f) return; try { await tx('readwrite', s => s.put(f, 'bg'), 'meta'); } catch (e) { toast('Не удалось сохранить картинку'); } setBg(f); };
+  i.click();
+}
+document.querySelectorAll('.fl').forEach(e => e.style.setProperty('--d', -Math.random() * 6 + 's'));
+
+const FORM = [
+  ['h','Цвета'], ['c','accent','Акцент'], ['c','btn','Обложка и кнопка «+»'], ['c','text','Текст'],
+  ['c','bg1','Фон: верх'], ['c','bg2','Фон: низ'], ['c','isl','Цвет островков'],
+  ['h','Фоновая картинка'], ['bg'], ['r','bgDim','Затемнение',0,.9,.01], ['r','bgBlur','Размытие',0,20,1],
+  ['h','Кнопки управления'], ['r','cs','Размер',32,72,1], ['r','cbr','Форма (квадрат ↔ круг)',0,50,1], ['c','ico','Цвет значков'],
+  ['c','cbg','Цвет подложки'], ['r','cbgA','Прозрачность подложки',0,1,.01],
+  ['h','Кнопка «Играть»'], ['r','ps','Размер',50,120,1], ['c','play','Цвет кнопки'], ['c','pico','Цвет значка'],
+  ['h','Кнопки сверху (⚙️ и +)'], ['r','hs','Размер',40,90,1], ['r','hbr','Форма (квадрат ↔ круг)',0,50,1],
+  ['h','Островки'], ['r','alpha','Прозрачность',0,1,.01], ['r','blur','Размытие',0,30,1], ['r','radius','Скругление',0,44,1],
+  ['t','float','Плавающие островки'], ['r','amp','Высота парения',0,20,1], ['r','speed','Период, сек',2,14,.5],
+  ['h','Эффекты фона'],
+  ['t','snow','Снег'], ['r','snowN','Количество',0,100,1],
+  ['t','rain','Дождь'], ['r','rainN','Количество',0,100,1],
+  ['t','sun','Солнечные блики'], ['r','sunN','Яркость',0,100,1],
+  ['t','fog','Запотевшее стекло'], ['r','fogN','Сила',0,100,1],
+  ['t','aurora','Северное сияние'], ['r','auroraN','Яркость',0,100,1],
+  ['t','stars','Звёзды'], ['r','starsN','Количество',0,100,1],
+  ['t','fly','Светлячки'], ['r','flyN','Количество',0,100,1],
+  ['t','bub','Пузыри'], ['r','bubN','Количество',0,100,1],
+  ['c','fxC','Цвет новых эффектов'], ['r','fxSp','Скорость новых эффектов',.3,3,.1],
+  ['h','Огни вокруг обложки'], ['t','glow','Включить огни'], ['t','glowRb','Радужные огни'], ['c','glowC1','Цвет 1'], ['c','glowC2','Цвет 2'],
+  ['r','glowI','Яркость',0,100,1], ['r','glowS','Размер',0,80,1], ['r','glowSp','Скорость (сек. на оборот)',2,20,.5], ['t','glowPulse','Пульсация'],
+  ['h','Воспроизведение'], ['t','xf','Плавный переход между треками'], ['r','xfT','Длительность перехода, сек.',1,12,1]
+];
+function buildSettings() {
+  const b = $('setBody'); b.innerHTML = '<h2>Настройки</h2><p id="stat"></p>';
+  FORM.forEach(([k, key, label, min, max, step]) => {
+    if (k === 'h') { b.insertAdjacentHTML('beforeend', `<h3>${key}</h3>`); return; }
+    if (k === 'bg') {
+      b.insertAdjacentHTML('beforeend', '<button class="big" id="bgPick">Выбрать картинку</button><button class="big" id="bgDel">Убрать картинку</button>');
+      $('bgPick').onclick = pickBg;
+      $('bgDel').onclick = async () => { await tx('readwrite', s => s.delete('bg'), 'meta'); setBg(null); };
+      return;
+    }
+    const row = document.createElement('div'); row.className = 'row';
+    row.innerHTML = `<span>${label}</span>`;
+    const inp = document.createElement('input');
+    inp.type = k === 'c' ? 'color' : k === 'r' ? 'range' : 'checkbox';
+    if (k === 'r') { inp.min = min; inp.max = max; inp.step = step; }
+    if (k === 't') inp.checked = S[key]; else inp.value = S[key];
+    inp.oninput = () => { S[key] = k === 't' ? inp.checked : k === 'r' ? +inp.value : inp.value; saveS(); applyS(); };
+    row.append(inp); b.append(row);
+  });
+  b.insertAdjacentHTML('beforeend', '<button class="big" id="reset">Сбросить настройки</button><button class="big main" id="closeSet">Готово</button>');
+  stat();
+  if (window.AndroidMedia && AndroidMedia.addWidget) {
+    $('stat').insertAdjacentHTML('afterend', '<h3>Виджет</h3><p>Плеер на главном экране телефона: обложка, название и кнопки управления.</p><button class="big main" id="addW">Добавить виджет на главный экран</button>');
+    $('addW').onclick = () => AndroidMedia.addWidget();
+  }
+  const standalone = matchMedia('(display-mode: standalone)').matches || !!window.AndroidMedia;
+  if (!standalone) {
+    $('stat').insertAdjacentHTML('afterend', dip
+      ? '<button class="big main" id="inst">Установить как приложение</button>'
+      : '<p>Чтобы плеер работал как приложение (управление с экрана блокировки, офлайн): меню Chrome → «Установить приложение». Нужен https.</p>');
+    if (dip) $('inst').onclick = async () => { dip.prompt(); await dip.userChoice; dip = null; };
+  }
+  $('reset').onclick = () => { S = { ...DEF }; saveS(); applyS(); buildSettings(); };
+  $('closeSet').onclick = () => $('set').classList.remove('open');
+}
+document.querySelector('.info').onclick = () => { if (idx >= 0 || remote) copyTxt($('art').textContent + ' — ' + $('ttl').textContent); };
+$('gear').onclick = () => { buildSettings(); $('set').classList.add('open'); };
+$('set').onclick = e => { if (e.target.id === 'set') $('set').classList.remove('open'); };
+
+/* ================= Эффекты (canvas) ================= */
+const cv = $('fx'), cx = cv.getContext('2d'); let W, H, raf = 0; const snow = [], rain = [], stars = [], fly = [], bub = [];
+const rgbOf = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)).join(',');
+const sz = () => { W = cv.width = innerWidth; H = cv.height = innerHeight; };
+addEventListener('resize', sz); sz();
+function fxCheck() { cancelAnimationFrame(raf); raf = 0; cx.clearRect(0, 0, W, H); if ((S.snow || S.rain || S.sun || S.aurora || S.stars || S.fly || S.bub) && !document.hidden) raf = requestAnimationFrame(loop); }
+document.addEventListener('visibilitychange', fxCheck);
+const rnd = (a, b) => a + Math.random() * (b - a);
+function loop(t) {
+  cx.clearRect(0, 0, W, H);
+  if (S.sun) {
+    cx.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < 5; i++) {
+      const x = W * (.15 + i * .2) + Math.sin(t / 4000 + i * 2) * 60, y = H * (.1 + .12 * i) + Math.cos(t / 5000 + i) * 40, r = 120 + i * 50;
+      const g = cx.createRadialGradient(x, y, 0, x, y, r), a = S.sunN / 100 * .22;
+      g.addColorStop(0, `rgba(255,220,150,${a})`); g.addColorStop(1, 'rgba(255,220,150,0)');
+      cx.fillStyle = g; cx.fillRect(x - r, y - r, r * 2, r * 2);
+    }
+    cx.globalCompositeOperation = 'source-over';
+  }
+  if (S.snow) {
+    const n = 20 + S.snowN * 2; while (snow.length < n) snow.push({ x: rnd(0, W), y: rnd(0, H), r: rnd(1, 4), v: rnd(.5, 1.8), p: rnd(0, 6.3) }); snow.length = n;
+    for (const f of snow) {
+      f.y += f.v; f.x += Math.sin(t / 1200 + f.p) * .6; if (f.y > H) { f.y = -5; f.x = rnd(0, W); }
+      cx.fillStyle = `rgba(255,255,255,${.25 + f.r * .08})`; cx.beginPath(); cx.arc(f.x, f.y, f.r, 0, 6.3); cx.fill();
+    }
+  }
+  if (S.rain) {
+    const n = 10 + S.rainN * 2; while (rain.length < n) rain.push({ x: rnd(0, W), y: rnd(0, H), l: rnd(10, 24), v: rnd(12, 22) }); rain.length = n;
+    cx.strokeStyle = 'rgba(180,205,255,.35)'; cx.lineWidth = 1.2; cx.beginPath();
+    for (const d of rain) {
+      d.y += d.v; d.x -= d.v * .12; if (d.y > H) { d.y = -d.l; d.x = rnd(0, W + 80); }
+      cx.moveTo(d.x, d.y); cx.lineTo(d.x - d.l * .12, d.y + d.l);
+    }
+    cx.stroke();
+  }
+  const fc = rgbOf(S.fxC), sp = S.fxSp;
+  if (S.aurora) {
+    cx.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < 3; i++) {
+      const y = H * (.2 + .18 * i) + Math.sin(t / (3000 / sp) + i * 2) * 50, g = cx.createLinearGradient(0, y - 90, 0, y + 90), a = S.auroraN / 100 * .25;
+      g.addColorStop(0, `rgba(${fc},0)`); g.addColorStop(.5, `rgba(${fc},${a})`); g.addColorStop(1, `rgba(${fc},0)`); cx.fillStyle = g; cx.fillRect(0, y - 90, W, 180);
+    }
+    cx.globalCompositeOperation = 'source-over';
+  }
+  if (S.stars) {
+    const n = 20 + S.starsN * 2; while (stars.length < n) stars.push({ x: rnd(0, W), y: rnd(0, H), r: rnd(.5, 2), p: rnd(0, 6.3) }); stars.length = n;
+    for (const o of stars) { cx.fillStyle = `rgba(${fc},${.25 + .75 * Math.abs(Math.sin(t / 700 * sp + o.p))})`; cx.beginPath(); cx.arc(o.x, o.y, o.r, 0, 6.3); cx.fill(); }
+  }
+  if (S.fly) {
+    const n = 5 + Math.round(S.flyN / 2); while (fly.length < n) fly.push({ x: rnd(0, W), y: rnd(0, H), a: rnd(0, 6.3), p: rnd(0, 6.3) }); fly.length = n;
+    cx.globalCompositeOperation = 'lighter';
+    for (const o of fly) {
+      o.a += rnd(-.08, .08); o.x = (o.x + Math.cos(o.a) * .6 * sp + W) % W; o.y = (o.y + Math.sin(o.a) * .6 * sp + H) % H;
+      const g = cx.createRadialGradient(o.x, o.y, 0, o.x, o.y, 14), a = .3 + .6 * Math.abs(Math.sin(t / 900 + o.p));
+      g.addColorStop(0, `rgba(${fc},${a})`); g.addColorStop(1, `rgba(${fc},0)`); cx.fillStyle = g; cx.fillRect(o.x - 14, o.y - 14, 28, 28);
+    }
+    cx.globalCompositeOperation = 'source-over';
+  }
+  if (S.bub) {
+    const n = 5 + Math.round(S.bubN / 2); while (bub.length < n) bub.push({ x: rnd(0, W), y: rnd(0, H), r: rnd(4, 18), v: rnd(.4, 1.4), p: rnd(0, 6.3) }); bub.length = n;
+    cx.strokeStyle = `rgba(${fc},.4)`; cx.lineWidth = 1.5;
+    for (const o of bub) { o.y -= o.v * sp; o.x += Math.sin(t / 900 + o.p) * .4; if (o.y < -o.r) { o.y = H + o.r; o.x = rnd(0, W); } cx.beginPath(); cx.arc(o.x, o.y, o.r, 0, 6.3); cx.stroke(); }
+  }
+  raf = requestAnimationFrame(loop);
+}
+
+/* ================= Теги ID3 ================= */
+const dec = d => {
+  let enc = d[0], body = d.subarray(1), label = ['windows-1251', 'utf-16le', 'utf-16be', 'utf-8'][enc] || 'utf-8';
+  if (enc === 1 && body[0] === 0xFE) label = 'utf-16be';
+  return new TextDecoder(label).decode(body).replace(/\0+$/, '').replace(/^\uFEFF/, '').trim();
+};
+async function readTags(f) {
+  const o = {};
+  try {
+    const b = new Uint8Array(await f.slice(0, Math.min(f.size, 1 << 21)).arrayBuffer());
+    if (b[0] !== 73 || b[1] !== 68 || b[2] !== 51) return o;
+    const v = b[3], end = Math.min(10 + ((b[6] << 21) | (b[7] << 14) | (b[8] << 7) | b[9]), b.length); let p = 10;
+    while (p + 10 <= end) {
+      const id = String.fromCharCode(b[p], b[p + 1], b[p + 2], b[p + 3]); if (!/^[A-Z0-9]{4}$/.test(id)) break;
+      const fs = v === 4 ? ((b[p + 4] << 21) | (b[p + 5] << 14) | (b[p + 6] << 7) | b[p + 7]) : ((b[p + 4] << 24) | (b[p + 5] << 16) | (b[p + 6] << 8) | b[p + 7]);
+      const d = b.subarray(p + 10, p + 10 + fs); p += 10 + fs;
+      if (id === 'TIT2') o.title = dec(d); else if (id === 'TPE1') o.artist = dec(d);
+      else if (id === 'APIC' && !o.cover) {
+        const e = d[0]; let i = 1; while (d[i]) i++;
+        const mime = String.fromCharCode(...d.subarray(1, i)); i += 2;
+        if (e === 1 || e === 2) { while (!(d[i] === 0 && d[i + 1] === 0) && i < d.length) i += 2; i += 2; } else { while (d[i]) i++; i++; }
+        if (i < d.length) o.cover = new Blob([d.subarray(i)], { type: mime.includes('/') ? mime : 'image/jpeg' });
+      }
+    }
+  } catch (e) {}
+  return o;
+}
+const getDur = f => new Promise(ok => {
+  const a = new Audio(), u = URL.createObjectURL(f); a.preload = 'metadata';
+  let to; const done = v => { clearTimeout(to); URL.revokeObjectURL(u); ok(isFinite(v) ? v : 0); };
+  to = setTimeout(() => done(0), 4000);
+  a.onloadedmetadata = () => done(a.duration); a.onerror = () => done(0); a.src = u;
+});
+
+/* ================= Плейлист ================= */
+let tracks = [], idx = -1, curUrl = '', coverUrl = '', shuffle = !!P.shuffle, repeat = P.repeat || 0, seeking = false;
+let remote = null, playlists = [], plActive = null, artUrl = '', metaTok = 0;
+const inView = t => !plActive || plActive.ids.includes(t.id);
+/* порядок показа: в плейлисте — как расставлено пользователем, иначе — по порядку добавления */
+const order = () => plActive ? plActive.ids.map(id => tracks.findIndex(t => t.id === id)).filter(i => i >= 0) : tracks.map((t, i) => i);
+/* перетаскивание трека пальцем за ручку «≡» */
+function dragStart(e, li, pos, vis) {
+  e.preventDefault(); e.stopPropagation();
+  const h = e.currentTarget, ul = li.parentNode, rows = [...ul.children], hgt = li.offsetHeight, y0 = e.clientY, s0 = ul.scrollTop; let to = pos;
+  h.setPointerCapture(e.pointerId); li.classList.add('drag'); if (navigator.vibrate) navigator.vibrate(15);
+  const move = ev => {
+    const b = ul.getBoundingClientRect(); if (ev.clientY < b.top + 36) ul.scrollTop -= 10; else if (ev.clientY > b.bottom - 36) ul.scrollTop += 10;
+    const dy = ev.clientY - y0 + (ul.scrollTop - s0); li.style.transform = `translateY(${dy}px)`;
+    to = Math.max(0, Math.min(rows.length - 1, pos + Math.round(dy / hgt)));
+    rows.forEach((r, k) => { if (r !== li) r.style.transform = pos < to && k > pos && k <= to ? `translateY(${-hgt}px)` : pos > to && k < pos && k >= to ? `translateY(${hgt}px)` : ''; });
+  };
+  const end = async () => {
+    h.removeEventListener('pointermove', move); h.removeEventListener('pointerup', end); h.removeEventListener('pointercancel', end);
+    if (to !== pos) { const ids = vis.map(i => tracks[i].id), [m] = ids.splice(pos, 1); ids.splice(to, 0, m); plActive.ids = ids; await savePl(plActive); }
+    render();
+  };
+  h.addEventListener('pointermove', move); h.addEventListener('pointerup', end); h.addEventListener('pointercancel', end);
+}
+const savePl = p => tx('readwrite', s => s.put(p), 'playlists');
+const fmt = s => { s = Math.max(0, s || 0); return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0'); };
+const fill = (el, v, m) => el.style.setProperty('--p', (m ? v / m * 100 : 0) + '%');
+let tt; const toast = m => { const t = $('toast'); t.textContent = m; t.style.display = 'block'; clearTimeout(tt); tt = setTimeout(() => t.style.display = 'none', 2500); };
+
+async function stat() {
+  let used = 0, quota = 0;
+  try { const e = await navigator.storage.estimate(); used = e.usage / 1048576; quota = e.quota / 1048576; } catch (e) {}
+  const el = $('stat'); if (el) el.textContent = `${tracks.length} треков · ${used.toFixed(1)}/${Math.round(quota)} МБ`;
+}
+function render() {
+  const ul = $('list'), keep = ul.scrollTop; ul.innerHTML = ''; const vis = order();
+  $('shT').textContent = `${plActive ? plActive.emoji + ' ' + plActive.name : 'Все треки'} (${vis.length})`;
+  $('sheet').style.setProperty('--pl', plActive ? plActive.color : 'var(--accent)');
+  if (!vis.length) ul.innerHTML = '<li class="none">Здесь пока пусто</li>';
+  vis.forEach((i, pos) => {
+    const t = tracks[i];
+    const li = document.createElement('li'); if (i === idx) li.className = 'act';
+    li.innerHTML = '<button class="pick"><span class="ic">▶</span><span class="nm"><b></b><i></i></span></button>' + (plActive ? '<span class="mv" aria-label="Перетащить">≡</span>' : '') + '<span class="d"></span><button class="x" aria-label="Удалить">×</button>';
+    li.querySelector('b').textContent = t.title; li.querySelector('i').textContent = t.artist; li.querySelector('.d').textContent = fmt(t.dur);
+    li.querySelector('.pick').onclick = () => load(i, true);
+    li.querySelector('.x').onclick = () => removeTrack(i);
+    if (plActive) li.querySelector('.mv').onpointerdown = e => dragStart(e, li, pos, vis);
+    ul.append(li);
+  });
+  ul.scrollTop = keep;
+  stat(); sheetH();
+}
+async function addFiles(list) {
+  const files = [...list].filter(f => f.type.startsWith('audio/') || AUDIO_RE.test(f.name)); let n = 0;
+  try { navigator.storage.persist && navigator.storage.persist(); } catch (e) {}
+  for (const f of files) {
+    if (tracks.some(t => t.size === f.size && t.file === f.name)) continue;
+    toast(`Добавляю ${++n} из ${files.length}…`);
+    const tg = await readTags(f), base = f.name.replace(/\.[^.]+$/, ''), parts = base.split(' - ');
+    const rec = { file: f.name, size: f.size, blob: f, cover: tg.cover || null, dur: await getDur(f),
+      title: tg.title || (parts.length > 1 ? parts.slice(1).join(' - ') : base), artist: tg.artist || (parts.length > 1 ? parts[0] : 'Неизвестный исполнитель') };
+    try { rec.id = await tx('readwrite', s => s.add(rec)); tracks.push(rec); }
+    catch (e) { toast('Не хватило места для сохранения'); break; }
+    render();
+  }
+  if (n) toast(`Добавлено: ${n}`); else if (files.length) toast('Эти треки уже в плеере');
+  if (idx < 0 && tracks.length) load(0, false);
+}
+async function removeTrack(i) {
+  const t = tracks[i]; await tx('readwrite', s => s.delete(t.id)); tracks.splice(i, 1); playlists.forEach(p => { const k = p.ids.indexOf(t.id); if (k >= 0) { p.ids.splice(k, 1); savePl(p); } });
+  if (i === idx) { audio.pause(); if (tracks.length) load(Math.min(i, tracks.length - 1), false); else { idx = -1; audio.removeAttribute('src'); showEmpty(); } }
+  else if (i < idx) idx--;
+  render();
+}
+function showEmpty() { $('ttl').textContent = 'Нет треков'; $('art').textContent = 'Нажмите +'; $('cover').style.backgroundImage = ''; $('cover').classList.remove('art'); setPlay(); }
+
+function load(i, play, pos) {
+  if (i < 0 || i >= tracks.length) return;
+  if (!xfInt) xfEnd();
+  idx = i; remote = null; const t = tracks[i];
+  if (curUrl) URL.revokeObjectURL(curUrl); curUrl = URL.createObjectURL(t.blob); audio.src = curUrl;
+  if (coverUrl) URL.revokeObjectURL(coverUrl); coverUrl = t.cover ? URL.createObjectURL(t.cover) : '';
+  const c = $('cover'); c.style.backgroundImage = coverUrl ? `url(${coverUrl})` : ''; c.classList.toggle('art', !!coverUrl);
+  $('ttl').textContent = t.title; $('art').textContent = t.artist;
+  $('seek').max = t.dur || 100; $('seek').value = 0; fill($('seek'), 0, 1); $('cur').textContent = '0:00'; $('dur').textContent = fmt(t.dur);
+  if (pos) audio.addEventListener('loadedmetadata', () => { audio.currentTime = pos; }, { once: true });
+  if (play) audio.play().catch(() => {});
+  P.last = t.id; saveP(); render();
+  setMeta(t);
+}
+const pickNext = d => {
+  const vis = order();
+  if (!vis.length) return -1;
+  if (shuffle && vis.length > 1) { let r; do { r = vis[Math.floor(Math.random() * vis.length)]; } while (r === idx); return r; }
+  const q = vis.indexOf(idx); return q < 0 ? vis[0] : vis[(q + d + vis.length) % vis.length];
+};
+const next = () => { const n = pickNext(1); if (n >= 0) load(n, true); };
+const prev = () => { if (audio.currentTime > 3) { audio.currentTime = 0; return; } const n = pickNext(-1); if (n >= 0) load(n, true); };
+const toggle = () => { if (idx < 0 && !remote) { openPicker(); return; } audio.paused ? audio.play().catch(() => {}) : audio.pause(); };
+function setPlay() {
+  const pl = !audio.paused && (idx >= 0 || !!remote);
+  $('pi').innerHTML = pl ? '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>' : '<path d="M8 5v14l11-7z"/>';
+  $('play').setAttribute('aria-label', pl ? 'Пауза' : 'Играть');
+}
+
+/* ================= События аудио ================= */
+audio.volume = P.vol ?? 1;
+audio.onplay = audio.onpause = () => { setPlay(); if ('mediaSession' in navigator) navigator.mediaSession.playbackState = audio.paused ? 'paused' : 'playing'; };
+audio.onloadedmetadata = () => { if (isFinite(audio.duration)) { $('seek').max = audio.duration; $('dur').textContent = fmt(audio.duration); } };
+let lastSave = 0;
+audio.ontimeupdate = () => {
+  xfCheck();
+  if (seeking) return;
+  $('seek').value = audio.currentTime; fill($('seek'), audio.currentTime, +$('seek').max); $('cur').textContent = fmt(audio.currentTime);
+  const now = Date.now();
+  if (now - lastSave > 3000 && !remote) {
+    lastSave = now; P.pos = audio.currentTime; saveP();
+    syncPos();
+  }
+};
+/* ===== Плавный переход между треками (без тишины и пауз) =====
+   За несколько секунд до конца трека следующий включается с нарастанием громкости,
+   а конец текущего плавно затихает. */
+let xf = null, xfUrl = '', xfBusy = false, xfInt = false, xfTimer = 0;
+const volNow = () => P.vol ?? 1;
+function xfEnd() {
+  clearInterval(xfTimer);
+  if (xf) { xf.pause(); xf.removeAttribute('src'); xf = null; }
+  if (xfUrl) { URL.revokeObjectURL(xfUrl); xfUrl = ''; }
+  xfBusy = false; audio.volume = volNow();
+}
+function xfRamp(ms, f) {
+  return new Promise(ok => {
+    const t0 = performance.now(); clearInterval(xfTimer);
+    xfTimer = setInterval(() => { const p = Math.min(1, (performance.now() - t0) / ms); f(p); if (p >= 1) { clearInterval(xfTimer); ok(); } }, 40);
+  });
+}
+async function xfStart(n, T) {
+  const old = tracks[idx]; if (!old || !old.blob) return;
+  xfBusy = true; xfUrl = URL.createObjectURL(old.blob);
+  const x = xf = new Audio(); x.src = xfUrl; x.volume = 0;
+  // «хвост» текущего трека продолжает играть на втором плеере и затихает
+  const ready = await new Promise(ok => {
+    const to = setTimeout(() => ok(false), 2500);
+    x.addEventListener('loadedmetadata', () => {
+      x.currentTime = Math.min(audio.currentTime + .15, (x.duration || 1e9) - .1);
+      x.play().then(() => { clearTimeout(to); ok(true); }, () => { clearTimeout(to); ok(false); });
+    }, { once: true });
+    x.addEventListener('error', () => ok(false), { once: true });
+  });
+  if (xf !== x) return;
+  if (!ready) { xfEnd(); return; }
+  const v = volNow();
+  await xfRamp(100, p => { x.volume = v * Math.sin(p * Math.PI / 2); audio.volume = v * Math.cos(p * Math.PI / 2); });
+  if (xf !== x) return;
+  xfInt = true; audio.volume = 0; load(n, true); xfInt = false;
+  await xfRamp(T * 1000, p => { audio.volume = v * Math.sin(p * Math.PI / 2); x.volume = v * Math.cos(p * Math.PI / 2); });
+  if (xf === x) xfEnd();
+}
+function xfCheck() {
+  if (!S.xf || xfBusy || remote || idx < 0 || audio.paused || seeking || repeat === 2) return;
+  const T = S.xfT, d = audio.duration, left = d - audio.currentTime;
+  if (!isFinite(d) || d < T * 2 + 3 || left > T + .3 || left < .8) return;
+  const n = pickNext(1);
+  if (n < 0 || n === idx || (repeat === 0 && !shuffle && n <= idx)) return;
+  xfStart(n, Math.min(T, left - .2));
+}
+audio.addEventListener('pause', () => { if (xfBusy && !xfInt) xfEnd(); });
+audio.onended = () => {
+  if (repeat === 2) { audio.currentTime = 0; audio.play(); return; }
+  if (repeat === 0 && !shuffle && pickNext(1) <= idx) { setPlay(); return; }
+  next();
+};
+audio.onerror = () => { if (idx >= 0 || remote) toast('Не удалось воспроизвести файл'); };
+
+/* ================= Управление ================= */
+$('play').onclick = toggle; $('next').onclick = next; $('prev').onclick = prev;
+$('add').onclick = () => $('file').click();
+$('file').onchange = e => { const fl = [...e.target.files]; e.target.value = ''; addFiles(fl); };
+$('seek').oninput = e => { seeking = true; fill(e.target, e.target.value, +e.target.max); $('cur').textContent = fmt(+e.target.value); };
+$('seek').onchange = e => { audio.currentTime = +e.target.value; seeking = false; };
+const setShuffle = () => { $('shuffle').classList.toggle('on', shuffle); };
+$('shuffle').onclick = () => { shuffle = !shuffle; P.shuffle = shuffle; saveP(); setShuffle(); };
+const setRepeat = () => { $('repeat').dataset.m = repeat; $('repeat').classList.toggle('on', repeat > 0); };
+$('repeat').onclick = () => { repeat = (repeat + 1) % 3; P.repeat = repeat; saveP(); setRepeat(); toast(['Повтор выключен', 'Повтор плейлиста', 'Повтор трека'][repeat]); };
+setShuffle(); setRepeat();
+
+/* Шторка плейлиста */
+const SHORT = '(orientation:landscape) and (max-height:520px)';
+function sheetH() { const s = $('sheet'); document.documentElement.style.setProperty('--sh', (s.classList.contains('closed') || matchMedia(SHORT).matches ? 60 : s.offsetHeight) + 'px'); }
+$('tog').onclick = () => { const s = $('sheet'); s.classList.toggle('closed'); $('tog').textContent = s.classList.contains('closed') ? '▲ тап' : '▼ тап'; P.closed = s.classList.contains('closed'); saveP(); sheetH(); };
+if (P.closed || (P.closed === undefined && matchMedia(SHORT).matches)) { $('sheet').classList.add('closed'); $('tog').textContent = '▲ тап'; }
+addEventListener('resize', sheetH);
+
+/* Мост с Android-приложением (уведомление и экран блокировки) */
+let curMeta = { title: '', artist: '' };
+const pushNative = () => { if (!window.AndroidMedia) return; try { AndroidMedia.update(curMeta.title || '', curMeta.artist || '', !audio.paused, Math.round((audio.currentTime || 0) * 1000), Math.round((isFinite(audio.duration) ? audio.duration : 0) * 1000)); } catch (e) {} };
+window.__cmd = c => { if (c === 'play') audio.play().catch(() => {}); else if (c === 'pause') audio.pause(); else if (c === 'next') next(); else if (c === 'prev') prev(); else if (c.startsWith('seek:')) { audio.currentTime = +c.slice(5); } };
+audio.addEventListener('playing', () => { if (idx >= 0 && 'mediaSession' in navigator && !navigator.mediaSession.metadata) setMeta(tracks[idx]); pushNative(); });
+audio.addEventListener('pause', pushNative); audio.addEventListener('play', pushNative); audio.addEventListener('seeked', pushNative); audio.addEventListener('loadedmetadata', pushNative);
+/* Экран блокировки и шторка уведомлений (Media Session) */
+const syncPos = () => {
+  try { if ('mediaSession' in navigator && isFinite(audio.duration) && audio.duration > 0)
+    navigator.mediaSession.setPositionState({ duration: audio.duration, position: Math.min(audio.currentTime, audio.duration), playbackRate: audio.playbackRate || 1 }); } catch (e) {}
+};
+['loadedmetadata', 'play', 'pause', 'seeked'].forEach(ev => audio.addEventListener(ev, syncPos));
+if ('mediaSession' in navigator) {
+  const m = navigator.mediaSession;
+  [['play', () => { audio.play().catch(() => {}); }], ['pause', () => audio.pause()],
+   ['stop', () => { audio.pause(); audio.currentTime = 0; }],
+   ['previoustrack', prev], ['nexttrack', next],
+   ['seekto', d => { audio.currentTime = d.seekTime; syncPos(); }]
+  ].forEach(([a, f]) => { try { m.setActionHandler(a, f); } catch (e) {} });
+}
+
+/* ================= Артворк в стиле плеера (шторка и экран блокировки) ================= */
+async function makeArt(t) {
+  const c = document.createElement('canvas'); c.width = c.height = 512; const g = c.getContext('2d');
+  const bg = g.createLinearGradient(0, 0, 512, 512); bg.addColorStop(0, S.bg1); bg.addColorStop(1, S.bg2);
+  g.fillStyle = bg; g.fillRect(0, 0, 512, 512);
+  g.beginPath(); g.roundRect(96, 36, 320, 320, 56); g.save(); g.clip();
+  if (t.cover) {
+    const im = await createImageBitmap(t.cover), k = Math.max(320 / im.width, 320 / im.height);
+    g.drawImage(im, 96 + (320 - im.width * k) / 2, 36 + (320 - im.height * k) / 2, im.width * k, im.height * k);
+  } else {
+    g.fillStyle = S.btn; g.fillRect(96, 36, 320, 320);
+    const ov = g.createLinearGradient(96, 36, 416, 356); ov.addColorStop(0, 'rgba(0,0,0,.45)'); ov.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = ov; g.fillRect(96, 36, 320, 320);
+    g.fillStyle = S.accent; g.font = '170px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('♫', 256, 200);
+  }
+  g.restore();
+  g.beginPath(); g.roundRect(32, 378, 448, 106, 44); g.globalAlpha = .92; g.fillStyle = S.isl; g.fill(); g.globalAlpha = 1;
+  g.strokeStyle = 'rgba(255,255,255,.08)'; g.lineWidth = 2; g.stroke();
+  g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+  g.fillStyle = S.text; g.font = 'bold 36px sans-serif'; g.fillText(t.title, 256, 428, 400);
+  g.fillStyle = S.accent; g.font = 'bold 27px sans-serif'; g.fillText(t.artist, 256, 464, 400);
+  return new Promise(ok => c.toBlob(ok, 'image/png'));
+}
+async function setMeta(t) {
+  curMeta = { title: t.title, artist: t.artist }; pushNative();
+  if (!('mediaSession' in navigator)) return;
+  const tok = ++metaTok; let src = [];
+  navigator.mediaSession.metadata = new MediaMetadata({ title: t.title, artist: t.artist, album: 'Плеер' });
+  try {
+    const b = await makeArt(t); if (tok !== metaTok) return;
+    if (artUrl) URL.revokeObjectURL(artUrl); artUrl = URL.createObjectURL(b);
+    if (window.AndroidMedia) { const fr = new FileReader(); fr.onload = () => { try { AndroidMedia.setCover(fr.result); } catch (e) {} }; fr.readAsDataURL(b); }
+    src = [{ src: artUrl, sizes: '512x512', type: 'image/png' }];
+  } catch (e) {}
+  navigator.mediaSession.metadata = new MediaMetadata({ title: t.title, artist: t.artist, album: 'Плеер', artwork: src });
+}
+
+/* ================= Плейлисты ================= */
+function plList() {
+  const b = $('plBody'); b.innerHTML = '<h2>Плейлисты</h2>';
+  const mk = (label, sub, on, edit) => {
+    const r = document.createElement('div'); r.className = 'row plr';
+    r.innerHTML = '<button class="pick2"><b></b><small></small></button>' + (edit ? '<button class="chip">✏️</button>' : '');
+    r.querySelector('b').textContent = label; r.querySelector('small').textContent = sub;
+    r.querySelector('.pick2').onclick = on; if (edit) r.querySelector('.chip').onclick = edit; b.append(r);
+  };
+  mk('🎵 Все треки', tracks.length + ' треков', () => setPl(null));
+  playlists.forEach(x => mk(x.emoji + ' ' + x.name, x.ids.length + ' треков', () => setPl(x), () => plEdit(x)));
+  b.insertAdjacentHTML('beforeend', '<button class="big main" id="plNew">＋ Новый плейлист</button><button class="big" id="plX">Закрыть</button>');
+  $('plNew').onclick = () => plEdit(null); $('plX').onclick = () => $('pl').classList.remove('open');
+}
+function setPl(x) { plActive = x; P.pl = x ? x.id : null; saveP(); $('pl').classList.remove('open'); render(); }
+function plEdit(x) {
+  const d = x ? { ...x, ids: [...x.ids] } : { name: '', emoji: '🎶', color: '#8a6fe0', ids: [] }, b = $('plBody');
+  b.innerHTML = `<h2>${x ? 'Редактировать плейлист' : 'Новый плейлист'}</h2>
+    <div class="row"><span>Название</span><input id="pn" class="tx" maxlength="30"></div>
+    <div class="row"><span>Значок (эмодзи)</span><input id="pe" class="tx" maxlength="4" style="width:80px;text-align:center"></div>
+    <div class="row"><span>Цвет</span><input id="pc" type="color"></div><h3>Треки</h3><div id="pt"></div>`;
+  $('pn').value = d.name; $('pe').value = d.emoji; $('pc').value = d.color;
+  if (!tracks.length) $('pt').innerHTML = '<p>Сначала добавьте треки в плеер.</p>';
+  const rows = [];
+  tracks.forEach(t => {
+    const r = document.createElement('label'); r.className = 'row'; r.innerHTML = '<span class="nm2"></span><input type="checkbox">';
+    r.firstChild.textContent = t.artist + ' — ' + t.title;
+    const c = r.querySelector('input'); c.checked = d.ids.includes(t.id);
+    c.onchange = () => { d.ids = c.checked ? [...d.ids, t.id] : d.ids.filter(v => v !== t.id); };
+    r._c = c; rows.push(r); $('pt').append(r);
+  });
+  if (tracks.length) {
+    const tb = document.createElement('div'); tb.className = 'row'; tb.style.gap = '6px';
+    tb.innerHTML = '<input class="tx" placeholder="Поиск по трекам" style="flex:1;min-width:0"><button class="chip">Все</button><button class="chip">Снять</button>';
+    const [fi, ba, bn] = tb.children, vis = () => rows.filter(r => r.style.display !== 'none');
+    fi.oninput = () => { const q = fi.value.trim().toLowerCase(); rows.forEach(r => { r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none'; }); };
+    ba.onclick = () => vis().forEach(r => { if (!r._c.checked) { r._c.checked = true; r._c.onchange(); } });
+    bn.onclick = () => vis().forEach(r => { if (r._c.checked) { r._c.checked = false; r._c.onchange(); } });
+    $('pt').before(tb);
+  }
+  b.insertAdjacentHTML('beforeend', '<button class="big main" id="ps">Сохранить</button>' + (x ? '<button class="big" id="pd">Удалить плейлист</button>' : '') + '<button class="big" id="pb">Назад</button>');
+  $('pb').onclick = plList;
+  $('ps').onclick = async () => {
+    d.name = $('pn').value.trim() || 'Плейлист'; d.emoji = $('pe').value.trim() || '🎶'; d.color = $('pc').value;
+    d.id = await savePl(d);
+    if (x) Object.assign(x, d); else playlists.push(d);
+    plList(); render();
+  };
+  if (x) $('pd').onclick = async () => {
+    await tx('readwrite', s => s.delete(x.id), 'playlists'); playlists = playlists.filter(v => v !== x);
+    if (plActive === x) { plActive = null; P.pl = null; saveP(); }
+    plList(); render();
+  };
+}
+$('plBtn').onclick = () => { plList(); $('pl').classList.add('open'); };
+$('pl').onclick = e => { if (e.target.id === 'pl') $('pl').classList.remove('open'); };
+
+/* ================= Поиск: выпадающее окно под строкой поиска ================= */
+const sd = $('sd'); let sTimer = 0, sTok = 0; const PAGE = 25;
+const closeSd = () => { sd.classList.remove('open'); document.body.classList.remove('searching'); };
+const TR = { а:'a',б:'b',в:'v',г:'g',д:'d',е:'e',ж:'zh',з:'z',и:'i',й:'y',к:'k',л:'l',м:'m',н:'n',о:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ф:'f',х:'h',ц:'ts',ч:'ch',ш:'sh',щ:'sch',ъ:'',ы:'y',ь:'',э:'e',ю:'yu',я:'ya' };
+const nrm = s => (s || '').toLowerCase().replace(/ё/g, 'е').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+/* ===== Поиск музыки (Audius API: полные треки, ключ не нужен) ===== */
+const lat = s => nrm(s).replace(/[а-я]/g, c => TR[c]);
+function copyTxt(t) {
+  const done = () => toast('Скопировано: ' + t), fb = () => { const a = document.createElement('textarea'); a.value = t; a.style.cssText = 'position:fixed;opacity:0'; document.body.append(a); a.select(); try { document.execCommand('copy'); done(); } catch (e) { toast('Не удалось скопировать'); } a.remove(); };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(done, fb); else fb();
+}
+
+/* сохранение в библиотеку плеера */
+/* трек уже в библиотеке плеера */
+async function saveItem(it) { return it.rec; }
+function plPick(its, row) {
+  const old = row.nextElementSibling; if (old && old.className === 'pp') { old.remove(); return; }
+  const p = document.createElement('div'); p.className = 'pp'; p.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;padding:6px 0;align-items:center';
+  const put = async pl => {
+    let n = 0, err = '';
+    for (const it of its) {
+      try { const r = await saveItem(it); if (!pl.ids.includes(r.id)) pl.ids = [...pl.ids, r.id]; n++; if (its.length > 1) toast('Сохраняю ' + n + ' из ' + its.length + '…'); }
+      catch (e) { err = e === 'quota' ? 'Не хватило места для сохранения' : 'Не удалось добавить часть треков'; if (e === 'quota') break; }
+    }
+    if (n) { await savePl(pl); render(); toast('Добавлено в «' + pl.name + '»: ' + n); p.remove(); }
+    if (err) toast(err);
+  };
+  playlists.forEach(pl => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = pl.emoji + ' ' + pl.name; b.onclick = () => put(pl); p.append(b); });
+  const i = document.createElement('input'); i.className = 'tx'; i.placeholder = 'Новый плейлист'; i.style.width = '42%';
+  const n = document.createElement('button'); n.className = 'chip'; n.textContent = '＋ Создать';
+  n.onclick = async () => { const nm = i.value.trim(); if (!nm) return; const d = { name: nm.slice(0, 30), emoji: '🎶', color: '#8a6fe0', ids: [] }; d.id = await savePl(d); playlists.push(d); put(d); };
+  p.append(i, n); row.after(p);
+}
+
+/* результаты */
+function mkRes(title, artist, label, fn, cls) {
+  const r = document.createElement('div'); r.className = cls || 'res';
+  r.innerHTML = '<div class="nm2"><b></b><small></small></div><button class="chip"></button>';
+  r.querySelector('b').textContent = title; r.querySelector('small').textContent = artist;
+  const b = r.querySelector('button'); b.textContent = label; b.onclick = () => fn(b); return r;
+}
+function addItem(box, it) {
+  const r = document.createElement('div'); r.className = 'res tr';
+  r.innerHTML = '<button class="pl" aria-label="Слушать">▶</button><div class="nm2"><b></b><small></small></div><span class="du"></span>';
+  r.querySelector('b').textContent = it.title; r.querySelector('small').textContent = it.artist; r.querySelector('.du').textContent = it.dur ? fmt(it.dur) : '';
+  const pl = r.querySelector('.pl'); if (it.cover) pl.style.backgroundImage = `linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),url("${it.cover}")`;
+  pl.onclick = it.play;
+  const sc = document.createElement('input'); sc.type = 'checkbox'; sc.className = 'sel'; sc.setAttribute('aria-label', 'Выбрать');
+  sc.onchange = () => { sc.checked ? picked.add(it) : picked.delete(it); sd.upd && sd.upd(); }; r.prepend(sc);
+  [['⧉', 'Копировать название и автора', () => copyTxt((it.artist ? it.artist + ' — ' : '') + it.title)], ['＋', 'В плейлист', () => plPick([it], r)]].forEach(([t, l, f]) => {
+    const b = document.createElement('button'); b.className = 'chip'; b.textContent = t; b.setAttribute('aria-label', l); b.onclick = () => f(b); r.append(b);
+  });
+  box.append(r);
+}
+const picked = new Set();
+function bulkBar() {
+  picked.clear(); document.body.classList.remove('selmode');
+  const bar = document.createElement('div'); bar.className = 'sd-h'; bar.style.cssText = 'gap:6px;flex-wrap:wrap';
+  const mk = (t, f) => { const b = document.createElement('button'); b.className = 'chip'; b.textContent = t; b.onclick = () => f(b); bar.append(b); return b; };
+  const upd = () => { add.textContent = '＋ В плейлист (' + picked.size + ')'; }; sd.upd = upd;
+  const tg = mk('☑ Выбрать несколько', b => {
+    const on = document.body.classList.toggle('selmode'); b.textContent = on ? '✕ Отменить выбор' : '☑ Выбрать несколько'; all.style.display = add.style.display = on ? '' : 'none';
+    if (!on) { picked.clear(); sd.querySelectorAll('.sel').forEach(c => { c.checked = false; }); upd(); }
+  });
+  const all = mk('Выбрать все', () => sd.querySelectorAll('.sel').forEach(c => { if (!c.checked) { c.checked = true; c.onchange(); } }));
+  const add = mk('', () => { if (!picked.size) { toast('Отметьте треки галочками'); return; } plPick([...picked], bar); });
+  all.style.display = add.style.display = 'none'; upd(); sd.append(bar);
+}
+function section(title) {
+  const h = document.createElement('div'); h.className = 'sd-h'; h.textContent = title;
+  const box = document.createElement('div'); sd.append(h, box); return box;
+}
+function openSd(title) {
+  const tok = ++sTok; sd.innerHTML = ''; sd.classList.add('open'); document.body.classList.add('searching'); sd.scrollTop = 0;
+  const top = document.createElement('div'); top.className = 'sd-h'; top.innerHTML = '<span></span><button class="chip">✕ Закрыть</button>';
+  top.firstChild.textContent = title; top.lastChild.onclick = closeSd; sd.append(top); return tok;
+}
+/* поиск по плееру: треки библиотеки и плейлисты */
+function runSearch(q) {
+  openSd('Результаты: ' + q); bulkBar();
+  const w = lat(q).split(' ').filter(Boolean), hit = txt => w.every(x => lat(txt).includes(x));
+  const rank = t => { const a = lat(t.title || t.file || ''), b = lat(t.artist || ''); return (a.startsWith(w[0]) ? 0 : b.startsWith(w[0]) ? 1 : a.includes(w[0]) ? 2 : 3); };
+  const found = tracks.filter(t => hit((t.title || '') + ' ' + (t.artist || '') + ' ' + (t.file || ''))).sort((a, b) => rank(a) - rank(b));
+  const pls = playlists.filter(x => hit(x.name || ''));
+  if (pls.length) {
+    const box = section('Плейлисты (' + pls.length + ')');
+    pls.forEach(x => box.append(mkRes((x.emoji || '🎶') + ' ' + x.name, x.ids.length + ' треков', 'Открыть', () => { closeSd(); setPl(x); })));
+  }
+  if (!found.length && !pls.length) { const box = section('Ничего не найдено'); box.innerHTML = '<p>В плеере нет подходящих треков. Проверьте название или добавьте музыку кнопкой «+».</p>'; return; }
+  if (found.length) {
+    const box = section('Треки (' + found.length + ')');
+    found.forEach(t => {
+      if (!t._cu && t.cover) t._cu = URL.createObjectURL(t.cover);
+      addItem(box, { key: 'l' + t.id, rec: t, title: t.title || t.file, artist: t.artist || '', dur: t.dur || 0, cover: t._cu || '', play: () => { const i = tracks.indexOf(t); if (i >= 0) { load(i, true); closeSd(); } } });
+    });
+  }
+}
+$('q').oninput = () => {
+  clearTimeout(sTimer); const v = $('q').value.trim();
+  if (!v) { closeSd(); return; }
+  sTimer = setTimeout(() => runSearch(v), 150);
+};
+$('sf').onsubmit = e => { e.preventDefault(); clearTimeout(sTimer); const v = $('q').value.trim(); if (v) { $('q').blur(); runSearch(v); } };
+document.addEventListener('pointerdown', e => { if (sd.classList.contains('open') && !sd.contains(e.target) && !$('sf').contains(e.target)) closeSd(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSd(); });
+
+/* ================= Первый запуск ================= */
+const closeFirst = () => { $('first').classList.remove('open'); P.first = 1; saveP(); };
+if ('showDirectoryPicker' in window) $('fDir').style.display = 'block';
+$('fFiles').onclick = () => { closeFirst(); $('file').click(); };
+$('fNo').onclick = closeFirst;
+$('fDir').onclick = async () => {
+  closeFirst();
+  try {
+    const h = await showDirectoryPicker(), fs = [];
+    (async function walk(d) { for await (const [n, e] of d.entries()) { if (e.kind === 'file') { if (AUDIO_RE.test(n)) fs.push(await e.getFile()); } else await walk(e); } })(h)
+      .then(() => addFiles(fs));
+  } catch (e) {}
+};
+
+/* ===== Приложение (APK): системный выбор нескольких файлов и папки ===== */
+const nativePick = !!(window.AndroidMedia && AndroidMedia.pickFiles);
+function openPicker() { nativePick ? AndroidMedia.pickFiles() : $('file').click(); }
+window.__picked = async list => {
+  for (let i = 0; i < list.length; i += 4) {
+    const fs = [];
+    for (const x of list.slice(i, i + 4)) { try { const b = await (await fetch(x.u)).blob(); fs.push(new File([b], x.n, { type: x.t || b.type })); } catch (e) {} }
+    if (fs.length) await addFiles(fs);
+  }
+};
+if (nativePick) {
+  $('add').onclick = () => { $('first').querySelector('h2').textContent = 'Добавить треки'; $('first').classList.add('open'); };
+  $('fFiles').onclick = () => { closeFirst(); AndroidMedia.pickFiles(); };
+  $('fDir').style.display = 'block'; $('fDir').onclick = () => { closeFirst(); AndroidMedia.pickFolder(); };
+}
+/* ================= Установка как приложение (PWA) ================= */
+let dip = null;
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); dip = e; });
+addEventListener('appinstalled', () => { dip = null; toast('Приложение установлено'); });
+/* Манифест создаётся прямо из этого файла (отдельные файлы не нужны) */
+(function () {
+  if (!/^https?:$/.test(location.protocol)) return;
+  try {
+    const base = location.origin + location.pathname;
+    const m = { name: 'Музыкальный плеер', short_name: 'Плеер', lang: 'ru', start_url: base, scope: base.replace(/[^/]*$/, ''),
+      display: 'standalone', orientation: 'portrait', background_color: '#0a0a0d', theme_color: '#0a0a0d',
+      icons: [{ src: $('ico').href, sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+              { src: 'data:image/png;base64,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', sizes: '512x512', type: 'image/png', purpose: 'any maskable' }] };
+    const l = document.createElement('link'); l.rel = 'manifest';
+    l.href = URL.createObjectURL(new Blob([JSON.stringify(m)], { type: 'application/manifest+json' }));
+    document.head.append(l);
+  } catch (e) {}
+})();
+
+/* ================= Старт ================= */
+applyS();
+(async () => {
+  try { const bb = await tx('readonly', s => s.get('bg'), 'meta'); if (bb) setBg(bb); } catch (e) {}
+  try { tracks = (await tx('readonly', s => s.getAll())) || []; } catch (e) { tracks = []; }
+  try { playlists = (await tx('readonly', s => s.getAll(), 'playlists')) || []; } catch (e) { playlists = []; } plActive = playlists.find(x => x.id === P.pl) || null;
+  render();
+  if (tracks.length) {
+    const i = Math.max(0, tracks.findIndex(t => t.id === P.last));
+    load(i, false, tracks[i] && tracks[i].id === P.last ? P.pos : 0);
+  } else if (!P.first) $('first').classList.add('open');
+})();
+})();
+</script>
+</body>
+</html>
