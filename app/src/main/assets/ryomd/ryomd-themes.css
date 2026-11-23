@@ -1,0 +1,34 @@
+/* Ryomd palette switcher — muted, accessible palettes only. */
+html[data-ryomd-theme="dark"] { color-scheme: dark; }
+html[data-ryomd-theme="light"] {
+  color-scheme: light;
+  --bg: #edf2f8; --bg-soft: #f7f9fc; --surface: #ffffff; --surface-raised: #f7f9fc;
+  --surface-hover: #edf2f8; --line: rgba(35,55,82,.14); --line-strong: rgba(35,55,82,.23);
+  --text: #152238; --muted: #586981; --subtle: #74849a; --accent: #456bd0;
+  --accent-strong: #b5c7ff; --teal: #188e88; --shadow: 0 18px 48px rgba(32,53,84,.11);
+}
+html[data-ryomd-theme="light"] body { color: var(--text); background: linear-gradient(180deg,#f5f8fc,#edf2f8); }
+html[data-ryomd-theme="light"] .topbar { background: rgba(247,249,252,.91); }
+html[data-ryomd-theme="light"] .overview-card,
+html[data-ryomd-theme="light"] .tool-card,
+html[data-ryomd-theme="light"] .history-panel,
+html[data-ryomd-theme="light"] .tool-modal { background: #fff; }
+html[data-ryomd-theme="light"] .tool-card:hover { background: #f6f8fd; }
+html[data-ryomd-theme="light"] .tool-input,
+html[data-ryomd-theme="light"] .tool-select,
+html[data-ryomd-theme="light"] .tool-textarea,
+html[data-ryomd-theme="light"] .tool-pre { background: #f4f7fb; color: #172338; }
+html[data-ryomd-theme="light"] .nx-dropdown { background: #fff; }
+html[data-ryomd-theme="light"] .modal-header { background: #f8fafd; }
+html[data-ryomd-theme="light"] .tool-card-panel { background: #f8fafd; }
+#ryomdThemeDock { position: fixed; z-index: 80; right: max(18px,env(safe-area-inset-right)); bottom: max(82px,calc(env(safe-area-inset-bottom) + 72px)); font: 600 11px/1.35 system-ui,sans-serif; color: var(--text); }
+#ryomdThemeToggle { display: inline-flex; align-items: center; gap: 7px; min-height: 30px; padding: 5px 9px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); color: var(--muted); box-shadow: 0 5px 18px rgba(0,0,0,.12); font: inherit; cursor: pointer; }
+#ryomdThemeToggle:hover { color: var(--text); border-color: var(--accent); }
+#ryomdThemeToggle .ryomd-theme-emoji { font-size: 13px; }
+#ryomdThemeMenu { position: absolute; right: 0; bottom: calc(100% + 7px); width: 178px; padding: 7px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+#ryomdThemeMenu[hidden] { display: none !important; }
+#ryomdThemeMenu .ryomd-theme-heading { padding: 5px 8px; color: var(--subtle); font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+#ryomdThemeMenu button { display: flex; align-items: center; width: 100%; gap: 8px; min-height: 34px; margin: 2px 0; padding: 6px 8px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: var(--text); text-align: left; font: inherit; cursor: pointer; }
+#ryomdThemeMenu button:hover, #ryomdThemeMenu button[aria-pressed="true"] { border-color: var(--line); background: rgba(139,168,255,.1); }
+#ryomdThemeMenu .ryomd-theme-name { flex: 1; }
+#ryomdThemeMenu .ryomd-theme-note { display: none; }
