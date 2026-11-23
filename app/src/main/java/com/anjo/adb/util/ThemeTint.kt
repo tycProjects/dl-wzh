@@ -19,6 +19,6 @@ object ThemeTint {
     }
 
     fun aplicarEmSwitch(sw: CompoundButton) {
-        sw.thumbTintList = android.content.res.ColorStateList.valueOf(corAtual(sw.context))
+        sw.setThumbTintList(android.content.res.ColorStateList.valueOf(corAtual(sw.context)))
     }
 }

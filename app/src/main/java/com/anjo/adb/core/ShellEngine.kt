@@ -2,7 +2,7 @@ package com.anjo.adb.core
 
 import android.content.pm.PackageManager
 import rikka.shizuku.Shizuku
-import rikka.shizuku.ShizukuRemoteProcess
+import rikka.shizuku.ShizukuProcess
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -15,7 +15,7 @@ import java.io.InputStreamReader
  *
  * Como o Shizuku funciona por trás: o usuário ativa o app Shizuku (via ADB
  * wireless debugging ou root), nosso app pede permissão pelo Shizuku.requestPermission,
- * e depois disso Shizuku.newProcess() deixa a gente rodar "adb shell <comando>"
+ * e depois disso Shizuku.shell().execute() deixa a gente rodar "adb shell <comando>"
  * com privilégio de shell, sem precisar de root nem de cabo.
  */
 object ShellEngine {
@@ -47,7 +47,7 @@ object ShellEngine {
     fun run(cmd: String): Result<String> {
         if (!isReady()) return Result.failure(IllegalStateException("Shizuku não autorizado"))
         return try {
-            val process: ShizukuRemoteProcess = Shizuku.newProcess(arrayOf("sh", "-c", cmd), null, null)
+            val process: ShizukuProcess = Shizuku.shell().execute(arrayOf("sh", "-c", cmd))
             val out = BufferedReader(InputStreamReader(process.inputStream)).readText()
             val err = BufferedReader(InputStreamReader(process.errorStream)).readText()
             process.waitFor()
