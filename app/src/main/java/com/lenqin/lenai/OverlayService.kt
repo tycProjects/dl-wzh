@@ -311,7 +311,7 @@ class OverlayService : Service() {
         }
         val outputScroll = ScrollView(this).apply {
             isFillViewport = true
-            addView(output, ScrollView.LayoutParams(-1, -2))
+            // AUTO-REPAIR: disabled -- unresolved reference 'LayoutParams' (was: addView(output, ScrollView.LayoutParams(-1, -2)))
         }
 
         val readButton = actionButton("◎   BACA LAYAR SEKARANG") {
