@@ -428,13 +428,15 @@ class OverlayService : Service() {
 
 $text"
                             )
-                            resultText = "HASIL BACA LAYAR
+                            resultText = """
+HASIL BACA LAYAR
 
 $text
 
 PEMBAHASAN GEMINI
 
-$answer"
+$answer
+""".trimIndent()
                             showMessage(resultText)
                             captureInProgress = false
                         }
