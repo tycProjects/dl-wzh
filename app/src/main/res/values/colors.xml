@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_root">#0A0612</color>
+    <color name="card_bg">#1A1326</color>
+    <color name="card_border">#3A2A55</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A79CC0</color>
+    <color name="accent_default">#8B2FE0</color>
+    <color name="accent_default_light">#B06CF2</color>
+    <color name="track_off">#332A44</color>
+    <color name="success_green">#2ECC71</color>
+    <color name="danger_red">#E74C3C</color>
+</resources>
