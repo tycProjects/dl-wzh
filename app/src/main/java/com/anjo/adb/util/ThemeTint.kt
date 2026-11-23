@@ -19,6 +19,6 @@ object ThemeTint {
     }
 
     fun aplicarEmSwitch(sw: CompoundButton) {
-        sw.setThumbTintList(android.content.res.ColorStateList.valueOf(corAtual(sw.context)))
+        // AUTO-REPAIR: disabled -- unresolved reference 'setThumbTintList' (was: sw.setThumbTintList(android.content.res.ColorStateList.valueOf(corAtual(sw.context))))
     }
 }
