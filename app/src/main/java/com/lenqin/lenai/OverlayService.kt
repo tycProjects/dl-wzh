@@ -19,6 +19,7 @@ import android.os.IBinder
 import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.Gravity
+import android.view.WindowManager.LayoutParams
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
@@ -424,9 +425,11 @@ class OverlayService : Service() {
                         showMessage(resultText)
                         scope.launch {
                             val answer = Gemini(this@OverlayService).ask(
-                                "Bacalah teks hasil OCR berikut. Identifikasi pertanyaan yang ada, lalu jelaskan jawaban dan alasan secara runtut dan mudah dipahami. Jika ada bagian yang tidak terbaca, beri tahu pengguna.
+                                """
+Bacalah teks hasil OCR berikut. Identifikasi pertanyaan yang ada, lalu jelaskan jawaban dan alasan secara runtut dan mudah dipahami. Jika ada bagian yang tidak terbaca, beri tahu pengguna.
 
-$text"
+$text
+"""
                             )
                             resultText = """
 HASIL BACA LAYAR
