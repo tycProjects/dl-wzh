@@ -1,0 +1,6 @@
+{
+  "name": "Touchline FM",
+  "description": "Dark modern football manager career game with club customization, tactical squad management, league & knockout cup competitions, live match simulation, training, and transfer market.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
