@@ -2,7 +2,7 @@ package com.anjo.adb.core
 
 import android.content.pm.PackageManager
 import rikka.shizuku.Shizuku
-// AUTO-REPAIR: disabled -- unresolved reference 'ShizukuProcess' (was: import rikka.shizuku.ShizukuProcess)
+import rikka.shizuku.ShizukuProcess
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -47,7 +47,7 @@ object ShellEngine {
     fun run(cmd: String): Result<String> {
         if (!isReady()) return Result.failure(IllegalStateException("Shizuku não autorizado"))
         return try {
-            // AUTO-REPAIR: disabled -- unresolved reference 'shell' (was: val process: ShizukuProcess = Shizuku.shell().execute(arrayOf("sh", "-c", cmd)))
+            val process: ShizukuProcess = Shizuku.shell().execute(arrayOf("sh", "-c", cmd))
             val out = BufferedReader(InputStreamReader(process.inputStream)).readText()
             val err = BufferedReader(InputStreamReader(process.errorStream)).readText()
             process.waitFor()
