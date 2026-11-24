@@ -198,7 +198,7 @@ public final class MainActivity extends Activity {
         }
     }
 
-    private void setImmersive(boolean on) {
+    private void setImmersiveMode(boolean on) {
         if (Build.VERSION.SDK_INT >= 30) {
             WindowInsetsController controller = getWindow().getInsetsController();
             if (controller == null) return;
@@ -314,7 +314,7 @@ public final class MainActivity extends Activity {
                 rootView.addView(view, new FrameLayout.LayoutParams(
                         FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
                 if (webView != null) webView.setVisibility(View.GONE);
-                setImmersive(true);
+                setImmersiveMode(true);
             }
 
             @Override
@@ -325,7 +325,7 @@ public final class MainActivity extends Activity {
                 if (customViewCallback != null) customViewCallback.onCustomViewHidden();
                 customViewCallback = null;
                 if (webView != null) webView.setVisibility(View.VISIBLE);
-                setImmersive(false);
+                setImmersiveMode(false);
             }
 
             @Override
