@@ -387,7 +387,7 @@ public final class RyomdMediaSaver {
 
     private static String safeFileName(String name, String mimeType) {
         String clean = name == null ? "" : name.trim();
-        clean = clean.replaceAll("[\\\/:*?\"<>|\\p{Cntrl}]", "_");
+        clean = clean.replaceAll("[\\/:*?\"<>|\\p{Cntrl}]", "_");
         clean = clean.replaceAll("\\s+", " ").trim();
         while (clean.startsWith(".")) clean = clean.substring(1);
         if (clean.isEmpty()) clean = "Ryomd-download-" + System.currentTimeMillis();
