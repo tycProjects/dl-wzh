@@ -1,0 +1,13 @@
+RYOMD TUBE V2 — STATIC VALIDATION
+PASS — node --check: app.js, ryomd-themes.js, widget.js.
+PASS — XML Android terparse.
+PASS — Parser Java (javalang) menerima semua 9 file .java; kurung seimbang; impor diperiksa (sisa temuan = konstanta/nama berkualifikasi penuh).
+PASS — jsdom: 30 tool dibuka + semua tombol diklik tanpa galat JS.
+PASS — jsdom alur Ryomd Tube pada dua mode (katalog native; hanya backend): beranda, chip topik, buka video, berlangganan,
+       putar musik, channel, kembali bertahap, tab Langganan + feed, impor CSV, riwayat + impor JSON + hapus, gerbang Koleksi,
+       tab tautan, tempel URL di kolom cari.
+PASS — API NewPipeExtractor v0.27.1 yang dipakai katalog (SearchInfo, ChannelInfo, ChannelTabInfo, ChannelTabs.VIDEOS,
+       ListLinkHandler.getContentFilters, Description record .content()/.type(), Image) dicocokkan ke source tag v0.27.1.
+PASS — play-services-auth 22.0.0 tercantum di dokumentasi resmi Android untuk AuthorizationClient.
+
+NOT TESTED — kompilasi Gradle/javac, build WZH, OAuth Google nyata, kuota YouTube API, pemutaran stream nyata di perangkat.

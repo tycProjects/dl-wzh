@@ -1,0 +1,13 @@
+RYOMD YOUTUBE NATIVE PLAYER V2.2 — STATIC VALIDATION
+
+PASS — XML (manifest, resources) terparse.
+PASS — Keseimbangan tanda kurung semua file Java.
+PASS — node --check: app.js, ryomd-themes.js, modules/crypto-market/widget.js.
+PASS — jsdom: 30 tool dibuka dan semua tombol data-action diklik tanpa galat JavaScript.
+PASS — jsdom: alur YouTube Desk (cari → detail → Putar video/musik → tab Dari tautan) memanggil RyomdYouTube.playYouTube benar.
+PASS — API NewPipeExtractor v0.27.1 yang dipakai (getCodec, getDeliveryMethod, MediaFormat, Response ctor) dicocokkan ke source tag v0.27.1.
+PASS — Tag NewPipeExtractor v0.27.1 dan Media3 1.10.1 ada di GitHub.
+PASS — applicationId dipertahankan; versionCode 5.
+
+NOT TESTED — Kompilasi Gradle/javac (tidak ada JDK + Android SDK di lingkungan penyusunan), build WZH, tanda tangan,
+             pemutaran YouTube nyata di perangkat (URL googlevideo bisa ditolak 403 tergantung klien/UA).

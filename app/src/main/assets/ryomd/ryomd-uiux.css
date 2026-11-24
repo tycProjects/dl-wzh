@@ -1,0 +1,257 @@
+/* ==========================================================================
+   RYOMD UI/UX PRO MAX LAYER  (additive — dimuat terakhir, tidak mengubah file lain)
+   Sumber aturan: repo nextlevelbuilder/ui-ux-pro-max-skill
+     · style  : Dark Mode (OLED)      · palet  : "Dark audio + play green"
+     · UX     : Touch Target Size (Android 48dp), Touch Spacing (>= 8px),
+                Loading Indicators (skeleton + aria-busy), Pull to Refresh,
+                visible focus, prefers-reduced-motion, cursor-pointer, tanpa emoji sbg ikon
+   Font: tetap system-ui agar aplikasi bekerja offline di WebView (tanpa Google Fonts).
+   ========================================================================== */
+:root {
+  --ux-cta: #22c55e;          /* play / aksi utama */
+  --ux-on-cta: #0f172a;       /* kontras ~8:1 di atas --ux-cta */
+  --ux-violet: #818cf8;       /* aksi sekunder */
+  --ux-ring: #c4b5fd;         /* focus ring */
+  --ux-danger: #f87171;
+  --ux-touch: 48px;           /* 48dp Android */
+  --ux-gap: 8px;
+  --ux-ease: cubic-bezier(.2, .7, .2, 1);
+}
+html[data-ryomd-theme="light"] { --subtle: #586981; --ux-on-cta: #052e16; --ux-ring: #4f46e5; }
+
+html { -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; }
+img, video { max-width: 100%; }
+
+/* cursor + hilangkan delay 300ms pada semua elemen interaktif */
+button, [role="button"], [role="tab"], [data-action], [data-open-tool], .tool-card,
+.category-tab, .history-filter, summary, label[for], select { cursor: pointer; touch-action: manipulation; }
+button:disabled, [data-action]:disabled { cursor: not-allowed; }
+
+/* fokus selalu terlihat (keyboard / D-pad / aksesibilitas) */
+:focus-visible { outline: 3px solid var(--ux-ring); outline-offset: 2px; }
+:focus:not(:focus-visible) { outline: none; }
+
+/* sentuh: target >= 44-48px, jarak antar target >= 8px */
+@media (pointer: coarse) {
+  .icon-button, .modal-close { width: 44px; height: 44px; flex-basis: 44px; }
+  .category-tab, .history-filter, .text-button, .dropdown-item, .button, .tool-btn,
+  .ryomd-yt-channel-link, .ryomd-yt-subnav button { min-height: 44px; }
+  .category-tabs, .history-filters, .topbar-actions { gap: var(--ux-gap); }
+  .tool-card { min-height: 64px; }
+}
+@media (max-width: 560px) {
+  input, select, textarea, .tool-input, .tool-select, .tool-textarea { font-size: 16px; }
+}
+
+/* modal = bottom sheet yang aman terhadap gesture bar & tidak memicu pull-to-refresh */
+.modal-backdrop { overscroll-behavior: contain; }
+.tool-modal { max-height: calc(100dvh - 16px); }
+.modal-body { overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+
+.tool-card { transition: transform .16s var(--ux-ease), border-color .16s, background-color .16s; }
+.tool-card:active { transform: scale(.985); }
+
+/* ---------------- YouTube Desk ---------------- */
+.ryomd-yt-tabs { gap: var(--ux-gap); }
+.ryomd-yt-tabs span { border: 0; padding: 0; }
+.ryomd-yt-tab { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px;
+  border: 1px solid var(--line-strong, rgba(163,184,211,.24)); border-radius: 999px; background: transparent;
+  color: var(--muted, #9aa9bc); font-size: 13px; font-weight: 700; transition: background-color .16s, color .16s, border-color .16s; }
+.ryomd-yt-tab:hover { color: var(--text, #f1f5fa); border-color: var(--ux-violet); }
+.ryomd-yt-tab.is-active, .ryomd-yt-tab[aria-selected="true"] { background: var(--ux-cta); border-color: var(--ux-cta); color: var(--ux-on-cta); }
+
+#ryomdYtContent[data-view="channel"] .ryomd-yt-results-root .ryomd-yt-video-shelf,
+#ryomdYtContent[data-view="video"] .ryomd-yt-results-root .ryomd-yt-channel-shelf { display: none; }
+
+.ryomd-yt-card-main { min-height: var(--ux-touch); }
+
+.ryomd-yt-native-actions { gap: var(--ux-gap); }
+.ryomd-yt-native-launch .ryomd-yt-native-actions button,
+.ryomd-yt-link-panel .ryomd-yt-native-actions button {
+  display: flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--ux-touch);
+  border: 1px solid transparent; border-radius: 14px; background: var(--ux-cta); color: var(--ux-on-cta);
+  font-size: 14px; font-weight: 800; letter-spacing: .01em; text-transform: none;
+  transition: transform .16s var(--ux-ease), filter .16s, box-shadow .16s; }
+.ryomd-yt-native-launch .ryomd-yt-native-actions button + button,
+.ryomd-yt-link-panel .ryomd-yt-native-actions button + button {
+  background: rgba(129,140,248,.14); border-color: rgba(165,180,252,.55); color: #e0e7ff; }
+.ryomd-yt-native-actions button svg { flex: 0 0 auto; }
+.ryomd-yt-native-actions button:not(:disabled):hover { filter: brightness(1.08); }
+.ryomd-yt-native-actions button:not(:disabled):active { transform: scale(.97); }
+.ryomd-yt-native-actions button:disabled { opacity: .55; }
+
+.ryomd-yt-native-status { border-left: 3px solid var(--ux-ring); line-height: 1.55; }
+.ryomd-yt-native-status[data-state="ready"] { border-left-color: var(--ux-cta); }
+.ryomd-yt-native-status[data-state="error"], .ryomd-yt-native-status.is-error { border-left-color: var(--ux-danger); color: #fecaca; }
+.ryomd-yt-native-status[aria-busy="true"] { position: relative; overflow: hidden; }
+.ryomd-yt-native-status[aria-busy="true"]::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 40%;
+  background: var(--ux-cta); animation: ryomdSlide 1.1s var(--ux-ease) infinite; }
+
+.ryomd-yt-link-panel { display: grid; gap: 12px; padding: 4px 0 8px; }
+.ryomd-yt-link-panel h4 { margin: 0; font-size: 16px; }
+.ryomd-yt-link-panel p { margin: 0; color: var(--muted, #9aa9bc); line-height: 1.55; }
+.ryomd-yt-link-panel .tool-input { min-height: var(--ux-touch); }
+
+/* skeleton loader (pengganti teks "Mencari…" yang membuat layout loncat) */
+.ryomd-yt-loading { display: grid; gap: var(--ux-gap); }
+.ryomd-yt-loading > span { color: var(--muted, #9aa9bc); font-size: 12px; }
+.ryomd-skeleton { display: block; height: 68px; border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,.10), rgba(255,255,255,.04));
+  background-size: 200% 100%; animation: ryomdShimmer 1.2s linear infinite; }
+@keyframes ryomdShimmer { to { background-position: -200% 0; } }
+@keyframes ryomdSlide { 0% { transform: translateX(-100%); } 100% { transform: translateX(260%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   RYOMD TUBE — tampilan ala YouTube (Beranda · Langganan · Riwayat · Koleksi)
+   Pola: feed vertikal 16:9, chip topik, avatar channel, bottom-nav ikon SVG.
+   Aturan UI/UX Pro Max: target >= 44px, teks >= 12px, kontras >= 4.5:1, tanpa emoji ikon.
+   ========================================================================== */
+.ryt-shell {
+  --ryt-bg: #0f0f12; --ryt-surface: #1c1c22; --ryt-surface2: #26262e; --ryt-line: rgba(255,255,255,.10);
+  --ryt-text: #f4f4f6; --ryt-muted: #a9a9b6; --ryt-red: #ff2d55; --ryt-white: #ffffff;
+  gap: 12px; margin: 0; color: var(--ryt-text);
+}
+html[data-ryomd-theme="light"] .ryt-shell {
+  --ryt-bg: #ffffff; --ryt-surface: #f1f1f4; --ryt-surface2: #e4e4ea; --ryt-line: rgba(0,0,0,.12);
+  --ryt-text: #14141a; --ryt-muted: #55555f; --ryt-white: #14141a;
+}
+.ryt-shell button { font-family: inherit; }
+
+.ryt-header { display: flex; align-items: center; justify-content: space-between; min-height: 48px; }
+.ryt-brand { display: flex; align-items: center; gap: 8px; font-size: 19px; letter-spacing: -.02em; }
+.ryt-brand b { font-weight: 800; }
+.ryt-brand b span { color: var(--ryt-muted); font-weight: 600; margin-left: 2px; }
+.ryt-logo { display: grid; place-items: center; width: 34px; height: 24px; border-radius: 8px; background: var(--ryt-red); color: #fff; }
+.ryt-ext { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; color: var(--ryt-muted); }
+.ryt-ext:active { background: var(--ryt-surface); }
+
+.ryt-account { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 12px; border-radius: 14px; background: var(--ryt-surface); }
+.ryt-account-copy { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.ryt-account-copy > span:last-child { display: grid; min-width: 0; }
+.ryt-account-copy b { overflow: hidden; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.ryt-account-copy small { overflow: hidden; color: var(--ryt-muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+
+.ryt-chip-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px;
+  background: var(--ryt-surface2); color: var(--ryt-text); font-size: 13px; font-weight: 700; white-space: nowrap; transition: background-color .15s, transform .15s; }
+.ryt-chip-btn:active { transform: scale(.97); }
+.ryt-chip-btn.is-primary { background: var(--ryt-white); color: var(--ryt-bg); }
+.ryt-chip-btn.is-danger { color: #ff8a9b; }
+
+.ryt-searchbar { position: sticky; top: 0; z-index: 6; display: grid; grid-template-columns: minmax(0, 1fr) 44px 44px; gap: 6px; padding: 6px 0; background: var(--ryt-bg); }
+.ryt-searchbar input { min-height: 44px; padding: 0 16px; border: 1px solid var(--ryt-line); border-radius: 999px; background: var(--ryt-surface); color: var(--ryt-text); font-size: 16px; }
+.ryt-icon-btn { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: var(--ryt-surface); color: var(--ryt-text); font-size: 22px; line-height: 1; }
+.ryt-icon-btn.is-ghost { background: transparent; color: var(--ryt-muted); }
+.ryt-icon-btn:active { background: var(--ryt-surface2); }
+
+.ryt-chips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 4px; scrollbar-width: none; }
+.ryt-chips::-webkit-scrollbar { display: none; }
+.ryt-chips[hidden] { display: none; }
+.ryt-chips button { flex: 0 0 auto; min-height: 36px; padding: 0 14px; border: 0; border-radius: 10px; background: var(--ryt-surface); color: var(--ryt-text); font-size: 13px; font-weight: 600; }
+.ryt-chips button.is-active { background: var(--ryt-white); color: var(--ryt-bg); }
+
+.ryt-content { min-height: 280px; gap: 16px; }
+.ryt-feed { display: grid; gap: 22px; }
+.ryt-card { display: grid; gap: 10px; overflow: visible; border: 0; border-radius: 0; background: transparent; }
+.ryt-thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; background: var(--ryt-surface); }
+.ryt-thumb-open { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; }
+.ryt-thumb-open img { width: 100%; height: 100%; object-fit: cover; }
+.ryt-thumb-open i { position: absolute; right: 8px; bottom: 8px; padding: 2px 6px; border-radius: 6px; background: rgba(0,0,0,.82); color: #fff; font-size: 12px; font-style: normal; font-weight: 600; }
+.ryt-quick-play { position: absolute; left: 8px; bottom: 8px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
+  background: rgba(0,0,0,.62); color: #fff; backdrop-filter: blur(6px); opacity: .95; transition: transform .15s, background-color .15s; }
+.ryt-quick-play:active { transform: scale(.92); background: var(--ux-cta); color: var(--ux-on-cta); }
+.ryt-card-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) 44px; align-items: start; gap: 10px; }
+.ryt-avatar-btn { display: block; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: transparent; }
+.ryt-avatar { display: inline-grid; place-items: center; flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: var(--ryt-surface2); color: #fff; font-size: 16px; font-weight: 700; object-fit: cover; }
+.ryt-avatar.is-sm { width: 36px; height: 36px; font-size: 14px; }
+.ryt-avatar.is-lg { width: 64px; height: 64px; font-size: 24px; }
+.ryt-avatar.is-xl { width: 72px; height: 72px; font-size: 28px; }
+.ryt-card-meta { display: grid; gap: 4px; min-width: 0; padding: 0; border: 0; background: transparent; color: var(--ryt-text); text-align: left; }
+.ryt-card-meta b { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: 15px; font-weight: 600; line-height: 1.35; }
+.ryt-card-meta small { overflow: hidden; color: var(--ryt-muted); font-size: 12px; line-height: 1.4; text-overflow: ellipsis; }
+
+.ryt-shelf { display: grid; gap: 10px; }
+.ryt-shelf > h4 { margin: 0; font-size: 15px; font-weight: 700; }
+.ryt-strip { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.ryt-strip::-webkit-scrollbar { display: none; }
+.ryt-strip-item { display: grid; justify-items: center; gap: 6px; flex: 0 0 76px; padding: 0; border: 0; background: transparent; color: var(--ryt-text); }
+.ryt-strip-item b { max-width: 76px; overflow: hidden; font-size: 12px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+
+.ryt-section-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.ryt-section-head h3 { margin: 0; font-size: 18px; }
+.ryt-section-head p { margin: 4px 0 0; color: var(--ryt-muted); font-size: 12px; }
+.ryt-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.ryt-empty { display: grid; justify-items: center; gap: 8px; padding: 28px 16px; border-radius: 16px; background: var(--ryt-surface); text-align: center; }
+.ryt-empty b { font-size: 16px; }
+.ryt-empty p { max-width: 420px; margin: 0; color: var(--ryt-muted); font-size: 13px; line-height: 1.6; }
+.ryt-empty code, .ryt-help code { padding: 1px 5px; border-radius: 5px; background: var(--ryt-surface2); font-size: 12px; }
+.ryt-notice { padding: 10px 12px; border-radius: 12px; background: var(--ryt-surface); color: var(--ryt-muted); font-size: 13px; line-height: 1.5; }
+.ryt-notice.is-error { background: rgba(255,45,85,.12); color: #ffc2cc; }
+.ryt-notice p { margin: 4px 0 0; }
+
+.ryt-panel { display: grid; gap: 12px; padding: 16px; border-radius: 16px; background: var(--ryt-surface); }
+.ryt-panel h3 { margin: 0; font-size: 17px; }
+.ryt-panel p { margin: 0; color: var(--ryt-muted); font-size: 13px; line-height: 1.6; }
+
+.ryt-help { border-radius: 12px; background: var(--ryt-surface); }
+.ryt-help summary { min-height: 44px; padding: 12px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.ryt-help ol { margin: 0; padding: 0 16px 14px 32px; color: var(--ryt-muted); font-size: 13px; line-height: 1.7; }
+.ryt-help a { color: #8ab4ff; }
+.ryt-help .ryomd-yt-description { margin: 0; padding: 0 14px 14px; font-size: 13px; }
+
+.ryt-backbar { display: flex; }
+.ryt-channel-head { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 14px; }
+.ryt-channel-head h3 { margin: 0 0 4px; font-size: 19px; }
+.ryt-channel-head small { color: var(--ryt-muted); font-size: 12px; }
+.ryt-channel-head .ryt-sub-btn { grid-column: 1 / -1; }
+.ryt-sub-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px;
+  background: var(--ryt-white); color: var(--ryt-bg); font-size: 14px; font-weight: 700; transition: background-color .15s, color .15s, transform .15s; }
+.ryt-sub-btn:active { transform: scale(.97); }
+.ryt-sub-btn.is-on { background: var(--ryt-surface2); color: var(--ryt-text); }
+
+.ryt-watch { display: grid; gap: 12px; }
+.ryt-player-preview { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 14px; background: #000; }
+.ryt-player-preview img { width: 100%; height: 100%; object-fit: cover; opacity: .85; }
+.ryt-big-play { position: absolute; inset: 0; margin: auto; display: grid; place-items: center; width: 64px; height: 64px; padding: 0; border: 0; border-radius: 50%;
+  background: var(--ux-cta); color: var(--ux-on-cta); box-shadow: 0 8px 28px rgba(0,0,0,.45); transition: transform .15s; }
+.ryt-big-play svg { width: 30px; height: 30px; }
+.ryt-big-play:active { transform: scale(.94); }
+.ryt-watch h2 { margin: 0; font-size: 18px; line-height: 1.35; }
+.ryt-meta { margin: 0; color: var(--ryt-muted); font-size: 13px; }
+.ryt-channel-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 10px; }
+.ryt-channel-name b { display: block; overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.ryt-open-external { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #8ab4ff; font-size: 13px; font-weight: 600; text-decoration: none; }
+
+.ryt-list { display: grid; gap: 8px; }
+.ryt-list-item { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 12px; min-height: 64px; color: var(--ryt-text); text-decoration: none; }
+.ryt-list-item img, .ryt-list-item .ryt-avatar { width: 96px; height: 54px; border-radius: 10px; object-fit: cover; }
+.ryt-list-item span { display: grid; gap: 4px; min-width: 0; }
+.ryt-list-item b { overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.ryt-list-item small { color: var(--ryt-muted); font-size: 12px; }
+
+.ryt-nav { position: sticky; bottom: 0; z-index: 7; display: grid; grid-template-columns: repeat(4, 1fr); padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--ryt-line); border-radius: 0; background: var(--ryt-bg); box-shadow: none; backdrop-filter: none; }
+.ryt-nav button { display: grid; justify-items: center; gap: 3px; min-height: 52px; padding: 4px; border: 0; border-radius: 12px; background: transparent; color: var(--ryt-muted); }
+.ryt-nav button small { font-size: 12px; font-weight: 600; }
+.ryt-nav button.is-active { color: var(--ryt-text); }
+.ryt-nav button.is-active svg { color: var(--ryt-red); }
+.ryt-nav button:active { background: var(--ryt-surface); }
+
+/* Pemutar native: tombol aksi pada halaman tonton */
+.ryt-watch .ryomd-yt-native-actions { gap: 8px; }
+.ryt-watch .ryomd-yt-native-actions button, .ryt-panel .ryomd-yt-native-actions button { min-height: 48px; border-radius: 999px; }
+
+@media (min-width: 680px) {
+  .ryt-feed { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ryt-shell { max-width: 960px; margin-inline: auto; }
+}
+@media (min-width: 1000px) { .ryt-feed { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Tube V3: accessible home refresh and pagination controls. */
+.ryt-home-head{align-items:center;padding:2px 0 4px}.ryt-home-head .ryt-chip-btn{min-height:42px;padding-inline:16px}.ryt-load-more-wrap{display:flex;justify-content:center;padding:8px 0 18px}.ryt-load-more-wrap .ryt-chip-btn{min-width:190px;min-height:46px}.ryt-chip-btn:disabled{opacity:.58;cursor:wait}.ryt-end-note{margin:0;padding:12px 8px;color:var(--ryt-muted);font-size:12px;text-align:center}

@@ -1,0 +1,18 @@
+RYOMD YOUTUBE NATIVE PLAYER V2 — THIRD-PARTY NOTICES
+
+This add-on uses NewPipe Extractor v0.27.1, licensed under GNU GPL version 3.
+Project: https://github.com/TeamNewPipe/NewPipeExtractor
+License: https://github.com/TeamNewPipe/NewPipeExtractor/blob/v0.27.1/LICENSE
+
+The extraction/player integration follows the architecture demonstrated by PlayTube.
+Project: https://github.com/arslandaim-hub/PlayTube
+PlayTube is licensed under GNU GPL version 3.
+License: https://github.com/arslandaim-hub/PlayTube/blob/main/LICENSE
+
+Media playback uses AndroidX Media3 (Apache License 2.0).
+OkHttp is used for HTTP requests. See its upstream license and notices.
+
+This Ryomd add-on is newly adapted Java integration code. Existing Ryomd web assets,
+MediaStore implementation, and legacy JavaScript bridge are retained unchanged.
+When distributing a derivative containing GPL-covered components, comply with GPL-3.0,
+including providing corresponding source and preserving notices.

@@ -1,0 +1,20 @@
+RYOMD TUBE V3.1 — STATIC VALIDATION REPORT
+
+Source version: versionCode 9 / 1.1.8-ryomd-tube-v3.1
+Package: com.ryomd.nativeapp
+
+PASS — JavaScript syntax: app/src/main/assets/ryomd/app.js passed node --check.
+PASS — All AndroidManifest and bundled resource XML files parse successfully.
+PASS — Source wiring contains a native fullscreen Kualitas picker, available-resolution discovery, a quality-aware playback bridge, and stream re-resolution at the selected height.
+PASS — Playback-service replacement carries the prior seek position and play/pause intent.
+PASS — Last selected quality is persisted in app-private SharedPreferences and reused on the next video.
+PASS — Source inspection confirms the default quality is automatic and selectable entries are generated from progressive video streams discovered by NewPipe; no made-up resolution choices are added.
+PASS — SHA256SUMS.txt digests match every packaged source file except the checksum manifest itself.
+PASS — ZIP archive integrity test completed successfully.
+
+NOT RUN — Full Android Gradle compile/APK build. The supplied project does not include gradle-wrapper.jar or an installed Gradle/Android SDK in this execution environment. WZH must perform the Gradle build.
+NOT RUN — Live YouTube stream extraction, playback quality switching, decoder compatibility, network behavior, and playback resume on a physical Android device.
+
+QUALITY LIMITS — The selector currently caps progressive streams at 1080p for conservative compatibility and data use. Only formats returned by NewPipe and supported by the app adapter are shown. Some videos may expose fewer choices or only manifest streams, in which case manual progressive quality options may not appear.
+
+BUILD — Import as Android Gradle Project into WZH, build with the same release signing key as the installed Ryomd app, and do not uninstall the existing app before testing the update.

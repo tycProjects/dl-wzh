@@ -1,0 +1,16 @@
+RYOMD TUBE V3.1 — WZH PACKAGING VALIDATION REPORT (043)
+
+PASS — ZIP layout is flattened; no outer project wrapper directory.
+PASS — settings.gradle exists at archive root.
+PASS — root build.gradle and app/build.gradle exist at conventional locations.
+PASS — no competing settings.gradle.kts or build.gradle.kts files remain.
+PASS — Android applicationId remains com.ryomd.nativeapp.
+PASS — versionCode remains 9 and versionName remains 1.1.8-ryomd-tube-v3.1.
+PASS — Android source, OAuth integration, home-feed pagination, refresh/load-more controls, and video quality selector were retained unchanged from source 042.
+PASS — ZIP integrity test completed.
+PASS — SHA256SUMS.txt regenerated for all packaged files.
+
+NOT RUN — Gradle compile/APK build and WZH E-PUBLISH. This environment does not contain an installed Gradle/Android SDK and the archive intentionally relies on WZH's Gradle build environment.
+NOT RUN — Google OAuth live authorization or on-device playback tests.
+
+IMPORT — Import as an Android Gradle Project. The archive root contains settings.gradle. Build with assembleRelease using the same signing key as the installed Ryomd app.

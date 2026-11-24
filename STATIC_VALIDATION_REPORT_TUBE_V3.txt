@@ -1,0 +1,16 @@
+RYOMD TUBE V3 — STATIC VALIDATION REPORT
+
+Source version: versionCode 8 / 1.1.7-ryomd-tube-v3
+Package: com.ryomd.nativeapp
+
+PASS — JavaScript syntax: app/src/main/assets/ryomd/app.js passed node --check.
+PASS — AndroidManifest.xml and the three bundled Android resource XML files parsed successfully.
+PASS — SHA256SUMS.txt contains current digests for all 58 source files (excluding the manifest itself); all digests match.
+PASS — source inspection confirms the OAuth Activity result parser now reads Google's result Intent before interpreting RESULT_CANCELED.
+PASS — NewPipe search now consumes SearchInfo next pages and returns video slices with hasMore/nextOffset metadata.
+PASS — Ryomd Tube home UI has Segarkan and Muat video lainnya controls; the UI deduplicates appended video IDs.
+
+NOT RUN — Gradle compilation. The Gradle wrapper could not download Gradle 8.13 because services.gradle.org DNS/network access was unavailable in this environment.
+NOT RUN — APK build/signing with WZH, actual Google OAuth consent, YouTube API account data, and Android-device playback/feed tests.
+
+IMPORTANT — OAuth still requires the user's Google Cloud project to have YouTube Data API v3 enabled, an Android OAuth client matching applicationId com.ryomd.nativeapp and the SHA-1 of the exact WZH release signing key, and the intended Google account added as a test user while the consent screen is in Testing.
