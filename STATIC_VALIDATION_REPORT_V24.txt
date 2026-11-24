@@ -1,0 +1,8 @@
+RYOMD TUBE V2.4 — STATIC VALIDATION
+PASS — Struktur ZIP: settings.gradle, build.gradle, gradlew, gradlew.bat, gradle/wrapper/*, app/ di akar; entri direktori ada.
+PASS — settings.gradle memuat include ':app'; app/build.gradle memakai plugin com.android.application.
+PASS — AGP 8.13.2 tercantum di dokumentasi resmi Android (butuh Gradle 8.13, JDK 17, maks API 36.1).
+PASS — XML terparse; 8 file Java lolos parser javalang; node --check app.js.
+PASS — jsdom: 30 tool dibuka tanpa galat; alur Ryomd Tube: feed 30->100, tombol segarkan, tarik-segarkan (pendek diabaikan),
+       pemilih kualitas (720p diteruskan ke playYouTubeQuality), nav 4 tab tanpa sisa Google.
+NOT TESTED — kompilasi Gradle & build WZH nyata, pemutaran stream di perangkat, jitpack.io dapat diakses runner WZH.

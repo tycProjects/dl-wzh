@@ -1,0 +1,16 @@
+RYOMD YOUTUBE NATIVE PLAYER V2.1 — STATIC VALIDATION
+
+PASS — Floating overlay injection removed from MainActivity.
+PASS — No position:fixed YT Native button/panel injected into dashboard.
+PASS — Native actions added to existing YouTube Desk video detail screen.
+PASS — Native video and audio controls have delegated click handlers.
+PASS — JavaScript bridge reports loading/ready/error.
+PASS — Player Activity configured immersive fullscreen.
+PASS — Manifest uses @string/app_name and @mipmap launcher resources.
+PASS — Adaptive icon resource references exist.
+PASS — applicationId preserved: com.ryomd.nativeapp.
+PASS — versionCode raised: 4; versionName: 1.1.3-youtube-native-v2.1.
+PASS — Original Ryomd web assets kept, except additive JS/CSS player action changes.
+PASS — Legacy NativeBridge and MediaStore saver classes remain.
+
+NOT TESTED — Gradle build, WZH build output, signing certificate match, installed APK update, actual YouTube playback.

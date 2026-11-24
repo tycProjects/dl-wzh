@@ -1,0 +1,27 @@
+Ryomd Tube V2.3 baseline — quality/feed/UI update
+Static validation report
+
+PASS — JavaScript syntax check (`node --check app/src/main/assets/ryomd/app.js`).
+PASS — Java source parser check found no Java syntax diagnostics; full type resolution is not available because Android and third-party SDK classes are not installed in the preparation environment.
+PASS — All Android XML resources and manifest parse as XML.
+PASS — Gradle source has literal root `settings.gradle`, root `build.gradle`, and `app/build.gradle` (Groovy DSL) at the project root.
+PASS — Android app launcher label is `Ryomd panel`; `applicationId` remains `com.ryomd.nativeapp`.
+PASS — Google account bridge source, Google Play Services Auth dependency, Google account UI/actions, and old account menu are removed from the active app/build path.
+PASS — Ryomd Tube local subscriptions and device-local watch history remain in app.js.
+PASS — Native search requests up to 100 items and follows NewPipe `Page` cursors; API signatures were checked against NewPipeExtractor tag v0.27.1.
+PASS — Refresh button, pull-down-to-refresh gesture, and visible refresh feedback are present.
+PASS — Native player quality menu lists progressive resolutions returned for the current video and requests stream re-resolution while retaining playback position.
+PASS — Android launcher label resource, manifest label reference, and app tool card wording match the requested branding/no-login configuration.
+PASS — Ryomd Tube UI uses the UI/UX Pro Max Video Streaming/OTT direction: OLED-dark surfaces, red video accent, 16:9 lazy thumbnails, 48dp touch targets, and reduced-motion support.
+PASS — ZIP is flattened: `settings.gradle`, `build.gradle`, `app/build.gradle`, and `app/` are at archive root; no wrapper project folder is used.
+PASS — Source checksum manifest regenerated after final edits.
+
+NOT RUN — Gradle compilation / Android APK assembly. The preparation environment has no installed Gradle distribution or Android SDK build runner.
+NOT RUN — WZH E-PUBLISH. The literal `settings.gradle` and flat project root directly address the previous scanner complaint, but only WZH's own publish log can confirm recognition and build success.
+NOT RUN — Real-device verification of resolution switching, YouTube throttling, and returned result counts.
+
+Runtime notes:
+- The catalogue requests up to 100 results per home query and paginates NewPipe results. YouTube may still return fewer results for a particular query or network/session condition.
+- Manual quality items are offered only for progressive resolutions actually returned by NewPipe. If a video exposes only HLS/DASH manifest delivery, Auto may be the only available choice.
+- The Gradle source contains `gradle-wrapper.properties` and a project bootstrap `gradlew`, but not the standard `gradle-wrapper.jar`. WZH should recognize the project from the literal root `settings.gradle`; do not rely on the custom bootstrap as proof of a standard Wrapper build.
+- Keep the existing release signing key and package ID when updating the installed APK.

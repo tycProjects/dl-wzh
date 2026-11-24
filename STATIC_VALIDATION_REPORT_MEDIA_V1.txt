@@ -1,0 +1,28 @@
+RYOMD MEDIA CENTER V1 — STATIC VALIDATION REPORT
+Date: 2026-11-24
+Source: RYOMD_NATIVE_YOUTUBE_PLAYER_V2_2_WZH_SOURCE
+Package: com.ryomd.nativeapp
+Version: versionCode 6 / 1.1.5-youtube-media-center-v1
+
+PASS
+- JavaScript syntax: node --check app/src/main/assets/ryomd/app.js
+- Android XML: all XML files parsed successfully.
+- UI wiring: Ryomd Media tool entry routes to the new media screen; Beranda, Langganan, Riwayat, Koleksi tabs are present.
+- Account bridge wiring: Android WebView registers RyomdYouTubeAccount; MainActivity forwards request code 4826 results; bridge clears token and shuts down executor on Activity destruction.
+- OAuth implementation signatures checked against current Google Play services AuthorizationClient, AuthorizationRequest, AuthorizationResult, and RevokeAccessRequest references.
+- YouTube account endpoints use authenticated subscriptions.list and playlists.list requests with mine=true and maxResults=50.
+- Local history key and storage path present; account profile cache stores profile metadata only, never an OAuth access token.
+- Tool metadata and old youtube-play action route to Ryomd Media screen.
+- SHA256SUMS.txt generated and verified for all project files except SHA256SUMS.txt itself.
+
+NOT TESTED / REQUIRES EXTERNAL SETUP
+- Android Gradle compilation and APK assembly: no Android SDK/ANDROID_HOME/ANDROID_SDK_ROOT or system Gradle is installed in the build container, and the source archive does not contain gradle-wrapper.jar.
+- Google OAuth consent screen, Android OAuth client, package/signing SHA-1 match, real account selection and permission consent.
+- Live YouTube Data API responses, quota limits, API project activation, sensitive-scope verification and device behavior.
+- WZH release signing and installation/update on a physical Android device.
+
+IMPORTANT LIMITS
+- Google/YouTube account connection supports read-only subscriptions and playlists through youtube.readonly.
+- Watch History is local Ryomd history on this device. Standard YouTube Data API does not expose a general account Watch History endpoint. Data Portability API export access is separate and not requested by this build.
+- OAuth access tokens are held in memory only; reconnect after restarting the app. No Google password, API key or client secret is included.
+- Backend origin remains http://127.0.0.1:3002/ as in the base V2.2 source. No Termux service, port, WhatsApp session or database migration is performed.

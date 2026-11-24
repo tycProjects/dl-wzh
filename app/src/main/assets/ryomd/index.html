@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Ryomd Overdrive — dashboard lokal dengan Music Studio V3, bot, dan workspace.">
+  <meta name="theme-color" content="#0a0f18">
+  <link rel="icon" type="image/svg+xml" href="/assets/ryomd-icon.svg">
+  <title>Ryomd Overdrive — Control Panel</title>
+  <link rel="stylesheet" href="/styles.css?v=ryomd-music-v36-in-panel">
+  <link rel="stylesheet" href="/ryomd-youtube-media.css?v=2">
+  <link id="ryomdThemeStyles" rel="stylesheet" href="/ryomd-themes.css?v=4">
+  <link rel="stylesheet" href="/ryomd-uiux.css?v=uiux-pro-max-2">
+<meta name="ryomd-music-version" content="3.5">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Ryomd Overdrive beranda">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 36 36"><path d="M18 2.8 31.2 10v16L18 33.2 4.8 26V10L18 2.8Z"/><path d="M11 24V12l14 12V12"/><path d="M11 18h14"/></svg>
+        </span>
+        <span class="brand-copy"><strong>RYOMD</strong><small>OVERDRIVE / CONTROL</small></span>
+      </a>
+
+      <div class="topbar-center">
+        <span class="service-indicator" id="globalServiceIndicator"><i></i><b id="pillSvcText">Menghubungkan…</b></span>
+        <span class="topbar-separator"></span>
+        <time id="liveClock">--:--:--</time>
+        <span id="liveDate">Memuat tanggal…</span>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-button" id="soundToggle" type="button" aria-label="Efek suara aktif" aria-pressed="true" title="Efek suara">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9a5 5 0 0 1 0 6M18.5 6.5a8.5 8.5 0 0 1 0 11"/></svg>
+        </button>
+        <button class="icon-button" id="menuInfoBtn" type="button" aria-label="Buka menu informasi" aria-expanded="false" aria-controls="RyomdDropdown">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        </button>
+        <div class="nx-dropdown" id="RyomdDropdown" role="menu">
+          <div class="dropdown-heading">PANEL</div>
+          <button class="dropdown-item" type="button" data-open-tool="banner-studio"><span class="dropdown-item-icon">▧</span><span><b>Media Studio</b><small>Ganti banner dan avatar</small></span></button>
+          <button class="dropdown-item" type="button" data-open-tool="wa-bot"><span class="dropdown-item-icon">⌁</span><span><b>WhatsApp Bot</b><small id="dropBotStatus">Memeriksa status…</small></span></button>
+          <button class="dropdown-item" type="button" data-open-tool="sys-telemetry"><span class="dropdown-item-icon">◫</span><span><b>System monitor</b><small id="dropSysStatus">CPU, RAM, storage</small></span></button>
+          <button class="dropdown-item" type="button" id="dropAboutBtn"><span class="dropdown-item-icon">ⓘ</span><span><b>Tentang Ryomd</b><small>Informasi build dan fitur</small></span></button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="hero-panel" aria-labelledby="heroTitle">
+        <video id="heroVideo" class="hero-media" autoplay muted loop playsinline preload="metadata" poster="/assets/211650.jpg">
+          <source src="/assets/211648.mp4" type="video/mp4">
+        </video>
+        <img src="/assets/211650.jpg" alt="" class="hero-fallback" id="heroFallbackImg">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-meta">
+            <span class="eyebrow"><i class="live-dot"></i> LOCAL CONTROL CENTER</span>
+            <button class="button button-quiet button-small" id="heroUploadBtn" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m-4 4 4-4 4 4M4 15v4h16v-4"/></svg>
+              Ubah media
+            </button>
+          </div>
+          <div class="hero-copy">
+            <p class="hero-kicker">WORKSPACE / PERSONAL TOOLKIT</p>
+            <h1 id="heroTitle">Semua kontrol,<br><span>dalam satu tempat.</span></h1>
+            <p class="hero-description">Kelola layanan bot, jalankan utilitas, dan perbarui modul dari satu dashboard lokal.</p>
+            <div class="hero-footline"><span class="hero-avatar"><img src="/assets/211650.jpg" alt="Ryomd" onerror="this.style.display='none'"></span><span><b>Ryomd Overdrive</b><small>Local dashboard · Build 2.2</small></span><span class="hero-divider"></span><span class="hero-tools"><b id="heroToolCount">27</b><small>TOOLS TERSEDIA</small></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="overview-grid" aria-label="Ringkasan sistem">
+        <article class="overview-card overview-status">
+          <span class="overview-label">STATUS BACKEND</span>
+          <div class="overview-main"><span class="status-led" id="netDot"></span><strong id="pillNetwork">Mengecek koneksi</strong></div>
+          <small id="backendHint">Memeriksa server lokal</small>
+        </article>
+        <article class="overview-card">
+          <span class="overview-label">CPU LOAD</span>
+          <div class="overview-main"><strong id="metricCpu">—</strong><span class="metric-unit">%</span></div>
+          <div class="metric-track"><i id="metricCpuBar"></i></div>
+        </article>
+        <article class="overview-card">
+          <span class="overview-label">RAM TERPAKAI</span>
+          <div class="overview-main"><strong id="metricRam">—</strong><span class="metric-unit">GB</span></div>
+          <small id="metricRamSub">Memori sistem</small>
+        </article>
+        <article class="overview-card">
+          <span class="overview-label">LAYANAN AKTIF</span>
+          <div class="overview-main"><strong id="metricServices">— / 4</strong></div>
+          <small id="metricServicesSub">WhatsApp · Telegram · Hermes · RVC</small>
+        </article>
+      </section>
+
+      <section class="catalog-section" aria-labelledby="catalogTitle">
+        <div class="section-heading">
+          <div><p class="section-kicker">WORKSPACE</p><h2 id="catalogTitle">Semua tools</h2><p class="section-subtitle">Pilih modul untuk membuka kontrol dan pengaturannya.</p></div>
+          <span class="catalog-count"><b id="catalogVisibleCount">0</b><span>TOOLS</span></span>
+        </div>
+
+        <div class="catalog-controls">
+          <div class="category-tabs" id="categoryTabs" role="tablist" aria-label="Kategori tool">
+            <button class="category-tab active" type="button" data-cat="all" role="tab" aria-selected="true">Semua</button>
+            <button class="category-tab" type="button" data-cat="bots" role="tab" aria-selected="false">Bot &amp; Server</button>
+            <button class="category-tab" type="button" data-cat="downloader" role="tab" aria-selected="false">Downloader</button>
+            <button class="category-tab" type="button" data-cat="maker" role="tab" aria-selected="false">Creator</button>
+            <button class="category-tab" type="button" data-cat="tools" role="tab" aria-selected="false">Utilities</button>
+          </div>
+          <label class="search-control">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.2 4.2"/></svg>
+            <input type="search" id="toolSearchInput" placeholder="Cari tools…" autocomplete="off">
+            <button type="button" id="clearSearchBtn" aria-label="Hapus pencarian" hidden>×</button>
+          </label>
+        </div>
+
+        <section class="history-panel" id="downloaderHistoryBox" hidden>
+          <div class="history-heading"><div><span class="section-kicker">AKTIVITAS</span><h3>Riwayat unduhan</h3></div><button class="text-button" type="button" id="clearDlHistoryBtn">Bersihkan riwayat</button></div>
+          <div class="history-filters"><button type="button" class="history-filter active" data-hfilt="all">Semua</button><button type="button" class="history-filter" data-hfilt="MP3">MP3</button><button type="button" class="history-filter" data-hfilt="MP4">MP4</button><button type="button" class="history-filter" data-hfilt="JPG">JPG</button><button type="button" class="history-filter" data-hfilt="FILE">File</button></div>
+          <div class="history-list" id="dlHistoryList">Belum ada riwayat unduhan.</div>
+        </section>
+
+        <div class="tools-grid" id="RyomdToolsGrid" aria-live="polite"></div>
+        <button class="load-more" id="expandToolsBtn" type="button" hidden>Muat tools lainnya <span id="expandCounter"></span></button>
+      </section>
+
+      <footer class="app-footer">
+        <div><span class="footer-mark">R</span><span><b>Ryomd Overdrive</b><small>Control panel untuk workspace pribadi</small></span></div>
+        <div class="footer-links"><button type="button" data-open-tool="app-update">Pembaruan aplikasi</button><button type="button" data-open-tool="zip-deploy">Pembaruan bot</button><span>v2.2</span></div>
+      </footer>
+    </main>
+
+    <button class="assistant-fab" id="floatingAiBtn" type="button" aria-label="Buka asisten Ryomd"><span class="fab-icon">✳</span><span><b>Ryomd AI</b><small>Personal Assistant</small></span></button>
+
+    <div class="modal-backdrop" id="toolModalBackdrop" aria-hidden="true">
+      <section class="tool-modal" role="dialog" aria-modal="true" aria-labelledby="modalToolTitle">
+        <header class="modal-header">
+          <span class="modal-icon" id="modalToolIcon" aria-hidden="true"></span>
+          <div class="modal-heading-copy"><h2 id="modalToolTitle">Tool</h2><p id="modalToolSub">Deskripsi</p></div>
+          <button class="icon-button modal-close" id="closeToolModalBtn" type="button" aria-label="Tutup dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+        </header>
+        <div class="modal-body" id="modalToolBody"></div>
+      </section>
+    </div>
+
+    <div class="toast-region" id="toastWrap" aria-live="polite" aria-atomic="false"></div>
+
+    <input type="file" id="assetUploadInput" accept="video/mp4,image/jpeg,image/png,image/webp" hidden>
+    <input type="file" id="botZipUploadInput" accept=".zip,application/zip,application/x-zip-compressed" hidden>
+    <input type="file" id="pluginZipUploadInput" accept=".zip,application/zip,application/x-zip-compressed" hidden>
+    <input type="file" id="appZipUploadInput" accept=".zip,application/zip,application/x-zip-compressed" hidden>
+  </div>
+
+  <script src="/app.js?v=ryomd-music-v36-in-panel" defer></script>
+  <script src="/ryomd-themes.js?v=4" defer></script>
+</body>
+</html>

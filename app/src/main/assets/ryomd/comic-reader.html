@@ -1,0 +1,405 @@
+<!doctype html>
+<!-- RYOMD_RYOMD_ONLINE_COMIC_UPDATE_02 -->
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080d18"><title>RYOMD · Online Comic</title>
+<style>
+:root{color-scheme:dark;--bg:#080d18;--panel:#101a2b;--panel2:#142137;--line:#273a57;--text:#edf4ff;--muted:#91a4c0;--cyan:#67e8f9;--violet:#9b8cff;--gold:#f6d58a;--bad:#ff9b9b;--shadow:0 18px 55px #0008}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(850px 380px at 8% 0%,#1b3152 0%,transparent 60%),radial-gradient(850px 380px at 100% 0%,#271b4c 0%,transparent 57%),var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:11px;background:#18243a;color:var(--text);padding:9px 12px}button:hover{border-color:#6689c0;background:#20314d}button:disabled{opacity:.45;cursor:not-allowed}.primary{background:linear-gradient(115deg,#2563eb,#6d55d8);border-color:#718de9}.ghost{background:transparent}.wrap{max-width:1440px;margin:0 auto;padding:14px clamp(11px,2vw,26px) 42px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 2px 16px}.brand{display:flex;gap:11px;align-items:center}.brand-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#0e7490,#5b21b6);font-size:22px;box-shadow:0 8px 25px #2563eb55}.brand h1{margin:0;font-size:18px;letter-spacing:.05em}.brand p{margin:1px 0 0;color:var(--muted);font-size:11px}.top-actions{display:flex;gap:7px;flex-wrap:wrap}.hero{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px;border:1px solid #344b70;border-radius:19px;background:linear-gradient(120deg,#14243aee,#1b1742dd);box-shadow:var(--shadow);margin-bottom:14px}.hero h2{font-size:clamp(22px,4vw,30px);line-height:1.15;margin:0 0 7px}.hero p{margin:0;max-width:740px;color:#c2cee2}.hero-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}.source-pill,.pill{display:inline-flex;align-items:center;border:1px solid #34547b;color:#bae6fd;border-radius:99px;padding:4px 9px;font-size:10px}.nav{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 13px}.nav button.active{background:#1d4264;border-color:#3b91c4;color:#c5f7ff}.panel{background:#0e1727e8;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}.toolbar h3{margin:0;font-size:16px}.filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.field{background:#0a1220;color:var(--text);border:1px solid #30415d;border-radius:10px;padding:9px 11px;min-width:0}.search{width:min(360px,68vw)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(142px,1fr));gap:12px}.card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#152238,#0d1525)}.cover{height:205px;background:#090f1d;position:relative;overflow:hidden;display:grid;place-items:center}.cover img{width:100%;height:100%;object-fit:cover}.cover .fallback{font-size:40px;opacity:.7}.fav{position:absolute;right:7px;top:7px;background:#080d18d9;border-radius:50%;padding:5px 8px;color:var(--gold);border:1px solid #ffffff2b}.card-body{padding:9px}.card h4{margin:0 0 4px;font-size:12px;line-height:1.4;min-height:34px;overflow-wrap:anywhere}.meta{font-size:10px;color:var(--muted)}.tagline{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}.tagline span{font-size:9px;color:#b9d5f5;background:#1c2d46;border-radius:5px;padding:2px 5px}.card-actions{display:flex;gap:6px;margin-top:9px}.card-actions button{font-size:10px;padding:6px 7px;flex:1}.empty{padding:35px 16px;text-align:center;color:var(--muted);border:1px dashed #3a4e6c;border-radius:14px}.empty strong{display:block;color:var(--text);font-size:15px}.status{font-size:11px;color:var(--muted);margin:10px 2px;min-height:18px}.more{text-align:center;margin-top:14px}.note{color:var(--muted);font-size:10px;line-height:1.6}.modal{position:fixed;inset:0;background:#02050be8;z-index:20;display:grid;place-items:center;padding:12px}.modal.hidden,.hidden{display:none!important}.modal-card{width:min(850px,100%);max-height:94vh;overflow:auto;background:#111b2e;border:1px solid #41577d;border-radius:18px;padding:16px;box-shadow:var(--shadow)}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.modal-head h3{margin:0;font-size:17px}.detail-grid{display:grid;grid-template-columns:155px 1fr;gap:15px}.detail-cover{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:11px;background:#080e1a}.detail-title{font-size:20px;margin:0 0 5px}.detail-desc{color:#bdcce0;font-size:12px;white-space:pre-line;max-height:150px;overflow:auto;margin:9px 0}.chapter-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:17px 0 8px}.chapter-list{display:grid;gap:6px}.chapter{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;padding:9px 11px;background:#101c30}.chapter small{display:block;color:var(--muted);font-size:10px}.chapter strong{font-size:12px}.reader{position:fixed;inset:0;background:#03060c;z-index:40;display:flex;flex-direction:column}.reader-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 11px;background:#101827;border-bottom:1px solid #263550}.reader-name{min-width:0;flex:1}.reader-name strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}.reader-name small{display:block;color:var(--muted);font-size:10px}.reader-tools{display:flex;gap:5px;align-items:center;flex-wrap:wrap}.reader-tools button,.reader-tools select{font-size:10px;padding:7px 8px}.reader-stage{flex:1;min-height:0;overflow:auto;display:flex;align-items:center;justify-content:center;padding:10px}.reader-stage.single{overflow:hidden}.reader-stage.single img{max-width:100%;max-height:100%;object-fit:contain}.reader-stage.webtoon{display:block;text-align:center;padding:0 7px 30px}.reader-stage.webtoon img{display:block;width:min(100%,920px);height:auto;margin:0 auto 2px;object-fit:contain}.reader-stage img{user-select:none;-webkit-user-drag:none}.reader-foot{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 11px;background:#101827;border-top:1px solid #263550}.reader-foot input{max-width:320px;flex:1;accent-color:#67e8f9}.reader-foot small{font-size:10px;color:var(--muted);white-space:nowrap}.reader-credit{padding:4px 10px;color:#8ea1bb;font-size:9px;text-align:center;background:#0b1220}.toast{position:fixed;bottom:17px;left:50%;transform:translateX(-50%);z-index:70;background:#102039;border:1px solid #526f9c;border-radius:11px;padding:10px 14px;max-width:calc(100% - 24px);font-size:11px;box-shadow:var(--shadow)}a{color:#9adcf5}.embedded .wrap{padding-top:9px}.embedded .topbar .dashboard-link{display:none}
+@media(max-width:600px){.hero{align-items:flex-start;flex-direction:column}.hero-side{align-items:flex-start}.grid{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:9px}.cover{height:170px}.detail-grid{grid-template-columns:100px 1fr;gap:11px}.reader-head{gap:5px}.reader-tools button,.reader-tools select{padding:6px}.topbar{align-items:flex-start}.brand h1{font-size:15px}}
+
+/* RYOMD_COMIC_UI_REDESIGN_V1 — visual-only layer; reader logic is intentionally unchanged */
+:root{
+  color-scheme:dark;
+  --bg:#090811;
+  --panel:#12111f;
+  --panel2:#19172a;
+  --line:#302a49;
+  --text:#f5f2ff;
+  --muted:#aaa4c2;
+  --cyan:#a99aff;
+  --violet:#a78bfa;
+  --gold:#f1d49a;
+  --bad:#ff9b9b;
+  --shadow:0 22px 65px #0009;
+  --glow:0 0 28px #8b5cf622;
+}
+html{background:var(--bg);scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(760px 390px at 7% -8%,#30205a88 0%,transparent 64%),
+    radial-gradient(650px 330px at 96% 4%,#542c5b55 0%,transparent 62%),
+    linear-gradient(180deg,#0b0915 0%,#090811 58%,#0b0a13 100%);
+  color:var(--text);
+  letter-spacing:.005em;
+}
+button,input,select{font-family:inherit}
+button{
+  min-height:39px;
+  border:1px solid #393451;
+  border-radius:12px;
+  background:linear-gradient(180deg,#211e32,#191727);
+  color:#f4f0ff;
+  padding:9px 13px;
+  font-weight:650;
+  transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease;
+}
+button:hover:not(:disabled){
+  border-color:#8e79cf;
+  background:linear-gradient(180deg,#302747,#211d35);
+  box-shadow:0 7px 22px #6d4ab52b;
+  transform:translateY(-1px);
+}
+button:active:not(:disabled){transform:translateY(0)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{
+  outline:2px solid #c2aaff;
+  outline-offset:3px;
+}
+button:disabled{opacity:.42;filter:saturate(.55)}
+.primary{
+  background:linear-gradient(115deg,#7254c8 0%,#9a70d6 100%);
+  border-color:#ac91ea;
+  color:#fff;
+  box-shadow:0 8px 23px #8158cd33;
+}
+.primary:hover:not(:disabled){background:linear-gradient(115deg,#8062d8,#aa82e5);border-color:#d1bfff}
+.ghost{background:#151321b8;border-color:#39334f}
+.wrap{max-width:1480px;padding:18px clamp(13px,2.4vw,34px) 46px}
+.topbar{
+  padding:7px 3px 17px;
+  margin-bottom:17px;
+  border-bottom:1px solid #ffffff12;
+}
+.brand{gap:13px}
+.brand-icon{
+  width:48px;height:48px;border-radius:16px;
+  background:linear-gradient(145deg,#47316f,#8353bb 58%,#bd8d75);
+  border:1px solid #d1b3f655;
+  box-shadow:0 9px 28px #6d4ab544,inset 0 1px #ffffff38;
+}
+.brand h1{font-size:clamp(15px,1.8vw,19px);letter-spacing:.075em}
+.brand p{font-size:11px;color:#b8aecf;letter-spacing:.035em}
+.top-actions{gap:8px}
+.top-actions button{min-height:38px}
+.hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:clamp(21px,3vw,34px);
+  margin-bottom:17px;
+  border:1px solid #8065b466;
+  border-radius:23px;
+  background:linear-gradient(112deg,#211936f2 0%,#19172bf2 55%,#29203af2 100%);
+  box-shadow:var(--shadow),var(--glow);
+}
+.hero:after{
+  content:"";position:absolute;z-index:-1;
+  width:270px;height:270px;right:8%;top:-155px;border-radius:50%;
+  border:1px solid #d6b7ff22;
+  box-shadow:0 0 0 27px #d6b7ff08,0 0 0 58px #d6b7ff06,0 0 80px #a78bfa22;
+}
+.hero h2{font-size:clamp(24px,4vw,36px);letter-spacing:-.035em;line-height:1.12;margin-bottom:10px}
+.hero p{max-width:790px;color:#d1c9e1;font-size:13px;line-height:1.75}
+.hero-side{align-items:flex-end;gap:9px}
+.source-pill,.pill{
+  border:1px solid #aa8bdb66;
+  background:#a78bfa13;
+  color:#e3d6ff;
+  padding:6px 11px;
+  font-size:10px;font-weight:750;letter-spacing:.11em;
+}
+.hero-side .note{color:#c2b4d5;text-align:right}
+.nav{gap:8px;margin:0 0 15px}
+.nav button{
+  min-height:40px;padding:9px 15px;border-radius:999px;
+  color:#bdb5d0;background:#151321;border-color:#302b43;
+}
+.nav button.active{
+  color:#fff;background:linear-gradient(115deg,#4d397e,#7253a2);
+  border-color:#aa8bdf;box-shadow:0 7px 20px #7752bb33;
+}
+.panel{
+  padding:clamp(13px,2vw,22px);
+  border:1px solid #39314f;
+  border-radius:21px;
+  background:linear-gradient(145deg,#151323f5,#100f1cf5);
+  box-shadow:var(--shadow);
+}
+.toolbar{
+  display:grid;grid-template-columns:minmax(170px,.5fr) minmax(0,1.5fr);
+  align-items:center;gap:14px;margin-bottom:17px;
+}
+.toolbar h3{font-size:17px;letter-spacing:-.015em}
+.filters{
+  display:grid;grid-template-columns:minmax(170px,1fr) minmax(145px,.62fr) minmax(112px,.45fr) auto;
+  align-items:center;gap:8px;
+}
+.field{
+  width:100%;min-height:42px;padding:10px 12px;
+  color:#f2edff;background:#0e0d18;
+  border:1px solid #39334f;border-radius:12px;
+  box-shadow:inset 0 1px 2px #0005;
+}
+.field::placeholder{color:#807994}
+.search{width:100%}
+.grid{grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:15px}
+.card{
+  position:relative;min-width:0;overflow:hidden;
+  border:1px solid #39314d;border-radius:16px;
+  background:linear-gradient(180deg,#1b1929 0%,#11101c 100%);
+  box-shadow:0 9px 26px #0003;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-4px);border-color:#8068b7;box-shadow:0 16px 32px #0006,0 0 0 1px #a78bfa18}
+.cover{
+  height:clamp(190px,20vw,245px);
+  background:linear-gradient(145deg,#201a31,#0c0b14);
+  border-bottom:1px solid #ffffff12;
+}
+.cover:after{
+  content:"";position:absolute;inset:45% 0 0;
+  background:linear-gradient(180deg,transparent,#08071130);
+  pointer-events:none;
+}
+.cover img{transition:transform .35s ease}
+.card:hover .cover img{transform:scale(1.035)}
+.cover .fallback{color:#c9b1ef;filter:drop-shadow(0 7px 15px #0008)}
+.card-body{padding:11px 11px 12px}
+.card h4{
+  color:#f4efff;font-size:12px;line-height:1.45;
+  min-height:35px;margin-bottom:6px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.meta{color:#a9a1bc;font-size:10px;line-height:1.55}
+.tagline{gap:5px;margin-top:8px}
+.tagline span{
+  color:#d8c9f8;background:#8b6ac01c;
+  border:1px solid #9d80d52b;border-radius:6px;
+  padding:3px 7px;font-size:9px;font-weight:650;
+}
+.card-actions{gap:7px;margin-top:11px}
+.card-actions button{min-height:34px;font-size:10px;border-radius:10px;padding:6px 8px}
+.card-actions button:not(.primary){min-width:39px}
+.empty{
+  padding:38px 18px;text-align:center;
+  color:#aaa2bc;background:#100f1b;
+  border:1px dashed #574b70;border-radius:15px;
+  line-height:1.7;
+}
+.empty strong{color:#f1eaff;font-size:15px;margin-bottom:4px}
+.status{margin:13px 3px 8px;color:#b5abc9;font-size:11px;min-height:20px}
+.more{margin-top:15px}
+.more button{min-width:145px}
+.note{color:#9e96b2;font-size:10px;line-height:1.75}
+.note a,.detail-grid a,.chapter a{color:#c3a7ff;text-decoration:none}
+.note a:hover,.detail-grid a:hover,.chapter a:hover{text-decoration:underline;color:#e1d4ff}
+.modal{
+  background:#05040beF;
+  backdrop-filter:blur(12px);
+  padding:clamp(9px,2vw,22px);
+}
+.modal-card{
+  width:min(900px,100%);max-height:94vh;
+  padding:clamp(14px,2.2vw,24px);
+  border:1px solid #54436f;border-radius:21px;
+  background:linear-gradient(145deg,#1a1729,#100f1b 72%);
+  box-shadow:0 28px 90px #000b;
+}
+.modal-head{padding-bottom:12px;border-bottom:1px solid #ffffff12;margin-bottom:17px}
+.modal-head h3{font-size:18px}
+.modal-head button{width:39px;height:39px;padding:0;font-size:17px}
+.detail-grid{grid-template-columns:minmax(120px,176px) minmax(0,1fr);gap:20px}
+.detail-cover{border:1px solid #55446d;border-radius:14px;box-shadow:0 12px 28px #0006}
+.detail-title{font-size:clamp(18px,2.5vw,25px);line-height:1.25;letter-spacing:-.025em}
+.detail-desc{color:#c7bfd4;font-size:12px;line-height:1.75;max-height:180px}
+.detail-grid .tagline{margin:10px 0 14px}
+.chapter-head{margin:22px 0 10px;padding-top:16px;border-top:1px solid #ffffff14}
+.chapter-head strong{font-size:14px}
+.chapter-list{gap:7px}
+.chapter{
+  width:100%;min-height:56px;text-align:left;
+  padding:10px 13px;border:1px solid #36304a;border-radius:12px;
+  background:linear-gradient(100deg,#1b1929,#151321);
+}
+.chapter:hover:not(:disabled){background:linear-gradient(100deg,#2b2340,#1e1a2c)}
+.chapter strong{font-size:12px;color:#f1ecfc}
+.chapter small{font-size:10px;color:#a69db9;line-height:1.55}
+.reader{background:#090811}
+.reader-head{
+  position:relative;z-index:2;
+  gap:10px;padding:11px clamp(10px,2vw,20px);
+  border-bottom:1px solid #3c3157;
+  background:linear-gradient(105deg,#191527,#100f1c 72%,#211a30);
+  box-shadow:0 8px 28px #0007;
+}
+.reader-head > #closeReader{width:40px;height:40px;flex:0 0 40px;padding:0;font-size:18px}
+.reader-name{min-width:110px;padding:0 5px}
+.reader-name strong{color:#f5f0ff;font-size:13px}
+.reader-name small{color:#b1a7c5;font-size:10px;margin-top:2px}
+.reader-tools{gap:6px}
+.reader-tools button,.reader-tools select{
+  min-height:36px;padding:7px 10px;border-radius:10px;font-size:10px;
+}
+.reader-tools select{color:#eee7ff;background:#191627;border:1px solid #403653}
+.reader-stage{
+  background:
+    radial-gradient(550px 270px at 50% 0%,#30234455,transparent 70%),
+    #090811;
+  scrollbar-color:#57456f #100e18;
+}
+.reader-stage.single{padding:12px}
+.reader-stage.single img{
+  max-width:100%;max-height:100%;
+  border:1px solid #ffffff12;border-radius:3px;
+  box-shadow:0 14px 46px #0009;
+}
+.reader-stage.webtoon{padding:12px 10px 34px;scroll-behavior:smooth}
+.reader-stage.webtoon img{
+  width:min(100%,900px);margin:0 auto 9px;
+  border-radius:3px;box-shadow:0 8px 25px #0007;
+}
+.reader-stage img{background:#15121d}
+.reader-foot{
+  gap:12px;padding:10px clamp(10px,2vw,22px);
+  border-top:1px solid #3b3152;
+  background:linear-gradient(105deg,#191527,#100f1c);
+}
+.reader-foot button{width:42px;min-width:42px;height:38px;padding:0}
+.reader-foot input{accent-color:#b39aff;cursor:pointer}
+.reader-foot small{min-width:58px;text-align:center;color:#c5b8db;font-variant-numeric:tabular-nums}
+.reader-credit{padding:7px 10px;color:#a79bb9;background:#0d0b15;border-top:1px solid #ffffff0c;font-size:9px}
+.toast{
+  bottom:20px;padding:11px 16px;
+  color:#f8f2ff;background:#211a31;border:1px solid #8d70b8;
+  border-radius:13px;box-shadow:0 15px 45px #0009;
+}
+.embedded .wrap{padding-top:12px}
+.embedded .topbar .dashboard-link{display:none}
+@media(max-width:900px){
+  .toolbar{grid-template-columns:1fr;gap:11px}
+  .filters{grid-template-columns:minmax(160px,1fr) minmax(135px,.65fr) minmax(110px,.45fr) auto}
+  .reader-head{flex-wrap:wrap}
+  .reader-tools{flex:1 1 100%;padding-left:48px}
+}
+@media(max-width:600px){
+  .wrap{padding:10px 10px 28px}
+  .topbar{gap:8px;padding:5px 1px 13px;margin-bottom:12px}
+  .brand{gap:9px}
+  .brand-icon{width:42px;height:42px;border-radius:14px;font-size:20px}
+  .brand h1{font-size:14px;letter-spacing:.045em}
+  .brand p{font-size:9px}
+  .top-actions{gap:5px}
+  .top-actions button{min-height:35px;padding:7px 9px;font-size:10px}
+  .hero{padding:19px 16px;border-radius:18px;gap:13px;margin-bottom:13px}
+  .hero h2{font-size:25px}
+  .hero p{font-size:11px;line-height:1.7}
+  .hero-side{align-items:flex-start}
+  .hero-side .note{text-align:left}
+  .source-pill{font-size:9px}
+  .nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-bottom:12px}
+  .nav button{min-height:38px;padding:7px 4px;font-size:10px;white-space:nowrap}
+  .panel{padding:12px;border-radius:17px}
+  .toolbar{gap:10px;margin-bottom:13px}
+  .toolbar h3{font-size:15px}
+  .filters{grid-template-columns:1fr 1fr;gap:7px}
+  .search{grid-column:1/-1}
+  .field{min-height:40px;font-size:11px;padding:9px 10px}
+  #searchBtn{min-height:40px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .cover{height:auto;aspect-ratio:2/3;max-height:245px}
+  .card{border-radius:13px}
+  .card-body{padding:9px}
+  .card h4{font-size:11px;min-height:32px}
+  .card-actions{gap:5px;margin-top:9px}
+  .card-actions button{min-height:32px;padding:5px 6px;font-size:9px}
+  .tagline{gap:4px;margin-top:6px}
+  .tagline span{font-size:8px;padding:2px 5px}
+  .status{font-size:10px}
+  .modal{padding:7px}
+  .modal-card{max-height:96vh;padding:13px;border-radius:17px}
+  .modal-head{margin-bottom:13px}
+  .detail-grid{grid-template-columns:94px minmax(0,1fr);gap:11px}
+  .detail-title{font-size:17px}
+  .detail-desc{font-size:11px;max-height:135px;margin:7px 0}
+  .detail-grid button{padding:7px 9px;font-size:10px}
+  .chapter-head{align-items:flex-start;flex-direction:column;gap:4px;margin-top:17px;padding-top:13px}
+  .chapter{padding:9px 10px;gap:8px}
+  .chapter strong{font-size:11px}
+  .chapter small{font-size:9px}
+  .reader-head{gap:6px;padding:8px}
+  .reader-head > #closeReader{width:36px;height:36px;flex-basis:36px}
+  .reader-name{min-width:0;flex:1}
+  .reader-name strong{font-size:11px}
+  .reader-name small{font-size:9px}
+  .reader-tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding-left:0}
+  .reader-tools button,.reader-tools select{width:100%;min-width:0;min-height:35px;padding:6px 5px;font-size:9px}
+  .reader-stage.single{padding:5px}
+  .reader-stage.webtoon{padding:7px 0 22px}
+  .reader-stage.webtoon img{width:100%;margin-bottom:5px;border-radius:0}
+  .reader-foot{gap:7px;padding:8px}
+  .reader-foot button{width:36px;min-width:36px;height:35px}
+  .reader-foot small{min-width:49px;font-size:9px}
+  .reader-credit{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+}
+
+</style></head>
+<body>
+<div class="wrap" id="appShell">
+<header class="topbar"><div class="brand"><div class="brand-icon">📚</div><div><h1>RYOMD · ONLINE COMIC</h1><p>Manga • Manhwa • Manhua • Webtoon</p></div></div><div class="top-actions"><a class="dashboard-link" href="/" style="text-decoration:none"><button type="button" class="ghost">⌂ Dashboard</button></a><button type="button" id="localBtn" class="ghost">▤ File lokal</button></div></header>
+<section class="hero"><div><h2>Jelajahi cerita dari internet.</h2><p>Cari judul dari seluruh katalog. Atur filter bahasa di bagian atas, atau pilih Semua Bahasa untuk melihat chapter dari semua bahasa yang tersedia.<!-- RYOMD_RYOMD_COMIC_ALL_LANGUAGES_RELIABILITY_04 --> Katalog dan halaman gambar dimuat seperlunya agar hemat data.</p></div><div class="hero-side"><span class="source-pill">SOURCE · MANGADEX</span><span class="note">Konten non-dewasa · kualitas hemat data</span></div></section>
+<nav class="nav"><button class="active" data-view="discover">✦ Jelajahi</button><button data-view="favorites">♥ Favorit</button><button data-view="history">◷ Lanjutkan</button><button data-view="bookmarks">★ Bookmark</button></nav>
+<section class="panel"><div class="toolbar"><h3 id="sectionTitle">Populer di MangaDex</h3><div class="filters"><input id="search" class="field search" maxlength="100" placeholder="Cari judul manga, manhwa…"><select id="lang" class="field" aria-label="Filter bahasa chapter"><option value="all">Semua Bahasa</option></select><select id="sort" class="field"><option value="popular">Populer</option><option value="latest">Terbaru</option></select><button id="searchBtn" class="primary">Cari</button></div></div><div id="catalog" class="grid"></div><div id="catalogEmpty" class="empty hidden"><strong>Tidak ada judul ditemukan</strong>Coba kata kunci lain. Pilih Semua Bahasa untuk memeriksa seluruh chapter yang tersedia.</div><div id="status" class="status">Menghubungkan ke katalog…</div><div class="more"><button id="catalogRetry" class="hidden">↻ Coba lagi</button><button id="loadMore" class="hidden">Muat lebih banyak</button></div></section>
+<section class="note" style="margin:13px 3px">Katalog dan chapter disediakan oleh <a href="https://mangadex.org" target="_blank" rel="noopener">MangaDex</a>. Hak cipta karya tetap milik kreator/pemegang hak. Nama grup penerjemah ditampilkan pada informasi chapter sesuai ketentuan sumber.</section>
+</div>
+<div class="modal hidden" id="detailModal"><div class="modal-card"><div class="modal-head"><h3>Detail komik</h3><button id="closeDetail">✕</button></div><div id="detailBody"></div></div></div>
+<div class="reader hidden" id="reader"><div class="reader-head"><button id="closeReader">←</button><div class="reader-name"><strong id="readerTitle">Judul</strong><small id="readerSub">Chapter</small></div><div class="reader-tools"><button id="prevChapter">‹ Chapter</button><button id="nextChapter">Chapter ›</button><select id="mode"><option value="webtoon">Scroll vertikal</option><option value="single">Satu halaman</option></select><select id="direction"><option value="ltr">Kiri ke kanan</option><option value="rtl">Kanan ke kiri</option></select><select id="quality"><option value="saver">Hemat data</option><option value="data">Kualitas asli</option></select><button id="bookmark">☆ Tandai</button></div></div><div id="readerStage" class="reader-stage webtoon"><div class="empty">Memuat halaman…</div></div><div class="reader-foot" id="readerFoot"><button id="prevPage">←</button><input type="range" id="pageRange" min="1" max="1" value="1"><small id="pageLabel">0 / 0</small><button id="nextPage">→</button></div><div class="reader-credit" id="readerCredit">Sumber: MangaDex</div></div>
+<div class="toast hidden" id="toast"></div>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),API='/api/comics';
+let view='discover',offset=0,items=[],query='',selected=null,chapters=[],activeChapter=null,pages=[],pageIndex=0,mode='webtoon',direction='ltr',quality='saver',lang='all',loading=false,manifestRequest=0,detailChaptersLoading=false,detailChaptersError='',toastTimer=null,scrollTimer=null;
+const LANGUAGE_CODES='aa ab ae af ak am an ar as av ay az ba be bg bh bi bm bn bo br bs ca ce ch co cr cs cu cv cy da de dv dz ee el en eo es et eu fa ff fi fj fo fr fy ga gd gl gn gu gv ha he hi ho hr ht hu hy hz ia id ie ig ii ik io is it iu ja jv ka kg ki kj kk kl km kn ko kr ks ku kv kw ky la lb lg li ln lo lt lu lv mg mh mi mk ml mn mr ms mt my na nb nd ne ng nl nn no nr nv ny oc oj om or os pa pi pl ps pt qu rm rn ro ru rw sa sc sd se sg si sk sl sm sn so sq sr ss st su sv sw ta te tg th ti tk tl tn to tr ts tt tw ty ug uk ur uz ve vi vo wa wo xh yi yo za zh zu'.split(' ');
+const LANGUAGE_VARIANTS=['es-la','pt-br','pt-pt','zh-cn','zh-hk','zh-sg','zh-tw','en-ro','es-ro','fr-ro','id-ro','ja-ro','ko-ro'];
+const LANGUAGE_NAMES=(()=>{try{return new Intl.DisplayNames(['id'],{type:'language'})}catch{return null}})();
+function languageLabel(code){const known={all:'Semua Bahasa',id:'Bahasa Indonesia',en:'Bahasa Inggris',ja:'Bahasa Jepang',zh:'Bahasa Tionghoa',ko:'Bahasa Korea',pt:'Bahasa Portugis',es:'Bahasa Spanyol'};if(known[code])return known[code];try{return LANGUAGE_NAMES?.of(code)||code}catch{return code}}
+function buildLanguageOptions(){const select=$('lang');if(!select)return;const current=select.value||'all';const codes=[...new Set([...LANGUAGE_CODES,...LANGUAGE_VARIANTS])].filter(x=>x!=='id'&&x!=='en'&&x!=='ja');codes.sort((a,b)=>languageLabel(a).localeCompare(languageLabel(b),'id'));const options=[['all','Semua Bahasa'],['id','Bahasa Indonesia (id)'],['en','Bahasa Inggris (en)'],['ja','Bahasa Jepang (ja)'],...codes.map(c=>[c,languageLabel(c)+' ('+c+')'])];select.replaceChildren(...options.map(([value,label])=>{const o=document.createElement('option');o.value=value;o.textContent=label;return o}));select.value=options.some(x=>x[0]===current)?current:'all'}
+function chapterLanguageLabel(code){return code&&code!=='und'?languageLabel(code)+' ('+code+')':'Bahasa tidak diketahui'}
+buildLanguageOptions();
+const LEGACY_STORE_KEYS={ryomdComicFavoritesV1:'nexoraComicFavoritesV1',ryomdComicFavoriteRecordsV1:'nexoraComicFavoriteRecordsV1',ryomdComicHistoryV1:'nexoraComicHistoryV1',ryomdComicBookmarksV1:'nexoraComicBookmarksV1'};
+const safeStore=(key,fallback)=>{try{let raw=localStorage.getItem(key);if(raw===null&&LEGACY_STORE_KEYS[key]){raw=localStorage.getItem(LEGACY_STORE_KEYS[key]);if(raw!==null)localStorage.setItem(key,raw)}return JSON.parse(raw||'null')??fallback}catch{return fallback}};
+let favorites=new Set(safeStore('ryomdComicFavoritesV1',[])),favoriteRecords=safeStore('ryomdComicFavoriteRecordsV1',{}),history=safeStore('ryomdComicHistoryV1',{}),marks=safeStore('ryomdComicBookmarksV1',[]);
+function store(){try{localStorage.setItem('ryomdComicFavoritesV1',JSON.stringify([...favorites]));localStorage.setItem('ryomdComicFavoriteRecordsV1',JSON.stringify(favoriteRecords));localStorage.setItem('ryomdComicHistoryV1',JSON.stringify(history));localStorage.setItem('ryomdComicBookmarksV1',JSON.stringify(marks))}catch{notify('Penyimpanan browser penuh; beberapa progres mungkin tidak tersimpan.')}}
+function notify(s){$('toast').textContent=s;$('toast').classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),3000)}
+function status(s){$('status').textContent=s}
+async function api(path){let lastError=null;for(let attempt=0;attempt<3;attempt++){try{const r=await fetch(API+path,{headers:{Accept:'application/json'}});let d;try{d=await r.json()}catch{throw new Error('Respons server tidak terbaca.')}if(!r.ok||d.ok===false)throw new Error(d.message||('HTTP '+r.status));return d}catch(e){lastError=e;if(attempt>=2||!(e instanceof TypeError))break;await new Promise(resolve=>setTimeout(resolve,450*(attempt+1)))}}if(lastError instanceof TypeError)throw new Error('Koneksi ke dashboard terputus. Periksa jaringan lokal lalu tekan Coba lagi.');throw lastError||new Error('Permintaan gagal. Tekan Coba lagi.')}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function coverNode(url,title){const box=document.createElement('div');box.className='cover';const img=document.createElement('img');img.loading='lazy';img.alt='Sampul '+title;img.src=url||'';img.onerror=()=>{img.remove();const f=document.createElement('span');f.className='fallback';f.textContent='📖';box.append(f)};box.append(img);return box}
+function card(m){const el=document.createElement('article');el.className='card';el.append(coverNode(m.cover,m.title));const body=document.createElement('div');body.className='card-body';const h=document.createElement('h4');h.textContent=m.title;const meta=document.createElement('div');meta.className='meta';meta.textContent=[m.status,m.year,m.latestChapter?'Chapter '+m.latestChapter:''].filter(Boolean).join(' · ');const tags=document.createElement('div');tags.className='tagline';(m.tags||[]).slice(0,3).forEach(t=>{const s=document.createElement('span');s.textContent=t;tags.append(s)});const actions=document.createElement('div');actions.className='card-actions';const open=document.createElement('button');open.className='primary';open.textContent='Detail';open.onclick=()=>openDetail(m);const fav=document.createElement('button');fav.textContent=favorites.has(m.id)?'♥':'♡';fav.title='Favorit';fav.onclick=()=>toggleFavorite(m.id,fav,m);actions.append(open,fav);body.append(h,meta,tags,actions);el.append(body);return el}
+function renderCatalog(){$('catalogEmpty').innerHTML='<strong>Tidak ada judul ditemukan</strong>Coba kata kunci lain. Pilih Semua Bahasa untuk memeriksa seluruh chapter yang tersedia.';const box=$('catalog');box.replaceChildren();let data=items;if(view==='favorites')data=items.filter(m=>favorites.has(m.id));if(view==='history')data=items.filter(m=>history[m.id]);data.forEach(m=>box.append(card(m)));$('catalogEmpty').classList.toggle('hidden',data.length>0);$('loadMore').classList.toggle('hidden',view!=='discover'||!items.length);$('sectionTitle').textContent=view==='favorites'?'Komik favorit':view==='history'?'Lanjutkan membaca':query?'Hasil pencarian':'Populer di MangaDex'}
+function toggleFavorite(id,btn,m){if(favorites.has(id)){favorites.delete(id);delete favoriteRecords[id]}else{favorites.add(id);if(m)favoriteRecords[id]={id:m.id,title:m.title,cover:m.cover,status:m.status,year:m.year,tags:m.tags||[],latestChapter:m.latestChapter||null}}store();if(btn)btn.textContent=favorites.has(id)?'♥':'♡';if(view==='favorites')renderSaved()}
+async function loadCatalog(reset=true){if(loading)return;loading=true;$('searchBtn').disabled=true;$('loadMore').disabled=true;$('catalogRetry').disabled=true;const requestedOffset=reset?0:offset;query=$('search').value.trim();lang=$('lang').value;const sort=$('sort').value;status(reset?'Menghubungkan dan memuat katalog…':'Memuat judul berikutnya…');try{const p=new URLSearchParams({lang,sort,limit:'24',offset:String(requestedOffset)});if(query)p.set('q',query);const d=await api('/search?'+p.toString());const fresh=d.items||[];items=reset?fresh:items.concat(fresh);offset=requestedOffset+fresh.length;renderCatalog();status(fresh.length?items.length+' judul ditampilkan · Sumber: MangaDex':(reset?'Tidak ada judul ditemukan.':'Tidak ada judul tambahan.'));$('catalogRetry').classList.add('hidden');$('loadMore').classList.toggle('hidden',fresh.length<24)}catch(e){status('Katalog gagal diperbarui: '+e.message+' Daftar lama dipertahankan bila tersedia.');$('catalogRetry').classList.remove('hidden');if(!items.length){$('catalogEmpty').innerHTML='<strong>Katalog sementara tidak tersedia</strong>Daftar judul belum dapat dimuat. Periksa koneksi, lalu tekan Coba lagi.';$('catalogEmpty').classList.remove('hidden')}}finally{loading=false;$('searchBtn').disabled=false;$('loadMore').disabled=false;$('catalogRetry').disabled=false}}
+async function refreshDetailChapters(){const m=selected;if(!m)return;const requestId=m.id;detailChaptersLoading=true;detailChaptersError='';renderDetail();try{const feed=await api('/chapters?id='+encodeURIComponent(requestId)+'&lang='+encodeURIComponent($('lang').value));if(!selected||selected.id!==requestId)return;chapters=feed.items||[];detailChaptersLoading=false;renderDetail()}catch(e){if(selected&&selected.id===requestId){detailChaptersLoading=false;detailChaptersError=String(e&&e.message||'Daftar chapter gagal dimuat.');renderDetail()}}}
+async function openDetail(m){selected=m;chapters=[];detailChaptersError='';$('detailModal').classList.remove('hidden');await refreshDetailChapters()}
+function renderDetail(){const m=selected||{};const wrap=document.createElement('div');wrap.className='detail-grid';const img=document.createElement('img');img.className='detail-cover';img.src=m.cover||'';img.alt='Cover '+m.title;img.onerror=()=>img.style.display='none';const right=document.createElement('div');const h=document.createElement('h2');h.className='detail-title';h.textContent=m.title||'Tanpa judul';const meta=document.createElement('div');meta.className='meta';meta.textContent=[m.status,m.year,(m.authors||[]).join(', ')].filter(Boolean).join(' · ');const desc=document.createElement('p');desc.className='detail-desc';desc.textContent=m.description||'Deskripsi belum tersedia.';const tag=document.createElement('div');tag.className='tagline';(m.tags||[]).forEach(t=>{const s=document.createElement('span');s.textContent=t;tag.append(s)});const fav=document.createElement('button');fav.textContent=favorites.has(m.id)?'♥ Hapus favorit':'♡ Tambah favorit';fav.onclick=()=>{toggleFavorite(m.id,null,m);fav.textContent=favorites.has(m.id)?'♥ Hapus favorit':'♡ Tambah favorit'};const source=document.createElement('a');source.href='https://mangadex.org/title/'+encodeURIComponent(m.id);source.target='_blank';source.rel='noopener';source.textContent='Buka halaman sumber MangaDex ↗';source.style.display='inline-block';source.style.marginLeft='10px';source.style.fontSize='11px';right.append(h,meta,desc,tag,fav,source);wrap.append(img,right);const chHead=document.createElement('div');chHead.className='chapter-head';const chTitle=document.createElement('strong');chTitle.textContent='Daftar chapter';const chMeta=document.createElement('span');chMeta.className='meta';chMeta.textContent=chapters.length+' chapter · '+$('lang').selectedOptions[0].textContent;chHead.append(chTitle,chMeta);const list=document.createElement('div');list.className='chapter-list';if(detailChaptersLoading){const e=document.createElement('div');e.className='empty';e.textContent='Memuat daftar chapter…';list.append(e)}else if(detailChaptersError){const e=document.createElement('div');e.className='empty';e.textContent=detailChaptersError+' Tekan pilihan bahasa lagi untuk mencoba ulang.';list.append(e)}else if(!chapters.length){const e=document.createElement('div');e.className='empty';e.textContent='Belum ada chapter untuk filter ini. Pilih Semua Bahasa atau bahasa lain di bagian atas.';list.append(e)}chapters.forEach((ch,i)=>{const b=document.createElement('button');b.className='chapter';const left=document.createElement('span');const strong=document.createElement('strong');strong.textContent=ch.title;const small=document.createElement('small');small.textContent=(ch.publishedAt?new Date(ch.publishedAt).toLocaleDateString('id-ID')+' · ':'')+chapterLanguageLabel(ch.language)+' · ';if(ch.groupUrl){const link=document.createElement('a');link.href=ch.groupUrl;link.target='_blank';link.rel='noopener';link.textContent=ch.groupName||'Grup penerjemah';small.append(link)}else small.append(document.createTextNode(ch.groupName||'Grup penerjemah tercatat di MangaDex'));left.append(strong,small);b.append(left);if(ch.externalUrl){try{const ext=new URL(ch.externalUrl);if(ext.protocol==='https:'){const link=document.createElement('a');link.href=ext.href;link.target='_blank';link.rel='noopener';link.textContent='Buka sumber ↗';b.append(link)}else b.disabled=true}catch{b.disabled=true}}else{const right=document.createElement('span');right.className='meta';right.textContent='Baca ›';b.append(right);b.onclick=()=>{closeDetail();openChapter(i)}}list.append(b)});$('detailBody').replaceChildren(wrap,chHead,list)}
+function closeDetail(){$('detailModal').classList.add('hidden')}
+async function openChapter(index){if(index<0||index>=chapters.length)return;activeChapter=chapters[index];pageIndex=0;mode=$('mode').value;direction=$('direction').value;quality=$('quality').value;$('reader').classList.remove('hidden');$('readerTitle').textContent=selected.title;$('readerSub').textContent=activeChapter.title;$('readerStage').className='reader-stage webtoon';$('readerStage').innerHTML='<div class="empty">Memuat halaman chapter…</div>';const req=++manifestRequest;try{const d=await api('/pages?chapter='+encodeURIComponent(activeChapter.id)+'&quality='+encodeURIComponent(quality));if(req!==manifestRequest)return;pages=d.pages||[];if(!pages.length)throw new Error('Chapter tidak memiliki halaman yang dapat ditampilkan.');$('readerCredit').textContent='Sumber: MangaDex · Grup penerjemah: '+(activeChapter.groupName||'tercantum pada MangaDex');history[selected.id]={mangaId:selected.id,title:selected.title,cover:selected.cover,chapterId:activeChapter.id,chapterTitle:activeChapter.title,page:0,chapterIndex:index,lang:$('lang').value,updatedAt:Date.now(),groupName:activeChapter.groupName||''};store();renderPages()}catch(e){$('readerStage').innerHTML='<div class="empty">'+esc(e.message)+'</div>';notify(e.message)}}
+function renderPages(){const stage=$('readerStage');stage.replaceChildren();mode=$('mode').value;direction=$('direction').value;quality=$('quality').value;stage.className='reader-stage '+(mode==='single'?'single':'webtoon');if(mode==='single'){const img=document.createElement('img');img.alt='Halaman '+(pageIndex+1);img.src=pages[pageIndex].url;img.onerror=()=>notify('Gagal memuat gambar halaman. Coba kualitas hemat data atau ulangi.');stage.append(img)}else{pages.forEach((p,i)=>{const img=document.createElement('img');img.alt='Halaman '+(i+1);img.loading=i<3?'eager':'lazy';img.decoding='async';img.src=p.url;img.dataset.index=String(i);img.onerror=()=>{img.alt='Halaman '+(i+1)+' gagal dimuat';img.style.minHeight='90px'};stage.append(img)});requestAnimationFrame(()=>{const im=stage.querySelector('[data-index="'+pageIndex+'"]');if(im)im.scrollIntoView({block:'start'})})}$('readerFoot').classList.toggle('hidden',mode==='webtoon');$('pageRange').max=pages.length;$('pageRange').value=pageIndex+1;$('pageLabel').textContent=(pageIndex+1)+' / '+pages.length;const hasMark=marks.some(x=>x.chapterId===activeChapter.id&&x.page===pageIndex);$('bookmark').textContent=hasMark?'★ Ditandai':'☆ Tandai halaman';$('prevChapter').disabled=activeIndex()<=0;$('nextChapter').disabled=activeIndex()>=chapters.length-1;const h=history[selected.id];if(h){h.page=pageIndex;h.updatedAt=Date.now();store()}}
+function activeIndex(){return chapters.findIndex(c=>c.id===activeChapter?.id)}
+function setPage(n){pageIndex=Math.max(0,Math.min(pages.length-1,n));renderPages()}
+function movePage(delta){setPage(pageIndex+(direction==='rtl'?-delta:delta))}
+function closeReader(){manifestRequest++;$('reader').classList.add('hidden');activeChapter=null;pages=[];}
+async function changeChapter(delta){const i=activeIndex()+delta;if(i>=0&&i<chapters.length)await openChapter(i)}
+function toggleMark(){if(!activeChapter)return;const i=marks.findIndex(x=>x.chapterId===activeChapter.id&&x.page===pageIndex);if(i>=0)marks.splice(i,1);else marks.push({mangaId:selected.id,chapterId:activeChapter.id,page:pageIndex,title:selected.title,cover:selected.cover,chapterTitle:activeChapter.title,lang:$('lang').value});store();$('bookmark').textContent=i>=0?'☆ Tandai halaman':'★ Ditandai'}
+function renderSaved(){const box=$('catalog');box.replaceChildren();if(view==='bookmarks'){const data=[...marks].reverse();data.forEach(m=>{const el=document.createElement('article');el.className='card';const body=document.createElement('div');body.className='card-body';const h=document.createElement('h4');h.textContent=m.title||'Komik';const sub=document.createElement('div');sub.className='meta';sub.textContent=(m.chapterTitle||'Chapter')+' · Halaman '+(m.page+1);const btn=document.createElement('button');btn.className='primary';btn.style.marginTop='10px';btn.textContent='Buka bookmark';btn.onclick=()=>resumeBookmark(m);body.append(h,sub,btn);el.append(body);box.append(el)});$('catalogEmpty').classList.toggle('hidden',data.length>0);$('loadMore').classList.add('hidden');$('sectionTitle').textContent='Bookmark halaman';return}const data=view==='favorites'?Object.values(favoriteRecords):Object.values(history).sort((a,b)=>b.updatedAt-a.updatedAt).map(h=>({id:h.mangaId,title:h.title,cover:h.cover,status:'Lanjutkan',_history:h}));data.forEach(m=>{const el=card(m);if(m._history){const btn=document.createElement('button');btn.className='primary';btn.style.margin='0 9px 9px';btn.style.width='calc(100% - 18px)';btn.textContent='Lanjutkan '+m._history.chapterTitle;btn.onclick=()=>resume(m._history);el.append(btn)}box.append(el)});$('catalogEmpty').classList.toggle('hidden',data.length>0);$('loadMore').classList.add('hidden');$('sectionTitle').textContent=view==='favorites'?'Komik favorit':'Lanjutkan membaca'}
+async function resume(h){try{$('lang').value=h.lang||'id';const d=await api('/chapters?id='+encodeURIComponent(h.mangaId)+'&lang='+encodeURIComponent($('lang').value));chapters=d.items||[];const m=items.find(x=>x.id===h.mangaId)||{id:h.mangaId,title:h.title,cover:h.cover};selected=m;const i=chapters.findIndex(x=>x.id===h.chapterId);if(i<0){notify('Chapter riwayat tidak tersedia pada bahasa terpilih.');return}await openChapter(i);pageIndex=Math.min(pages.length-1,Math.max(0,h.page||0));renderPages()}catch(e){notify(e.message)}}
+async function resumeBookmark(m){try{$('lang').value=m.lang||'id';const d=await api('/manga?id='+encodeURIComponent(m.mangaId));selected=d.manga;const feed=await api('/chapters?id='+encodeURIComponent(m.mangaId)+'&lang='+encodeURIComponent($('lang').value));chapters=feed.items||[];const i=chapters.findIndex(x=>x.id===m.chapterId);if(i<0){notify('Chapter bookmark tidak tersedia pada bahasa tersebut.');return}await openChapter(i);pageIndex=Math.min(pages.length-1,Math.max(0,m.page||0));renderPages()}catch(e){notify(e.message)}}
+function switchView(next){view=next;document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));$('search').value='';$('search').disabled=view!=='discover';$('lang').disabled=false;$('sort').disabled=view!=='discover';if(view==='discover')loadCatalog(true);else renderSaved()}
+$('searchBtn').onclick=()=>{view='discover';document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view==='discover'));loadCatalog(true)};$('search').addEventListener('keydown',e=>{if(e.key==='Enter')$('searchBtn').click()});$('loadMore').onclick=()=>loadCatalog(false);$('catalogRetry').onclick=()=>loadCatalog(true);$('lang').onchange=()=>{if(view==='discover')loadCatalog(true);else renderSaved();if(!$('detailModal').classList.contains('hidden')&&selected)refreshDetailChapters()};$('sort').onchange=()=>loadCatalog(true);document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>switchView(b.dataset.view));$('closeDetail').onclick=closeDetail;$('detailModal').addEventListener('click',e=>{if(e.target===$('detailModal'))closeDetail()});$('closeReader').onclick=closeReader;$('prevPage').onclick=()=>movePage(-1);$('nextPage').onclick=()=>movePage(1);$('pageRange').oninput=e=>setPage(Number(e.target.value)-1);$('mode').onchange=()=>{if(pages.length)renderPages()};$('direction').onchange=()=>{direction=$('direction').value};$('quality').onchange=()=>{if(activeChapter)openChapter(activeIndex())};$('prevChapter').onclick=()=>changeChapter(-1);$('nextChapter').onclick=()=>changeChapter(1);$('bookmark').onclick=toggleMark;$('localBtn').onclick=()=>location.href='/comic-reader-local.html';document.addEventListener('keydown',e=>{if($('reader').classList.contains('hidden'))return;if(e.key==='Escape')closeReader();else if(e.key==='ArrowRight')movePage(1);else if(e.key==='ArrowLeft')movePage(-1)});$('readerStage').addEventListener('scroll',()=>{if(mode!=='webtoon'||!pages.length)return;clearTimeout(scrollTimer);scrollTimer=setTimeout(()=>{const imgs=[...$('readerStage').querySelectorAll('img[data-index]')],top=$('readerStage').getBoundingClientRect().top;let best=pageIndex,dist=Infinity;for(const img of imgs){const d=Math.abs(img.getBoundingClientRect().top-top);if(d<dist){dist=d;best=Number(img.dataset.index)}}pageIndex=best;const h=history[selected.id];if(h){h.page=pageIndex;h.updatedAt=Date.now();store()}},220)});
+if(new URLSearchParams(location.search).has('embedded'))document.body.classList.add('embedded');
+loadCatalog(true);
+})();
+</script><!-- RYOMD_RYOMD_COMIC_ALL_LANGUAGES_RELIABILITY_04: selector ISO languages, show per-chapter language, preserve catalog while retrying -->
+<!-- RYOMD_COMIC_COVER_DETAIL_SPEED_FIX_06: render metadata from catalog immediately; fetch only chapter feed -->
+</body></html>

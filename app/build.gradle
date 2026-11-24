@@ -1,0 +1,45 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.ryomd.nativeapp'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'com.ryomd.nativeapp'
+        minSdk 26
+        targetSdk 35
+        versionCode 9
+        versionName '1.2.9'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        // Wajib: NewPipe Extractor memakai API Java 8+ yang belum ada di Android < 13 (minSdk 26).
+        coreLibraryDesugaringEnabled true
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.1.5'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.27.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'androidx.media3:media3-exoplayer:1.10.1'
+    implementation 'androidx.media3:media3-exoplayer-hls:1.10.1'
+    implementation 'androidx.media3:media3-exoplayer-dash:1.10.1'
+    implementation 'androidx.media3:media3-ui:1.10.1'
+    implementation 'androidx.media3:media3-session:1.10.1'
+}
