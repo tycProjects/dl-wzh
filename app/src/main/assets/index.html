@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sakura Pesan</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+
+<main class="wrap" id="login">
+  <div class="pill"><i>✧</i><span>PESANMU, CUKUP 4 DIGIT</span><i>✧</i></div>
+  <h1>CHAT PAKAI<br>4 DIGIT<br><span class="grad">ID SAJA</span></h1>
+  <p class="sub">Kirim pesan dengan indah.<br><span class="kr">간단하게 · 빠르게 · 안전하게</span></p>
+  <div class="chips"><span>❀ TANPA NOMOR HP</span><span>☁ REALTIME</span><span>♡ BACA 既読</span></div>
+
+  <section class="card">
+    <div class="tile">🔐</div>
+    <div class="lbl">01 / IDENTITAS</div>
+    <h2>Masuk dengan ID-mu <b>♡</b></h2>
+    <p class="txt">Pilih 4 digit angka sebagai ID. Bagikan ke teman agar mereka bisa mengirim pesan.</p>
+    <div class="get"><span class="blue">✦ ID ACAK</span><span>Belum punya ID?</span><button class="a" id="rand">BUATKAN ↗</button></div>
+    <div class="lbl">ID 4 DIGIT</div>
+    <div class="pin" id="pin">
+      <input inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="off">
+      <input inputmode="numeric" maxlength="1" aria-label="Digit 2" autocomplete="off">
+      <input inputmode="numeric" maxlength="1" aria-label="Digit 3" autocomplete="off">
+      <input inputmode="numeric" maxlength="1" aria-label="Digit 4" autocomplete="off">
+    </div>
+    <div class="lbl">NAMA PANGGILAN (OPSIONAL)</div>
+    <label class="field"><i>✎</i><input id="nick" maxlength="16" placeholder="Misal: Sakura" autocomplete="off"></label>
+    <div class="err" id="lerr"></div>
+    <button class="btn" id="enter" disabled>MASUK <span>✨</span></button>
+    <p class="note"><span>🛡️</span>ID hanya disimpan di perangkat ini. Pesan tersimpan di server pilihanmu.</p>
+    <details>
+      <summary>SERVER (OPSIONAL)</summary>
+      <label class="field"><i>⌘</i><input id="dburl" placeholder="https://proyek-default-rtdb.firebaseio.com"></label>
+      <p class="note">Kosong = mode lokal. Isi URL Firebase Realtime Database agar chat antar perangkat.</p>
+    </details>
+  </section>
+</main>
+
+<main class="wrap hide" id="home">
+  <div class="pill small"><i>✧</i><span id="mestat">ID</span><i id="dot" class="dot">●</i></div>
+  <section class="card">
+    <div class="tile">💌</div>
+    <div class="lbl">02 / PERCAKAPAN</div>
+    <h2>Mulai ngobrol <b>🌷</b></h2>
+    <p class="txt">Ketik ID 4 digit temanmu, lalu mulai kirim pesan.</p>
+    <form class="new" id="newf">
+      <label class="field"><i>#</i><input id="newid" inputmode="numeric" maxlength="4" placeholder="0000" aria-label="ID tujuan" autocomplete="off"></label>
+      <button class="btn" type="submit">MULAI</button>
+    </form>
+    <div class="chips left"><button id="rename">名前 NAMA</button><button id="copy">SALIN ID</button><button id="out">KELUAR</button></div>
+    <div class="list" id="list"></div>
+  </section>
+</main>
+
+<main class="wrap chatwrap hide" id="chat">
+  <section class="card chatcard">
+    <header class="chead">
+      <button class="icon" id="back" aria-label="Kembali">←</button>
+      <div class="av" id="cav"></div>
+      <div class="meta"><b id="cname"></b><span id="csub"></span></div>
+      <button class="icon" id="sms" title="Ajak via SMS">✉</button>
+    </header>
+    <div class="msgs" id="msgs"></div>
+    <div class="typing hide" id="typing">sedang mengetik<i>.</i><i>.</i><i>.</i></div>
+    <div class="cnt" id="cnt"></div>
+    <div class="comp">
+      <textarea id="ta" rows="1" maxlength="500" placeholder="Tulis pesan…"></textarea>
+      <button class="send" id="sendb" aria-label="Kirim">➤</button>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>

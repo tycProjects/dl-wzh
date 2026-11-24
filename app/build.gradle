@@ -1,0 +1,24 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.sakura.pesan'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.sakura.pesan'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+        buildConfigField 'String', 'DB_URL', "\"${project.findProperty('PESAN_DB_URL') ?: ''}\""
+    }
+    buildFeatures { buildConfig true }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes { release { minifyEnabled false } }
+}
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.11.0'
+}
