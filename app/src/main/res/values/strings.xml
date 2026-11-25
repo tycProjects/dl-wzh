@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MAYA</string>
+    <string name="maya_subtitle">তোমার স্মার্ট বাংলা AI অ্যাসিস্ট্যান্ট</string>
+    <string name="nav_home">হোম</string>
+    <string name="nav_device">ডিভাইস</string>
+    <string name="nav_voice">ভয়েস</string>
+    <string name="nav_chat">চ্যাট</string>
+    <string name="nav_tools">টুলস</string>
+    <string name="status_ready">প্রস্তুত</string>
+    <string name="status_listening">শুনছি…</string>
+    <string name="status_thinking">ভাবছি…</string>
+    <string name="status_speaking">কথা বলছি…</string>
+    <string name="error_no_internet">ইন্টারনেট সংযোগ পাচ্ছি না।</string>
+    <string name="error_permission_needed">এই কাজের জন্য অনুমতি লাগবে।</string>
+    <string name="error_app_not_installed">অ্যাপটি তোমার ফোনে ইনস্টল করা নেই।</string>
+    <string name="error_not_supported">এই ফিচারটি তোমার ফোনে সাপোর্ট করছে না।</string>
+    <string name="bg_channel_name">MAYA Background Assistant</string>
+    <string name="screen_share_channel_name">MAYA Screen Share</string>
+</resources>
