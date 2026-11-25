@@ -1,0 +1,6 @@
+{
+  "name": "Maya AI",
+  "description": "Smart Android smartphone control and warm Bengali AI companion Maya.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

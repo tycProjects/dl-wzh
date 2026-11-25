@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Maya AI</string>
+    <string name="accessibility_service_label">Maya Smart Control</string>
+    <string name="accessibility_service_description">Allows Maya AI Assistant to perform user-authorized screen taps, scrolls, swipes, long presses, and system navigation (Home, Recents, Quick Settings) on your behalf.</string>
+    <string name="tab_maya">Maya</string>
+    <string name="tab_controls">Controls</string>
+    <string name="tab_automate">Automate</string>
+    <string name="tab_device">Device</string>
+    <string name="emergency_stop">Stop Automation</string>
+    <string name="command_placeholder">মায়াকে বলো বা কমান্ড লিখো…</string>
+    <string name="voice_listening">মায়া শুনছে… কথা বলো</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="permission_granted">Active</string>
+</resources>
