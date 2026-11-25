@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="blue_900">#FF0D3B7A</color>
+    <color name="blue_700">#FF1565C0</color>
+    <color name="blue_500">#FF1E88E5</color>
+    <color name="blue_50">#FFE3F2FD</color>
+    <color name="ink">#FF0D1B2A</color>
+    <color name="muted">#FF607D8B</color>
+    <color name="scrim">#CC0D1B2A</color>
+</resources>

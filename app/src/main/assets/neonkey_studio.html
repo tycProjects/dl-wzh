@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090d19">
+<title>NEONKEY — Custom Keyboard Studio</title>
+<style>
+:root{
+ --accent:#a855f7;--accent2:#22d3ee;--page:#090d19;--panel:#141b2d;
+ --key-bg:rgba(25,31,49,.24);--key-border:rgba(255,255,255,.36);
+ --key-blur:2px;--key-radius:14px;--key-height:48px;--key-gap:5px;
+ --wall-dim:0;--key-text:#fff;--panel-border:#303b59
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 8% 0,#302052 0,transparent 39%),radial-gradient(ellipse at 95% 24%,#103b4b 0,transparent 35%),var(--page);color:#f7f8ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select{font:inherit}
+.app{max-width:1100px;margin:auto;padding:17px 13px 42px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:11px}.logo{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:23px;box-shadow:0 8px 24px #8b5cf655}
+.brand b{font-size:17px;letter-spacing:2px}.brand small{display:block;color:#9ba7c2;font-size:9px;letter-spacing:2px}
+.badge{font-size:10px;color:#d5dcf2;border:1px solid #3a4664;background:#141b2c;border-radius:30px;padding:8px 11px}
+.hero{margin:12px 0 17px}.eyebrow{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--accent2)}h1{font-size:clamp(26px,5vw,40px);line-height:1.1;margin:7px 0}.hero p{font-size:13px;color:#aab5ce;line-height:1.55;margin:0;max-width:680px}
+.panel{background:linear-gradient(145deg,rgba(24,31,50,.97),rgba(13,19,33,.97));border:1px solid var(--panel-border);border-radius:22px;padding:15px;box-shadow:0 18px 50px #0005;min-width:0}
+.panelhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.panelhead b{font-size:13px;letter-spacing:1.4px}.live{color:#6ee7b7;font-size:10px;letter-spacing:1px;white-space:nowrap}
+.preview{min-height:300px;padding:12px;border-radius:17px;border:1px solid #435070;background:linear-gradient(135deg,#211844,#0c2b3a);display:flex;flex-direction:column;justify-content:flex-end;gap:12px;overflow:hidden}
+.message{min-height:20px;color:white;font-size:12px;text-shadow:0 2px 7px #000;overflow-wrap:anywhere}
+.keyboard-shell{position:relative;width:100%;overflow:hidden;border-radius:21px;border:1px solid rgba(255,255,255,.72);background:rgba(9,12,24,.08);box-shadow:0 12px 32px #0008,inset 0 0 0 1px #ffffff20;isolation:isolate;transition:width .15s}
+.wallpaper{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;display:none}.wallpaper.visible{display:block}
+.wall-shade{position:absolute;inset:0;background:rgba(4,7,18,var(--wall-dim));z-index:-2;pointer-events:none}
+.keys{position:relative;z-index:1;padding:8px 7px;background:rgba(8,11,23,.035)}
+.keyrow{display:flex;gap:var(--key-gap);justify-content:center;margin:5px 0}
+.key{height:var(--key-height);min-width:0;flex:1;border:1px solid var(--key-border);border-radius:var(--key-radius);background:var(--key-bg);backdrop-filter:blur(var(--key-blur));-webkit-backdrop-filter:blur(var(--key-blur));color:var(--key-text);font-size:15px;font-weight:500;text-shadow:0 1px 5px #000;box-shadow:0 3px 0 rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.18);cursor:pointer;touch-action:manipulation;transition:transform .09s,filter .09s}
+.key:active,.key.pressed{transform:translateY(2px) scale(.98);filter:brightness(1.5)}
+.key.special{flex:1.35;font-size:11px;background:rgba(70,80,105,.25)}.key.space{flex:4.4;font-size:12px}.key.enter{background:linear-gradient(135deg,rgba(168,85,247,.68),rgba(79,70,229,.55))}
+.keyrow.number-row{display:none}.keyrow.number-row.show{display:flex}
+.previewfoot{display:flex;justify-content:space-between;gap:8px;color:#929db8;font-size:10px;margin-top:9px}
+.main-tools{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:15px}
+.tool{min-height:68px;padding:7px 3px;border-radius:13px;border:1px solid #3b4765;background:#1a2338;color:#edf1ff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-size:10px;cursor:pointer}
+.tool .ico{font-size:20px;line-height:1}.tool.active{border-color:var(--accent2);background:#17394a;box-shadow:0 0 0 1px #22d3ee30}
+.settings{margin-top:12px;min-height:125px}.setting-title{font-size:12px;font-weight:850;letter-spacing:1.1px;margin-bottom:10px}
+.options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.option,.chip,.btn{border:1px solid #3b4765;background:#1a2338;color:#edf1ff;border-radius:10px;padding:9px 7px;font-size:11px;cursor:pointer;min-width:0}.option.active,.chip.active{border-color:var(--accent2);background:#173b4b;color:#a5f3fc}
+.chips,.actions{display:flex;flex-wrap:wrap;gap:8px}.btn.primary{border:0;background:linear-gradient(135deg,var(--accent),#4f46e5);font-weight:750}.btn.danger{border-color:#7f3b58;color:#ffc2d8}
+.range-row{display:flex;align-items:center;gap:9px;color:#cbd4eb;font-size:11px;margin:11px 0}.range-row input{flex:1;min-width:0;accent-color:var(--accent)}.range-row output{min-width:43px;text-align:right;color:#aab5ce}
+.select{width:100%;padding:10px;background:#11192a;border:1px solid #3b4765;color:#fff;border-radius:10px;font-size:12px}
+.file-input{display:none}.status{font-size:10px;color:#9eabc7;line-height:1.5;margin-top:9px}.subhead{font-size:10px;color:#9eabc7;letter-spacing:1px;margin:13px 0 7px}
+.palette{display:flex;gap:9px;flex-wrap:wrap}.colorpick{width:32px;height:32px;border:2px solid #ffffff38;border-radius:10px;cursor:pointer}.colorpick.active{outline:2px solid #fff;outline-offset:2px}
+.footer{text-align:center;color:#77839f;font-size:10px;line-height:1.6;margin-top:17px}
+@media(max-width:650px){.app{padding:13px 9px 32px}.panel{padding:12px}.preview{padding:8px;min-height:270px}.key{height:clamp(37px,9.2vw,48px);font-size:13px}.key.special{font-size:9px}.main-tools{gap:5px}.tool{min-height:63px;font-size:9px}.options{grid-template-columns:repeat(3,minmax(0,1fr))}.badge{font-size:9px;padding:7px 8px}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top"><div class="brand"><div class="logo">⌨</div><div><b>NEONKEY STUDIO</b><small>PREMIUM CUSTOM KEYBOARD</small></div></div><div class="badge">✦ GLASS EDITION</div></header>
+<section class="hero"><div class="eyebrow">DESIGN IT • PERSONALIZE IT • SHARE THE STYLE</div><h1>Your keyboard. Your creativity.</h1><p>Explore fonts, live video and photo wallpapers, adjustable size, transparent glass keys, colors, effects and keyboard layouts in one interactive studio.</p></section>
+<section class="panel">
+<div class="panelhead"><b>LIVE KEYBOARD PREVIEW</b><span class="live">● INTERACTIVE</span></div>
+<div class="preview">
+<div class="message" id="typed">Start typing with the preview keyboard…</div>
+<div class="keyboard-shell" id="keyboardShell">
+<video class="wallpaper" id="videoBg" loop playsinline></video>
+<img class="wallpaper" id="imageBg" alt="Keyboard wallpaper">
+<div class="wall-shade"></div>
+<div class="keys" id="keys">
+<div class="keyrow number-row" id="numberRow"><button class="key">1</button><button class="key">2</button><button class="key">3</button><button class="key">4</button><button class="key">5</button><button class="key">6</button><button class="key">7</button><button class="key">8</button><button class="key">9</button><button class="key">0</button></div>
+<div class="keyrow"><button class="key">q</button><button class="key">w</button><button class="key">e</button><button class="key">r</button><button class="key">t</button><button class="key">y</button><button class="key">u</button><button class="key">i</button><button class="key">o</button><button class="key">p</button></div>
+<div class="keyrow"><button class="key">a</button><button class="key">s</button><button class="key">d</button><button class="key">f</button><button class="key">g</button><button class="key">h</button><button class="key">j</button><button class="key">k</button><button class="key">l</button></div>
+<div class="keyrow"><button class="key special" data-action="shift">⇧</button><button class="key">z</button><button class="key">x</button><button class="key">c</button><button class="key">v</button><button class="key">b</button><button class="key">n</button><button class="key">m</button><button class="key special" data-action="backspace">⌫</button></div>
+<div class="keyrow"><button class="key special" data-action="symbols">?123</button><button class="key special" data-action="emoji">☻</button><button class="key space" data-action="space">English (US)</button><button class="key special">,</button><button class="key enter" data-action="enter">↵</button></div>
+</div></div></div>
+<div class="previewfoot"><span>Tap keys to test typing</span><span>Wallpaper fits keyboard frame</span></div>
+<nav class="main-tools" aria-label="Main keyboard controls">
+<button class="tool active" data-tab="fonts"><span class="ico">Aa</span><span>Fonts</span></button>
+<button class="tool" data-tab="video"><span class="ico">▶</span><span>Video</span></button>
+<button class="tool" data-tab="image"><span class="ico">▧</span><span>Image</span></button>
+<button class="tool" data-tab="size"><span class="ico">↕</span><span>Size</span></button>
+<button class="tool" data-tab="design"><span class="ico">✦</span><span>Design</span></button>
+</nav>
+<section class="panel settings" id="settings" aria-live="polite"></section>
+</section>
+<div class="footer">NEONKEY STUDIO • Self-contained HTML keyboard design demo<br>Photo/video is clipped to the keyboard frame. For audible video, tap “Play with sound” after selecting a video.<br>To type in other Android apps, this design must later be packaged as a native Android keyboard (IME).</div>
+<input class="file-input" type="file" id="videoPicker" accept="video/*">
+<input class="file-input" type="file" id="imagePicker" accept="image/*">
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),root=document.documentElement,settings=$('settings'),video=$('videoBg'),image=$('imageBg'),typed=$('typed'),shell=$('keyboardShell');
+let videoURL=null,imageURL=null,upper=false,soundOn=false,audioContext=null;
+const fonts=[
+['System Sans','system-ui,sans-serif'],['Arial','Arial,sans-serif'],['Helvetica','Helvetica,sans-serif'],['Verdana','Verdana,sans-serif'],['Trebuchet','Trebuchet MS,sans-serif'],['Tahoma','Tahoma,sans-serif'],['Georgia','Georgia,serif'],['Times New Roman','Times New Roman,serif'],['Courier New','Courier New,monospace'],['Monospace','monospace'],['Cursive','cursive'],['Fantasy','fantasy'],['Impact','Impact,sans-serif'],['Comic Style','Comic Sans MS,cursive'],['Garamond','Garamond,serif'],['Palatino','Palatino,serif'],['Lucida Console','Lucida Console,monospace'],['Brush Script','Brush Script MT,cursive'],['Roboto','Roboto,system-ui,sans-serif'],['Rounded UI','ui-rounded,system-ui,sans-serif']
+];
+const designs=[
+['Crystal Glass','rgba(22,28,48,.18)','2px','14px','rgba(255,255,255,.38)'],
+['Ultra Clear','rgba(255,255,255,.07)','0px','14px','rgba(255,255,255,.55)'],
+['Frosted Glass','rgba(40,48,72,.30)','8px','16px','rgba(255,255,255,.34)'],
+['Neon Purple','rgba(49,20,79,.42)','4px','13px','#d9a7ff'],
+['Cyber Blue','rgba(10,50,80,.42)','4px','13px','#8be9ff'],
+['Rose Glow','rgba(84,25,57,.40)','4px','17px','#ffb4d9'],
+['Emerald','rgba(12,66,48,.42)','4px','13px','#9bffd6'],
+['Black Glass','rgba(4,6,12,.48)','5px','12px','#bfc9df'],
+['White Glass','rgba(235,242,255,.25)','5px','14px','#ffffff'],
+['Gold Luxe','rgba(76,57,20,.43)','4px','13px','#ffe4a3'],
+['Soft Round','rgba(30,35,52,.28)','4px','22px','#ffffff77'],
+['Square Tech','rgba(17,24,39,.30)','2px','5px','#9ca3af'],
+['Minimal','rgba(18,24,38,.15)','1px','9px','#ffffff44'],
+['Deep 3D','rgba(22,26,43,.52)','3px','11px','#ffffff66'],
+['Lavender','rgba(65,45,95,.32)','6px','18px','#e9d5ff'],
+['Ocean','rgba(9,55,69,.34)','6px','18px','#a5f3fc'],
+['Sunset','rgba(90,38,39,.34)','5px','16px','#fed7aa'],
+['Ice Blue','rgba(35,57,86,.25)','7px','16px','#dbeafe'],
+['Carbon','rgba(15,18,25,.58)','1px','8px','#9ca3af'],
+['Neon Edge','rgba(20,16,40,.28)','3px','14px','#c4b5fd']
+];
+function setTab(tab){
+ document.querySelectorAll('.tool').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+ if(tab==='fonts'){
+  settings.innerHTML='<div class="setting-title">FONT COLLECTION — 20 STYLES</div><div class="options">'+fonts.map((f,i)=>`<button class="option ${i===0?'active':''}" data-font="${i}" style="font-family:${f[1]}">${f[0]}</button>`).join('')+'</div><div class="status">Choose a font. It updates all keyboard letters and special keys.</div>';
+  settings.querySelectorAll('[data-font]').forEach(b=>b.onclick=()=>{const f=fonts[+b.dataset.font];document.querySelectorAll('.key').forEach(k=>k.style.fontFamily=f[1]);settings.querySelectorAll('[data-font]').forEach(x=>x.classList.toggle('active',x===b));});
+ }
+ if(tab==='video'){
+  settings.innerHTML='<div class="setting-title">VIDEO BACKGROUND CONTROLS</div><div class="actions"><button class="btn primary" id="chooseVideo">＋ Choose video</button><button class="btn" id="playSound">▶ Play with sound</button><button class="btn" id="muteVideo">♫ Mute</button><button class="btn danger" id="removeVideo">Remove video</button></div><div class="range-row">Video visibility <input id="videoOpacity" type="range" min="15" max="100" value="100"><output id="videoPct">100%</output></div><div class="range-row">Dark overlay <input id="darkness" type="range" min="0" max="65" value="0"><output id="darkPct">0%</output></div><div class="status" id="videoStatus">Choose a video. It will fill the keyboard area only, behind the transparent keys. Then tap Play with sound. Browser autoplay rules require a tap before audio can start.</div>';
+  $('chooseVideo').onclick=()=>$('videoPicker').click();$('playSound').onclick=playVideoSound;$('muteVideo').onclick=()=>{video.muted=true;soundOn=false;$('videoStatus').textContent='Video muted.';};$('removeVideo').onclick=removeVideo;
+  $('videoOpacity').oninput=e=>{$('videoPct').value=e.target.value+'%';video.style.opacity=e.target.value/100;};
+  $('darkness').oninput=e=>{root.style.setProperty('--wall-dim',e.target.value/100);$('darkPct').value=e.target.value+'%';};
+ }
+ if(tab==='image'){
+  settings.innerHTML='<div class="setting-title">IMAGE BACKGROUND CONTROLS</div><div class="actions"><button class="btn primary" id="chooseImage">＋ Choose image</button><button class="btn danger" id="removeImage">Remove image</button></div><div class="range-row">Image visibility <input id="imageOpacity" type="range" min="15" max="100" value="100"><output id="imagePct">100%</output></div><div class="status">Your photo is cropped to cover the keyboard frame. The picture stays inside the rounded keyboard shape and shows through transparent keys.</div>';
+  $('chooseImage').onclick=()=>$('imagePicker').click();$('removeImage').onclick=removeImage;$('imageOpacity').oninput=e=>{$('imagePct').value=e.target.value+'%';image.style.opacity=e.target.value/100;};
+ }
+ if(tab==='size'){
+  settings.innerHTML='<div class="setting-title">KEYBOARD SIZE & SPACING</div><div class="range-row">Keyboard width <input id="kbWidth" type="range" min="70" max="100" value="100"><output id="widthPct">100%</output></div><div class="range-row">Key height <input id="kbHeight" type="range" min="34" max="66" value="48"><output id="heightPx">48px</output></div><div class="range-row">Key spacing <input id="kbGap" type="range" min="2" max="11" value="5"><output id="gapPx">5px</output></div><div class="range-row">Keyboard corner roundness <input id="kbRound" type="range" min="5" max="32" value="21"><output id="roundPx">21px</output></div><div class="status">Adjust the overall keyboard width, key height, spacing and outer corner shape.</div>';
+  $('kbWidth').oninput=e=>{shell.style.width=e.target.value+'%';shell.style.margin='0 auto';$('widthPct').value=e.target.value+'%';};
+  $('kbHeight').oninput=e=>{root.style.setProperty('--key-height',e.target.value+'px');$('heightPx').value=e.target.value+'px';};
+  $('kbGap').oninput=e=>{root.style.setProperty('--key-gap',e.target.value+'px');$('gapPx').value=e.target.value+'px';};
+  $('kbRound').oninput=e=>{shell.style.borderRadius=e.target.value+'px';$('roundPx').value=e.target.value+'px';};
+ }
+ if(tab==='design'){
+  settings.innerHTML='<div class="setting-title">KEYBOARD DESIGN COLLECTION — 20 STYLES</div><div class="options">'+designs.map((d,i)=>`<button class="option ${i===0?'active':''}" data-design="${i}">${i+1}. ${d[0]}</button>`).join('')+'</div><div class="subhead">ACCENT COLOR</div><div class="palette"><button class="colorpick active" data-accent="#a855f7" style="background:linear-gradient(135deg,#a855f7,#22d3ee)"></button><button class="colorpick" data-accent="#2563eb" style="background:linear-gradient(135deg,#2563eb,#06b6d4)"></button><button class="colorpick" data-accent="#ec4899" style="background:linear-gradient(135deg,#ec4899,#f97316)"></button><button class="colorpick" data-accent="#10b981" style="background:linear-gradient(135deg,#10b981,#a3e635)"></button><button class="colorpick" data-accent="#d6a84b" style="background:linear-gradient(135deg,#d6a84b,#fff0a6)"></button><button class="colorpick" data-accent="#e0e7ff" style="background:linear-gradient(135deg,#e0e7ff,#818cf8)"></button></div><div class="subhead">EXTRA KEYBOARD OPTIONS</div><div class="chips"><button class="chip" id="numbers">＋ Number row</button><button class="chip" id="soundKeys">♫ Key sound: Off</button><button class="chip" id="glowKeys">✧ Glow: On</button><button class="chip" id="resetAll">↺ Reset design</button></div><div class="status">Pick any design to change the key glass tint, transparency, blur, border and corner shape.</div>';
+  settings.querySelectorAll('[data-design]').forEach(b=>b.onclick=()=>{applyDesign(+b.dataset.design);settings.querySelectorAll('[data-design]').forEach(x=>x.classList.toggle('active',x===b));});
+  settings.querySelectorAll('[data-accent]').forEach(b=>b.onclick=()=>{root.style.setProperty('--accent',b.dataset.accent);settings.querySelectorAll('[data-accent]').forEach(x=>x.classList.toggle('active',x===b));});
+  $('numbers').onclick=()=>{$('numberRow').classList.toggle('show');$('numbers').classList.toggle('active');};
+  $('soundKeys').onclick=()=>{soundOn=!soundOn;$('soundKeys').textContent='♫ Key sound: '+(soundOn?'On':'Off');$('soundKeys').classList.toggle('active',soundOn);};
+  $('glowKeys').onclick=()=>{$('glowKeys').classList.toggle('active');$('glowKeys').textContent=$('glowKeys').classList.contains('active')?'✧ Glow: On':'✧ Glow: Off';};
+  $('resetAll').onclick=()=>{applyDesign(0);root.style.setProperty('--accent','#a855f7');settings.querySelectorAll('[data-design]').forEach((x,i)=>x.classList.toggle('active',i===0));settings.querySelectorAll('[data-accent]').forEach((x,i)=>x.classList.toggle('active',i===0));};
+ }
+}
+function applyDesign(i){const d=designs[i];document.querySelectorAll('.key').forEach(k=>{k.style.background=d[1];k.style.backdropFilter='blur('+d[2]+')';k.style.webkitBackdropFilter='blur('+d[2]+')';k.style.borderRadius=d[3];k.style.borderColor=d[4];});}
+function removeVideo(){video.pause();if(videoURL)URL.revokeObjectURL(videoURL);videoURL=null;video.removeAttribute('src');video.classList.remove('visible');$('videoPicker').value='';}
+function removeImage(){if(imageURL)URL.revokeObjectURL(imageURL);imageURL=null;image.removeAttribute('src');image.classList.remove('visible');$('imagePicker').value='';}
+$('videoPicker').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;removeImage();if(videoURL)URL.revokeObjectURL(videoURL);videoURL=URL.createObjectURL(f);video.src=videoURL;video.muted=true;video.classList.add('visible');video.load();video.play().catch(()=>{});if($('videoStatus'))$('videoStatus').textContent='Video loaded and fitted to keyboard. Tap Play with sound to enable audio.';});
+$('imagePicker').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;removeVideo();if(imageURL)URL.revokeObjectURL(imageURL);imageURL=URL.createObjectURL(f);image.src=imageURL;image.classList.add('visible');});
+async function playVideoSound(){if(!video.src){$('videoStatus').textContent='Please choose a video first.';return;}video.muted=false;try{await video.play();$('videoStatus').textContent='Video is playing with sound. Use Mute to turn audio off.';}catch(err){$('videoStatus').textContent='Your browser did not start playback. Tap Play with sound once more.';}}
+function keyBeep(){try{audioContext=audioContext||new(window.AudioContext||window.webkitAudioContext)();const osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type='sine';osc.frequency.value=720;gain.gain.setValueAtTime(.025,audioContext.currentTime);gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+.06);osc.connect(gain);gain.connect(audioContext.destination);osc.start();osc.stop(audioContext.currentTime+.065);}catch(e){}}
+function typeText(s){if(s==='⌫'){typed.textContent=typed.textContent.slice(0,-1);return;}if(s==='⇧'){upper=!upper;document.querySelectorAll('.key').forEach(k=>{if(k.dataset.action!=='none'&&k.textContent.length===1)k.textContent=upper?k.textContent.toUpperCase():k.textContent.toLowerCase();});return;}if(s==='☻'){typed.textContent+=' 😊 ';return;}if(s==='?123'){typed.textContent+=' 123 ';return;}if(s==='↵'){typed.textContent+='\\n';return;}if(s==='English (US)'){typed.textContent+=' ';return;}typed.textContent=typed.textContent==='Start typing with the preview keyboard…'?s:typed.textContent+s;}
+$('keys').addEventListener('click',e=>{const k=e.target.closest('.key');if(!k)return;k.classList.add('pressed');setTimeout(()=>k.classList.remove('pressed'),110);if(soundOn)keyBeep();typeText(k.textContent.trim());});
+document.querySelectorAll('.tool').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+setTab('fonts');
+</script>
+</body>
+</html>

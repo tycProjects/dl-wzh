@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Live Video Wallpaper</string>
+    <string name="wallpaper_description">Silent looping video wallpaper</string>
+    <string name="tagline">Silent, looping video on your screen</string>
+
+    <string name="current_wallpaper">Current wallpaper</string>
+    <string name="none_selected">No video selected yet</string>
+    <string name="apply_wallpaper">Apply wallpaper</string>
+    <string name="import_video">Import video</string>
+    <string name="import_zip">Import ZIP</string>
+    <string name="gallery">Gallery</string>
+    <string name="settings">Settings</string>
+    <string name="imported_videos">Imported videos</string>
+    <string name="no_videos">No videos yet. Tap "Import video" or "Import ZIP".</string>
+    <string name="import_video_ok">Video imported</string>
+    <string name="import_video_fail">Could not import this video. It may be too large or not playable on this phone.</string>
+
+    <string name="apply_home">Apply Home Screen</string>
+    <string name="apply_lock">Apply Lock Screen</string>
+    <string name="apply_both">Apply Both</string>
+    <string name="delete_video">Delete video</string>
+    <string name="delete_confirm">Delete this video from the app?</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="lock_note">Lock screen: Android lets apps set only a still frame there on most phones. Live video on the lock screen depends on your phone brand.</string>
+
+    <string name="msg_home_updated">Video updated. It plays wherever Live Video Wallpaper is already set.</string>
+    <string name="msg_live_active">Success: Live Video Wallpaper is active.</string>
+    <string name="msg_live_not_active">Not applied. You cancelled, or this phone blocked it. Try again, or use Settings &gt; Wallpaper &gt; Live wallpapers.</string>
+    <string name="msg_no_chooser">This phone has no live wallpaper chooser. Open Settings &gt; Wallpaper and choose Live Video Wallpaper.</string>
+    <string name="msg_lock_ok">Lock screen set to a still frame from this video.</string>
+    <string name="msg_lock_fail">Could not set the lock screen on this phone.</string>
+    <string name="msg_lock_unsupported">This phone does not allow apps to change the wallpaper.</string>
+
+    <string name="import_zip_title">Import ZIP</string>
+    <string name="import_zip_help">Pick a ZIP file that contains videos (MP4, M4V, 3GP, WebM, MKV). Videos can be in any folder inside the ZIP. Nothing in the ZIP is ever executed.</string>
+    <string name="select_zip">Select ZIP file</string>
+    <string name="open_gallery">Open gallery</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="playback">Playback</string>
+    <string name="loop_video">Loop video</string>
+    <string name="scale_fill">Fill screen (crop edges)</string>
+    <string name="scale_fit">Fit whole video (black bars)</string>
+    <string name="pause_saver">Pause video in Battery Saver mode</string>
+    <string name="battery">Battery</string>
+    <string name="battery_help">Video wallpapers use more battery than still ones. The video pauses automatically when the screen is off or covered by an app. If your phone stops the wallpaper in the background, set battery usage for this app to Unrestricted.</string>
+    <string name="open_battery">Open battery settings</string>
+    <string name="storage">Storage</string>
+    <string name="delete_all">Delete all imported videos</string>
+    <string name="delete_all_confirm">Delete every imported video and reset the wallpaper?</string>
+    <string name="about">About</string>
+    <string name="about_text">Videos always play without sound. Lock-screen live wallpaper support differs by Android version and phone brand, so this app cannot force it everywhere.</string>
+
+    <string name="open_dialer">Video Phone (dialer)</string>
+    <string name="customize">Customize</string>
+    <string name="dialer_label">Video Phone</string>
+</resources>

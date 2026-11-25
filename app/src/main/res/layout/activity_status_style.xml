@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preview"
+                android:textColor="@color/blue_700"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_default_gradient"
+                android:paddingVertical="12dp">
+
+                <com.livevideowallpaper.app.StatusBarView
+                    android:id="@+id/statusPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+            </FrameLayout>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/swStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Show status bar on my video lock screen" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/swNotif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Animate notification icons" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/swCharge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Preview as charging (preview only)" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Battery style"
+                android:textColor="@color/blue_700"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp">
+
+                <RadioButton
+                    android:id="@+id/rbClassic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Classic outline" />
+
+                <RadioButton
+                    android:id="@+id/rbPill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pill (solid)" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Battery turns green while charging and stays black otherwise. Time, network speed, signal and Wi-Fi are live. The bar shows on the video lock screen. Android does not let a live wallpaper draw over the real system status bar on the home screen."
+                android:textColor="@color/muted"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
