@@ -1,0 +1,29 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.pb.browser'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.pb.browser'
+        minSdk 28
+        targetSdk 34
+        versionCode 25
+        versionName '3.3.8'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes {
+        release {
+            minifyEnabled true        // v3.3.8: thu nho + toi uu code -> app nhe, khoi dong nhanh
+            shrinkResources true      // bo tai nguyen khong dung
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Ky tam bang khoa debug de assembleRelease cai duoc ngay. Muon phat hanh that: doi sang khoa rieng cua ban.
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+dependencies {
+    implementation 'androidx.webkit:webkit:1.11.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+}
