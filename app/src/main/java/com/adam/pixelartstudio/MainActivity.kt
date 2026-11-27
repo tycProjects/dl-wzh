@@ -78,7 +78,7 @@ private fun StudioScreen() {
         } catch (e: Exception) { status = "فشل التصدير: ${e.localizedMessage}" }
     }
 
-    MaterialTheme(colorScheme = darkColorScheme(primary = Color(0xFF8B5CF6), secondary = Color(0xFF38BDF8), background = Color(0xFF10121A), surface = Color(0xFF191C27))) {
+    androidx.compose.material3.MaterialTheme(colorScheme = androidx.compose.material3.darkColorScheme(primary = Color(0xFF8B5CF6), secondary = Color(0xFF38BDF8), background = Color(0xFF10121A), surface = Color(0xFF191C27))) {
         Column(Modifier.fillMaxSize().background(Color(0xFF10121A)).padding(14.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) { Text("PIXEL ART STUDIO", color = Color(0xFFB9A0FF), fontSize = 12.sp); Text("استوديو فن البكسل", color = Color.White, fontSize = 22.sp) }
