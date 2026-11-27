@@ -71,11 +71,12 @@ private fun ZephyrApp(player: MediaController?) {
     var tab by remember { mutableStateOf(0) }
     var progress by remember { mutableFloatStateOf(0f) }
     var duration by remember { mutableLongStateOf(0L) }
+    val context = androidx.compose.ui.platform.LocalContext.current
 
     val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) {
             try {
-                androidx.compose.ui.platform.LocalContext.current.contentResolver.takePersistableUriPermission(uri, android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                context.contentResolver.takePersistableUriPermission(uri, android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
             } catch (_: Exception) { }
             val title = uri.lastPathSegment?.substringAfterLast('/')?.substringAfterLast(':') ?: "Audio lokal"
             tracks = tracks + Track(title, "File lokal", uri)
