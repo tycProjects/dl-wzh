@@ -1,0 +1,6 @@
+{
+  "name": "NexoraHub",
+  "description": "Free Fire esports tournament and gaming community Android application",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

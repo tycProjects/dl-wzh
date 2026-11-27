@@ -1,0 +1,1536 @@
+# NEXORAHUB — ULTIMATE ANDROID APPLICATION DEVELOPMENT PROMPT V8.0
+
+## COMPLETE USER APPLICATION WITH ADMIN BACKEND INTEGRATION
+
+# SECTION 1 — PROJECT IDENTITY AND OBJECTIVE
+
+### 1.1 Application identity
+
+Application Name: NexoraHub
+
+Tagline: PLAY • COMPETE • CONQUER
+
+Category: Free Fire Esports Tournament and Gaming Community Platform.
+
+Primary platform: Android.
+
+Brand identity: Premium dark esports gaming.
+
+Build NexoraHub as a complete, professional, functional Android application.
+
+The application should allow users to:
+- Register and log in.
+- Discover tournaments.
+- Join Solo, Duo, and Squad tournaments.
+- Provide their Free Fire IGN and UID.
+- View their tournament registration status.
+- Access authorized match room information.
+- View match results.
+- Follow leaderboards.
+- Explore a permitted gaming marketplace.
+- Chat privately.
+- Manage their profiles.
+- View application rewards.
+- Receive notifications.
+- Contact support.
+
+### 1.2 Project scope
+
+IMPORTANT:
+
+Develop ONLY the Android user application.
+
+Do not build a new admin dashboard.
+
+However, the app must be fully connected to the existing NexoraHub admin backend.
+
+The admin dashboard independently manages the application's content and operations.
+
+Both systems must use:
+- The same backend.
+- The same database.
+- The same authentication system.
+- The same file storage.
+- The same tournament records.
+- The same participant records.
+- The same application settings.
+
+Never create an independent local-only application.
+
+### 1.3 Development responsibility
+
+Act as:
+- Senior Android developer.
+- UI/UX designer.
+- Backend integration engineer.
+- Database integration specialist.
+- Security engineer.
+- Quality assurance specialist.
+
+Understand the complete requirements before coding.
+
+Inspect the existing project and backend documentation first.
+
+If an existing codebase is available, preserve its working architecture instead of unnecessarily replacing it.
+
+---
+
+# SECTION 2 — OFFICIAL UI/UX DESIGN SYSTEM
+
+### 2.1 Visual direction
+
+The official NexoraHub interface must use the combination of:
+
+1. Matte black backgrounds.
+2. Soft clay-style cards.
+3. Smooth neon-purple buttons.
+4. Black glassmorphism panels.
+5. Gold tournament highlights.
+6. Violet glowing borders.
+7. Premium gaming typography.
+8. Smooth animations.
+9. Modern rounded icons.
+10. High-quality gaming artwork.
+
+### 2.2 Color system
+
+Use a consistent palette:
+
+- Primary background: Deep black.
+- Secondary background: Dark charcoal.
+- Primary accent: Neon purple.
+- Secondary accent: Violet.
+- Highlight accent: Metallic gold.
+- Main text: Soft white.
+- Secondary text: Cool grey.
+- Success: Green.
+- Warning: Amber.
+- Error: Red.
+
+Avoid excessive neon brightness.
+
+### 2.3 Components
+
+Create reusable components for:
+
+- Navigation bars.
+- Tournament cards.
+- Match cards.
+- Leaderboard rows.
+- Wallet cards.
+- Profile cards.
+- Search fields.
+- Input fields.
+- Buttons.
+- Dialog boxes.
+- Bottom sheets.
+- Notification cards.
+- Status badges.
+- Image galleries.
+- Loading skeletons.
+- Empty states.
+
+### 2.4 Responsive design
+
+The application must work correctly on:
+
+- Small Android phones.
+- Standard Android phones.
+- Large-screen Android phones.
+- Tablets.
+
+Avoid overflowing text, overlapping icons, and clipped controls.
+
+### 2.5 Splash-screen integration
+
+When NexoraHub launches:
+
+1. Display a full-screen splash animation.
+2. Display the NexoraHub branding.
+3. Play the custom animation.
+4. Show a loading transition.
+5. Initialize essential application services.
+6. Check authentication status.
+7. Open Welcome/Login or Home.
+
+I will provide my own splash animation.
+
+Do not replace it with unrelated artwork.
+
+Make the animation easy to integrate later.
+
+---
+
+# SECTION 3 — GOOGLE AUTHENTICATION
+
+### 3.1 Authentication method
+
+Use Google-only authentication for ordinary users.
+
+Implement modern Google authentication using Android Credential Manager.
+
+Use the official Sign in with Google button.
+
+Do not use embedded WebViews for Google authentication.
+
+### 3.2 First-time user journey
+
+1. Open NexoraHub.
+2. Display Welcome Screen.
+3. Display Terms and Conditions.
+4. Display Privacy Policy.
+5. Require acceptance of applicable terms.
+6. Display Continue with Google.
+7. Start official Google authentication.
+8. Authenticate the user.
+9. Create a profile for a new user.
+10. Load the existing profile for returning users.
+11. Navigate to Home.
+
+### 3.3 User account data
+
+Create:
+- Unique NexoraHub User ID.
+- Display name.
+- Profile picture.
+- Google authentication identifier.
+- Verified email information, where available and permitted.
+- Referral code.
+- Account creation timestamp.
+- Accepted terms version.
+- Account status.
+
+Use Google's stable subject identifier as the identity key rather than treating the email address as a permanent identifier.
+
+The backend must verify Google ID tokens.
+
+Never trust an unverified client-side identity claim.
+
+### 3.4 Authentication screens
+
+Create:
+
+- Welcome Screen.
+- Sign in with Google.
+- Authentication Loading.
+- Authentication Error.
+- Terms and Conditions.
+- Privacy Policy.
+- Successful Account Creation.
+
+### 3.5 Returning user
+
+When an authenticated user opens the app:
+
+- Restore the valid session.
+- Fetch the latest user profile.
+- Fetch current application settings.
+- Fetch relevant notifications.
+- Navigate to Home.
+
+Handle expired sessions securely.
+
+---
+
+# SECTION 4 — MAIN NAVIGATION
+
+Create five bottom navigation sections:
+
+1. HOME
+2. MATCHES
+3. STORE
+4. REWARDS
+5. PROFILE
+
+The original Withdraw section should be presented as Rewards in the Play-ready version.
+
+Use:
+- Premium icons.
+- Purple active state.
+- Smooth navigation.
+- Consistent icon sizes.
+- Clear labels.
+
+Create a separate Wallet screen inside the app.
+
+---
+
+# SECTION 5 — HOME SCREEN
+
+### 5.1 Top navigation
+
+Arrange the Home top bar from left to right:
+
+1. Hamburger menu.
+2. Free Credits button.
+3. Top-up Balance.
+4. Circular Refresh icon.
+5. Notification Bell.
+
+### 5.2 Hamburger menu
+
+On clicking, open a slide-out navigation drawer.
+
+Include:
+
+- Home.
+- All Tournaments.
+- My Tournaments.
+- Ongoing Matches.
+- Completed Matches.
+- Leaderboard.
+- Store.
+- Wallet.
+- Rewards History.
+- Referral Team.
+- Feedback.
+- Support and Complaints.
+- Settings.
+- About NexoraHub.
+- Delete Account.
+- Logout.
+
+### 5.3 Free Credits button
+
+Create a compact purple button with a plus icon.
+
+This opens the Free Credits screen.
+
+Allow users to see:
+- Available promotional credits.
+- Credits issued by admin.
+- Credit allocation history.
+- Credit expiry, if configured.
+- Usage conditions.
+
+Credits must be free, non-cash, non-transferable, and not purchasable.
+
+### 5.4 Top-up Balance
+
+Display:
+
+TOP-UP BALANCE
+
+1,250 POINTS
+
+Fetch the latest balance from the backend.
+
+Use a smooth number transition when the balance changes.
+
+### 5.5 Refresh icon
+
+Add a circular two-arrow refresh button.
+
+When clicked:
+- Refresh user balance.
+- Refresh tournament listings.
+- Refresh promotional banners.
+- Refresh notification count.
+- Refresh relevant Home content.
+
+Show:
+- Loading feedback.
+- Success feedback.
+- Error feedback.
+
+Prevent duplicate requests.
+
+Do not reload the entire application.
+
+### 5.6 Notifications
+
+Place the notification bell at the far right.
+
+Show an unread count or indicator.
+
+Open a separate Notifications page when clicked.
+
+### 5.7 Promotional banners
+
+Display banners uploaded by admin.
+
+Admin-managed information includes:
+- Banner image.
+- Title.
+- Subtitle.
+- Start date.
+- End date.
+- Active status.
+- Display order.
+- Destination.
+
+Support multiple banners through an automatic carousel.
+
+Clicking a banner must open its configured destination.
+
+### 5.8 Tournament categories
+
+Display:
+
+- All.
+- Solo.
+- Duo.
+- Squad.
+- Special Events.
+- Admin-created categories.
+
+Load categories dynamically from the backend.
+
+### 5.9 Tournament cards
+
+Each tournament card must contain:
+
+- Tournament title in bold.
+- Admin-uploaded banner or image.
+- Optional promotional video.
+- Category.
+- Date.
+- Start time.
+- Game mode.
+- Free-entry label.
+- Non-cash reward points.
+- Points per kill.
+- Top 1, Top 2, Top 3 rewards.
+- Total player slots.
+- Registered players.
+- Remaining slots.
+- Registration status.
+- Tournament status.
+- View Details button.
+
+Display the newest tournaments first by default.
+
+Admin-featured tournaments can be pinned.
+
+Never show fake tournaments as live admin content.
+
+---
+
+# SECTION 6 — TOURNAMENT DETAILS
+
+Create a dedicated Tournament Details screen.
+
+Display:
+
+- Tournament cover image.
+- Tournament title.
+- Description.
+- Category.
+- Mode.
+- Map.
+- Date.
+- Starting time.
+- Rules.
+- Player requirements.
+- Total slots.
+- Registered participants.
+- Remaining slots.
+- Non-cash rewards.
+- Per-kill points.
+- Ranking distribution.
+- Registration status.
+- Leaderboard preview.
+
+Add a prominent Join Tournament button.
+
+Retrieve all information from the backend.
+
+### 6.1 Tournament eligibility
+
+Before registration:
+- Check tournament status.
+- Check registration closing time.
+- Check available slots.
+- Check user eligibility.
+- Check previous registration.
+- Check required team details.
+
+Never allow registration in a cancelled, closed, completed, or full tournament.
+
+---
+
+# SECTION 7 — MANDATORY FREE FIRE PLAYER IDENTITY
+
+### 7.1 Important identity separation
+
+Every registered participant must provide:
+
+1. Free Fire In-Game Name (IGN).
+2. Free Fire UID.
+3. NexoraHub User ID, automatically retrieved.
+
+These are three different identifiers.
+
+Never mix:
+- NexoraHub username.
+- NexoraHub User ID.
+- Free Fire IGN.
+- Free Fire UID.
+
+### 7.2 Solo registration
+
+Require:
+
+**PLAYER 1**
+- Free Fire IGN.
+- Free Fire UID.
+
+NexoraHub User ID is automatically supplied.
+
+### 7.3 Duo registration
+
+Require:
+
+**TEAM DETAILS**
+- Team Name.
+
+**PLAYER 1**
+- IGN.
+- UID.
+
+**PLAYER 2**
+- IGN.
+- UID.
+
+Where team members have NexoraHub accounts, allow secure account linking or confirmation.
+
+### 7.4 Squad registration
+
+Require:
+
+**TEAM DETAILS**
+- Team Name.
+
+**PLAYER 1**
+- IGN.
+- UID.
+
+**PLAYER 2**
+- IGN.
+- UID.
+
+**PLAYER 3**
+- IGN.
+- UID.
+
+**PLAYER 4**
+- IGN.
+- UID.
+
+Allow the admin-configured number of team members for custom tournament modes.
+
+### 7.5 Registration form design
+
+Create a professional multi-step registration screen.
+
+Step 1: NexoraHub account information.
+
+Step 2: Free Fire player identity.
+
+Step 3: Team information, where applicable.
+
+Step 4: Registration summary.
+
+Step 5: Confirmation.
+
+Provide clearly labelled input fields and useful validation errors.
+
+Allow previously saved player information to be selected and reconfirmed.
+
+### 7.6 Registration validation
+
+Check:
+
+- IGN is not empty.
+- UID is not empty.
+- UID follows the accepted format.
+- No duplicate UID exists within the same team.
+- No duplicate registration is created.
+- Team size matches the tournament mode.
+- Required members are entered.
+- Tournament slots remain available.
+
+Do not claim official Free Fire UID verification unless an authorized verification service exists.
+
+### 7.7 Registration confirmation
+
+Display:
+
+- Tournament title.
+- Registration ID.
+- NexoraHub username.
+- NexoraHub User ID.
+- Player IGN.
+- Player UID.
+- Team name.
+- Team members.
+- Date and time.
+
+Add Confirm Registration.
+
+Only show success after the backend confirms registration.
+
+Successful message:
+
+CONGRATULATIONS!
+
+YOUR NEXORAHUB TOURNAMENT REGISTRATION IS SUCCESSFUL.
+
+Show the registration reference.
+
+### 7.8 Registration status
+
+Support:
+
+- Draft.
+- Pending Review.
+- Verified.
+- Registered.
+- Rejected.
+- Cancelled.
+- Completed.
+
+Display rejection reasons returned by the backend.
+
+---
+
+# SECTION 8 — MY TOURNAMENTS
+
+Create a separate My Tournaments page.
+
+Use three tabs:
+
+- Upcoming.
+- Ongoing.
+- Completed.
+
+Each tournament card should show:
+
+- Tournament image.
+- Tournament name.
+- Registration ID.
+- Player IGN.
+- Player UID.
+- Team name.
+- Match date and time.
+- Registration status.
+- Tournament status.
+
+Allow users to open registration details.
+
+---
+
+# SECTION 9 — MATCHES
+
+Create two main tabs:
+
+ONGOING | COMPLETED
+
+### 9.1 Ongoing matches
+
+Display:
+
+- Tournament title.
+- Match ID.
+- Game mode.
+- Start time.
+- Match status.
+- Registered participants.
+- Current leaderboard when available.
+- Room information availability.
+
+Add View Details.
+
+### 9.2 Completed matches
+
+Display:
+
+- Tournament title.
+- Match date.
+- Winner.
+- Final rankings.
+- Player IGN.
+- Player UID.
+- Team name.
+- Kill count.
+- Placement.
+- Total points.
+- Verified status.
+- Admin-uploaded proof.
+
+Allow full result viewing.
+
+Clearly differentiate provisional and verified results.
+
+---
+
+# SECTION 10 — MATCH ROOM ID AND PASSWORD
+
+This is a mandatory NexoraHub feature.
+
+### 10.1 Admin-managed room details
+
+The administrator provides room information through the admin backend.
+
+The app must receive these fields:
+
+- Tournament ID.
+- Match ID.
+- Free Fire Room ID.
+- Room Password.
+- Release Date and Time.
+- Publication Status.
+- Authorized Participant List.
+- Optional Room Information Screenshot.
+
+IMPORTANT:
+
+Match ID, Room ID, and Room Password must be treated as three separate fields.
+
+### 10.2 User match screen
+
+Inside an eligible ongoing match, display a premium Room Details card.
+
+**MATCH INFORMATION**
+
+- Tournament Name.
+- Match ID.
+- Match Date.
+- Starting Time.
+
+**FREE FIRE ROOM DETAILS**
+
+- Room ID.
+- Copy Room ID button.
+- Room Password.
+- Copy Password button.
+
+Use:
+- Black glass panel.
+- Neon-purple borders.
+- Secure visibility indicator.
+- Gold match-status accent.
+
+### 10.3 Room status
+
+Support:
+
+- Not Published.
+- Scheduled.
+- Available.
+- Updated.
+- Disabled.
+- Match Completed.
+
+### 10.4 Room access security
+
+Only verified, authorized participants may access the room credentials.
+
+Requirements:
+
+- Server-side authorization.
+- Tournament-specific permissions.
+- Admin-configured release time.
+- Automatic revocation when disabled.
+- No credentials in public API responses.
+- No room password in notification text.
+
+### 10.5 Room notifications
+
+When admin publishes room information:
+
+"YOUR TOURNAMENT ROOM DETAILS ARE NOW AVAILABLE!"
+
+If admin updates the details:
+
+"YOUR TOURNAMENT ROOM INFORMATION HAS BEEN UPDATED."
+
+Never include the actual password in push notification messages.
+
+---
+
+# SECTION 11 — LEADERBOARD
+
+Create a dedicated Leaderboard screen.
+
+Provide filters:
+
+- Current Tournament.
+- Season.
+- Overall.
+
+Each row displays:
+
+- Player avatar.
+- NexoraHub username.
+- Free Fire IGN.
+- Free Fire UID where appropriate.
+- Team name.
+- Kill count.
+- Placement points.
+- Total score.
+- Rank.
+
+Highlight:
+- Rank 1 in gold.
+- Rank 2 in silver.
+- Rank 3 in bronze.
+
+Retrieve scoring rules and verified results from the backend.
+
+Never calculate official rankings using unverified local information.
+
+---
+
+# SECTION 12 — STORE / MARKETPLACE
+
+### 12.1 Store homepage
+
+Create a premium marketplace for permitted gaming-related products and services.
+
+Include:
+- Search bar.
+- Category filters.
+- Featured listings.
+- Latest listings.
+- Publish Listing button.
+- Sorting.
+- Filtering.
+
+Do not allow Free Fire account buying, selling, or transferring.
+
+Do not allow trading Free Fire virtual currency or items where prohibited by Garena terms.
+
+### 12.2 Publish Listing
+
+Create a separate listing page.
+
+Fields:
+
+- Listing title.
+- Description.
+- Category.
+- Original price, if relevant.
+- Discounted price, if relevant.
+- Bargaining availability.
+- Minimum three images.
+- Optional promotional video.
+
+Support image previews, upload progress, and validation.
+
+Every new submission must be sent to the admin backend for approval.
+
+### 12.3 Listing details
+
+Display:
+
+- Title.
+- Image gallery.
+- Promotional video.
+- Description.
+- Relevant price information.
+- Seller profile.
+- Seller rating.
+- Reviews.
+- Report Listing.
+
+### 12.4 Private chat
+
+Create a separate private conversation page.
+
+Include:
+- Private messages.
+- Timestamps.
+- Read status.
+- Block user.
+- Report user.
+- Reported-content moderation.
+
+Protect user privacy and apply appropriate community safety controls.
+
+### 12.5 Seller ratings
+
+Allow eligible buyers to provide ratings and reviews for permitted completed interactions.
+
+Prevent:
+- Duplicate reviews.
+- Fake ratings.
+- Abuse.
+- Review manipulation.
+
+Only use verified review eligibility.
+
+---
+
+# SECTION 13 — WALLET AND REWARDS
+
+Use a free, non-cash application points system.
+
+### 13.1 Wallet overview
+
+Display:
+
+- Available Points.
+- Pending Points.
+- Tournament Rewards.
+- Promotional Credits.
+- Points History.
+
+Points must be:
+- Free.
+- Non-cash.
+- Non-transferable.
+- Not purchasable.
+- Not redeemable for money.
+- Not convertible into cryptocurrency.
+- Not exchangeable for external game currency or items.
+
+### 13.2 Free Credits screen
+
+The Home button opens a Free Credits screen.
+
+Show:
+- Current credit balance.
+- Credits issued by admin.
+- Credit expiry.
+- Credit history.
+- Usage rules.
+
+Admin-issued credits update automatically.
+
+### 13.3 Rewards section
+
+The bottom navigation REWARDS tab replaces real-money withdrawal functionality.
+
+Display:
+- Earned Tournament Points.
+- Pending Points.
+- Promotional Rewards.
+- Rewards History.
+
+Show how points were awarded or used.
+
+Do not implement real-money cash withdrawal.
+
+### 13.4 Reward history
+
+Each record must display:
+- Reference ID.
+- Date and time.
+- Description.
+- Points awarded or used.
+- Status.
+
+---
+
+# SECTION 14 — NOTIFICATIONS
+
+Create a separate Notifications page.
+
+Display:
+
+- New tournament.
+- Tournament registration.
+- Registration verification.
+- Registration rejection.
+- Match reminders.
+- Match starting announcements.
+- Room details availability.
+- Room updates.
+- Completed match results.
+- Leaderboard updates.
+- Reward announcements.
+- Store listing approval.
+- Store listing rejection.
+- New messages.
+- Support replies.
+- Admin announcements.
+
+Each notification includes:
+
+- Title.
+- Description.
+- Date.
+- Time.
+- Read/unread status.
+
+Include Mark All as Read.
+
+Connect to admin-created notifications.
+
+Never include private room passwords or sensitive account information in notifications.
+
+---
+
+# SECTION 15 — PROFILE
+
+Create a professional user profile.
+
+Top-right:
+- Settings icon.
+
+Profile image:
+- Large circular avatar.
+- Gallery upload.
+- Default image when no avatar exists.
+
+Display:
+- Username.
+- NexoraHub User ID.
+- Referral Code.
+- Account creation date.
+- Saved Free Fire IGN and UID.
+
+### Profile options
+
+1. Edit Profile.
+2. My Tournaments.
+3. Player Details.
+4. Referral Code.
+5. Redeem Code.
+6. Referral Team.
+7. Leaderboard.
+8. Feedback.
+9. Support & Complaints.
+10. Privacy Policy.
+11. Terms and Conditions.
+12. App Version.
+13. Settings.
+14. Delete Account.
+15. Logout.
+
+### Referral system
+
+Show:
+- Referral code.
+- Copy button.
+- Invited users.
+- Referral status.
+- Eligible promotional rewards.
+
+### Redeem code
+
+Allow promotional code entry.
+
+Validate code availability, expiry, usage limits, and eligibility through the backend.
+
+---
+
+# SECTION 16 — SUPPORT AND COMPLAINTS
+
+Create a complete support center.
+
+Categories:
+
+- Tournament Problem.
+- Registration Issue.
+- Match Result Dispute.
+- Room Information Problem.
+- Marketplace Complaint.
+- Account Problem.
+- Technical Issue.
+- General Question.
+
+Allow users to:
+
+- Open a ticket.
+- Enter subject.
+- Describe the problem.
+- Attach an optional screenshot.
+- Receive ticket ID.
+- View status.
+- Read admin replies.
+- Reply to support.
+
+Statuses:
+
+- Submitted.
+- Under Review.
+- Waiting for User.
+- Resolved.
+- Closed.
+
+All support tickets must connect to the admin backend.
+
+---
+
+# SECTION 17 — SETTINGS AND ACCOUNT DELETION
+
+Create a dedicated Settings page.
+
+Include:
+- Edit Profile.
+- Notifications.
+- Privacy.
+- Language.
+- Terms and Conditions.
+- Privacy Policy.
+- Help and Support.
+- About NexoraHub.
+- App Version.
+- Delete Account.
+- Logout.
+
+### Delete Account
+
+Provide:
+- A discoverable in-app account deletion option.
+- An account deletion request confirmation.
+- Clear explanation of what data will be deleted.
+- Confirmation before submitting.
+- A publicly accessible external account-deletion webpage.
+
+Process requests through the backend.
+
+Delete associated user data when required, while clearly explaining any legally necessary retention.
+
+Do not treat account suspension as account deletion.
+
+---
+
+# SECTION 18 — ADMIN BACKEND CONNECTION
+
+This is the most important technical requirement.
+
+Build ONLY the Android application but connect every admin-controlled feature to the existing NexoraHub backend.
+
+### 18.1 Admin to app synchronization
+
+| Admin operation | Mobile app result |
+|---|---|
+| Publish tournament | Appears on Home |
+| Edit tournament | Details update |
+| Cancel tournament | Status changes |
+| Upload banner | Banner appears |
+| Create category | Category filter updates |
+| Verify player | Registration status changes |
+| Reject registration | User receives reason |
+| Publish match | Match appears |
+| Upload Room ID | Authorized users see Room ID |
+| Upload password | Authorized users see password |
+| Change room details | Updated credentials appear |
+| Disable room | Access is revoked |
+| Publish results | Completed match updates |
+| Update leaderboard | Rankings refresh |
+| Approve listing | Listing becomes visible |
+| Reject listing | Seller receives notification |
+| Publish announcement | Notification appears |
+| Reply to ticket | User sees admin reply |
+| Update reward rules | Rewards display updates |
+| Enable maintenance | Maintenance screen appears |
+| Change app settings | App receives new configuration |
+
+### 18.2 Backend modules required
+
+Connect to:
+
+1. Authentication.
+2. User Profiles.
+3. Free Fire Player Identities.
+4. Tournament Categories.
+5. Tournament Management.
+6. Tournament Registration.
+7. Team Management.
+8. Participant Verification.
+9. Match Management.
+10. Room ID and Password Configuration.
+11. Match Results.
+12. Leaderboards.
+13. Store Listings.
+14. Listing Approval.
+15. Private Chat.
+16. Seller Ratings.
+17. Reward Accounts.
+18. Reward Transactions.
+19. Notifications.
+20. Referral System.
+21. Redeem Codes.
+22. Support Tickets.
+23. Feedback.
+24. Advertising Banners.
+25. Application Settings.
+26. Maintenance Mode.
+27. Account Deletion.
+
+### 18.3 API integration rules
+
+- Inspect existing backend documentation first.
+- Reuse existing APIs.
+- Do not invent credentials or endpoints.
+- If API documentation does not exist, prepare a complete API contract.
+- Use secure authentication tokens.
+- Validate all sensitive operations server-side.
+- Use real-time subscriptions where supported.
+- Otherwise use efficient refresh and polling.
+- Handle expired sessions.
+- Handle network failures.
+- Show loading states.
+- Show error states.
+- Never claim success before the server confirms it.
+
+### 18.4 Single source of truth
+
+The backend must be the authoritative source for:
+
+- Tournament information.
+- Player registration.
+- Player verification.
+- Room credentials.
+- Match results.
+- Rankings.
+- Rewards.
+- Notifications.
+- Marketplace approval.
+- User status.
+- App settings.
+
+Do not use locally modified data as official information.
+
+---
+
+# SECTION 19 — TECHNICAL ARCHITECTURE
+
+### 19.1 Recommended Android technology
+
+For a new native Android project, use:
+
+- Kotlin.
+- Jetpack Compose.
+- Material 3 where appropriate.
+- Android Credential Manager.
+- ViewModel.
+- Repository pattern.
+- Kotlin Coroutines.
+- StateFlow and Flow.
+- Navigation.
+- Dependency injection.
+- Secure session storage.
+
+If an existing working project uses a different framework, inspect it first and preserve the existing architecture where practical.
+
+### 19.2 Architecture layers
+
+**Presentation layer**
+- Screens.
+- Reusable UI components.
+- Navigation.
+- ViewModels.
+- Screen state.
+
+**Domain layer**
+- Tournament rules.
+- Registration validation.
+- Rewards rules.
+- Match access logic.
+- Use cases.
+
+**Data layer**
+- Repositories.
+- Remote APIs.
+- Authentication.
+- Database access.
+- Local cache.
+- File uploads.
+
+### 19.3 Backend repositories
+
+Prepare separate repositories for:
+
+- Authentication.
+- Users.
+- Tournaments.
+- Registration.
+- Teams.
+- Matches.
+- Room details.
+- Results.
+- Leaderboards.
+- Store.
+- Messaging.
+- Rewards.
+- Notifications.
+- Support.
+- App configuration.
+
+Keep business logic separate from UI components.
+
+---
+
+# SECTION 20 — DATABASE DATA REQUIREMENTS
+
+The Android app must integrate with data structures for:
+
+1. Users.
+2. Profiles.
+3. Free Fire Player Identities.
+4. Tournaments.
+5. Tournament Participants.
+6. Teams.
+7. Team Members.
+8. Matches.
+9. Match Room Configurations.
+10. Match Results.
+11. Leaderboards.
+12. Reward Accounts.
+13. Reward Transactions.
+14. Notifications.
+15. Marketplace Listings.
+16. Listing Media.
+17. Seller Reviews.
+18. Conversations.
+19. Messages.
+20. Support Tickets.
+21. Support Replies.
+22. Referral Codes.
+23. Referral Records.
+24. Redeem Codes.
+25. Advertisements.
+26. Reports.
+27. User Consents.
+28. Application Settings.
+
+Ensure:
+
+- Unique IDs.
+- Proper relationships.
+- Valid timestamps.
+- Secure access rules.
+- Input validation.
+- Database consistency.
+
+Every tournament participant must remain linked to their registration record and Free Fire identity.
+
+---
+
+# SECTION 21 — SECURITY AND PRIVACY
+
+Implement:
+
+- Secure Google authentication.
+- Server-side token verification.
+- Protected API access.
+- Secure session handling.
+- Rate limiting.
+- Input validation.
+- Secure image uploads.
+- Duplicate registration protection.
+- Private messaging permissions.
+- Private room-information permissions.
+- Anti-spam controls.
+- Error logging.
+- Account deletion.
+- Appropriate user consent.
+
+Never store:
+- Google passwords.
+- Free Fire passwords.
+- Account recovery codes.
+- OTPs.
+- Unnecessary sensitive personal data.
+
+Apply appropriate parental consent requirements where legally necessary.
+
+---
+
+# SECTION 22 — APPLICATION STATES
+
+Every important screen must support:
+
+1. Loading.
+2. Successful response.
+3. Empty data.
+4. Network error.
+5. Server error.
+6. Unauthorized access.
+7. Expired session.
+8. Retry.
+
+Never show fake success messages.
+
+Never display false match results.
+
+Never show room passwords to unauthorized users.
+
+Never display fake completed transactions.
+
+---
+
+# SECTION 23 — TESTING AND ACCEPTANCE CRITERIA
+
+Before declaring NexoraHub functional, complete these tests.
+
+### Test A: Authentication
+
+1. New user opens the app.
+2. Accepts the terms.
+3. Signs in with Google.
+4. Profile is created.
+5. User enters Home.
+
+### Test B: Tournament publication
+
+1. Admin publishes a tournament.
+2. Tournament appears on Home.
+3. User opens details.
+4. User sees the correct rules and time.
+
+### Test C: Solo registration
+
+1. User chooses Solo.
+2. Enters IGN.
+3. Enters UID.
+4. Confirms information.
+5. Registration is saved.
+6. Admin can view the registration.
+
+### Test D: Duo registration
+
+1. User enters Team Name.
+2. Adds two IGN values.
+3. Adds two UID values.
+4. Submits registration.
+5. Admin sees both members.
+
+### Test E: Squad registration
+
+1. User enters Team Name.
+2. Adds four IGN values.
+3. Adds four UID values.
+4. Submits registration.
+5. Admin sees all four members.
+
+### Test F: Participant verification
+
+1. Admin searches for a player.
+2. Admin reviews IGN and UID.
+3. Admin verifies registration.
+4. User receives updated status.
+
+### Test G: Room ID and Password
+
+1. Admin selects the tournament.
+2. Admin selects the match.
+3. Admin enters Room ID.
+4. Admin enters Room Password.
+5. Admin sets release time.
+6. Admin publishes details.
+7. Authorized players see the Room Details card.
+8. Unauthorized users cannot access the details.
+9. Admin updates credentials.
+10. Authorized players receive an update notification.
+
+### Test H: Results
+
+1. Admin submits match results.
+2. Results are verified.
+3. Completed tournament updates.
+4. Leaderboard updates correctly.
+
+### Test I: Store
+
+1. User submits an eligible listing.
+2. Admin reviews it.
+3. Admin approves it.
+4. Listing appears publicly.
+5. User can view and report it.
+
+### Test J: Support
+
+1. User opens a ticket.
+2. Admin receives it.
+3. Admin replies.
+4. User sees the response.
+
+### Test K: App settings
+
+1. Admin publishes an announcement.
+2. User receives notification.
+3. Admin enables maintenance.
+4. User sees maintenance screen.
+
+---
+
+# SECTION 24 — DEVELOPMENT ORDER
+
+Develop the Android app in this sequence:
+
+PHASE 1 — NexoraHub branding and design system.
+
+PHASE 2 — Splash screen and Google authentication.
+
+PHASE 3 — Home screen and navigation.
+
+PHASE 4 — Admin backend connection.
+
+PHASE 5 — Tournament discovery and details.
+
+PHASE 6 — Solo, Duo, and Squad registration.
+
+PHASE 7 — Free Fire IGN and UID integration.
+
+PHASE 8 — My Tournaments.
+
+PHASE 9 — Matches and room credentials.
+
+PHASE 10 — Completed results and leaderboards.
+
+PHASE 11 — Store, listings, and private messaging.
+
+PHASE 12 — Rewards and free credits.
+
+PHASE 13 — Profile and referrals.
+
+PHASE 14 — Notifications and support.
+
+PHASE 15 — Security, privacy, and account deletion.
+
+PHASE 16 — Complete testing and Android release preparation.
+
+---
+
+# SECTION 25 — STRICT FINAL INSTRUCTIONS
+
+1. Develop only the NexoraHub Android application.
+2. Connect it to the existing admin backend.
+3. Do not build a separate admin dashboard.
+4. Do not build a disconnected local database.
+5. Do not hardcode admin-managed tournaments.
+6. Do not skip any requested user section.
+7. Every button must have a defined working action.
+8. Every tournament registration must contain the required IGN and UID.
+9. Support Solo, Duo, and Squad.
+10. Keep NexoraHub User ID separate from Free Fire UID.
+11. Support admin-managed Match ID, Room ID, and Password.
+12. Protect match room credentials.
+13. Connect all match results to registered participants.
+14. Connect all notifications to admin announcements.
+15. Keep the interface visually consistent.
+16. Use real backend records.
+17. Clearly label demonstration data.
+18. Do not show false success messages.
+19. Do not implement prohibited Free Fire account trading.
+20. Do not implement real-money deposits, entry fees, cash-prize tournaments, cash withdrawals, or crypto transfers.
+21. Use free-entry tournaments and non-cash platform points.
+22. Include an accessible account deletion process.
+23. Do not claim that backend integration is complete until tested.
+24. Document missing APIs instead of inventing them.
+
+# FIRST TASK
+
+Before writing code:
+
+- Inspect the current Android project.
+- Inspect available backend documentation.
+- Identify the actual API base URL and authentication requirements from authorized project configuration.
+- Prepare the complete application screen structure.
+- Prepare the data models.
+- Prepare the navigation graph.
+- Prepare API contracts.
+- Prepare the security plan.
+- Prepare the integration roadmap.
+
+Then develop NexoraHub one phase at a time.
+
+# FINAL GOAL
+
+Build NEXORAHUB — a premium, modern, fully functional Android esports application with a smooth black-and-neon gaming interface, secure Google authentication, mandatory Free Fire IGN and UID registration, admin-controlled room ID and password, connected matches and leaderboards, marketplace, rewards, notifications, profile management, and complete synchronization with the NexoraHub admin backend.

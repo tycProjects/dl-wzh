@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NexoraHub</string>
+    <string name="tagline">PLAY • COMPETE • CONQUER</string>
+    <string name="welcome_title">Welcome to NexoraHub</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="free_credits">Free Credits</string>
+    <string name="top_up_balance">TOP-UP BALANCE</string>
+    <string name="join_tournament">Join Tournament</string>
+    <string name="confirm_registration">Confirm Registration</string>
+    <string name="room_details_title">FREE FIRE ROOM DETAILS</string>
+    <string name="mark_all_read">Mark All Read</string>
+    <string name="delete_account">Delete Account</string>
+</resources>
