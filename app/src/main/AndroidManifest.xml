@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.axrender.freezepro">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <queries><intent><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent></queries>
     <application android:theme="@android:style/Theme.Material.Light.NoActionBar" android:label="AX Render & Freeze PRO" android:icon="@mipmap/ic_launcher" android:allowBackup="true" android:usesCleartextTraffic="false">
         <activity android:name=".MainActivity" android:exported="true" android:screenOrientation="portrait">
