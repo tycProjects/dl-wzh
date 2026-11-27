@@ -549,7 +549,7 @@ private fun extractZip(context: Context, archive: DocumentFile, destination: Doc
             val entry = zis.nextEntry ?: break
             count++
             if (count > maxEntries) throw IOException("الأرشيف يحتوي على عدد عناصر يتجاوز الحد الآمن")
-            val clean = entry.name.replace('\\\\', '/')
+            val clean = entry.name.replace('\\', '/')
             val parts = clean.split('/').filter { it.isNotBlank() }
             if (clean.startsWith("/") || clean.startsWith("../") ||
                 parts.any { it == "." || it == ".." } || parts.isEmpty()
