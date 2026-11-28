@@ -1,14 +1,15 @@
 {
-  "latestVersionCode": 1792447889,
-  "latestVersionName": "10.0.0",
-  "apkUrl": "https://www.mediafire.com/file/e4pa2y1w02l1lbp/WZH+2+APK+(unli-build).apk/file",
+  "latestVersionCode": 1792447890,
+  "latestVersionName": "11.0.0",
+  "apkUrl": "https://t.me/tycept/163",
   "title": "New version available",
   "notes": [
     "⌯⌲WHAT'S NEW?",
-    "Unlimited build-(need set up)",
-    "UI-(smoother feel)"
+    "»some minor changes in the store",
+    "»fixed bugs",
+    "»optimized"
   ],
   "updateButtonText": "Download update",
   "laterButtonText": "Later",
-  "updatedAt": 1794961031746
+  "updatedAt": 1795866966381
 }
