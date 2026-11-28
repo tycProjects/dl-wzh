@@ -4,9 +4,12 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-val ksProps = java.util.Properties().apply {
-    val f = rootProject.file("keystore.properties")
-    if (f.exists()) f.inputStream().use { load(it) }
+import java.util.Properties
+
+val ksProps = Properties()
+val f = rootProject.file("keystore.properties")
+if (f.exists()) {
+    f.inputStream().use { ksProps.load(it) }
 }
 
 android {
