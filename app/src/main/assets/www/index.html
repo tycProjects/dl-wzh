@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Pixel Calculator</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<main class="win">
+  <div class="tb"><i></i><b>PIXEL CALC</b>
+    <svg width="20" height="20" viewBox="0 0 10 10" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M1 0h8v10H1zM2 1v2h6V1zM2 4h1v1H2zm2 0h1v1H4zm2 0h1v1H6zM2 6h1v1H2zm2 0h1v1H4zm2 0h1v1H6zM2 8h1v1H2zm2 0h1v1H4zm2 0h1v1H6z"/></svg></div>
+  <div class="scr" aria-live="polite">
+    <div id="mi"></div><button class="b" id="cp" data-k="copy" aria-label="Copy display">COPY</button>
+    <div id="pv"></div><div id="ex">0</div>
+  </div>
+  <div class="mem" id="mem"></div>
+  <div class="pad" id="pad"></div>
+  <nav class="tabs" aria-label="Panels">
+    <button class="b" data-p="sci" aria-expanded="false" aria-controls="p-sci">SCI</button>
+    <button class="b" data-p="his" aria-expanded="false" aria-controls="p-his">HIST</button>
+    <button class="b" data-p="tools" aria-expanded="false" aria-controls="p-tools">TOOLS</button>
+    <button class="b" data-p="theme" aria-expanded="false" aria-controls="p-theme">THEME</button>
+  </nav>
+  <section class="panel" id="p-sci" hidden>
+    <div class="sg" id="sg" role="group" aria-label="Function groups"></div>
+    <div class="sci" id="sci"></div>
+    <div class="ctl"><button class="b" id="degb" data-k="deg" aria-label="Toggle degrees or radians">DEG</button><button class="b" data-s="ans" aria-label="Previous answer">ANS</button><label>PREC <select id="prec" aria-label="Precision"></select></label><button class="b" data-k="test" aria-label="Run self tests">TEST</button></div>
+  </section>
+  <section class="panel" id="p-his" hidden>
+    <ul id="hl"></ul><button class="b" id="hc">CLEAR ALL</button>
+  </section>
+  <section class="panel" id="p-tools" hidden>
+    <label class="fld">Tool<select id="ts"></select></label>
+    <div id="tf"></div><div class="out" id="to" aria-live="polite"></div>
+    <div class="ctl"><button class="b" id="tu">TO CALC</button><button class="b" id="tc">COPY</button></div>
+  </section>
+<section class="panel" id="p-theme" hidden><div class="thl" id="thl"></div></section>
+</main>
+<script src="js/vendor/math.min.js" onerror="this.remove()"></script>
+<script src="js/engine.js"></script>
+<script src="js/themes.js"></script>
+<script src="tests/cases.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
