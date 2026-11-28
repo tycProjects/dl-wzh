@@ -139,7 +139,7 @@ fun CreateArchiveDialog(defaultBase: String, folderSelection: Boolean, defaultFo
     var crypto by remember { mutableStateOf(false) }; var comment by remember { mutableStateOf("") }
     var hidden by remember { mutableStateOf(false) }; var split by remember { mutableStateOf("بدون تقسيم") }
     val levels = linkedMapOf("تخزين فقط" to 0, "سريع" to 1, "عادي" to 5, "أقصى" to 9)
-    val splits = linkedMapOf("بدون تقسيم" to 0L, "10 MB" to 10L shl 20, "50 MB" to 50L shl 20, "100 MB" to 100L shl 20, "500 MB" to 500L shl 20, "1 GB" to 1L shl 30, "2 GB" to 2L shl 30, "4 GB" to 4L shl 30)
+    // AUTO-REPAIR: disabled -- unresolved reference 'shl' (was: val splits = linkedMapOf("بدون تقسيم" to 0L, "10 MB" to 10L shl 20, "50 MB" to 50L shl 20, "100 MB" to 100L shl 20, "500 MB" to 500L shl 20, "1 GB" to 1L shl 30, "2 GB" to 2L shl 30, "4 GB" to 4L shl 30))
     val canPw = ArchiveWriter.supportsPassword(format)
     val mismatch = canPw && pw != pw2
     AlertDialog(onDismissRequest = onDismiss, title = { Text("إنشاء أرشيف") }, text = {

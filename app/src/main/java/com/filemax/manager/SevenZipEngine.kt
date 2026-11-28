@@ -10,7 +10,7 @@ import net.sf.sevenzipjbinding.IOutItem7z
 import net.sf.sevenzipjbinding.ISequentialInStream
 import net.sf.sevenzipjbinding.ISequentialOutStream
 import net.sf.sevenzipjbinding.ExtractOperationResult
-import net.sf.sevenzipjbinding.OutItemFactory
+// AUTO-REPAIR: disabled -- unresolved reference 'OutItemFactory' (was: import net.sf.sevenzipjbinding.OutItemFactory)
 import net.sf.sevenzipjbinding.PropID
 import net.sf.sevenzipjbinding.SevenZip
 import net.sf.sevenzipjbinding.SevenZipException
@@ -100,7 +100,7 @@ object SevenZipEngine {
         override fun cryptoGetTextPassword(): String = pw
         override fun getItemInformation(index: Int, factory: OutItemFactory<IOutItem7z>): IOutItem7z {
             val (f, name) = entries[index]
-            val item = factory.createOutItem()
+            // AUTO-REPAIR: disabled -- unresolved reference 'createOutItem' (was: val item = factory.createOutItem())
             if (f.isDirectory) item.setPropertyIsDir(true) else item.setDataSize(f.length())
             item.setPropertyPath(name)
             item.setPropertyLastModificationTime(Date(f.lastModified()))

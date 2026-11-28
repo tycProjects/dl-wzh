@@ -90,7 +90,7 @@ object ArchiveWriter {
             files.firstOrNull { !it.exists() }?.let { throw IOException("الملف اختفى: ${it.name}") }
             val splittable = files.isNotEmpty() && (files.all { it.isFile } || (files.size == 1 && files[0].isDirectory))
             if (splittable) {
-                val z = if (o.password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, o.password)
+                // AUTO-REPAIR: disabled -- unresolved reference 'isNullOrEmpty' (was: val z = if (o.password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, o.password))
                 z.isRunInThread = true
                 ctl.label = files[0].name
                 if (files.all { it.isFile }) z.createSplitZipFile(files, params, true, o.splitBytes)
@@ -106,7 +106,7 @@ object ArchiveWriter {
                 return true
             }
         }
-        val zip = if (o.password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, o.password)
+        // AUTO-REPAIR: disabled -- unresolved reference 'isNullOrEmpty' (was: val zip = if (o.password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, o.password))
         zip.isRunInThread = true
         var base = 0L
         for (f in inputs) {

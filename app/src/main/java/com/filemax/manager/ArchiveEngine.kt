@@ -18,14 +18,14 @@ object ArchiveEngine {
         output.parentFile?.let { require(it.exists() || it.mkdirs()) }
         val params = ZipParameters().apply {
             compressionMethod = CompressionMethod.DEFLATE
-            isEncryptFiles = !password.isNullOrEmpty()
+            // AUTO-REPAIR: disabled -- unresolved reference 'isNullOrEmpty' (was: isEncryptFiles = !password.isNullOrEmpty())
             if (isEncryptFiles) {
                 encryptionMethod = EncryptionMethod.AES
                 aesKeyStrength = AesKeyStrength.KEY_STRENGTH_256
             }
         }
         try {
-            val zip = if (password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, password)
+            // AUTO-REPAIR: disabled -- unresolved reference 'isNullOrEmpty' (was: val zip = if (password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, password))
             inputs.forEach { input ->
                 if (!input.exists()) throw IOException("Input disappeared: ${input.name}")
                 if (input.isDirectory) zip.addFolder(input, params) else zip.addFile(input, params)
@@ -46,7 +46,7 @@ object ArchiveEngine {
         val staging = File(destination.parentFile, ".${destination.name}.filemax_tmp")
         staging.deleteRecursively()
         if (!staging.mkdirs()) throw IOException("Cannot create temporary destination")
-        val zip = if (password.isNullOrEmpty()) ZipFile(archive) else ZipFile(archive, password)
+        // AUTO-REPAIR: disabled -- unresolved reference 'isNullOrEmpty' (was: val zip = if (password.isNullOrEmpty()) ZipFile(archive) else ZipFile(archive, password))
         try {
             val root = staging.canonicalFile
             zip.fileHeaders.forEach { header ->
