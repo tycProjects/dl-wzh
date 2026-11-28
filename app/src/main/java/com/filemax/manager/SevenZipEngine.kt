@@ -10,7 +10,7 @@ import net.sf.sevenzipjbinding.IOutItem7z
 import net.sf.sevenzipjbinding.ISequentialInStream
 import net.sf.sevenzipjbinding.ISequentialOutStream
 import net.sf.sevenzipjbinding.ExtractOperationResult
-// AUTO-REPAIR: disabled -- unresolved reference 'OutItemFactory' (was: import net.sf.sevenzipjbinding.OutItemFactory)
+import net.sf.sevenzipjbinding.OutItemFactory
 import net.sf.sevenzipjbinding.PropID
 import net.sf.sevenzipjbinding.SevenZip
 import net.sf.sevenzipjbinding.SevenZipException
@@ -34,10 +34,12 @@ object SevenZipEngine {
         @Volatile var result: ExtractOperationResult? = null
         @Volatile var error: Throwable? = null
         override fun getStream(index: Int, mode: ExtractAskMode): ISequentialOutStream? =
-            if (mode != ExtractAskMode.EXTRACT) null else ISequentialOutStream { data ->
-                try { out.write(data); ctl.add(data.size.toLong()) }
-                catch (t: Throwable) { error = t; throw SevenZipException("aborted") }
-                data.size
+            if (mode != ExtractAskMode.EXTRACT) null else object : ISequentialOutStream {
+                override fun write(data: ByteArray): Int {
+                    try { out.write(data); ctl.add(data.size.toLong()) }
+                    catch (t: Throwable) { error = t; throw SevenZipException("aborted") }
+                    return data.size
+                }
             }
         override fun prepareOperation(mode: ExtractAskMode) {}
         override fun setOperationResult(r: ExtractOperationResult) { result = r }
@@ -100,7 +102,7 @@ object SevenZipEngine {
         override fun cryptoGetTextPassword(): String = pw
         override fun getItemInformation(index: Int, factory: OutItemFactory<IOutItem7z>): IOutItem7z {
             val (f, name) = entries[index]
-            // AUTO-REPAIR: disabled -- unresolved reference 'createOutItem' (was: val item = factory.createOutItem())
+            val item = factory.createOutItem()
             if (f.isDirectory) item.setPropertyIsDir(true) else item.setDataSize(f.length())
             item.setPropertyPath(name)
             item.setPropertyLastModificationTime(Date(f.lastModified()))
@@ -111,11 +113,12 @@ object SevenZipEngine {
             if (f.isDirectory) return null
             return try {
                 val r = RandomAccessFile(f, "r").also { opened += it }
-                ISequentialInStream { data ->
-                    val n = r.read(data)
-                    if (n <= 0) 0 else {
+                object : ISequentialInStream {
+                    override fun read(data: ByteArray): Int {
+                        val n = r.read(data)
+                        if (n <= 0) return 0
                         try { ctl.add(n.toLong()) } catch (t: Throwable) { error = t; throw SevenZipException("aborted") }
-                        n
+                        return n
                     }
                 }
             } catch (t: Throwable) { error = t; throw SevenZipException("aborted") }

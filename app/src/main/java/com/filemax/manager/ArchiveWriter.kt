@@ -78,7 +78,7 @@ object ArchiveWriter {
             if (o.level == 0) compressionMethod = CompressionMethod.STORE
             else { compressionMethod = CompressionMethod.DEFLATE
                 compressionLevel = when { o.level <= 1 -> CompressionLevel.FASTEST; o.level >= 9 -> CompressionLevel.ULTRA; else -> CompressionLevel.NORMAL } }
-            if (!o.password.isNullOrEmpty()) {
+            if (o.password != null && o.password.isNotEmpty()) {
                 isEncryptFiles = true
                 if (o.zipCrypto) encryptionMethod = EncryptionMethod.ZIP_STANDARD
                 else { encryptionMethod = EncryptionMethod.AES; aesKeyStrength = AesKeyStrength.KEY_STRENGTH_256 }
@@ -90,7 +90,7 @@ object ArchiveWriter {
             files.firstOrNull { !it.exists() }?.let { throw IOException("الملف اختفى: ${it.name}") }
             val splittable = files.isNotEmpty() && (files.all { it.isFile } || (files.size == 1 && files[0].isDirectory))
             if (splittable) {
-                // AUTO-REPAIR: disabled -- unresolved reference 'isNullOrEmpty' (was: val z = if (o.password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, o.password))
+                val z = if (o.password == null || o.password.isEmpty()) ZipFile(output) else ZipFile(output, o.password)
                 z.isRunInThread = true
                 ctl.label = files[0].name
                 if (files.all { it.isFile }) z.createSplitZipFile(files, params, true, o.splitBytes)
@@ -106,7 +106,7 @@ object ArchiveWriter {
                 return true
             }
         }
-        // AUTO-REPAIR: disabled -- unresolved reference 'isNullOrEmpty' (was: val zip = if (o.password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, o.password))
+        val zip = if (o.password == null || o.password.isEmpty()) ZipFile(output) else ZipFile(output, o.password)
         zip.isRunInThread = true
         var base = 0L
         for (f in inputs) {
@@ -135,7 +135,7 @@ object ArchiveWriter {
     }
 
     private fun create7z(inputs: List<File>, output: File, o: CreateOptions, ctl: TaskControl) {
-        if (!o.password.isNullOrEmpty()) {
+        if (o.password != null && o.password.isNotEmpty()) {
             val list = ArrayList<Pair<File, String>>()
             inputs.forEach { if (!it.exists()) throw IOException("الملف اختفى: ${it.name}"); collect(it, it.name, o, list) }
             SevenZipEngine.create7z(list, output, o, ctl)
