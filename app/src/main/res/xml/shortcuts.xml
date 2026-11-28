@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="open_internal" android:enabled="true" android:icon="@mipmap/ic_launcher" android:shortcutShortLabel="@string/sc_internal" android:shortcutLongLabel="@string/sc_internal">
+        <intent android:action="com.filemax.manager.OPEN_FOLDER" android:targetPackage="com.filemax.manager" android:targetClass="com.filemax.manager.MainActivity">
+            <extra android:name="path" android:value="/storage/emulated/0" />
+        </intent>
+    </shortcut>
+    <shortcut android:shortcutId="open_downloads" android:enabled="true" android:icon="@mipmap/ic_launcher" android:shortcutShortLabel="@string/sc_downloads" android:shortcutLongLabel="@string/sc_downloads">
+        <intent android:action="com.filemax.manager.OPEN_FOLDER" android:targetPackage="com.filemax.manager" android:targetClass="com.filemax.manager.MainActivity">
+            <extra android:name="path" android:value="/storage/emulated/0/Download" />
+        </intent>
+    </shortcut>
+    <shortcut android:shortcutId="open_appdata" android:enabled="true" android:icon="@mipmap/ic_launcher" android:shortcutShortLabel="@string/sc_appdata" android:shortcutLongLabel="@string/sc_appdata">
+        <intent android:action="com.filemax.manager.OPEN_FOLDER" android:targetPackage="com.filemax.manager" android:targetClass="com.filemax.manager.MainActivity">
+            <extra android:name="path" android:value="/storage/emulated/0/Android/data" />
+        </intent>
+    </shortcut>
+</shortcuts>

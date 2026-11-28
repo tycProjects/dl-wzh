@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">File Max</string>
+    <string name="sc_internal">Internal storage</string>
+    <string name="sc_downloads">Downloads</string>
+    <string name="sc_appdata">Android/data</string>
+    <string name="widget_desc">Quick folders</string>
+</resources>

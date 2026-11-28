@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="horizontal" android:padding="6dp" android:background="@drawable/widget_bg">
+    <TextView android:id="@+id/w_internal" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+        android:gravity="center" android:text="@string/sc_internal" android:textColor="#202020" android:textSize="12sp" />
+    <TextView android:id="@+id/w_downloads" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+        android:gravity="center" android:text="@string/sc_downloads" android:textColor="#202020" android:textSize="12sp" />
+    <TextView android:id="@+id/w_appdata" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"
+        android:gravity="center" android:text="@string/sc_appdata" android:textColor="#202020" android:textSize="12sp" />
+</LinearLayout>
