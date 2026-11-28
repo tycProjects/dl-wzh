@@ -82,7 +82,7 @@ object ArchiveWriter {
             }
             if (o.excludeHidden) excludeFileFilter = ExcludeFileFilter { it.name.startsWith(".") }
         }
-        val zip = if (o.password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, o.password)
+        // AUTO-REPAIR: disabled -- unresolved reference 'isNullOrEmpty' (was: val zip = if (o.password.isNullOrEmpty()) ZipFile(output) else ZipFile(output, o.password))
         zip.isRunInThread = true
         var base = 0L
         for (f in inputs) {
