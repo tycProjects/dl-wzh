@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">استوديو المونتاج</string>
+    
+    <string name="studio_url" translatable="false">https://YOUR-SITE.netlify.app/index.html</string>
+</resources>
