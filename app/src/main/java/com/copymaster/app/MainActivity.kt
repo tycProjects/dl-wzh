@@ -59,9 +59,13 @@ class MainActivity : Activity() {
             minLines = 7
             setPadding(12, 12, 12, 12)
             setBackgroundColor(Color.rgb(34, 40, 52))
-            addTextChangedListener(SimpleTextWatcher {
-                ClipboardBuffer.text = text.toString()
-                updateCount()
+            addTextChangedListener(object : android.text.TextWatcher {
+                override fun afterTextChanged(s: android.text.Editable?) {
+                    ClipboardBuffer.text = s?.toString() ?: ""
+                    updateCount()
+                }
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             })
         }
         root.addView(editor, LinearLayout.LayoutParams(-1, 0, 1f))
